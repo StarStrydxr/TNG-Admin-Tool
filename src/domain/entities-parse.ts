@@ -9,6 +9,7 @@
 import { isGradeId, type GradeId } from './grades';
 import { isLinkKind, type EntityLink } from './links';
 import { DEFAULT_MIN_ROLE, isRole, type Role } from './roles';
+import { parseStatBlock } from './character-parse';
 import { modifier } from './clans';
 import {
   ENTITY_SCHEMA_VERSION,
@@ -115,8 +116,10 @@ function parseBase(raw: Record<string, unknown>, kind: EntityKind, fallbackId: s
 }
 
 function parseShikigamiCore(raw: Record<string, unknown>): ShikigamiCore {
+  const own = grade(raw['grade']);
+
   return {
-    grade: grade(raw['grade']),
+    grade: own,
     form: str(raw['form']),
     role: str(raw['role']),
     abilities: strList(raw['abilities']),
@@ -125,6 +128,13 @@ function parseShikigamiCore(raw: Record<string, unknown>): ShikigamiCore {
     temperament: str(raw['temperament']),
     binding: str(raw['binding']),
     weakness: str(raw['weakness']),
+    // Absent means nobody statted it, and that is kept as null rather than filled with Class
+    // 3s — a default block would claim stats that were never written. Read through the
+    // character's own parser, so a shikigami's stats are validated exactly like a sheet's.
+    stats: raw['stats'] === undefined || raw['stats'] === null
+      ? null
+      : parseStatBlock(raw['stats'], own),
+    addendum: str(raw['addendum']),
   };
 }
 

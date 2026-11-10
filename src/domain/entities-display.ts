@@ -5,12 +5,21 @@
  * testable, and changed in one place when a schema gains a field. The component stays dumb.
  */
 
-import { gradeLabel } from './grades';
+import { formatStatLong, gradeLabel } from './grades';
 import { SEAT_STATUS_LABELS } from './entities';
+import {
+  CE_RESERVES_LABELS,
+  GRADED_STAT_IDS,
+  GRADED_STAT_LABELS,
+  describeEffectiveReserves,
+  effectiveReserves,
+  type StatBlock,
+} from './stats';
 import type {
   ClanAsset,
   ClanFigure,
   ClanSeat,
+  EmbeddedShikigami,
   Mutation,
   SavedEntity,
 } from './entities';
@@ -133,11 +142,7 @@ function fieldsFor(entity: SavedEntity): readonly EntityField[] {
         one('cost', 'Rough cost', entity.cost),
         one('limitation', 'Limitation', entity.limitation),
         one('tell', 'Tell', entity.tell),
-        many(
-          'shikigami',
-          'Shikigami',
-          entity.shikigami.map((s) => `${s.name || 'Unnamed'} — ${s.form}`),
-        ),
+        many('shikigami', 'Shikigami', entity.shikigami.map(shikigamiLine)),
       ];
 
     case 'shikigami':
@@ -151,6 +156,8 @@ function fieldsFor(entity: SavedEntity): readonly EntityField[] {
         one('temperament', 'Temperament', entity.temperament),
         one('binding', 'If it is destroyed', entity.binding),
         one('weakness', 'Weakness', entity.weakness),
+        many('stats', 'Stats', entity.stats ? statLines(entity.stats) : []),
+        one('addendum', 'Addendum', entity.addendum),
       ];
 
     // No grade line: lore is one of the two records that have none (see `entityGrade`).
@@ -185,6 +192,38 @@ function fieldsFor(entity: SavedEntity): readonly EntityField[] {
         one('treasuryNotes', 'Vault notes', entity.treasury.notes),
       ];
   }
+}
+
+/**
+ * A stat block as readable lines.
+ *
+ * Effective reserves appears only when CE Efficiency actually outranks CE Output, so an
+ * ordinary block reads exactly as it did. It sits **beside** the written band and never in
+ * place of it — the stored value is what Dan typed (CLAUDE.md §4).
+ */
+export function statLines(stats: StatBlock): readonly string[] {
+  const lines = GRADED_STAT_IDS.map(
+    (id) => `${GRADED_STAT_LABELS[id]}: ${formatStatLong(stats.graded[id])}`,
+  );
+
+  lines.push(`CE Reserves: ${CE_RESERVES_LABELS[stats.ceReserves]}`);
+
+  const effective = effectiveReserves(stats);
+  if (effective.steps > 0) {
+    lines.push(`Effective reserves: ${describeEffectiveReserves(stats)}`);
+  }
+
+  return lines;
+}
+
+/** "Nue — Grade 1 · a thunderbird", with its stat block folded in where it has one. */
+export function shikigamiLine(s: EmbeddedShikigami): string {
+  const head = [s.name || 'Unnamed', [gradeLabel(s.grade), s.form].filter(Boolean).join(' · ')]
+    .filter(Boolean)
+    .join(' — ');
+
+  const tail = [s.stats ? statLines(s.stats).join('; ') : '', s.addendum].filter(Boolean);
+  return tail.length > 0 ? `${head} — ${tail.join(' — ')}` : head;
 }
 
 export function mutationLine(mutation: Mutation): string {

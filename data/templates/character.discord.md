@@ -78,6 +78,8 @@ Potential: {{#potential}}{{potential}}{{/potential}}{{^potential}}N/A{{/potentia
 CE Output: {{ce-output}}
 CE Control: {{ce-control}}
 CE Reserves: {{ceReserves}}
+{{#effectiveReserves}}Effective Reserves: {{effectiveReserves}}
+{{/effectiveReserves}}
 CE Efficiency: {{ce-efficiency}}
 Perception: {{perception}}
 Strength: {{strength}}

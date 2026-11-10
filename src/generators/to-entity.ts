@@ -43,6 +43,10 @@ function shikigamiCore(draft: Draft): ShikigamiCore {
     temperament: draftValue(draft, 'temperament'),
     binding: draftValue(draft, 'binding'),
     weakness: draftValue(draft, 'weakness'),
+    // A generator rolls a grade and nothing else (§4), so a rolled shikigami has no stat
+    // block until somebody writes one. The editor fills Class 3 defaults on request.
+    stats: null,
+    addendum: '',
   };
 }
 

@@ -260,6 +260,29 @@ is typed separately from the other seven. The bands, shallowest first:
 
 Note `Abysmal` means *abyssally deep* here, not *poor* — it sits near the top of the scale.
 
+**Effective reserves** (Dan, 10 Nov 2026): **every grade CE Efficiency sits above CE Output is
+one more stage of reserves** — Deep becomes Bottomless at one grade up, Abysmal at two.
+Efficiency at or below Output changes nothing; the rule only ever adds, and it stops at
+Endless while still reporting the grades that ran past it.
+
+- ⚠️ **Derived for display, never written back.** `effectiveReserves()` in `domain/stats.ts`
+  returns a second value to show beside the stored band; `stats.ceReserves` stays exactly what
+  Dan typed. That is the line between this and the stat calculator forbidden above: nothing
+  reads a trait, sums a modifier or changes a stored stat. It restates two stats he entered by
+  a rule he stated, and a reader can check it at a glance. It is hidden entirely when the two
+  stats are level, so an ordinary sheet reads as it always did.
+- Rungs are counted on the **full ladder, implied rungs included**, because gap counting
+  depends on them — Grade Semi-2 to Grade 2 is one grade, not nothing.
+- A Civilian stat yields no shift either way: Civilian Efficiency cannot outrank anything, and
+  Civilian Output would make every grade above it a step, which is far more likely a
+  half-filled sheet than a real reading.
+- Dan's own documents sometimes write CE Efficiency as a **plain count of grades above
+  Output** (`0`, `1`). That is shorthand for this rule, not a second way of storing the stat —
+  the record keeps `Grade[Class]`, confirmed twice (9 and 10 Nov 2026).
+- ⚠️ A reserves band is sometimes written with a **`+`** (`Shallow+`, `Average+`, `Abyssal+`).
+  Dan treats that narratively as a half-step and **does not want it in the enum** (10 Nov
+  2026). Keep the six bands; put the `+` in a record's own free text where it appears.
+
 ### ⚠️ The app does NOT calculate stats
 
 **Generators roll a Grade and nothing else.** Every stat then sits at **Class 3 of that Grade**,
@@ -402,6 +425,22 @@ and giving it one so the type lines up would put a wrong abbreviation on every c
 code that reaches for a grade without knowing the kind goes through **`entityGrade()`**, which
 returns null for lore. Search, the library row, the detail header, the Obsidian frontmatter and
 the export context all do. Add a kind without a grade and that is the function to use.
+
+**Shikigami**
+
+`ShikigamiCore` carries the rolled fields, and both the standalone `Shikigami` entity and the
+`EmbeddedShikigami` inside a technique extend it. Two fields were added 10 Nov 2026 for the Ten
+Shadows rework, both additive so saved records still parse:
+
+- **`stats`** — a `StatBlock` of its own, or **null** for one nobody has statted. Null rather
+  than a default block, because absence is information: a generator rolls a grade and nothing
+  else, so a rolled shikigami genuinely has no stats until somebody writes them, and a sheet
+  full of Class 3s would claim otherwise. Read through `parseStatBlock`, the character's own
+  parser, so a shikigami's stats are validated exactly like a sheet's.
+- **`addendum`** — free text for what the stat block has no field for. "Divine Dog goes to
+  Grade One in Totality", "Conditional True Dura Neg to Domains". ⚠️ **Dura Neg is a real
+  mechanic with no written rules yet**, so it stays prose until Dan supplies them; guessing a
+  shape would produce a plausible system that is wrong (§10).
 
 Shared metadata on every generated entity: `id`, `createdAt`, `seed`, `tableVersion`,
 `expandedByClaude` (bool), `userEdited` (bool).
@@ -1143,6 +1182,7 @@ Requested after the original plan, and slotted ahead of 3–5:
 | **2.8** | Obsidian vaults (export and import, any local folder — the Drive answer, see §1), the three faction themes, per-kind insignia, and a custom background image. ✅ |
 | **2.7** | Second quality-of-life pass. ✅ Tag coherence made real, technique tables for all eleven types, the Situation roller, duplicate warnings, keyboard rolling, restore-from-backup, the in-app template editor, and booklet covers. `Curse` became a saveable entity along the way. |
 | **3.0** | The server's own formats. ✅ The character record became the OC template (§4), missions gained the posting format with rolled objectives and rewards, markdown export gained a second Discord-format template set chosen per export, and the harvester learned to read all three — NFKC folding plus the decorated headings, without which it could not read a single real posting. Difficulty then landed properly: Easy / Medium / Hard with Dan's own CR, TP, Yen and chest amounts, three reward buckets, Grade Ups, and the 3×/2× host payout (§9). Then the posting controls — a recommended-grade picker, slot steppers, a faction the posting is open to, placeholder rewards from the tier — plus an export preview, and the double scrollbar fixed. |
+| **3.4** | Effective reserves and the Ten Shadows rework. ✅ A derived reserves band — one stage per grade CE Efficiency sits above CE Output (§4) — shown on the sheet, the printed sheet and both export formats, and never written back. Shikigami gained a stat block of their own and a free-text addendum, and Dan's Ten Shadows rework went into the vault: ten shikigami, each with its full stat block, the "+" reserves and the Dura Neg lines kept verbatim. |
 | **3.3** | The Clan editor. ✅ Clans became an editable entity (§9) with a board and a full editor: hierarchy seats by tier, bonus and mutation editing, a clan vault of money and holdings, the clan's own history and its prevalent members, a computed member roster, and **rolling an NPC straight into an empty seat** from the existing sorcerer tables. The Masami seed carries the whole clan document rather than just its numbers. `ClansProvider` loads the clans once for the window, so the character sheet, the printed sheet and both exports resolve a bonus against the same records. |
 | **3.2** | The Masami Clan. ✅ A clan registry with bonuses and mutations (§9), a clan-bonus tick box and multi-select mutations on the sheet, and the **Holy Sinner's Blade** as a pickable canonical cursed tool — written into the vault and linked to Walker, with his stats left exactly as he had entered them. |
 | **3.1** | The admin half. ✅ Importing a submitted OC sheet (§9), the mission log with SUCCESS / FAILURE / MVP tags and a CR line, search and filters in the vault, **Lore** as a real entity with a board of its own, the problems panel, and bulk actions in the library. |

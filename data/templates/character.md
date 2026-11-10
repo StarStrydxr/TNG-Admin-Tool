@@ -37,6 +37,8 @@
 | CE Control | {{ce-control}} |
 | CE Efficiency | {{ce-efficiency}} |
 | CE Reserves | {{ceReserves}} |
+{{#effectiveReserves}}| Effective reserves | {{effectiveReserves}} |
+{{/effectiveReserves}}
 | Perception | {{perception}} |
 | Strength | {{strength}} |
 | Speed | {{speed}} |

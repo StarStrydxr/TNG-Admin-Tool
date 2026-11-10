@@ -16,7 +16,13 @@ import {
 import { ENTITY_LABELS, entityDisplayName, type Clan, type SavedEntity } from './entities';
 import { describeEntity } from './entities-display';
 import { formatStatLong, gradeLabel } from './grades';
-import { CE_RESERVES_LABELS, GRADED_STAT_IDS, GRADED_STAT_LABELS } from './stats';
+import {
+  CE_RESERVES_LABELS,
+  GRADED_STAT_IDS,
+  GRADED_STAT_LABELS,
+  describeEffectiveReserves,
+  effectiveReserves,
+} from './stats';
 import { missionLogLine } from './character';
 import { describeClanBonus, describeMutations } from './clans';
 import { ROLE_LABELS } from './roles';
@@ -151,6 +157,14 @@ export function characterSheet(
       section('Stats', [
         ...stats,
         field('CE Reserves', CE_RESERVES_LABELS[character.stats.ceReserves]),
+        // Beside the written band, never instead of it, and only when there is a shift to
+        // report — an ordinary sheet prints exactly as it always did.
+        field(
+          'Effective reserves',
+          effectiveReserves(character.stats).steps > 0
+            ? describeEffectiveReserves(character.stats)
+            : '',
+        ),
       ]),
       section('Traits and defects', [
         listField(

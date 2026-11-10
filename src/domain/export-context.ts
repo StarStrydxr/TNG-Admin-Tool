@@ -18,7 +18,12 @@ import {
 import { ENTITY_LABELS, entityDisplayName, type Clan, type SavedEntity } from './entities';
 import { assetLine, figureLine, mutationLine, seatLine } from './entities-display';
 import { gradeAbbrev, gradeLabel, formatStatLong, formatStatShort } from './grades';
-import { CE_RESERVES_LABELS, GRADED_STAT_IDS } from './stats';
+import {
+  CE_RESERVES_LABELS,
+  GRADED_STAT_IDS,
+  describeEffectiveReserves,
+  effectiveReserves,
+} from './stats';
 import { missionLogLine } from './character';
 import { entityGrade } from './entities';
 import { describeClanBonus, describeMutations } from './clans';
@@ -174,6 +179,12 @@ export function characterExportContext(
     faceClaim: character.faceClaim,
 
     ceReserves: CE_RESERVES_LABELS[character.stats.ceReserves],
+    // Empty unless CE Efficiency outranks CE Output, so `{{#effectiveReserves}}` in a template
+    // renders nothing for an ordinary sheet. Derived for display; the record is unchanged.
+    effectiveReserves:
+      effectiveReserves(character.stats).steps > 0
+        ? describeEffectiveReserves(character.stats)
+        : '',
 
     traits: character.traits.map((t) => pair(t.name, t.effect)),
     defects: character.defects.map((d) => pair(d.name, d.effect)),

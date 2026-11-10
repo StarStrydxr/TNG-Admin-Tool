@@ -19,6 +19,7 @@
 
 import type { GradeId } from './grades';
 import type { EntityLink } from './links';
+import type { StatBlock } from './stats';
 import { DEFAULT_MIN_ROLE, type Role } from './roles';
 
 export const ENTITY_SCHEMA_VERSION = 1;
@@ -213,6 +214,24 @@ export interface ShikigamiCore {
   readonly temperament: string;
   readonly binding: string;
   readonly weakness: string;
+  /**
+   * A stat block of its own, or null for one nobody has statted.
+   *
+   * Null rather than a default block, because absence is information: a generator rolls a
+   * grade and nothing else (§4), so a rolled shikigami genuinely has no stats until somebody
+   * writes them, and a sheet full of Class 3s would claim otherwise. The editor fills the
+   * defaults on request. Additive — shikigami saved before this parse as null.
+   */
+  readonly stats: StatBlock | null;
+  /**
+   * Anything the stat block has no field for, in Dan's own words.
+   *
+   * "Divine Dog goes to Grade One in Totality", "Conditional True Dura Neg to Domains". These
+   * are real mechanics the house rules have not been written down for, and guessing a shape
+   * for them would produce a plausible system that is wrong (§10). Free text keeps them whole
+   * and on the page until there are rules to model.
+   */
+  readonly addendum: string;
 }
 
 export interface Shikigami extends EntityBase, ShikigamiCore {

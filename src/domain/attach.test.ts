@@ -73,6 +73,8 @@ describe('mapping a technique onto a character', () => {
             temperament: '',
             binding: '',
             weakness: '',
+            stats: null,
+            addendum: '',
           },
         ],
       }),
