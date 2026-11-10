@@ -1,0 +1,93 @@
+# Builds the installers and attaches them to a GitHub Release.
+#
+# Triggered by pushing a version tag:
+#
+#     npm run release 0.4.0
+#
+# which sets the version in all three files, commits, tags and pushes. Both architectures
+# build in parallel on GitHub's own runners and land on the same draft Release; publish it
+# when both are green.
+#
+# ⚠️ This is a build pipeline, not a feature of the app. CLAUDE.md §1 still holds: the app
+# itself makes no network calls, has no telemetry and no sync. Nothing here changes that.
+
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+  # So a build can be tried without tagging anything.
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      # Both architectures are attempted even if one fails, so a broken ARM build still
+      # leaves staff with something x64 to test.
+      fail-fast: false
+      matrix:
+        include:
+          - runner: windows-latest
+            target: x86_64-pc-windows-msvc
+            label: x64
+          # Generally available since Aug 2026. If this label ever stops resolving, the older
+          # preview label was `windows-11-arm`.
+          - runner: windows-11-vs2026-arm
+            target: aarch64-pc-windows-msvc
+            label: arm64
+
+    runs-on: ${{ matrix.runner }}
+    name: ${{ matrix.label }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+
+      # Cargo's registry and this target's build output. Keyed by target so the two
+      # architectures never share a cache and confuse each other.
+      - uses: swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri
+          key: ${{ matrix.target }}
+
+      # ⚠️ `npm install`, deliberately, NOT `npm ci`.
+      #
+      # Rollup and Tailwind ship their native binaries as per-platform optional dependencies,
+      # and a lockfile generated on one architecture can omit the others' entries (the same
+      # npm behaviour .gitignore warns about). `npm ci` would then install a lockfile with no
+      # binary for the machine it is running on and fail at build time. `npm install` resolves
+      # against the registry for the platform it is actually on.
+      - run: npm install
+
+      - run: npm run test
+
+      - uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tagName: ${{ github.ref_type == 'tag' && github.ref_name || format('v{0}-dev', github.run_number) }}
+          releaseName: The Next Generation ${{ github.ref_type == 'tag' && github.ref_name || 'dev build' }}
+          releaseBody: |
+            Windows installers. Pick the one that matches the machine:
+
+            - **`...x64-setup.exe`** — Intel and AMD. This is almost certainly the one.
+            - **`...arm64-setup.exe`** — Windows on ARM (Snapdragon, and some Surface models).
+
+            Unsigned, so Windows SmartScreen will warn on first run: **More info → Run anyway**.
+          # Draft, so both architectures finish before anyone can download half a release.
+          releaseDraft: true
+          prerelease: false
+          # NSIS only, for both. MSI is WiX, which does not do ARM64, so asking for "all"
+          # would fail that half of the matrix — and one installer format means one set of
+          # instructions for staff. Add `,msi` here if a managed deployment ever needs it.
+          args: --target ${{ matrix.target }} --bundles nsis

@@ -1,0 +1,34 @@
+# The cheap checks, on every push.
+#
+# Deliberately NOT a build: compiling Rust for two architectures takes minutes and belongs on
+# a release tag, not on every commit. This catches the things that break most often — a type
+# error, a failing domain test, a canon table with a blank field — in well under a minute.
+
+name: CI
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      # See the note in release.yml: `npm install` rather than `npm ci`, because of the
+      # per-platform native binaries Rollup and Tailwind ship as optional dependencies.
+      - run: npm install
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      # Includes canon.test.ts, which rolls every generator at every grade — the only thing
+      # standing between a bad table edit and a generator that produces blanks in play.
+      - name: Tests
+        run: npm run test

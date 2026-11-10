@@ -10,7 +10,11 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "tauri": "tauri"
+    "tauri": "tauri",
+    "build:x64": "tauri build --target x86_64-pc-windows-msvc --bundles nsis",
+    "build:arm64": "tauri build --target aarch64-pc-windows-msvc --bundles nsis",
+    "version:set": "node scripts/set-version.mjs",
+    "release": "node scripts/release.mjs"
   },
   "dependencies": {
     "@tauri-apps/api": "2.12.4",
