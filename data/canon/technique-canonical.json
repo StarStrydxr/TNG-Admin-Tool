@@ -1,0 +1,332 @@
+{
+  "technique.canonical": [
+    {
+      "id": "auspicious-beast-summon",
+      "value": "Auspicious Beast Summon",
+      "note": "By covering your face you can become a medium for the spirit of the four auspicious beasts. These four beasts gift you great abilities as you unlock each one.",
+      "tags": [
+        "shikigami"
+      ]
+    },
+    {
+      "id": "black-bird-manipulation",
+      "value": "Black Bird Manipulation",
+      "note": "You were born with a simple ability many called weak — the ability to control and see through crows. In time, those crows become harbingers of death.",
+      "tags": [
+        "shikigami"
+      ]
+    },
+    {
+      "id": "blood-manipulation",
+      "value": "Blood Manipulation",
+      "note": "You were born with the complex ability held and practiced by the Kamo family — you can control your blood, shaping it into weapons, constructs, and devastating projectiles.",
+      "tags": [
+        "manipulation"
+      ]
+    },
+    {
+      "id": "body-manipulation",
+      "value": "Body Manipulation",
+      "note": "You were born with a horrifying but useful ability — to swap bodies and take abilities from them. Frowned upon by most sorcerers, it grants a terrifying form of immortality.",
+      "tags": [
+        "body"
+      ]
+    },
+    {
+      "id": "boogie-woogie",
+      "value": "Boogie Woogie",
+      "note": "You were born with a simple although tricky ability — to swap places with opponents with a clap. What it lacks in raw power, it makes up for in unpredictability.",
+      "tags": [
+        "space"
+      ]
+    },
+    {
+      "id": "construction",
+      "value": "Construction",
+      "note": "Construction, as the name implies, allows the user to conjure objects from nothing — from simple tools to cursed weapons to insectoid battle armor.",
+      "tags": [
+        "construct"
+      ]
+    },
+    {
+      "id": "cursed-cannon",
+      "value": "Cursed Cannon",
+      "note": "Cursed Cannon allows you to unleash blasts of cursed energy. As simple as it is, its power is undeniable.",
+      "tags": [
+        "energy"
+      ]
+    },
+    {
+      "id": "cursed-speech",
+      "value": "Cursed Speech",
+      "note": "Cursed Speech is called both a blessing and a curse — you may speak your will to reality itself.",
+      "tags": [
+        "condition"
+      ]
+    },
+    {
+      "id": "cursed-spirit-manipulation",
+      "value": "Cursed Spirit Manipulation",
+      "note": "You are blessed with an amazing technique to control Cursed Spirits — absorbing them, commanding them, and unleashing them in devastating spirals.",
+      "tags": [
+        "shikigami"
+      ]
+    },
+    {
+      "id": "deadly-sentencing",
+      "value": "Deadly Sentencing",
+      "note": "A technique forged for one purpose alone: justice. The Judge's Gavel decides, and the Domain ensures no one escapes the verdict.",
+      "tags": [
+        "condition"
+      ]
+    },
+    {
+      "id": "disaster-flames",
+      "value": "Disaster Flames",
+      "note": "You were born with the power of fire manipulation — with nigh-endless possibilities to burn down everything in your way.",
+      "tags": [
+        "elemental"
+      ]
+    },
+    {
+      "id": "disaster-tides",
+      "value": "Disaster Tides",
+      "note": "You were born with water manipulation — great power with astounding potential, from defensive rings to earth-shattering tsunamis.",
+      "tags": [
+        "elemental"
+      ]
+    },
+    {
+      "id": "disaster-verdure",
+      "value": "Disaster Verdure",
+      "note": "You were born with plant manipulation — an amazing power with many possibilities to protect those you care about and entangle those who threaten them.",
+      "tags": [
+        "elemental"
+      ]
+    },
+    {
+      "id": "divergent-fist",
+      "value": "Divergent Fist",
+      "note": "A self-taught technique born from manipulating cursed energy at a delayed rate — what began as a flaw became a devastating martial art.",
+      "tags": [
+        "energy"
+      ]
+    },
+    {
+      "id": "gunslinger-s-law",
+      "value": "Gunslinger's Law",
+      "note": "You were born with a technique that defies easy categorization. It is not fire manipulation or lightning control or cursed energy compression — it is all of them, contained in six chambers that you load, cycle, and fire at will. The revolver called Lawbreaker is both your weapon and your focus, a grade-1 cursed tool that exists only for you and channels your technique through custom rounds of…",
+      "tags": [
+        "condition"
+      ]
+    },
+    {
+      "id": "heart-catch",
+      "value": "Heart Catch",
+      "note": "A simple but effective technique — powered, quite literally, by the heart.",
+      "tags": [
+        "condition"
+      ]
+    },
+    {
+      "id": "hourglass-of-life",
+      "value": "Hourglass of Life",
+      "note": "You do not create life energy — you move it. The hourglass can be turned, but never filled. Every restoration has a source. Every draining has a destination. The same touch that mends a wound can push another creature's cells into uncontrolled proliferation; the same force that floods an ally with vitality can accelerate an enemy's biological clock until their body can no longer keep up with…",
+      "tags": [
+        "condition"
+      ]
+    },
+    {
+      "id": "ice-formation",
+      "value": "Ice Formation",
+      "note": "Your technique is beautiful in its simplicity — the ability to create and control ice.",
+      "tags": [
+        "elemental"
+      ]
+    },
+    {
+      "id": "idle-transfiguration",
+      "value": "Idle Transfiguration",
+      "note": "The soul — an interesting thing. Your technique is to manipulate it, transfiguring the living into obedient, undying servants.",
+      "tags": [
+        "body"
+      ]
+    },
+    {
+      "id": "jesuit-s-pride",
+      "value": "Jesuit's Pride",
+      "note": "You carry the weight of a mission centuries old — the inherited authority to declare salvation, and the inherited guilt of what that declaration cost. Your Cursed Technique manifests as the overlapping power of doctrine and the land it was imposed upon: Catholic ritual — rosaries, sacrament, the catechism recited over the unwilling — bound inextricably to the spiritual power of a place that…",
+      "tags": [
+        "construct"
+      ]
+    },
+    {
+      "id": "limitless",
+      "value": "Limitless",
+      "note": "A technique whose power is matched only by its complexity — manipulation over space itself, expressed through Infinity, Blue, Red, and Purple.",
+      "tags": [
+        "space"
+      ]
+    },
+    {
+      "id": "mythical-beast-amber",
+      "value": "Mythical Beast Amber",
+      "note": "You hold a technique that changes the very essence of your energy to electricity. However, its true power is unknown even to you.",
+      "tags": [
+        "shikigami"
+      ]
+    },
+    {
+      "id": "new-shadow-style",
+      "value": "New Shadow Style",
+      "note": "You are born with no innate technique, but in order to make up for it, you learn a special secret. A domain for the weak.",
+      "tags": [
+        "perception"
+      ]
+    },
+    {
+      "id": "pachinko-fever",
+      "value": "Pachinko Fever",
+      "note": "Did you know most gamblers stop before their big hit? Let's hope you don't, as failing may mean death — but your luck has got you.",
+      "tags": [
+        "condition"
+      ]
+    },
+    {
+      "id": "prayer",
+      "value": "Prayer",
+      "note": "Through dance and the beat engraved in your body, you gain the ability to buff yourself and debuff your opponents — all without a Domain.",
+      "tags": [
+        "condition"
+      ]
+    },
+    {
+      "id": "projection-sorcery",
+      "value": "Projection Sorcery",
+      "note": "You were born with one of the praised techniques of the Zenin Clan, turning animation into reality.",
+      "tags": [
+        "space"
+      ]
+    },
+    {
+      "id": "puppet-manipulation",
+      "value": "Puppet Manipulation",
+      "note": "You gain the ability to control puppets with your Cursed Energy.",
+      "tags": [
+        "shikigami"
+      ]
+    },
+    {
+      "id": "ratio-technique",
+      "value": "Ratio Technique",
+      "note": "You were born with a powerful technique that creates a weak spot on a 7:3 ratio on your opponent's body.",
+      "tags": [
+        "perception"
+      ]
+    },
+    {
+      "id": "shrine",
+      "value": "Shrine",
+      "note": "You are born without a limit. Taking the world for yourself, with abilities that hold great power.",
+      "tags": [
+        "barrier"
+      ]
+    },
+    {
+      "id": "sky-manipulation",
+      "value": "Sky Manipulation",
+      "note": "A great technique allowing you to grab space and wield it to your command.",
+      "tags": [
+        "elemental"
+      ]
+    },
+    {
+      "id": "solo-forbidden-zone",
+      "value": "Solo Forbidden Zone",
+      "note": "Through chanting and dance, you bring out the maximum potential of those around you — buffing your allies into an unstoppable force.",
+      "tags": [
+        "condition"
+      ]
+    },
+    {
+      "id": "soul-armory",
+      "value": "Soul Armory",
+      "note": "Your soul has shattered into the shape of every blade it has ever known — fragments of cursed energy given form and edge. You carry a personal armory forged not of steel, but of memory and self. At 1st level, choose a Cultural Arsenal — Japanese, Chinese, Western, or Central Asian — representing the martial tradition your soul has bound itself to. This determines your 5 signature weapons, each…",
+      "tags": [
+        "construct"
+      ]
+    },
+    {
+      "id": "star-rage",
+      "value": "Star Rage",
+      "note": "A technique of virtual mass — making your body heavier, harder, and more devastating with every increase.",
+      "tags": [
+        "manipulation"
+      ]
+    },
+    {
+      "id": "straw-doll-technique",
+      "value": "Straw Doll Technique",
+      "note": "A technique of nails, hammers, and straw dolls — every wound dealt becomes a thread you can pull.",
+      "tags": [
+        "condition"
+      ]
+    },
+    {
+      "id": "surging-impact",
+      "value": "Surging Impact",
+      "note": "Divergent Fist, carried past its limit. Where the original technique left a single delayed echo of force, Surging Impact strikes three times — before, during, and after contact — with a cursed energy pool vast enough to sustain it indefinitely. The pre-impact disruption unsettles. The strike lands. The echo answers. Opponents describe the experience as being hit by a wave: not a sharp thing,…",
+      "tags": [
+        "energy"
+      ]
+    },
+    {
+      "id": "synthesized-reaction",
+      "value": "Synthesized Reaction",
+      "note": "Your cursed energy does not manifest as fire or shadow or something easily named — it manifests as process . The fundamental reactive behaviour of matter, bent to your will through an intuitive understanding of chemistry that your body arrived at before your mind could explain it. You fight in two steps: first you prime, then you trigger. Apply a Chemical State to a target — Oxidise it, Reduce…",
+      "tags": [
+        "elemental"
+      ]
+    },
+    {
+      "id": "technique-extermination",
+      "value": "Technique Extermination",
+      "note": "This Innate Technique bestows its user with the gift of angelic power, capable of smiting those they consider 'villains' and hampering a target's Cursed Techniques.",
+      "tags": [
+        "condition"
+      ]
+    },
+    {
+      "id": "ten-shadows-technique",
+      "value": "Ten Shadows Technique",
+      "note": "You have the Zenin Clan's praised technique, said to even equal the Six Eyes — the Ten Shadows Technique, summoning Shikigami from your own shadow.",
+      "tags": [
+        "shikigami"
+      ]
+    },
+    {
+      "id": "triple-core",
+      "value": "Triple Core",
+      "note": "3 cores, 1 body. Due to this strange biology you have three different forms with separate powers.",
+      "tags": [
+        "body"
+      ]
+    },
+    {
+      "id": "uriel-s-expulsion",
+      "value": "Uriel's Expulsion",
+      "note": "You were something else, once. Something with a place in an order larger than yourself, a role that meant something, wings that worked the way wings are supposed to. You are not that anymore, and you have stopped pretending the fall was anyone's fault but the one who cast you down — or, depending on the day, your own. What remains is judgment, curdled into something more personal than it used…",
+      "tags": [
+        "energy"
+      ]
+    },
+    {
+      "id": "vengeful-spirit-manipulation",
+      "value": "Vengeful Spirit Manipulation",
+      "note": "The Vengeful Cursed Spirit technique involves the use of the spirit of one you cared about, alongside your malleable Cursed Energy.",
+      "tags": [
+        "shikigami"
+      ]
+    }
+  ]
+}

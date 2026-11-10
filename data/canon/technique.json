@@ -1,0 +1,1841 @@
+{
+  "technique.type": [
+    {
+      "id": "shikigami",
+      "value": "Shikigami — binds and summons servants",
+      "weight": 3
+    },
+    {
+      "id": "elemental",
+      "value": "Elemental — commands a substance or force",
+      "weight": 4
+    },
+    {
+      "id": "manipulation",
+      "value": "Manipulation — moves or reshapes existing matter",
+      "weight": 3
+    },
+    {
+      "id": "body",
+      "value": "Body — alters the user's own flesh",
+      "weight": 3
+    },
+    {
+      "id": "space",
+      "value": "Space — distance, position and passage",
+      "weight": 2
+    },
+    {
+      "id": "perception",
+      "value": "Perception — senses, attention and memory",
+      "weight": 3
+    },
+    {
+      "id": "barrier",
+      "value": "Barrier — veils, walls and thresholds",
+      "weight": 2
+    },
+    {
+      "id": "construct",
+      "value": "Construct — makes something that was not there",
+      "weight": 3
+    },
+    {
+      "id": "condition",
+      "value": "Condition — imposes a state or a restriction",
+      "weight": 3
+    },
+    {
+      "id": "information",
+      "value": "Information — knows, records or divines",
+      "weight": 2
+    },
+    {
+      "id": "energy",
+      "value": "Energy — shapes raw cursed energy with no intermediary",
+      "weight": 3
+    }
+  ],
+  "technique.cost": [
+    {
+      "id": "trivial",
+      "value": "Trivial. Usable all day; the user forgets they are spending anything",
+      "grades": [
+        "grade-4",
+        "grade-3",
+        "grade-semi-2"
+      ]
+    },
+    {
+      "id": "light",
+      "value": "Light. A long engagement is fine; a long day is not"
+    },
+    {
+      "id": "moderate",
+      "value": "Moderate. Perhaps a dozen uses before the edges start to go"
+    },
+    {
+      "id": "heavy",
+      "value": "Heavy. Three or four uses, then the user is noticeably slower"
+    },
+    {
+      "id": "severe",
+      "value": "Severe. Twice in a fight, and the second time is a decision",
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "ruinous",
+      "value": "Ruinous. Once. Afterwards they are a liability and know it",
+      "grades": [
+        "grade-semi-1",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "uneven",
+      "value": "Uneven. Cheap in its ordinary use, ruinous in its real one"
+    }
+  ],
+  "technique.limitation": [
+    {
+      "id": "line-of-sight",
+      "value": "Needs line of sight; a closed door ends it"
+    },
+    {
+      "id": "named",
+      "value": "The target must be named aloud, correctly, by a name they answer to"
+    },
+    {
+      "id": "contact",
+      "value": "Needs skin contact to begin, though not to continue"
+    },
+    {
+      "id": "one-at-a-time",
+      "value": "Only one instance can be held at once; a second releases the first"
+    },
+    {
+      "id": "preparation",
+      "value": "Needs a few seconds of preparation that cannot be hidden"
+    },
+    {
+      "id": "no-living",
+      "value": "Does not work on anything currently alive"
+    },
+    {
+      "id": "self-first",
+      "value": "Whatever it does to the target, it does to the user a fraction as hard"
+    },
+    {
+      "id": "distance",
+      "value": "Falls off sharply past a few metres and cannot be pushed"
+    },
+    {
+      "id": "once-per-target",
+      "value": "Works on a given target once; after that they are immune to it"
+    }
+  ],
+  "technique.tell": [
+    {
+      "id": "sound",
+      "value": "A sound with no source — a struck bell, a held breath"
+    },
+    {
+      "id": "cold",
+      "value": "The air goes cold enough to see"
+    },
+    {
+      "id": "hands",
+      "value": "A hand sign the user has stopped noticing they make"
+    },
+    {
+      "id": "eyes",
+      "value": "Their pupils blow wide and stay that way until it ends"
+    },
+    {
+      "id": "smell",
+      "value": "Wet stone and old paper"
+    },
+    {
+      "id": "silence",
+      "value": "A half-second where everything nearby goes quiet"
+    },
+    {
+      "id": "shadow",
+      "value": "Their shadow arrives a beat late"
+    },
+    {
+      "id": "nothing",
+      "value": "Nothing at all, which is its own warning to anyone who knows"
+    }
+  ],
+  "technique.common.name": [
+    {
+      "id": "borrowed-hour",
+      "value": "Borrowed Hour"
+    },
+    {
+      "id": "second-reading",
+      "value": "Second Reading"
+    },
+    {
+      "id": "low-tide",
+      "value": "Low Tide"
+    },
+    {
+      "id": "standing-order",
+      "value": "Standing Order"
+    },
+    {
+      "id": "quiet-ledger",
+      "value": "Quiet Ledger"
+    },
+    {
+      "id": "last-light",
+      "value": "Last Light"
+    },
+    {
+      "id": "the-long-way",
+      "value": "The Long Way"
+    },
+    {
+      "id": "unanswered",
+      "value": "Unanswered"
+    }
+  ],
+  "technique.common.principle": [
+    {
+      "id": "exchange",
+      "value": "The technique moves a property from one thing to another rather than creating it. Nothing is made; something is taken from somewhere, and that somewhere is always left short"
+    },
+    {
+      "id": "debt",
+      "value": "It defers a consequence rather than preventing it. Whatever was meant to happen still happens, later, and interest has accrued"
+    },
+    {
+      "id": "definition",
+      "value": "It works on what a thing is called rather than what it is. Change the name and the technique changes its mind about the target"
+    },
+    {
+      "id": "threshold",
+      "value": "It acts only at boundaries — doorways, edges, the moment one state becomes another. In open ground it does nothing at all"
+    },
+    {
+      "id": "attention",
+      "value": "Its effect scales with how closely the target is being observed, by anyone. Unwatched, it barely functions; in a crowd it is terrifying"
+    },
+    {
+      "id": "repetition",
+      "value": "The first use is weak and each repetition against the same target is stronger, until it is stopped or the user runs dry"
+    }
+  ],
+  "technique.common.application": [
+    {
+      "id": "subtle",
+      "value": "Unspectacular to watch. People who have fought the user describe it afterwards as bad luck rather than an attack"
+    },
+    {
+      "id": "sudden",
+      "value": "Nothing, nothing, nothing, then everything at once — it has no visible build-up and no gradual escalation"
+    },
+    {
+      "id": "sustained",
+      "value": "A field the user holds open and walks around inside, costing them the whole time it is up"
+    },
+    {
+      "id": "contact",
+      "value": "Delivered by touch, so the user fights at a range that most sorcerers consider unwise"
+    },
+    {
+      "id": "prepared",
+      "value": "Set in advance across a location, then triggered. Ambush work; useless if the fight comes to them"
+    },
+    {
+      "id": "conversational",
+      "value": "Requires the user to keep talking to the target, which makes them maddening to fight"
+    }
+  ],
+  "technique.common.extension": [
+    {
+      "id": "reach",
+      "value": "Reach — the same effect at distance, for several times the cost"
+    },
+    {
+      "id": "split",
+      "value": "Split — two targets at once, each at half strength"
+    },
+    {
+      "id": "hold",
+      "value": "Hold — maintain the effect after the user stops concentrating, for a while"
+    },
+    {
+      "id": "invert",
+      "value": "Invert — run the technique backwards, undoing what it did"
+    },
+    {
+      "id": "anchor",
+      "value": "Anchor — fix the effect to a place rather than a person"
+    },
+    {
+      "id": "chain",
+      "value": "Chain — jump the effect to whoever touches the target next"
+    },
+    {
+      "id": "quiet",
+      "value": "Quiet — remove the tell, at a markedly higher cost"
+    },
+    {
+      "id": "sharpen",
+      "value": "Sharpen — half the area, double the effect"
+    },
+    {
+      "id": "delay",
+      "value": "Delay — set it now, let it land on a count the user chooses"
+    },
+    {
+      "id": "share",
+      "value": "Share — extend the effect to an ally, who must hold still for it"
+    }
+  ],
+  "technique.common.maximum": [
+    {
+      "id": "total",
+      "value": "Applies the technique to everything within sight at once, indiscriminately, and leaves the user unable to use it again that day"
+    },
+    {
+      "id": "absolute",
+      "value": "Removes the technique's usual limitation entirely for a count of ten, at a cost measured in days of recovery"
+    },
+    {
+      "id": "permanent",
+      "value": "Makes a single application permanent. Irreversible by the user, and they do not always find out what that means until later"
+    },
+    {
+      "id": "compressed",
+      "value": "Collapses every use the user has banked that day into one strike"
+    }
+  ],
+  "technique.common.domain": [
+    {
+      "id": "sure-hit-room",
+      "value": "A bare interior with no exits, where the technique lands automatically on everything the user looks at"
+    },
+    {
+      "id": "ledger-hall",
+      "value": "A hall of standing ledgers; everything the occupants have taken is read out, and taken back"
+    },
+    {
+      "id": "low-water",
+      "value": "Ankle-deep water to the horizon under a white sky, where the technique costs the user nothing and everyone else moves as though wading"
+    },
+    {
+      "id": "incomplete",
+      "value": "An incomplete domain — a barrier that will not quite close, trading the guaranteed hit for a shorter, cheaper hold"
+    },
+    {
+      "id": "borrowed-room",
+      "value": "A reconstruction of a room from the user's life, rendered in too much detail, where the technique applies to anything they remember touching"
+    }
+  ],
+  "technique.shikigami.name": [
+    {
+      "id": "ten-hands",
+      "value": "Ten Hands"
+    },
+    {
+      "id": "kennel",
+      "value": "Kennel"
+    },
+    {
+      "id": "paper-court",
+      "value": "Paper Court"
+    },
+    {
+      "id": "the-retinue",
+      "value": "The Retinue"
+    },
+    {
+      "id": "night-watch",
+      "value": "Night Watch"
+    },
+    {
+      "id": "borrowed-teeth",
+      "value": "Borrowed Teeth"
+    },
+    {
+      "id": "standing-household",
+      "value": "Standing Household"
+    }
+  ],
+  "technique.shikigami.principle": [
+    {
+      "id": "inheritance",
+      "value": "The shikigami are inherited, not created. Each one was bound by an ancestor and the user has only been handed the leash — they cannot make new ones, and cannot replace what they lose"
+    },
+    {
+      "id": "subjugation",
+      "value": "Each shikigami must be beaten before it will answer. An unbeaten one can be attempted once; failure means it is gone for good"
+    },
+    {
+      "id": "contract",
+      "value": "Every shikigami is held by a specific promise the user made. Break the promise and the shikigami is released, hostile, and knows exactly why"
+    },
+    {
+      "id": "fabrication",
+      "value": "The user makes them from materials — paper, bone, cloth — and each one holds only as long as its body does"
+    },
+    {
+      "id": "naming",
+      "value": "A shikigami exists as long as the user can state its full name without hesitating. Interrupt the name and it comes apart"
+    },
+    {
+      "id": "absorption",
+      "value": "Destroyed shikigami are absorbed by the survivors rather than lost; the remaining ones inherit a fragment of what died"
+    }
+  ],
+  "technique.shikigami.application": [
+    {
+      "id": "pack",
+      "value": "Fights almost entirely through the shikigami, hanging back and directing. Dangerous at range, unimpressive in a corner"
+    },
+    {
+      "id": "one-at-a-time",
+      "value": "Holds one shikigami out at a time and swaps as the fight changes, which makes the user's read of a situation the real weapon"
+    },
+    {
+      "id": "alongside",
+      "value": "Fights alongside them rather than behind them, with the shikigami covering the openings the user deliberately leaves"
+    },
+    {
+      "id": "logistics",
+      "value": "Uses them for everything but fighting — scouting, carrying, holding doors, watching an exit all night"
+    },
+    {
+      "id": "swarm",
+      "value": "Brings everything out at once and accepts that it cannot be held for long"
+    }
+  ],
+  "technique.shikigami.extension": [
+    {
+      "id": "merge",
+      "value": "Merge — combine two shikigami into one larger, briefer, worse-tempered thing"
+    },
+    {
+      "id": "ride",
+      "value": "Ride — see and hear through a shikigami at any distance, while standing still and defenceless"
+    },
+    {
+      "id": "lend",
+      "value": "Lend — hand control of one to an ally for as long as the user can see them"
+    },
+    {
+      "id": "sacrifice",
+      "value": "Sacrifice — dismiss a shikigami to cancel an incoming attack outright"
+    },
+    {
+      "id": "echo",
+      "value": "Echo — summon a weaker copy that cannot act, only occupy attention"
+    },
+    {
+      "id": "reflex",
+      "value": "Reflex — a standing order a shikigami carries out without being called"
+    },
+    {
+      "id": "bind-wound",
+      "value": "Bind — dismiss a shikigami into a wound to close it, at the cost of the shikigami for a week"
+    },
+    {
+      "id": "relay",
+      "value": "Relay — pass a message between two shikigami wherever they are"
+    }
+  ],
+  "technique.shikigami.maximum": [
+    {
+      "id": "full-household",
+      "value": "Every shikigami the user holds, out at once, acting independently and without further orders, for as long as the user stays conscious"
+    },
+    {
+      "id": "the-last-one",
+      "value": "The one shikigami the user has never successfully bound, called anyway. It arrives. Whether it helps is a separate question"
+    },
+    {
+      "id": "inherit",
+      "value": "Collapses every shikigami lost over the user's career into a single composite, which lasts one exchange and remembers how each of them died"
+    }
+  ],
+  "technique.shikigami.domain": [
+    {
+      "id": "household",
+      "value": "A walled compound at dusk, every room occupied by a shikigami that was never summoned and cannot be dismissed"
+    },
+    {
+      "id": "kennels",
+      "value": "A long run of kennels with the gates already open, where anything the user's shikigami have ever caught is caught again automatically"
+    },
+    {
+      "id": "roll-call",
+      "value": "A bare parade ground where the user's shikigami are called by name in order, and each arrival strikes once before the next is named"
+    },
+    {
+      "id": "unfinished-court",
+      "value": "An incomplete domain — a half-walled court that trades the guaranteed hit for summoning without cost while it holds"
+    }
+  ],
+  "technique.elemental.name": [
+    {
+      "id": "ashfall",
+      "value": "Ashfall"
+    },
+    {
+      "id": "stillwater",
+      "value": "Stillwater"
+    },
+    {
+      "id": "lamp-oil",
+      "value": "Lamp Oil"
+    },
+    {
+      "id": "hoarfrost",
+      "value": "Hoarfrost"
+    },
+    {
+      "id": "updraft",
+      "value": "Updraft"
+    },
+    {
+      "id": "slagheap",
+      "value": "Slagheap"
+    }
+  ],
+  "technique.elemental.principle": [
+    {
+      "id": "conversion",
+      "value": "The user does not create the substance; they convert what is already present. In a dry room they are nearly powerless, and they are very aware of where the water is"
+    },
+    {
+      "id": "temperature",
+      "value": "They move heat rather than making it. Everything they warm is paid for by something nearby going cold, including, if they are careless, themselves"
+    },
+    {
+      "id": "saturation",
+      "value": "The effect builds in a space over time rather than arriving at once, so the user's real skill is in choosing where to stand ten minutes early"
+    },
+    {
+      "id": "state-change",
+      "value": "They can only act on a substance at the moment it changes state — freezing, boiling, catching, setting. Stable matter is inert to them"
+    },
+    {
+      "id": "volume",
+      "value": "Output scales with how much of the substance is within reach, which makes terrain the whole fight"
+    }
+  ],
+  "technique.elemental.application": [
+    {
+      "id": "artillery",
+      "value": "Stands off and shapes the field, which works until something closes the distance"
+    },
+    {
+      "id": "close",
+      "value": "Used in contact, in small amounts, with precision — a palm of flame rather than a wave of it"
+    },
+    {
+      "id": "denial",
+      "value": "Rarely aimed at people. Used to make ground unusable and herd the fight somewhere the user has prepared"
+    },
+    {
+      "id": "armour",
+      "value": "Worn rather than thrown — a layer the user maintains over themselves and renews as it is stripped"
+    }
+  ],
+  "technique.elemental.extension": [
+    {
+      "id": "shape",
+      "value": "Shape — hold the substance in a form it would not naturally take"
+    },
+    {
+      "id": "persist",
+      "value": "Persist — it stays after the user stops paying for it, and stops answering to them"
+    },
+    {
+      "id": "seed",
+      "value": "Seed — leave a dormant trace that activates on a condition"
+    },
+    {
+      "id": "strip",
+      "value": "Strip — pull the substance out of something that was relying on it"
+    },
+    {
+      "id": "mirror",
+      "value": "Mirror — turn an incoming instance of the same substance back"
+    },
+    {
+      "id": "compress",
+      "value": "Compress — a fraction of the volume at many times the force"
+    },
+    {
+      "id": "breathe",
+      "value": "Breathe — deliver it from the mouth at point-blank, which hurts"
+    }
+  ],
+  "technique.elemental.maximum": [
+    {
+      "id": "saturate",
+      "value": "Converts everything convertible within a city block at once, and the user has no say in what that includes"
+    },
+    {
+      "id": "singular",
+      "value": "One strike, compressed past the point the substance should survive, which leaves a hole in a shape nobody can explain"
+    },
+    {
+      "id": "sustained-field",
+      "value": "Holds the substance across the whole engagement area for a full minute, during which the user cannot move"
+    }
+  ],
+  "technique.elemental.domain": [
+    {
+      "id": "sea-of",
+      "value": "A horizonless expanse of the substance itself, in which the user needs no conversion and everyone else is simply inside it"
+    },
+    {
+      "id": "furnace",
+      "value": "The inside of a working furnace, where every surface is already at the point of change the technique needs"
+    },
+    {
+      "id": "drowned-street",
+      "value": "A flooded street at night, the water waist-high and rising at a rate the occupants can calculate"
+    },
+    {
+      "id": "unfinished-field",
+      "value": "An incomplete domain — the substance saturates the area without a sure hit, cheaper and survivable"
+    }
+  ],
+  "technique.manipulation.name": [
+    {
+      "id": "man-nam-1",
+      "value": "Marionette Thread"
+    },
+    {
+      "id": "man-nam-2",
+      "value": "Second Hand"
+    },
+    {
+      "id": "man-nam-3",
+      "value": "The Sympathetic Grip"
+    },
+    {
+      "id": "man-nam-4",
+      "value": "Puppet Weather"
+    },
+    {
+      "id": "man-nam-5",
+      "value": "Hand Over Hand"
+    },
+    {
+      "id": "man-nam-6",
+      "value": "Borrowed Posture"
+    },
+    {
+      "id": "man-nam-7",
+      "value": "The Long Reach"
+    }
+  ],
+  "technique.manipulation.principle": [
+    {
+      "id": "man-pri-1",
+      "value": "Anything the user has touched once can be moved as though still held"
+    },
+    {
+      "id": "man-pri-2",
+      "value": "Movement is transferred: whatever the user does, the target does a beat later"
+    },
+    {
+      "id": "man-pri-3",
+      "value": "The user owns one property of an object — its weight, its direction, its grain — and nothing else"
+    },
+    {
+      "id": "man-pri-4",
+      "value": "What is already in motion can be redirected, but never started or stopped"
+    },
+    {
+      "id": "man-pri-5",
+      "value": "The user's own gestures are performed at a distance, by nothing visible"
+    }
+  ],
+  "technique.manipulation.application": [
+    {
+      "id": "man-app-1",
+      "value": "Small, precise and unnerving: doors, blades and limbs move with no hand on them"
+    },
+    {
+      "id": "man-app-2",
+      "value": "Broad and crude — whole objects thrown about, with no fine control at all"
+    },
+    {
+      "id": "man-app-3",
+      "value": "Invisible until it matters, then a room's worth of things all move at once"
+    },
+    {
+      "id": "man-app-4",
+      "value": "Slow. Everything it does takes a few seconds, and is unstoppable in that time"
+    }
+  ],
+  "technique.manipulation.extension": [
+    {
+      "id": "man-ext-1",
+      "value": "Thread Count — several objects at once, one per finger"
+    },
+    {
+      "id": "man-ext-2",
+      "value": "Dead Weight — makes a held thing refuse to be let go of"
+    },
+    {
+      "id": "man-ext-3",
+      "value": "Follow Through — a strike continues after the arm has stopped"
+    },
+    {
+      "id": "man-ext-4",
+      "value": "Handoff — passes control of a moving object to a surface"
+    },
+    {
+      "id": "man-ext-5",
+      "value": "Reversal — sends a thrown thing back along its own path"
+    },
+    {
+      "id": "man-ext-6",
+      "value": "Still Hand — holds one object perfectly fixed in the air"
+    },
+    {
+      "id": "man-ext-7",
+      "value": "Secondhand Strike — an object the user touched hours ago attacks now"
+    },
+    {
+      "id": "man-ext-8",
+      "value": "Tangle — makes two moving things collide"
+    }
+  ],
+  "technique.manipulation.maximum": [
+    {
+      "id": "man-max-1",
+      "value": "Maximum: Every Hand At Once — everything the user has touched today moves in one motion"
+    },
+    {
+      "id": "man-max-2",
+      "value": "Maximum: The Whole Room — nothing within sight stays where it is put"
+    },
+    {
+      "id": "man-max-3",
+      "value": "Maximum: Last Gesture — one strike repeated by every object that has ever carried it"
+    }
+  ],
+  "technique.manipulation.domain": [
+    {
+      "id": "man-dom-1",
+      "value": "Domain: The Workshop With No Workman — a room where every tool is already in use"
+    },
+    {
+      "id": "man-dom-2",
+      "value": "Domain: A Thousand Small Obediences — nothing inside moves of its own accord"
+    },
+    {
+      "id": "man-dom-3",
+      "value": "Domain: The Hall of Hands — the walls themselves reach"
+    },
+    {
+      "id": "man-dom-4",
+      "value": "Domain: Marionette Theatre — everyone inside moves as the user moves"
+    }
+  ],
+  "technique.body.name": [
+    {
+      "id": "bod-nam-1",
+      "value": "Second Skin"
+    },
+    {
+      "id": "bod-nam-2",
+      "value": "Bone Ledger"
+    },
+    {
+      "id": "bod-nam-3",
+      "value": "The Spare Frame"
+    },
+    {
+      "id": "bod-nam-4",
+      "value": "Knuckle Tally"
+    },
+    {
+      "id": "bod-nam-5",
+      "value": "Lacework"
+    },
+    {
+      "id": "bod-nam-6",
+      "value": "Weight of Years"
+    },
+    {
+      "id": "bod-nam-7",
+      "value": "Stonewake"
+    }
+  ],
+  "technique.body.principle": [
+    {
+      "id": "bod-pri-1",
+      "value": "The user's body can be rearranged — joints, reach, density — within the same total mass"
+    },
+    {
+      "id": "bod-pri-2",
+      "value": "Injury is deferred rather than taken, and comes due all at once later"
+    },
+    {
+      "id": "bod-pri-3",
+      "value": "The user hardens on contact, and only where contact is made"
+    },
+    {
+      "id": "bod-pri-4",
+      "value": "Flesh can be spent as a resource: a wound given is a strike improved"
+    },
+    {
+      "id": "bod-pri-5",
+      "value": "The body remembers every shape it has held and can return to any of them"
+    }
+  ],
+  "technique.body.application": [
+    {
+      "id": "bod-app-1",
+      "value": "Close, brutal and fast, with the technique only visible at the moment of impact"
+    },
+    {
+      "id": "bod-app-2",
+      "value": "Grotesque to watch — limbs lengthening, joints inverting, nothing staying put"
+    },
+    {
+      "id": "bod-app-3",
+      "value": "Nearly invisible: they simply do not break when they should"
+    },
+    {
+      "id": "bod-app-4",
+      "value": "Methodical. They set up the body they will need before the fight starts"
+    }
+  ],
+  "technique.body.extension": [
+    {
+      "id": "bod-ext-1",
+      "value": "Overreach — one limb longer for one strike"
+    },
+    {
+      "id": "bod-ext-2",
+      "value": "Ballast — doubles their own weight where they stand"
+    },
+    {
+      "id": "bod-ext-3",
+      "value": "Grain — hardens a single point of contact to stone"
+    },
+    {
+      "id": "bod-ext-4",
+      "value": "Spare Joint — a bend where no bend should be"
+    },
+    {
+      "id": "bod-ext-5",
+      "value": "Unmade Hand — unmakes a grip on them, including their own"
+    },
+    {
+      "id": "bod-ext-6",
+      "value": "Debt Taken — shrugs off a wound now and feels it in a minute"
+    },
+    {
+      "id": "bod-ext-7",
+      "value": "Low Gear — slower, and impossible to move"
+    },
+    {
+      "id": "bod-ext-8",
+      "value": "Second Wind — resets the body to the shape it started in"
+    }
+  ],
+  "technique.body.maximum": [
+    {
+      "id": "bod-max-1",
+      "value": "Maximum: Account Settled — every deferred injury discharged into one blow"
+    },
+    {
+      "id": "bod-max-2",
+      "value": "Maximum: The Whole Frame — the body remade for exactly one purpose, briefly"
+    },
+    {
+      "id": "bod-max-3",
+      "value": "Maximum: Unbroken — nothing lands at all for as long as they can hold it"
+    }
+  ],
+  "technique.body.domain": [
+    {
+      "id": "bod-dom-1",
+      "value": "Domain: The Anatomy Theatre — every wound inside is shown before it is dealt"
+    },
+    {
+      "id": "bod-dom-2",
+      "value": "Domain: A Body For Every Occasion — the user is whatever the fight requires"
+    },
+    {
+      "id": "bod-dom-3",
+      "value": "Domain: The Quarry — everything inside, flesh included, is stone"
+    },
+    {
+      "id": "bod-dom-4",
+      "value": "Domain: Standing Room Only — nothing inside may yield or give way"
+    }
+  ],
+  "technique.space.name": [
+    {
+      "id": "spa-nam-1",
+      "value": "Hollow Pace"
+    },
+    {
+      "id": "spa-nam-2",
+      "value": "The Short Way"
+    },
+    {
+      "id": "spa-nam-3",
+      "value": "Fold and Crease"
+    },
+    {
+      "id": "spa-nam-4",
+      "value": "Doorless"
+    },
+    {
+      "id": "spa-nam-5",
+      "value": "Three Steps Back"
+    },
+    {
+      "id": "spa-nam-6",
+      "value": "The Narrow Gate"
+    },
+    {
+      "id": "spa-nam-7",
+      "value": "Distance Owed"
+    }
+  ],
+  "technique.space.principle": [
+    {
+      "id": "spa-pri-1",
+      "value": "Two surfaces the user has touched become the same surface"
+    },
+    {
+      "id": "spa-pri-2",
+      "value": "Distance is borrowed from a stride not yet taken, and repaid in exhaustion"
+    },
+    {
+      "id": "spa-pri-3",
+      "value": "Space can be folded but not removed: what is shortened here is lengthened there"
+    },
+    {
+      "id": "spa-pri-4",
+      "value": "The user occupies the place they were a moment ago as readily as the place they are"
+    },
+    {
+      "id": "spa-pri-5",
+      "value": "Any gap can be closed, provided something of the user is already on the far side"
+    }
+  ],
+  "technique.space.application": [
+    {
+      "id": "spa-app-1",
+      "value": "Disorienting. They are never quite where the eye last put them"
+    },
+    {
+      "id": "spa-app-2",
+      "value": "Architectural — rooms stop connecting the way the building says they do"
+    },
+    {
+      "id": "spa-app-3",
+      "value": "Economical: one step, in the only direction that mattered"
+    },
+    {
+      "id": "spa-app-4",
+      "value": "Visibly costly. Every fold leaves them a little further behind themselves"
+    }
+  ],
+  "technique.space.extension": [
+    {
+      "id": "spa-ext-1",
+      "value": "Borrowed Step — one stride of distance, repaid immediately"
+    },
+    {
+      "id": "spa-ext-2",
+      "value": "Arrears — several strides at once, repaid over the following minute"
+    },
+    {
+      "id": "spa-ext-3",
+      "value": "Standstill — gives distance away, pinning themselves to deny it to another"
+    },
+    {
+      "id": "spa-ext-4",
+      "value": "Seam — joins two walls they have both touched"
+    },
+    {
+      "id": "spa-ext-5",
+      "value": "The Long Corridor — makes a short room take a minute to cross"
+    },
+    {
+      "id": "spa-ext-6",
+      "value": "Back Three — returns to where they stood three seconds ago"
+    },
+    {
+      "id": "spa-ext-7",
+      "value": "Threshold — a door that opens only for them"
+    },
+    {
+      "id": "spa-ext-8",
+      "value": "Shortfall — a strike that lands from further away than the arm reaches"
+    }
+  ],
+  "technique.space.maximum": [
+    {
+      "id": "spa-max-1",
+      "value": "Maximum: Debt Called In — every borrowed stride of the fight collapses into one"
+    },
+    {
+      "id": "spa-max-2",
+      "value": "Maximum: No Distance At All — for a moment, everywhere in sight is arm's reach"
+    },
+    {
+      "id": "spa-max-3",
+      "value": "Maximum: The Fold — two places made one, and whatever was in both is in both"
+    }
+  ],
+  "technique.space.domain": [
+    {
+      "id": "spa-dom-1",
+      "value": "Domain: The Long Hallway With No Doors — distance without arrival"
+    },
+    {
+      "id": "spa-dom-2",
+      "value": "Domain: Everywhere Is Here — no gap inside is more than a step"
+    },
+    {
+      "id": "spa-dom-3",
+      "value": "Domain: The Folded Room — the inside is larger than the outside and gets larger"
+    },
+    {
+      "id": "spa-dom-4",
+      "value": "Domain: Return to Sender — every movement ends where it began"
+    }
+  ],
+  "technique.perception.name": [
+    {
+      "id": "per-nam-1",
+      "value": "Overhear"
+    },
+    {
+      "id": "per-nam-2",
+      "value": "The Thousand Eyes"
+    },
+    {
+      "id": "per-nam-3",
+      "value": "Plumb Line"
+    },
+    {
+      "id": "per-nam-4",
+      "value": "Second Opinion"
+    },
+    {
+      "id": "per-nam-5",
+      "value": "Witness"
+    },
+    {
+      "id": "per-nam-6",
+      "value": "The Cold Read"
+    },
+    {
+      "id": "per-nam-7",
+      "value": "Unblinking"
+    }
+  ],
+  "technique.perception.principle": [
+    {
+      "id": "per-pri-1",
+      "value": "The user perceives one chosen thing perfectly and everything else poorly"
+    },
+    {
+      "id": "per-pri-2",
+      "value": "Anything that has been seen in a place can be seen again, in order"
+    },
+    {
+      "id": "per-pri-3",
+      "value": "Intention is legible a moment before it becomes movement"
+    },
+    {
+      "id": "per-pri-4",
+      "value": "What the user is told, they know to be true or false, and nothing more"
+    },
+    {
+      "id": "per-pri-5",
+      "value": "Attention itself is detectable: they know when they are being looked for"
+    }
+  ],
+  "technique.perception.application": [
+    {
+      "id": "per-app-1",
+      "value": "Quiet and unspectacular, and it decides fights before they are joined"
+    },
+    {
+      "id": "per-app-2",
+      "value": "Invasive — they answer questions nobody asked aloud"
+    },
+    {
+      "id": "per-app-3",
+      "value": "Narrow. Extraordinary within its one sense, nearly blind outside it"
+    },
+    {
+      "id": "per-app-4",
+      "value": "Gradual: each minute on site tells them more than the last"
+    }
+  ],
+  "technique.perception.extension": [
+    {
+      "id": "per-ext-1",
+      "value": "Replay — the last minute in this room, as it happened"
+    },
+    {
+      "id": "per-ext-2",
+      "value": "Tell — names the next move a beat before it is made"
+    },
+    {
+      "id": "per-ext-3",
+      "value": "Headcount — every living thing within a street, counted"
+    },
+    {
+      "id": "per-ext-4",
+      "value": "Lie Line — knows when a thing said is believed by the speaker"
+    },
+    {
+      "id": "per-ext-5",
+      "value": "Thread — follows one person's path backwards through a building"
+    },
+    {
+      "id": "per-ext-6",
+      "value": "Blindside — perceives what is behind them as clearly as in front"
+    },
+    {
+      "id": "per-ext-7",
+      "value": "Deep Water — finds the lowest, oldest thing in a place"
+    },
+    {
+      "id": "per-ext-8",
+      "value": "Borrowed Eyes — sees from a surface they have marked"
+    }
+  ],
+  "technique.perception.maximum": [
+    {
+      "id": "per-max-1",
+      "value": "Maximum: Everything At Once — total perception, and no capacity left to act on it"
+    },
+    {
+      "id": "per-max-2",
+      "value": "Maximum: The Whole Account — the complete history of one object, in an instant"
+    },
+    {
+      "id": "per-max-3",
+      "value": "Maximum: Foreknown — the next ten seconds, seen and unchangeable"
+    }
+  ],
+  "technique.perception.domain": [
+    {
+      "id": "per-dom-1",
+      "value": "Domain: Nothing Hidden — inside, every concealment fails, the user's included"
+    },
+    {
+      "id": "per-dom-2",
+      "value": "Domain: The Reading Room — the past of the place plays continuously"
+    },
+    {
+      "id": "per-dom-3",
+      "value": "Domain: Under Observation — every intention is announced before it acts"
+    },
+    {
+      "id": "per-dom-4",
+      "value": "Domain: The Lantern — nothing inside casts a shadow"
+    }
+  ],
+  "technique.barrier.name": [
+    {
+      "id": "barr-nam-1",
+      "value": "Simple Walls"
+    },
+    {
+      "id": "barr-nam-2",
+      "value": "The Held Breath"
+    },
+    {
+      "id": "barr-nam-3",
+      "value": "Papercraft"
+    },
+    {
+      "id": "barr-nam-4",
+      "value": "Quiet Room"
+    },
+    {
+      "id": "barr-nam-5",
+      "value": "The Standing Gate"
+    },
+    {
+      "id": "barr-nam-6",
+      "value": "Four Corners"
+    },
+    {
+      "id": "barr-nam-7",
+      "value": "Hemline"
+    }
+  ],
+  "technique.barrier.principle": [
+    {
+      "id": "barr-pri-1",
+      "value": "A boundary can be drawn anywhere the user can see, and holds until they look away"
+    },
+    {
+      "id": "barr-pri-2",
+      "value": "What is enclosed cannot be reached from outside, and cannot reach out"
+    },
+    {
+      "id": "barr-pri-3",
+      "value": "The barrier is not solid — it is a condition the crossing must satisfy"
+    },
+    {
+      "id": "barr-pri-4",
+      "value": "Walls are cheap and small; one large one costs more than twenty small"
+    },
+    {
+      "id": "barr-pri-5",
+      "value": "Anything written can be made binding within the space it is written in"
+    }
+  ],
+  "technique.barrier.application": [
+    {
+      "id": "barr-app-1",
+      "value": "Patient and positional. They lose fights they cannot prepare for"
+    },
+    {
+      "id": "barr-app-2",
+      "value": "Fast and improvised — small walls thrown up a half-second at a time"
+    },
+    {
+      "id": "barr-app-3",
+      "value": "Administrative, almost: conditions declared aloud and immediately true"
+    },
+    {
+      "id": "barr-app-4",
+      "value": "Invisible until something tries to cross and simply does not"
+    }
+  ],
+  "technique.barrier.extension": [
+    {
+      "id": "barr-ext-1",
+      "value": "Shutter — one flat wall, hand-sized, exactly where a strike was going"
+    },
+    {
+      "id": "barr-ext-2",
+      "value": "Hemline — a boundary along the floor that nothing may step over"
+    },
+    {
+      "id": "barr-ext-3",
+      "value": "Quiet Room — a space no sound enters or leaves"
+    },
+    {
+      "id": "barr-ext-4",
+      "value": "Toll — a crossing allowed only to those who give something up"
+    },
+    {
+      "id": "barr-ext-5",
+      "value": "Lantern Line — a boundary that is visible, as a warning"
+    },
+    {
+      "id": "barr-ext-6",
+      "value": "Lid — encloses a small thing completely, and holds it"
+    },
+    {
+      "id": "barr-ext-7",
+      "value": "Standing Gate — one doorway that stays open in a sealed space"
+    },
+    {
+      "id": "barr-ext-8",
+      "value": "Clause — a written condition the space itself enforces"
+    }
+  ],
+  "technique.barrier.maximum": [
+    {
+      "id": "barr-max-1",
+      "value": "Maximum: The Sealed Ward — a district closed, at ruinous cost, for one minute"
+    },
+    {
+      "id": "barr-max-2",
+      "value": "Maximum: Nothing Crosses — one boundary nothing may pass, including the user"
+    },
+    {
+      "id": "barr-max-3",
+      "value": "Maximum: Every Wall At Once — all barriers drawn today, restored and reinforced"
+    }
+  ],
+  "technique.barrier.domain": [
+    {
+      "id": "barr-dom-1",
+      "value": "Domain: The Room With Four Doors And No Keys — inside, every exit is a condition"
+    },
+    {
+      "id": "barr-dom-2",
+      "value": "Domain: Terms and Conditions — the user's stated rules hold absolutely within"
+    },
+    {
+      "id": "barr-dom-3",
+      "value": "Domain: The Held Breath — nothing inside may move until something is given"
+    },
+    {
+      "id": "barr-dom-4",
+      "value": "Domain: Inside the Envelope — the boundary is the attack"
+    }
+  ],
+  "technique.construct.name": [
+    {
+      "id": "cons-nam-1",
+      "value": "Stitchwork"
+    },
+    {
+      "id": "cons-nam-2",
+      "value": "The Standing Army"
+    },
+    {
+      "id": "cons-nam-3",
+      "value": "Cold Forge"
+    },
+    {
+      "id": "cons-nam-4",
+      "value": "Paper Soldiers"
+    },
+    {
+      "id": "cons-nam-5",
+      "value": "Remainder"
+    },
+    {
+      "id": "cons-nam-6",
+      "value": "The Patient Builder"
+    },
+    {
+      "id": "cons-nam-7",
+      "value": "Scrapheap"
+    }
+  ],
+  "technique.construct.principle": [
+    {
+      "id": "cons-pri-1",
+      "value": "Cursed energy can be shaped into objects, which last until struck"
+    },
+    {
+      "id": "cons-pri-2",
+      "value": "What the user builds from materials on site is stronger than what they build from nothing"
+    },
+    {
+      "id": "cons-pri-3",
+      "value": "Anything broken can be rebuilt once, wrongly, and the wrongness is useful"
+    },
+    {
+      "id": "cons-pri-4",
+      "value": "The user makes tools, never weapons — and uses the tools as weapons"
+    },
+    {
+      "id": "cons-pri-5",
+      "value": "Constructs persist while the user does not look at them, and fail when they do"
+    }
+  ],
+  "technique.construct.application": [
+    {
+      "id": "cons-app-1",
+      "value": "Slow to start, overwhelming once established. Give them a minute and lose"
+    },
+    {
+      "id": "cons-app-2",
+      "value": "Improvised and ugly — whatever is lying about, assembled wrong and working"
+    },
+    {
+      "id": "cons-app-3",
+      "value": "Elegant, brittle things: beautiful, and gone in one hit"
+    },
+    {
+      "id": "cons-app-4",
+      "value": "Industrial. They produce the same construct, reliably, forever"
+    }
+  ],
+  "technique.construct.extension": [
+    {
+      "id": "cons-ext-1",
+      "value": "Brace — a strut that holds a collapsing thing up"
+    },
+    {
+      "id": "cons-ext-2",
+      "value": "Nail — a spike driven through two things, joining them"
+    },
+    {
+      "id": "cons-ext-3",
+      "value": "Hand Tool — a simple implement, perfectly suited, lasting one use"
+    },
+    {
+      "id": "cons-ext-4",
+      "value": "Scaffold — a structure to stand on, where there was nothing"
+    },
+    {
+      "id": "cons-ext-5",
+      "value": "Standing Figure — a crude body that absorbs one strike"
+    },
+    {
+      "id": "cons-ext-6",
+      "value": "Rebuild — a broken object reassembled, wrongly, and sharper for it"
+    },
+    {
+      "id": "cons-ext-7",
+      "value": "Clamp — fixes two surfaces together permanently"
+    },
+    {
+      "id": "cons-ext-8",
+      "value": "Offcut — a small construct made from the waste of a larger one"
+    }
+  ],
+  "technique.construct.maximum": [
+    {
+      "id": "cons-max-1",
+      "value": "Maximum: The Whole Workshop — everything the user could build, built at once"
+    },
+    {
+      "id": "cons-max-2",
+      "value": "Maximum: Standing Army — every construct made today, restored and animate"
+    },
+    {
+      "id": "cons-max-3",
+      "value": "Maximum: The Finished Thing — one construct, perfect, permanent, and enormously costly"
+    }
+  ],
+  "technique.construct.domain": [
+    {
+      "id": "cons-dom-1",
+      "value": "Domain: The Yard — inside, the user's constructs replace themselves as they break"
+    },
+    {
+      "id": "cons-dom-2",
+      "value": "Domain: Everything Already Made — the space is full of finished work"
+    },
+    {
+      "id": "cons-dom-3",
+      "value": "Domain: The Patient Builder — time inside runs long enough to build anything"
+    },
+    {
+      "id": "cons-dom-4",
+      "value": "Domain: Scrapheap — everything inside is material, the opponent included"
+    }
+  ],
+  "technique.condition.name": [
+    {
+      "id": "cond-nam-1",
+      "value": "The Standing Rule"
+    },
+    {
+      "id": "cond-nam-2",
+      "value": "Tally"
+    },
+    {
+      "id": "cond-nam-3",
+      "value": "Terms"
+    },
+    {
+      "id": "cond-nam-4",
+      "value": "Quietus"
+    },
+    {
+      "id": "cond-nam-5",
+      "value": "House Rules"
+    },
+    {
+      "id": "cond-nam-6",
+      "value": "The Promise"
+    },
+    {
+      "id": "cond-nam-7",
+      "value": "Small Print"
+    }
+  ],
+  "technique.condition.principle": [
+    {
+      "id": "cond-pri-1",
+      "value": "The user declares a rule aloud, and it holds for as long as they keep to it too"
+    },
+    {
+      "id": "cond-pri-2",
+      "value": "A condition imposed on another must be matched by one the user accepts"
+    },
+    {
+      "id": "cond-pri-3",
+      "value": "What is counted can be bound: debts, strikes, words, steps"
+    },
+    {
+      "id": "cond-pri-4",
+      "value": "Anything agreed to, however casually, becomes mechanically true"
+    },
+    {
+      "id": "cond-pri-5",
+      "value": "A technique already in progress can be ended, at the cost of one of the user's own"
+    }
+  ],
+  "technique.condition.application": [
+    {
+      "id": "cond-app-1",
+      "value": "Conversational and lethal — they fight by talking, and mean every word"
+    },
+    {
+      "id": "cond-app-2",
+      "value": "Formal: conditions stated precisely, because imprecision costs them"
+    },
+    {
+      "id": "cond-app-3",
+      "value": "Ruthless bookkeeping. They know exactly what everyone owes"
+    },
+    {
+      "id": "cond-app-4",
+      "value": "Restrained. They impose one condition and win on it"
+    }
+  ],
+  "technique.condition.extension": [
+    {
+      "id": "cond-ext-1",
+      "value": "First Clause — one simple rule, binding on both, lasting a minute"
+    },
+    {
+      "id": "cond-ext-2",
+      "value": "Tally — counts strikes, and repays the total at once"
+    },
+    {
+      "id": "cond-ext-3",
+      "value": "Forfeit — takes something from whoever breaks the stated rule"
+    },
+    {
+      "id": "cond-ext-4",
+      "value": "Quietus — ends an active technique, and one of the user's own with it"
+    },
+    {
+      "id": "cond-ext-5",
+      "value": "Standing Debt — a condition that compounds while unresolved"
+    },
+    {
+      "id": "cond-ext-6",
+      "value": "Mute Clause — forbids one named action within earshot"
+    },
+    {
+      "id": "cond-ext-7",
+      "value": "Handshake — a willing agreement, stronger than an imposed one"
+    },
+    {
+      "id": "cond-ext-8",
+      "value": "Small Print — a second condition nobody noticed being stated"
+    }
+  ],
+  "technique.condition.maximum": [
+    {
+      "id": "cond-max-1",
+      "value": "Maximum: Terms Enforced — every condition stated today, all binding at once"
+    },
+    {
+      "id": "cond-max-2",
+      "value": "Maximum: The Unbreakable Clause — one rule nothing present can violate"
+    },
+    {
+      "id": "cond-max-3",
+      "value": "Maximum: Account Closed — all debts owed to the user, collected together"
+    }
+  ],
+  "technique.condition.domain": [
+    {
+      "id": "cond-dom-1",
+      "value": "Domain: Court In Session — inside, the user's rules are the physics"
+    },
+    {
+      "id": "cond-dom-2",
+      "value": "Domain: Nothing Said Is Idle — every word spoken inside binds its speaker"
+    },
+    {
+      "id": "cond-dom-3",
+      "value": "Domain: The Ledger — nothing inside may act while it owes"
+    },
+    {
+      "id": "cond-dom-4",
+      "value": "Domain: Signed and Witnessed — one agreement, inescapable while it stands"
+    }
+  ],
+  "technique.information.name": [
+    {
+      "id": "info-nam-1",
+      "value": "The Ledger"
+    },
+    {
+      "id": "info-nam-2",
+      "value": "Headcount"
+    },
+    {
+      "id": "info-nam-3",
+      "value": "Cold Call"
+    },
+    {
+      "id": "info-nam-4",
+      "value": "Hearsay"
+    },
+    {
+      "id": "info-nam-5",
+      "value": "Chain of Custody"
+    },
+    {
+      "id": "info-nam-6",
+      "value": "Index"
+    },
+    {
+      "id": "info-nam-7",
+      "value": "The Long Memory"
+    }
+  ],
+  "technique.information.principle": [
+    {
+      "id": "info-pri-1",
+      "value": "Names are handles: knowing one truly gives purchase on its owner"
+    },
+    {
+      "id": "info-pri-2",
+      "value": "Information the user holds can be given away, and is lost in the giving"
+    },
+    {
+      "id": "info-pri-3",
+      "value": "Any object will say where it has been and who held it"
+    },
+    {
+      "id": "info-pri-4",
+      "value": "What is widely believed becomes marginally true within earshot"
+    },
+    {
+      "id": "info-pri-5",
+      "value": "The user can reach any mind they have a name for, once, briefly"
+    }
+  ],
+  "technique.information.application": [
+    {
+      "id": "info-app-1",
+      "value": "Non-combative and dreaded. They win before anyone draws"
+    },
+    {
+      "id": "info-app-2",
+      "value": "Social: they fight through other people, who do not know they are being used"
+    },
+    {
+      "id": "info-app-3",
+      "value": "Archival. They turn up knowing things nobody told them"
+    },
+    {
+      "id": "info-app-4",
+      "value": "Transactional — they trade what they know, and it is always a fair price"
+    }
+  ],
+  "technique.information.extension": [
+    {
+      "id": "info-ext-1",
+      "value": "Provenance — an object's last three owners, in order"
+    },
+    {
+      "id": "info-ext-2",
+      "value": "Cold Call — one sentence delivered into a named person's attention"
+    },
+    {
+      "id": "info-ext-3",
+      "value": "Hearsay — plants a belief that spreads on its own"
+    },
+    {
+      "id": "info-ext-4",
+      "value": "Index — locates every copy of a named thing nearby"
+    },
+    {
+      "id": "info-ext-5",
+      "value": "Loose Talk — makes a person say what they most want to keep"
+    },
+    {
+      "id": "info-ext-6",
+      "value": "Chain — follows a name to everyone who has used it"
+    },
+    {
+      "id": "info-ext-7",
+      "value": "Receipt — proves an event happened, to anyone shown it"
+    },
+    {
+      "id": "info-ext-8",
+      "value": "Redaction — removes one fact from everyone present"
+    }
+  ],
+  "technique.information.maximum": [
+    {
+      "id": "info-max-1",
+      "value": "Maximum: Full Disclosure — everything the user knows, made known to all present"
+    },
+    {
+      "id": "info-max-2",
+      "value": "Maximum: The Whole Record — one person's history, complete and undeniable"
+    },
+    {
+      "id": "info-max-3",
+      "value": "Maximum: Named and Numbered — every curse within the district, located at once"
+    }
+  ],
+  "technique.information.domain": [
+    {
+      "id": "info-dom-1",
+      "value": "Domain: Nothing Is Private — every fact inside is available to everyone inside"
+    },
+    {
+      "id": "info-dom-2",
+      "value": "Domain: The Reading Room — the user knows the answer to any question asked within"
+    },
+    {
+      "id": "info-dom-3",
+      "value": "Domain: On The Record — nothing said or done inside can later be denied"
+    },
+    {
+      "id": "info-dom-4",
+      "value": "Domain: The Long Memory — the place's whole past, present and insistent"
+    }
+  ],
+  "technique.energy.name": [
+    {
+      "id": "ener-nam-1",
+      "value": "Foxfire"
+    },
+    {
+      "id": "ener-nam-2",
+      "value": "Low Tide"
+    },
+    {
+      "id": "ener-nam-3",
+      "value": "Output"
+    },
+    {
+      "id": "ener-nam-4",
+      "value": "The Cold Flame"
+    },
+    {
+      "id": "ener-nam-5",
+      "value": "Reserve"
+    },
+    {
+      "id": "ener-nam-6",
+      "value": "Overdraw"
+    },
+    {
+      "id": "ener-nam-7",
+      "value": "Dry Season"
+    }
+  ],
+  "technique.energy.principle": [
+    {
+      "id": "ener-pri-1",
+      "value": "Cursed energy can be moved between things, but never created"
+    },
+    {
+      "id": "ener-pri-2",
+      "value": "The user burns only cursed energy — flesh is untouched, technique is not"
+    },
+    {
+      "id": "ener-pri-3",
+      "value": "What the user takes they must spend immediately or lose"
+    },
+    {
+      "id": "ener-pri-4",
+      "value": "Energy can be stored in objects and withdrawn later, at a loss"
+    },
+    {
+      "id": "ener-pri-5",
+      "value": "Their own output can be spent as a lump rather than metered"
+    }
+  ],
+  "technique.energy.application": [
+    {
+      "id": "ener-app-1",
+      "value": "Attritional. They do not win exchanges; they make exchanges unaffordable"
+    },
+    {
+      "id": "ener-app-2",
+      "value": "Flashy and expensive — enormous output, very little left afterwards"
+    },
+    {
+      "id": "ener-app-3",
+      "value": "Parasitic: the longer the fight, the stronger they are and the weaker you are"
+    },
+    {
+      "id": "ener-app-4",
+      "value": "Measured. They spend exactly what the moment needs and nothing more"
+    }
+  ],
+  "technique.energy.extension": [
+    {
+      "id": "ener-ext-1",
+      "value": "Cold Flame — a fire that consumes cursed energy and nothing else"
+    },
+    {
+      "id": "ener-ext-2",
+      "value": "Low Tide — draws energy out of a technique mid-use"
+    },
+    {
+      "id": "ener-ext-3",
+      "value": "Reserve — banks output in a held object for later"
+    },
+    {
+      "id": "ener-ext-4",
+      "value": "Overdraw — spends tomorrow's capacity today"
+    },
+    {
+      "id": "ener-ext-5",
+      "value": "Siphon — takes a little from everything within reach"
+    },
+    {
+      "id": "ener-ext-6",
+      "value": "Dead Air — a space where output costs double"
+    },
+    {
+      "id": "ener-ext-7",
+      "value": "Discharge — everything banked, released at once, undirected"
+    },
+    {
+      "id": "ener-ext-8",
+      "value": "Dry Season — denies a target their own reserves for a few seconds"
+    }
+  ],
+  "technique.energy.maximum": [
+    {
+      "id": "ener-max-1",
+      "value": "Maximum: Everything At Once — the whole reserve spent in a single expression"
+    },
+    {
+      "id": "ener-max-2",
+      "value": "Maximum: Nothing Left — drains every cursed thing present, the user included"
+    },
+    {
+      "id": "ener-max-3",
+      "value": "Maximum: The Long Burn — sustained output far past what the body should allow"
+    }
+  ],
+  "technique.energy.domain": [
+    {
+      "id": "ener-dom-1",
+      "value": "Domain: The Cold Hearth — inside, cursed energy drains towards the user"
+    },
+    {
+      "id": "ener-dom-2",
+      "value": "Domain: Nothing Burns But This — no technique but the user's functions within"
+    },
+    {
+      "id": "ener-dom-3",
+      "value": "Domain: Dry Season — output inside costs several times what it should"
+    },
+    {
+      "id": "ener-dom-4",
+      "value": "Domain: The Furnace — everything inside is fuel"
+    }
+  ]
+}

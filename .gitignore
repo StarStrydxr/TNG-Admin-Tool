@@ -1,0 +1,37 @@
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Rust / Tauri
+src-tauri/target/
+src-tauri/gen/
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# ── The house rules ────────────────────────────────────────────────────────────
+# The transcription in docs/house-rules/*.md stays in the repo, because domain/
+# is unreadable without it. The original screenshots do not: they are grabs from
+# Dan's Discord and nobody else needs them to understand the code.
+docs/house-rules/source/
+
+# ── Never commit ───────────────────────────────────────────────────────────────
+# Vault data lives in %APPDATA%\jjk-rp-vault, not here — but if anyone ever
+# copies it in to debug something, it must not reach a public repo. Characters,
+# records, images and backups are Dan's and his players'.
+/vault/
+/exports/
+/backups/
+config.json
+
+# A lockfile generated on Linux omits the Windows-only optional binaries this
+# project needs (see the npm/rollup optional-dependency split), so the one that
+# ships must be generated on the Windows machine.

@@ -1,0 +1,938 @@
+{
+  "curse.registration": [
+    {
+      "id": "unregistered",
+      "value": "Unregistered — nobody has filed this one",
+      "weight": 5
+    },
+    {
+      "id": "registered",
+      "value": "Registered, with a file and a last-known sighting",
+      "weight": 4
+    },
+    {
+      "id": "misfiled",
+      "value": "Registered a grade too low, and the file has not been updated",
+      "weight": 3
+    },
+    {
+      "id": "presumed-exorcised",
+      "value": "On record as exorcised",
+      "weight": 2
+    },
+    {
+      "id": "named",
+      "value": "Named in the archives, with a standing order attached",
+      "weight": 1,
+      "grades": [
+        "grade-1",
+        "special-grade",
+        "disaster-grade"
+      ]
+    }
+  ],
+  "curse.origin-fear": [
+    {
+      "id": "drowning",
+      "value": "Drowning in water too shallow to drown in"
+    },
+    {
+      "id": "being-forgotten",
+      "value": "Being forgotten by someone still alive"
+    },
+    {
+      "id": "the-unanswered",
+      "value": "A phone that rings and is never picked up"
+    },
+    {
+      "id": "medical",
+      "value": "Waking during a procedure"
+    },
+    {
+      "id": "debt",
+      "value": "Debt that outlives the debtor"
+    },
+    {
+      "id": "crowd",
+      "value": "Being pushed under by a crowd that does not notice"
+    },
+    {
+      "id": "mould",
+      "value": "Something growing behind a wall for years"
+    },
+    {
+      "id": "mirror",
+      "value": "A reflection that lags"
+    },
+    {
+      "id": "sleeplessness",
+      "value": "The fourth consecutive night without sleep"
+    },
+    {
+      "id": "being-watched",
+      "value": "Being watched through a window you cannot see into"
+    },
+    {
+      "id": "choking",
+      "value": "Choking on something you cannot cough up"
+    },
+    {
+      "id": "the-dark-under",
+      "value": "Whatever is under the bed, the car, the water"
+    },
+    {
+      "id": "losing-a-child",
+      "value": "Turning round in a crowd and the child is not there"
+    },
+    {
+      "id": "disfigurement",
+      "value": "Seeing your own face wrong in a photograph"
+    },
+    {
+      "id": "deadlines",
+      "value": "A deadline that cannot be met and cannot be moved"
+    },
+    {
+      "id": "confession",
+      "value": "Being made to say the thing out loud"
+    },
+    {
+      "id": "rot-in-food",
+      "value": "Finding it already half eaten"
+    },
+    {
+      "id": "the-phone-call",
+      "value": "The call that comes at four in the morning"
+    },
+    {
+      "id": "being-replaced",
+      "value": "Being replaced at work, at home, entirely"
+    },
+    {
+      "id": "stairs",
+      "value": "Missing a step in the dark"
+    },
+    {
+      "id": "insects",
+      "value": "Something moving under the skin"
+    },
+    {
+      "id": "the-exam",
+      "value": "Sitting an exam you did not study for, for the rest of your life"
+    },
+    {
+      "id": "abandonment-elderly",
+      "value": "Being left somewhere and not collected"
+    },
+    {
+      "id": "overwork",
+      "value": "Never being allowed to stop"
+    },
+    {
+      "id": "the-locked-ward",
+      "value": "Being certain, and not believed"
+    },
+    {
+      "id": "heights",
+      "value": "The pull at the edge of a platform"
+    },
+    {
+      "id": "teeth",
+      "value": "Teeth coming loose, one at a time"
+    },
+    {
+      "id": "contamination",
+      "value": "Having touched something you cannot wash off"
+    },
+    {
+      "id": "the-queue",
+      "value": "Waiting in a line that does not move"
+    },
+    {
+      "id": "being-buried",
+      "value": "Weight on the chest, and the ceiling lower than it was"
+    },
+    {
+      "id": "the-returning",
+      "value": "A thing that was dealt with, coming back",
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "semi-special-grade",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "collective-shame",
+      "value": "A town's agreement never to mention it again",
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "semi-special-grade",
+        "special-grade"
+      ],
+      "tags": [
+        "crowd-origin"
+      ]
+    },
+    {
+      "id": "the-war",
+      "value": "Something three generations old and never discussed",
+      "grades": [
+        "grade-1",
+        "semi-special-grade",
+        "special-grade",
+        "disaster-grade"
+      ]
+    }
+  ],
+  "curse.form": [
+    {
+      "id": "humanoid-wrong",
+      "value": "Humanoid, with the proportions subtly wrong",
+      "weight": 4
+    },
+    {
+      "id": "beast",
+      "value": "Beast-shaped, built from parts of several animals",
+      "weight": 4
+    },
+    {
+      "id": "aberrant",
+      "value": "Aberrant — no stable silhouette, hurts to look at squarely",
+      "weight": 3
+    },
+    {
+      "id": "amalgam",
+      "value": "An amalgam of fused bodies, faces still moving under the surface",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "special-grade",
+        "disaster-grade"
+      ],
+      "tags": [
+        "body-horror",
+        "crowd-origin"
+      ]
+    },
+    {
+      "id": "swarm",
+      "value": "A swarm that only reads as one creature when it is still",
+      "weight": 2
+    },
+    {
+      "id": "architectural",
+      "value": "Grown into the building — a doorway, a stairwell, a ceiling",
+      "weight": 2
+    },
+    {
+      "id": "unremarkable",
+      "value": "Entirely unremarkable until it moves",
+      "weight": 1,
+      "grades": [
+        "grade-semi-1",
+        "grade-1",
+        "special-grade",
+        "disaster-grade"
+      ]
+    },
+    {
+      "id": "partial",
+      "value": "Only ever partly present — a hand, a shoulder, the edge of a coat"
+    },
+    {
+      "id": "vast",
+      "value": "Too large to see all of from inside the building",
+      "grades": [
+        "grade-1",
+        "semi-special-grade",
+        "special-grade",
+        "disaster-grade"
+      ]
+    },
+    {
+      "id": "liquid",
+      "value": "Fluid, and holds a shape only while it is moving"
+    },
+    {
+      "id": "vegetal",
+      "value": "Growth: roots, fruiting bodies, something flowering indoors"
+    },
+    {
+      "id": "mechanical",
+      "value": "Built-looking, as though assembled by someone who had machines described to them"
+    },
+    {
+      "id": "absence",
+      "value": "A hole in the shape of a person, which the eye keeps correcting",
+      "grades": [
+        "grade-1",
+        "semi-special-grade",
+        "special-grade",
+        "disaster-grade"
+      ]
+    },
+    {
+      "id": "child-sized",
+      "value": "Child-sized, and the proportions are the worst part"
+    },
+    {
+      "id": "many-small",
+      "value": "Dozens of small ones that are not individually a problem",
+      "tags": [
+        "swarm"
+      ]
+    },
+    {
+      "id": "wearing",
+      "value": "Wearing a body it did not grow, badly",
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "semi-special-grade",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "elegant",
+      "value": "Entirely human-looking, and better dressed than you",
+      "grades": [
+        "grade-1",
+        "semi-special-grade",
+        "special-grade",
+        "disaster-grade"
+      ]
+    }
+  ],
+  "curse.intelligence": [
+    {
+      "id": "unintelligent",
+      "value": "Unintelligent — appetite and habit, nothing else",
+      "weight": 6,
+      "grades": [
+        "grade-4",
+        "grade-3",
+        "grade-semi-2"
+      ]
+    },
+    {
+      "id": "semi",
+      "value": "Semi-sentient — learns, does not plan",
+      "weight": 5
+    },
+    {
+      "id": "intelligent",
+      "value": "Intelligent — speaks, negotiates, lies",
+      "weight": 3,
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "special-grade",
+        "disaster-grade"
+      ]
+    },
+    {
+      "id": "special",
+      "value": "Fully self-aware, with goals of its own and patience to match",
+      "weight": 1,
+      "grades": [
+        "grade-1",
+        "special-grade",
+        "disaster-grade"
+      ]
+    }
+  ],
+  "curse.habitat": [
+    {
+      "id": "school",
+      "value": "A school building after hours"
+    },
+    {
+      "id": "hospital",
+      "value": "A hospital wing closed for renovation"
+    },
+    {
+      "id": "station",
+      "value": "The disused platform of a working station"
+    },
+    {
+      "id": "apartment",
+      "value": "One apartment in an otherwise ordinary block"
+    },
+    {
+      "id": "underpass",
+      "value": "A pedestrian underpass with one broken light"
+    },
+    {
+      "id": "shrine",
+      "value": "A shrine nobody has maintained in forty years"
+    },
+    {
+      "id": "carpark",
+      "value": "The lowest level of a multi-storey car park"
+    },
+    {
+      "id": "roadworks",
+      "value": "A stretch of roadworks that has not progressed in months"
+    },
+    {
+      "id": "stairwells",
+      "value": "Stairwells, and only between floors"
+    },
+    {
+      "id": "lifts",
+      "value": "Lifts, and the shaft behind them"
+    },
+    {
+      "id": "public-toilets",
+      "value": "Public toilets at the end of a corridor"
+    },
+    {
+      "id": "laundrettes",
+      "value": "Laundrettes, overnight"
+    },
+    {
+      "id": "tunnels-service",
+      "value": "Service tunnels under anything large"
+    },
+    {
+      "id": "bridges",
+      "value": "The underside of bridges"
+    },
+    {
+      "id": "vending",
+      "value": "Rows of vending machines in empty places"
+    },
+    {
+      "id": "classrooms",
+      "value": "One classroom, always the same one"
+    },
+    {
+      "id": "wards",
+      "value": "Hospital wards after visiting hours"
+    },
+    {
+      "id": "allotments",
+      "value": "Allotments and the sheds on them"
+    },
+    {
+      "id": "cinemas",
+      "value": "Cinemas, during the last showing"
+    },
+    {
+      "id": "bus-stops",
+      "value": "A bus stop on a route that was discontinued"
+    },
+    {
+      "id": "storage",
+      "value": "Self-storage units, specifically the unpaid ones"
+    },
+    {
+      "id": "stadium",
+      "value": "An empty stadium, which it fills",
+      "grades": [
+        "grade-1",
+        "semi-special-grade",
+        "special-grade",
+        "disaster-grade"
+      ]
+    },
+    {
+      "id": "waterways",
+      "value": "Canals and drainage channels"
+    },
+    {
+      "id": "offices",
+      "value": "Open-plan offices after the cleaners leave"
+    },
+    {
+      "id": "playgrounds",
+      "value": "Playgrounds, at the hour when they should be busy"
+    },
+    {
+      "id": "the-roads",
+      "value": "Roads themselves — it does not stay anywhere",
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "semi-special-grade",
+        "special-grade"
+      ]
+    }
+  ],
+  "curse.behaviour": [
+    {
+      "id": "territorial",
+      "value": "Territorial — will not leave its ground, will not share it"
+    },
+    {
+      "id": "mimic",
+      "value": "Imitates a sound from the site: an announcement, a kettle, a child"
+    },
+    {
+      "id": "patient",
+      "value": "Waits for people to be alone, and is good at telling when"
+    },
+    {
+      "id": "hoards",
+      "value": "Collects something from everyone it takes"
+    },
+    {
+      "id": "routine",
+      "value": "Follows a fixed route on a fixed schedule"
+    },
+    {
+      "id": "escalating",
+      "value": "Has become bolder each week, and is now acting in daylight"
+    },
+    {
+      "id": "feeding",
+      "value": "Feeding on one specific person rather than killing them"
+    },
+    {
+      "id": "collector",
+      "value": "Takes one small thing from everyone who passes"
+    },
+    {
+      "id": "nocturnal",
+      "value": "Only after dark, reliably, which has made it easy to live with"
+    },
+    {
+      "id": "imitative",
+      "value": "Learns a behaviour by watching and repeats it wrong"
+    },
+    {
+      "id": "protective",
+      "value": "Guards something, and attacks only what approaches it"
+    },
+    {
+      "id": "migratory",
+      "value": "Moves on a circuit and will be back"
+    },
+    {
+      "id": "summoned",
+      "value": "Appears when a specific thing is said or done"
+    },
+    {
+      "id": "negotiates",
+      "value": "Makes offers, and has kept them so far",
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "semi-special-grade",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "nests",
+      "value": "Builds, out of whatever is to hand"
+    },
+    {
+      "id": "follows",
+      "value": "Attaches to one person and follows them home"
+    },
+    {
+      "id": "dormant-cycle",
+      "value": "Dormant for months, then three bad weeks"
+    },
+    {
+      "id": "rewards",
+      "value": "Leaves gifts, which is worse than taking"
+    },
+    {
+      "id": "apologetic",
+      "value": "Appears distressed by what it does, and does it anyway",
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "semi-special-grade",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "counts",
+      "value": "Will not act until a number is reached"
+    },
+    {
+      "id": "avoids-adults",
+      "value": "Only ever seen by children and the very old"
+    },
+    {
+      "id": "records",
+      "value": "Repeats conversations it has overheard, months later"
+    },
+    {
+      "id": "splits-groups",
+      "value": "Separates people before it does anything else"
+    },
+    {
+      "id": "waits-indoors",
+      "value": "Will not cross a threshold uninvited"
+    },
+    {
+      "id": "escalates-to-order",
+      "value": "Behaves better the more attention it gets, and worse when ignored"
+    }
+  ],
+  "curse.ability": [
+    {
+      "id": "grip",
+      "value": "Grabs hard enough to break a grip but not a bone — it wants you moved, not dead",
+      "weight": 4
+    },
+    {
+      "id": "split",
+      "value": "Splits when damaged, each piece weaker and angrier",
+      "weight": 3
+    },
+    {
+      "id": "dark",
+      "value": "Kills every light source in its range",
+      "weight": 3
+    },
+    {
+      "id": "mimicry",
+      "value": "Reproduces a voice it has heard, well enough to be followed",
+      "weight": 3
+    },
+    {
+      "id": "drain",
+      "value": "Drains cursed energy on contact, slowly",
+      "weight": 2,
+      "grades": [
+        "grade-semi-2",
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "special-grade",
+        "disaster-grade"
+      ]
+    },
+    {
+      "id": "relocate",
+      "value": "Moves anyone it touches somewhere else inside its territory",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "special-grade",
+        "disaster-grade"
+      ]
+    },
+    {
+      "id": "technique",
+      "value": "Has a cursed technique of its own, used clumsily",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "special-grade",
+        "disaster-grade"
+      ]
+    },
+    {
+      "id": "domain",
+      "value": "Can hold an incomplete domain for a handful of seconds",
+      "weight": 1,
+      "grades": [
+        "grade-1",
+        "special-grade",
+        "disaster-grade"
+      ]
+    },
+    {
+      "id": "regeneration",
+      "value": "Reassembles from any fragment left behind",
+      "weight": 1,
+      "grades": [
+        "grade-1",
+        "special-grade",
+        "disaster-grade"
+      ]
+    },
+    {
+      "id": "weight",
+      "value": "Makes a space heavier — movement costs twice what it should"
+    },
+    {
+      "id": "silence",
+      "value": "Removes sound within its reach, including shouted warnings"
+    },
+    {
+      "id": "cold",
+      "value": "Drops the temperature far enough to matter within minutes"
+    },
+    {
+      "id": "doors",
+      "value": "Opens and closes what is locked, including from the other side"
+    },
+    {
+      "id": "memory",
+      "value": "Takes recent memory; people forget why they came in"
+    },
+    {
+      "id": "lure",
+      "value": "Makes a route feel like the obvious one"
+    },
+    {
+      "id": "copy",
+      "value": "Produces a second of itself, weaker, for as long as it concentrates",
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "semi-special-grade",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "reach",
+      "value": "Strikes from further away than its body accounts for"
+    },
+    {
+      "id": "swallow",
+      "value": "Takes something whole and holds it somewhere else",
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "semi-special-grade",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "blood",
+      "value": "Opens old wounds, or old scars"
+    },
+    {
+      "id": "stillness",
+      "value": "Holds a person in place for as long as they are looked at"
+    },
+    {
+      "id": "infest",
+      "value": "Leaves something in a wound that grows"
+    },
+    {
+      "id": "rust-ability",
+      "value": "Ruins worked metal on contact"
+    },
+    {
+      "id": "thirst",
+      "value": "Dries out whatever it touches, people included"
+    },
+    {
+      "id": "mislead",
+      "value": "Changes what a space looks like, not what it is"
+    },
+    {
+      "id": "echo",
+      "value": "Repeats an attack made against it, once, at the attacker",
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "semi-special-grade",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "tether",
+      "value": "Will not let a person move further than a set distance from it"
+    },
+    {
+      "id": "spores",
+      "value": "Fills the air with something that makes technique unreliable",
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "semi-special-grade",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "night",
+      "value": "Brings its own darkness and is faster inside it"
+    },
+    {
+      "id": "many-hands",
+      "value": "More limbs than it appears to have, from wherever it needs them"
+    },
+    {
+      "id": "simple-domain-breaker",
+      "value": "Shrugs off Simple Domain, which is the first unpleasant surprise",
+      "grades": [
+        "grade-1",
+        "semi-special-grade",
+        "special-grade",
+        "disaster-grade"
+      ]
+    },
+    {
+      "id": "binding",
+      "value": "Imposes a condition, and is stronger while it holds",
+      "grades": [
+        "grade-1",
+        "semi-special-grade",
+        "special-grade",
+        "disaster-grade"
+      ]
+    },
+    {
+      "id": "unmaking",
+      "value": "Destroys cursed tools outright on a solid hit",
+      "grades": [
+        "grade-1",
+        "semi-special-grade",
+        "special-grade",
+        "disaster-grade"
+      ]
+    },
+    {
+      "id": "second-body",
+      "value": "Keeps a second body elsewhere and continues from it",
+      "grades": [
+        "grade-1",
+        "semi-special-grade",
+        "special-grade",
+        "disaster-grade"
+      ]
+    },
+    {
+      "id": "mass-territory",
+      "value": "Its territory is the whole district, not the building",
+      "grades": [
+        "grade-1",
+        "semi-special-grade",
+        "special-grade",
+        "disaster-grade"
+      ]
+    },
+    {
+      "id": "speech",
+      "value": "Talks, fluently, and knows who you are",
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "semi-special-grade",
+        "special-grade"
+      ]
+    }
+  ],
+  "curse.weakness": [
+    {
+      "id": "anchor",
+      "value": "Anchored to one object; destroy it and the curse goes with it"
+    },
+    {
+      "id": "witness",
+      "value": "Weaker when more than one person can see it"
+    },
+    {
+      "id": "name",
+      "value": "Flinches at the name of the person it came from"
+    },
+    {
+      "id": "daylight",
+      "value": "Cannot hold its form in direct daylight"
+    },
+    {
+      "id": "pattern",
+      "value": "Must complete its routine; interrupt it and it loses several seconds"
+    },
+    {
+      "id": "greed",
+      "value": "Will not abandon what it has collected, even to escape"
+    },
+    {
+      "id": "none-obvious",
+      "value": "None anyone has found yet",
+      "weight": 1
+    },
+    {
+      "id": "salt-line",
+      "value": "An old remedy that works here and nowhere else"
+    },
+    {
+      "id": "its-remains",
+      "value": "Whatever body it grew from is still on site"
+    },
+    {
+      "id": "the-sound",
+      "value": "One sound it cannot tolerate, discoverable by accident"
+    },
+    {
+      "id": "counting",
+      "value": "Must finish counting before it can act"
+    },
+    {
+      "id": "running-water",
+      "value": "Will not cross running water, which the site has plenty of"
+    },
+    {
+      "id": "the-photograph",
+      "value": "A photograph of the person it was, which it cannot look away from"
+    },
+    {
+      "id": "politeness",
+      "value": "Answers a direct question honestly, if asked properly"
+    },
+    {
+      "id": "one-room",
+      "value": "Cannot leave one room, and knows it"
+    },
+    {
+      "id": "the-anniversary",
+      "value": "Only dangerous on one date, which is soon"
+    },
+    {
+      "id": "hunger",
+      "value": "Can be drawn out reliably by offering what it wants"
+    },
+    {
+      "id": "fragile-core",
+      "value": "Everything it does comes from one small, reachable part"
+    },
+    {
+      "id": "shared-pain",
+      "value": "Takes any damage dealt to the thing it is protecting"
+    },
+    {
+      "id": "the-name",
+      "value": "Saying the right name out loud stops it, briefly"
+    },
+    {
+      "id": "sunrise",
+      "value": "Diminishes at first light, wherever it is"
+    },
+    {
+      "id": "overreach",
+      "value": "Weakens the further it gets from where it began"
+    },
+    {
+      "id": "company",
+      "value": "Will not act on a group of more than three"
+    },
+    {
+      "id": "none-found",
+      "value": "None found. Three teams have looked."
+    },
+    {
+      "id": "itself",
+      "value": "Can be turned on another of its own kind without much persuasion"
+    }
+  ]
+}

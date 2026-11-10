@@ -1,0 +1,925 @@
+{
+  "cursed-object.state": [
+    {
+      "id": "sealed",
+      "value": "Sealed, and the seal is sound",
+      "weight": 5
+    },
+    {
+      "id": "sealed-failing",
+      "value": "Sealed, and the seal is failing",
+      "weight": 3
+    },
+    {
+      "id": "dormant",
+      "value": "Dormant — unsealed, but it has not woken",
+      "weight": 3
+    },
+    {
+      "id": "active",
+      "value": "Active, and someone is using it",
+      "weight": 2
+    },
+    {
+      "id": "active-loose",
+      "value": "Active and unattended",
+      "weight": 2
+    },
+    {
+      "id": "sealed-and-the-seal-is-someone-else-s-",
+      "value": "Sealed, and the seal is someone else’s work nobody can read",
+      "weight": 2
+    },
+    {
+      "id": "sealed-twice-by-two-people-who-did-not",
+      "value": "Sealed twice, by two people who did not trust each other",
+      "weight": 2
+    },
+    {
+      "id": "dormant-and-has-been-since-the-last-pe",
+      "value": "Dormant, and has been since the last person who fed it died",
+      "weight": 3
+    },
+    {
+      "id": "active-and-currently-getting-worse",
+      "value": "Active and currently getting worse",
+      "weight": 2
+    },
+    {
+      "id": "active-but-politely-it-has-not-done-an",
+      "value": "Active, but politely — it has not done anything in a fortnight",
+      "weight": 2
+    },
+    {
+      "id": "spent-whatever-was-in-it-has-already-g",
+      "value": "Spent. Whatever was in it has already gone somewhere",
+      "weight": 2
+    },
+    {
+      "id": "partially-unsealed-by-someone-who-stop",
+      "value": "Partially unsealed, by someone who stopped halfway and ran",
+      "weight": 2
+    },
+    {
+      "id": "sealed-inside-another-object-which-is-",
+      "value": "Sealed inside another object, which is itself unremarkable"
+    }
+  ],
+  "cursed-object.appearance": [
+    {
+      "id": "finger-bone",
+      "value": "A finger bone, wrapped and rewrapped in paper gone brown"
+    },
+    {
+      "id": "school-recorder",
+      "value": "A child's plastic recorder, warm to hold"
+    },
+    {
+      "id": "wedding-ring",
+      "value": "A wedding ring resized too many times"
+    },
+    {
+      "id": "cassette",
+      "value": "A cassette with the label torn off"
+    },
+    {
+      "id": "doll-head",
+      "value": "The head of a doll, repainted by an adult hand"
+    },
+    {
+      "id": "hospital-tag",
+      "value": "A hospital wristband, still fastened"
+    },
+    {
+      "id": "stone",
+      "value": "A river stone with a hole worn through it"
+    },
+    {
+      "id": "ledger-book",
+      "value": "A ledger listing names and amounts, in two hands"
+    },
+    {
+      "id": "uniform-button",
+      "value": "A single uniform button on a length of thread"
+    },
+    {
+      "id": "a-school-recorder-with-a-name-inked-on",
+      "value": "A school recorder with a name inked on the mouthpiece",
+      "weight": 3
+    },
+    {
+      "id": "a-pair-of-reading-glasses-one-lens-rep",
+      "value": "A pair of reading glasses, one lens replaced with plain glass",
+      "weight": 3
+    },
+    {
+      "id": "a-hospital-wristband-cut-off-and-kept",
+      "value": "A hospital wristband, cut off and kept",
+      "weight": 3
+    },
+    {
+      "id": "a-child-s-shoe-dried-stiff-laced-tight",
+      "value": "A child’s shoe, dried stiff, laced tight",
+      "weight": 3
+    },
+    {
+      "id": "a-cheap-umbrella-that-has-never-been-w",
+      "value": "A cheap umbrella that has never been wet",
+      "weight": 2
+    },
+    {
+      "id": "a-hand-mirror-with-the-silvering-gone-",
+      "value": "A hand mirror with the silvering gone in a handprint",
+      "weight": 3
+    },
+    {
+      "id": "a-paper-crane-folded-from-a-hospital-d",
+      "value": "A paper crane folded from a hospital discharge form",
+      "weight": 3
+    },
+    {
+      "id": "a-train-pass-still-topped-up-expired-e",
+      "value": "A train pass still topped up, expired eleven years ago",
+      "weight": 3
+    },
+    {
+      "id": "a-bento-box-that-smells-faintly-of-a-m",
+      "value": "A bento box that smells faintly of a meal nobody cooked",
+      "weight": 2
+    },
+    {
+      "id": "a-length-of-rope-with-four-knots-and-r",
+      "value": "A length of rope with four knots and room for a fifth",
+      "weight": 3
+    },
+    {
+      "id": "a-karaoke-songbook-one-page-worn-throu",
+      "value": "A karaoke songbook, one page worn through",
+      "weight": 2
+    },
+    {
+      "id": "a-doorknob-with-no-door-polished-brigh",
+      "value": "A doorknob with no door, polished bright by use",
+      "weight": 3
+    },
+    {
+      "id": "a-bundle-of-letters-all-of-them-unopen",
+      "value": "A bundle of letters, all of them unopened, all addressed in one hand",
+      "weight": 3
+    },
+    {
+      "id": "a-porcelain-cat-with-its-paw-broken-of",
+      "value": "A porcelain cat with its paw broken off and glued back wrong",
+      "weight": 3
+    },
+    {
+      "id": "a-crutch-sized-for-a-child",
+      "value": "A crutch sized for a child",
+      "weight": 2
+    },
+    {
+      "id": "a-wedding-photograph-with-one-face-scr",
+      "value": "A wedding photograph with one face scratched down to the paper",
+      "weight": 3
+    },
+    {
+      "id": "a-phone-with-a-dead-battery-that-is-wa",
+      "value": "A phone with a dead battery that is warm anyway",
+      "weight": 3
+    },
+    {
+      "id": "a-jar-of-baby-teeth-more-than-one-chil",
+      "value": "A jar of baby teeth, more than one child’s worth",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "a-nurse-s-name-badge-with-the-hospital",
+      "value": "A nurse’s name badge with the hospital crest filed off",
+      "weight": 2
+    },
+    {
+      "id": "a-single-chopstick-worn-smooth-at-the-",
+      "value": "A single chopstick, worn smooth at the wrong end",
+      "weight": 2
+    },
+    {
+      "id": "a-plastic-charm-from-a-crane-game-scuf",
+      "value": "A plastic charm from a crane game, scuffed pale",
+      "weight": 2
+    },
+    {
+      "id": "a-wooden-ema-with-the-wish-sanded-away",
+      "value": "A wooden ema with the wish sanded away",
+      "weight": 3
+    },
+    {
+      "id": "a-thermos-that-keeps-its-contents-at-e",
+      "value": "A thermos that keeps its contents at exactly blood heat",
+      "weight": 2
+    },
+    {
+      "id": "a-dog-collar-the-tag-worn-blank",
+      "value": "A dog collar, the tag worn blank",
+      "weight": 3
+    },
+    {
+      "id": "a-pressed-flower-in-a-book-still-soft",
+      "value": "A pressed flower in a book, still soft",
+      "weight": 2
+    },
+    {
+      "id": "a-skipping-rope-that-is-longer-each-ti",
+      "value": "A skipping rope that is longer each time it is measured",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "a-box-of-matches-always-one-left",
+      "value": "A box of matches, always one left",
+      "weight": 3
+    },
+    {
+      "id": "a-cassette-recorder-with-the-record-ta",
+      "value": "A cassette recorder with the record tab snapped off",
+      "weight": 2
+    },
+    {
+      "id": "a-sliver-of-a-larger-thing-kept-in-a-l",
+      "value": "A sliver of a larger thing, kept in a lacquer case too good for it",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    }
+  ],
+  "cursed-object.origin": [
+    {
+      "id": "left-behind",
+      "value": "Left behind at a site nobody exorcised properly"
+    },
+    {
+      "id": "deliberate",
+      "value": "Made deliberately, and badly, by someone who read too much"
+    },
+    {
+      "id": "remains",
+      "value": "What remains of a curse that was only partly destroyed"
+    },
+    {
+      "id": "inherited",
+      "value": "Passed down three generations as a family keepsake"
+    },
+    {
+      "id": "clan-vault",
+      "value": "Signed out of a clan vault and never returned"
+    },
+    {
+      "id": "grew",
+      "value": "Accumulated on its own, in a place where the same fear happened repeatedly"
+    },
+    {
+      "id": "swallowed",
+      "value": "Recovered from inside a curse that had swallowed it"
+    },
+    {
+      "id": "a-death-nobody-attended-in-a-flat-nobo",
+      "value": "A death nobody attended, in a flat nobody entered for a month",
+      "weight": 4
+    },
+    {
+      "id": "a-room-where-a-family-waited-out-somet",
+      "value": "A room where a family waited out something and did not all come out",
+      "weight": 3
+    },
+    {
+      "id": "a-workplace-where-the-same-shift-broke",
+      "value": "A workplace where the same shift broke three people in a year",
+      "weight": 3
+    },
+    {
+      "id": "a-ward-that-was-closed-and-never-demol",
+      "value": "A ward that was closed and never demolished",
+      "weight": 3
+    },
+    {
+      "id": "a-school-club-that-went-quiet-all-at-o",
+      "value": "A school club that went quiet all at once",
+      "weight": 3
+    },
+    {
+      "id": "a-commute-repeated-until-the-route-its",
+      "value": "A commute, repeated until the route itself resented it",
+      "weight": 3
+    },
+    {
+      "id": "a-promise-made-to-a-dying-person-and-i",
+      "value": "A promise made to a dying person and immediately broken",
+      "weight": 4
+    },
+    {
+      "id": "a-debt-that-was-paid-in-the-end-but-no",
+      "value": "A debt that was paid in the end, but not in money",
+      "weight": 3
+    },
+    {
+      "id": "a-sorcerer-s-own-remains-consecrated-b",
+      "value": "A sorcerer’s own remains, consecrated badly",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "the-site-of-a-mercy-that-everyone-invo",
+      "value": "The site of a mercy that everyone involved regretted",
+      "weight": 3
+    },
+    {
+      "id": "a-shrine-that-stopped-being-tended-and",
+      "value": "A shrine that stopped being tended and kept receiving offerings anyway",
+      "weight": 3
+    },
+    {
+      "id": "something-cut-from-a-larger-curse-and-",
+      "value": "Something cut from a larger curse and kept as evidence",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "a-house-fire-that-two-people-walked-ou",
+      "value": "A house fire that two people walked out of and three did not",
+      "weight": 3
+    },
+    {
+      "id": "grief-with-nowhere-to-go-for-eleven-ye",
+      "value": "Grief with nowhere to go for eleven years",
+      "weight": 4
+    },
+    {
+      "id": "an-accident-that-everyone-agreed-was-n",
+      "value": "An accident that everyone agreed was nobody’s fault",
+      "weight": 3
+    },
+    {
+      "id": "a-long-illness-borne-well-and-resented",
+      "value": "A long illness, borne well, and resented the whole time",
+      "weight": 3
+    },
+    {
+      "id": "a-confession-nobody-heard",
+      "value": "A confession nobody heard",
+      "weight": 3
+    },
+    {
+      "id": "a-building-site-where-the-foreman-s-lo",
+      "value": "A building site where the foreman’s log skips a week",
+      "weight": 3
+    },
+    {
+      "id": "something-a-child-made-to-keep-a-paren",
+      "value": "Something a child made to keep a parent in the house",
+      "weight": 3
+    },
+    {
+      "id": "a-ritual-someone-found-online-and-perf",
+      "value": "A ritual someone found online and performed correctly",
+      "weight": 2
+    }
+  ],
+  "cursed-object.seal": [
+    {
+      "id": "paper",
+      "value": "Paper talismans, renewed annually, last renewed four years ago"
+    },
+    {
+      "id": "salt-box",
+      "value": "A salt-packed box with the lid wired shut"
+    },
+    {
+      "id": "layered",
+      "value": "Three seals by three different hands, none of whom agreed"
+    },
+    {
+      "id": "vow",
+      "value": "A binding vow holding it closed, and the vow-maker is dead"
+    },
+    {
+      "id": "burial",
+      "value": "Buried under a marker that was never explained to the next caretaker"
+    },
+    {
+      "id": "improvised",
+      "value": "Improvised on site and never upgraded"
+    },
+    {
+      "id": "none",
+      "value": "Nothing. It is simply in a drawer."
+    },
+    {
+      "id": "paper-salt-and-a-frame-of-plain-wood-r",
+      "value": "Paper, salt and a frame of plain wood, replaced monthly",
+      "weight": 4
+    },
+    {
+      "id": "sutra-tape-across-every-seam-in-a-hand",
+      "value": "Sutra tape across every seam, in a hand that shook",
+      "weight": 3
+    },
+    {
+      "id": "thread-wound-a-specific-number-of-time",
+      "value": "Thread wound a specific number of times; nobody has recounted it",
+      "weight": 3
+    },
+    {
+      "id": "a-lacquer-box-that-must-stay-closed-an",
+      "value": "A lacquer box that must stay closed, and a weight on the lid",
+      "weight": 3
+    },
+    {
+      "id": "burial-under-running-water-in-a-contai",
+      "value": "Burial under running water, in a container that is now a century old",
+      "weight": 2
+    },
+    {
+      "id": "a-clan-seal-formal-and-immaculate-and-",
+      "value": "A clan seal, formal and immaculate and two generations out of date",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "someone-s-cursed-technique-held-in-pla",
+      "value": "Someone’s cursed technique, held in place and still being paid for",
+      "weight": 2,
+      "grades": [
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "rice-charcoal-and-a-bowl-that-must-nev",
+      "value": "Rice, charcoal and a bowl that must never be allowed to dry out",
+      "weight": 3
+    },
+    {
+      "id": "nailed-shut-each-nail-driven-by-a-diff",
+      "value": "Nailed shut, each nail driven by a different person",
+      "weight": 2
+    },
+    {
+      "id": "an-iron-band-cold-to-the-touch-in-any-",
+      "value": "An iron band, cold to the touch in any weather",
+      "weight": 3
+    },
+    {
+      "id": "wax-over-the-whole-of-it-re-poured-whe",
+      "value": "Wax over the whole of it, re-poured when it cracks",
+      "weight": 3
+    },
+    {
+      "id": "kept-in-company-it-is-never-allowed-to",
+      "value": "Kept in company — it is never allowed to be alone in a room",
+      "weight": 3
+    },
+    {
+      "id": "a-vow-held-by-someone-who-is-still-ali",
+      "value": "A vow held by someone who is still alive and getting older",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "nothing-formal-a-drawer-and-an-agreeme",
+      "value": "Nothing formal. A drawer, and an agreement not to open it",
+      "weight": 3
+    }
+  ],
+  "cursed-object.effect": [
+    {
+      "id": "draws",
+      "value": "Draws curses toward it from several streets out",
+      "weight": 4
+    },
+    {
+      "id": "whisper",
+      "value": "Speaks to whoever holds it longest, patiently and reasonably",
+      "weight": 3
+    },
+    {
+      "id": "copies",
+      "value": "Reproduces the death it came from, slowly, in the holder",
+      "weight": 2
+    },
+    {
+      "id": "lends",
+      "value": "Lends cursed energy to a non-sorcerer, at a price they will not see coming",
+      "weight": 2
+    },
+    {
+      "id": "opens",
+      "value": "Thins the boundary of the room it is in; things come through",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "releases",
+      "value": "Releases the curse sealed inside it, fully grown and furious",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "nothing-yet",
+      "value": "Nothing anyone has observed, which is the unnerving part",
+      "weight": 1
+    },
+    {
+      "id": "makes-whoever-carries-it-easier-to-fin",
+      "value": "Makes whoever carries it easier to find in the dark",
+      "weight": 3
+    },
+    {
+      "id": "turns-up-again-in-a-bag-it-was-never-p",
+      "value": "Turns up again in a bag it was never put into",
+      "weight": 4
+    },
+    {
+      "id": "pulls-the-temperature-out-of-a-room-un",
+      "value": "Pulls the temperature out of a room until breath shows",
+      "weight": 3
+    },
+    {
+      "id": "convinces-a-non-sorcerer-that-it-is-th",
+      "value": "Convinces a non-sorcerer that it is theirs and always was",
+      "weight": 4
+    },
+    {
+      "id": "attracts-grade-three-and-below-the-way",
+      "value": "Attracts grade three and below the way a light attracts moths",
+      "weight": 4
+    },
+    {
+      "id": "rehearses-the-death-that-made-it-in-an",
+      "value": "Rehearses the death that made it, in anyone who sleeps near it",
+      "weight": 3
+    },
+    {
+      "id": "makes-one-person-in-the-room-unremembe",
+      "value": "Makes one person in the room unrememberable for as long as it is held",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "keeps-a-wound-from-closing-gently-for-",
+      "value": "Keeps a wound from closing, gently, for as long as it is nearby",
+      "weight": 3
+    },
+    {
+      "id": "thickens-cursed-energy-in-the-air-unti",
+      "value": "Thickens cursed energy in the air until breathing is work",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "pays-out-the-holder-s-luck-improves-an",
+      "value": "Pays out — the holder’s luck improves, and the cost lands on someone else",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "answers-questions-truthfully-in-a-voic",
+      "value": "Answers questions, truthfully, in a voice the holder recognises",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "cannot-be-destroyed-by-the-person-it-h",
+      "value": "Cannot be destroyed by the person it has chosen",
+      "weight": 3
+    },
+    {
+      "id": "makes-anyone-looking-at-it-certain-it-",
+      "value": "Makes anyone looking at it certain it is worth more than it is",
+      "weight": 3
+    },
+    {
+      "id": "spreads-a-second-lesser-object-forms-n",
+      "value": "Spreads: a second, lesser object forms near it within a month",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "preserves-whatever-is-inside-the-conta",
+      "value": "Preserves whatever is inside the container with it, indefinitely",
+      "weight": 3
+    },
+    {
+      "id": "leaves-the-holder-exactly-as-tired-as-",
+      "value": "Leaves the holder exactly as tired as the person it came from was",
+      "weight": 3
+    },
+    {
+      "id": "opens-a-door-in-a-building-that-has-no",
+      "value": "Opens a door in a building that has no such door, once",
+      "grades": [
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "will-not-let-the-holder-leave-a-buildi",
+      "value": "Will not let the holder leave a building by the way they came in",
+      "weight": 2
+    },
+    {
+      "id": "turns-ordinary-cursed-energy-residue-i",
+      "value": "Turns ordinary cursed energy residue into something that can act",
+      "grades": [
+        "grade-1",
+        "special-grade"
+      ]
+    }
+  ],
+  "cursed-object.containment": [
+    {
+      "id": "annual",
+      "value": "Reseal annually; log the date"
+    },
+    {
+      "id": "no-skin",
+      "value": "No bare-skin contact, ever"
+    },
+    {
+      "id": "single-handler",
+      "value": "One named handler only; a second person doubles the draw"
+    },
+    {
+      "id": "separate",
+      "value": "Must be stored apart from its matching pieces"
+    },
+    {
+      "id": "no-speech",
+      "value": "Do not speak in the room with it unsealed"
+    },
+    {
+      "id": "grade-1-only",
+      "value": "Grade 1 clearance to move it; nobody has written down why",
+      "grades": [
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "unknown",
+      "value": "Unknown — the procedure was never written down"
+    },
+    {
+      "id": "rewrapped-every-month-the-old-paper-bu",
+      "value": "Rewrapped every month; the old paper burned, not binned",
+      "weight": 4
+    },
+    {
+      "id": "two-people-present-at-every-handling-b",
+      "value": "Two people present at every handling, both named in the log",
+      "weight": 3
+    },
+    {
+      "id": "never-transported-above-ground-level",
+      "value": "Never transported above ground level",
+      "weight": 2
+    },
+    {
+      "id": "never-in-the-same-building-as-another-",
+      "value": "Never in the same building as another sealed object",
+      "weight": 3
+    },
+    {
+      "id": "kept-warm-letting-it-go-cold-is-what-s",
+      "value": "Kept warm. Letting it go cold is what started the last incident",
+      "weight": 3
+    },
+    {
+      "id": "someone-sits-with-it-for-an-hour-a-wee",
+      "value": "Someone sits with it for an hour a week and talks to it",
+      "weight": 2
+    },
+    {
+      "id": "logged-by-weight-a-change-of-more-than",
+      "value": "Logged by weight; a change of more than a gram escalates",
+      "weight": 3
+    },
+    {
+      "id": "no-photographs-no-recordings-no-descri",
+      "value": "No photographs, no recordings, no description written down in full",
+      "weight": 3
+    },
+    {
+      "id": "moved-to-a-different-room-on-a-schedul",
+      "value": "Moved to a different room on a schedule only two people know",
+      "weight": 2
+    },
+    {
+      "id": "grade-one-clearance-to-open-grade-two-",
+      "value": "Grade one clearance to open, grade two to be in the room",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "kept-wet-it-has-not-been-allowed-to-dr",
+      "value": "Kept wet. It has not been allowed to dry since 1994",
+      "weight": 2
+    },
+    {
+      "id": "handled-only-by-someone-with-no-living",
+      "value": "Handled only by someone with no living family",
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "a-standing-order-that-it-is-never-coun",
+      "value": "A standing order that it is never counted aloud",
+      "weight": 2
+    },
+    {
+      "id": "checked-daily-from-outside-the-box-thr",
+      "value": "Checked daily, from outside the box, through a window",
+      "weight": 3
+    }
+  ],
+  "cursed-object.incident": [
+    {
+      "id": "none",
+      "value": "No incidents on file"
+    },
+    {
+      "id": "handler",
+      "value": "One handler reassigned, reason redacted"
+    },
+    {
+      "id": "school",
+      "value": "Found in a school locker; the student does not remember putting it there"
+    },
+    {
+      "id": "three",
+      "value": "Three separate owners have returned it voluntarily"
+    },
+    {
+      "id": "fire",
+      "value": "Survived a building fire that killed everyone who had handled it"
+    },
+    {
+      "id": "lost",
+      "value": "Lost in transit once, and recovered somewhere it could not have travelled to"
+    },
+    {
+      "id": "sold",
+      "value": "Sold at a market stall twice in the last decade"
+    },
+    {
+      "id": "a-courier-opened-it-to-check-the-addre",
+      "value": "A courier opened it to check the address and was not found for six days",
+      "weight": 3
+    },
+    {
+      "id": "an-archivist-reorganised-the-shelf-and",
+      "value": "An archivist reorganised the shelf and broke a pairing nobody had documented",
+      "weight": 3
+    },
+    {
+      "id": "a-student-took-it-out-on-a-dare-and-br",
+      "value": "A student took it out on a dare and brought it back heavier",
+      "weight": 3
+    },
+    {
+      "id": "it-was-logged-out-for-assessment-in-20",
+      "value": "It was logged out for assessment in 2011 and the log stops there",
+      "weight": 3
+    },
+    {
+      "id": "a-cleaner-threw-out-the-wrapping-only-",
+      "value": "A cleaner threw out the wrapping. Only the wrapping",
+      "weight": 3
+    },
+    {
+      "id": "two-of-the-sorcerers-who-sealed-it-are",
+      "value": "Two of the sorcerers who sealed it are dead and neither death was odd",
+      "weight": 2
+    },
+    {
+      "id": "it-was-briefly-at-the-bottom-of-a-rive",
+      "value": "It was briefly at the bottom of a river; the river went strange for a season",
+      "weight": 2
+    },
+    {
+      "id": "a-grade-two-was-assigned-to-it-and-ask",
+      "value": "A grade two was assigned to it and asked, afterwards, to be reassigned",
+      "weight": 3
+    },
+    {
+      "id": "somebody-tried-to-sell-it-the-buyer-s-",
+      "value": "Somebody tried to sell it. The buyer’s family still has the receipt",
+      "weight": 3
+    },
+    {
+      "id": "it-went-missing-for-eleven-months-and-",
+      "value": "It went missing for eleven months and came back in the right drawer",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "a-child-found-it-played-with-it-for-an",
+      "value": "A child found it, played with it for an afternoon, and was entirely fine",
+      "weight": 3
+    },
+    {
+      "id": "an-exorcism-was-performed-on-it-it-is-",
+      "value": "An exorcism was performed on it. It is noticeably worse now",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "the-last-full-inspection-was-cut-short",
+      "value": "The last full inspection was cut short and never rescheduled",
+      "weight": 3
+    },
+    {
+      "id": "it-was-used-once-deliberately-and-the-",
+      "value": "It was used, once, deliberately, and the file on that is sealed",
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "nothing-that-is-itself-in-the-file-und",
+      "value": "Nothing. That is itself in the file, underlined",
+      "weight": 3
+    }
+  ]
+}

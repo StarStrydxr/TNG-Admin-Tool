@@ -1,0 +1,1181 @@
+{
+  "shikigami.name": [
+    {
+      "id": "kettle",
+      "value": "Kettle"
+    },
+    {
+      "id": "long-nine",
+      "value": "Long Nine"
+    },
+    {
+      "id": "auntie",
+      "value": "Auntie"
+    },
+    {
+      "id": "the-quiet-one",
+      "value": "The Quiet One"
+    },
+    {
+      "id": "sixteen",
+      "value": "Sixteen"
+    },
+    {
+      "id": "bellweather",
+      "value": "Bellweather"
+    },
+    {
+      "id": "stray",
+      "value": "Stray"
+    },
+    {
+      "id": "mr-tanaka",
+      "value": "Mr Tanaka"
+    },
+    {
+      "id": "the-usher",
+      "value": "The Usher"
+    },
+    {
+      "id": "gravel",
+      "value": "Gravel"
+    },
+    {
+      "id": "bellows",
+      "value": "Bellows"
+    },
+    {
+      "id": "small-mercy",
+      "value": "Small Mercy"
+    },
+    {
+      "id": "third-cousin",
+      "value": "Third Cousin"
+    },
+    {
+      "id": "porter",
+      "value": "Porter"
+    },
+    {
+      "id": "the-tall-one",
+      "value": "The Tall One"
+    },
+    {
+      "id": "winter-coat",
+      "value": "Winter Coat"
+    },
+    {
+      "id": "grandfather",
+      "value": "Grandfather"
+    },
+    {
+      "id": "six-bells",
+      "value": "Six Bells"
+    },
+    {
+      "id": "housekeeper",
+      "value": "Housekeeper"
+    },
+    {
+      "id": "nightshift",
+      "value": "Nightshift"
+    },
+    {
+      "id": "the-apology",
+      "value": "The Apology"
+    },
+    {
+      "id": "errand",
+      "value": "Errand"
+    },
+    {
+      "id": "bookkeeper",
+      "value": "Bookkeeper"
+    },
+    {
+      "id": "low-tide",
+      "value": "Low Tide"
+    },
+    {
+      "id": "uncle",
+      "value": "Uncle"
+    },
+    {
+      "id": "second-kettle",
+      "value": "Second Kettle"
+    },
+    {
+      "id": "the-listener",
+      "value": "The Listener"
+    },
+    {
+      "id": "gatepost",
+      "value": "Gatepost"
+    },
+    {
+      "id": "twelve",
+      "value": "Twelve"
+    },
+    {
+      "id": "the-patient-one",
+      "value": "The Patient One"
+    },
+    {
+      "id": "doorman",
+      "value": "Doorman"
+    },
+    {
+      "id": "mother-s-friend",
+      "value": "Mother’s Friend"
+    },
+    {
+      "id": "woodsmoke",
+      "value": "Woodsmoke"
+    },
+    {
+      "id": "little-sister",
+      "value": "Little Sister"
+    },
+    {
+      "id": "the-understudy",
+      "value": "The Understudy"
+    },
+    {
+      "id": "rainy-season",
+      "value": "Rainy Season"
+    },
+    {
+      "id": "caretaker",
+      "value": "Caretaker"
+    }
+  ],
+  "shikigami.form": [
+    {
+      "id": "hound",
+      "value": "A hound the size of a pony, with too many joints in its legs",
+      "weight": 4
+    },
+    {
+      "id": "bird",
+      "value": "A long-necked bird that never quite lands",
+      "weight": 3
+    },
+    {
+      "id": "paper",
+      "value": "A sheaf of paper slips that hold a human outline when they need to",
+      "weight": 3
+    },
+    {
+      "id": "serpent",
+      "value": "A serpent long enough to ring a room",
+      "weight": 3
+    },
+    {
+      "id": "ox",
+      "value": "A low, heavy quadruped built entirely for pushing",
+      "weight": 3
+    },
+    {
+      "id": "child",
+      "value": "Something child-sized in a coat, which nobody looks at directly twice",
+      "weight": 2
+    },
+    {
+      "id": "swarm",
+      "value": "A swarm that reads as one animal only while it is moving",
+      "weight": 2
+    },
+    {
+      "id": "hands",
+      "value": "A pair of disembodied hands, unhurried and very strong",
+      "weight": 2
+    },
+    {
+      "id": "toad",
+      "value": "A toad the size of a cart, patient and almost entirely inert",
+      "weight": 2
+    },
+    {
+      "id": "composite",
+      "value": "A composite of three animals that does not agree with itself",
+      "weight": 1,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "a-heron-far-too-large-standing-very-st",
+      "value": "A heron, far too large, standing very still",
+      "weight": 3
+    },
+    {
+      "id": "a-dog-that-is-the-wrong-shape-in-a-way",
+      "value": "A dog that is the wrong shape in a way nobody can name",
+      "weight": 3
+    },
+    {
+      "id": "a-boar-with-a-coat-like-wet-slate",
+      "value": "A boar with a coat like wet slate",
+      "weight": 3
+    },
+    {
+      "id": "a-monkey-with-hands-that-are-almost-ri",
+      "value": "A monkey with hands that are almost right",
+      "weight": 3
+    },
+    {
+      "id": "a-snake-long-enough-to-go-round-a-room",
+      "value": "A snake long enough to go round a room twice",
+      "weight": 3
+    },
+    {
+      "id": "a-moth-the-size-of-a-coat",
+      "value": "A moth the size of a coat",
+      "weight": 3
+    },
+    {
+      "id": "a-hare-that-watches-the-back-of-the-gr",
+      "value": "A hare that watches the back of the group",
+      "weight": 3
+    },
+    {
+      "id": "a-carp-that-swims-in-air-at-knee-heigh",
+      "value": "A carp that swims in air at knee height",
+      "weight": 2
+    },
+    {
+      "id": "an-ox-slow-and-not-interested-in-being",
+      "value": "An ox, slow, and not interested in being hurried",
+      "weight": 3
+    },
+    {
+      "id": "a-crow-with-too-many-joints-in-each-wi",
+      "value": "A crow with too many joints in each wing",
+      "weight": 3
+    },
+    {
+      "id": "a-toad-that-sits-where-it-is-put-and-e",
+      "value": "A toad that sits where it is put and expands",
+      "weight": 3
+    },
+    {
+      "id": "a-cat-sized-thing-made-of-knotted-rope",
+      "value": "A cat-sized thing made of knotted rope",
+      "weight": 2
+    },
+    {
+      "id": "a-man-shaped-outline-in-a-good-coat-wi",
+      "value": "A man-shaped outline in a good coat, with nothing in it",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "a-wolf-that-is-only-ever-seen-in-profi",
+      "value": "A wolf that is only ever seen in profile",
+      "weight": 3
+    },
+    {
+      "id": "a-spider-with-legs-like-bamboo-canes",
+      "value": "A spider with legs like bamboo canes",
+      "weight": 2
+    },
+    {
+      "id": "a-horse-with-no-sound-to-its-step",
+      "value": "A horse with no sound to its step",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "a-bundle-of-hands-moving-together-as-o",
+      "value": "A bundle of hands, moving together as one animal",
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "something-very-small-that-is-never-in-",
+      "value": "Something very small that is never in the same pocket twice",
+      "weight": 3
+    },
+    {
+      "id": "a-bear-scaled-down-to-the-size-of-a-ch",
+      "value": "A bear, scaled down to the size of a child",
+      "weight": 2
+    },
+    {
+      "id": "a-cloud-of-small-birds-that-acts-as-on",
+      "value": "A cloud of small birds that acts as one",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    }
+  ],
+  "shikigami.role": [
+    {
+      "id": "scout",
+      "value": "Scout — fast, fragile, sent ahead and expected back"
+    },
+    {
+      "id": "brawler",
+      "value": "Brawler — put between the user and the problem"
+    },
+    {
+      "id": "wall",
+      "value": "Wall — exists to be hit, and is very good at it"
+    },
+    {
+      "id": "tracker",
+      "value": "Tracker — follows a scent, a residual or a name"
+    },
+    {
+      "id": "courier",
+      "value": "Courier — carries things and people, including the user"
+    },
+    {
+      "id": "warden",
+      "value": "Warden — holds a door, a corridor or a line and will not be moved off it"
+    },
+    {
+      "id": "specialist",
+      "value": "Specialist — one job, done better than anything else the user has"
+    },
+    {
+      "id": "support",
+      "value": "Support — does not fight; makes the user's fighting work"
+    },
+    {
+      "id": "scout-goes-first-comes-back-does-not-f",
+      "value": "Scout. Goes first, comes back, does not fight",
+      "weight": 4
+    },
+    {
+      "id": "shield-stands-where-the-hit-is-going-t",
+      "value": "Shield. Stands where the hit is going to land",
+      "weight": 4
+    },
+    {
+      "id": "carrier-moves-people-and-things-that-c",
+      "value": "Carrier. Moves people and things that cannot move themselves",
+      "weight": 3
+    },
+    {
+      "id": "tracker-holds-one-scent-for-as-long-as",
+      "value": "Tracker. Holds one scent for as long as it takes",
+      "weight": 4
+    },
+    {
+      "id": "watch-stays-with-whoever-is-being-prot",
+      "value": "Watch. Stays with whoever is being protected, not with the summoner",
+      "weight": 3
+    },
+    {
+      "id": "finisher-held-back-until-the-thing-is-",
+      "value": "Finisher. Held back until the thing is already hurt",
+      "weight": 3
+    },
+    {
+      "id": "distraction-loud-obvious-and-expendabl",
+      "value": "Distraction. Loud, obvious and expendable",
+      "weight": 3
+    },
+    {
+      "id": "labour-digs-lifts-clears-and-is-no-use",
+      "value": "Labour. Digs, lifts, clears, and is no use in a fight",
+      "weight": 3
+    },
+    {
+      "id": "anchor-holds-a-space-so-nothing-crosse",
+      "value": "Anchor. Holds a space so nothing crosses it",
+      "weight": 3,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "courier-carries-a-message-and-nothing-",
+      "value": "Courier. Carries a message and nothing else",
+      "weight": 3
+    },
+    {
+      "id": "second-pair-of-eyes-and-nothing-more-t",
+      "value": "Second pair of eyes, and nothing more than that",
+      "weight": 4
+    },
+    {
+      "id": "executioner-for-curses-only-it-will-no",
+      "value": "Executioner for curses only; it will not touch a person",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "support-makes-the-summoner-s-technique",
+      "value": "Support. Makes the summoner’s technique work at range",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "nothing-officially-it-was-the-first-on",
+      "value": "Nothing, officially. It was the first one and it has tenure",
+      "weight": 2
+    }
+  ],
+  "shikigami.ability": [
+    {
+      "id": "burrow",
+      "value": "Moves through solid ground as easily as air",
+      "weight": 3
+    },
+    {
+      "id": "silence",
+      "value": "Makes no sound whatsoever, including when it strikes",
+      "weight": 3
+    },
+    {
+      "id": "scent",
+      "value": "Follows a residual trail hours after it was left",
+      "weight": 3
+    },
+    {
+      "id": "grapple",
+      "value": "Latches on and will not release until dismissed or destroyed",
+      "weight": 3
+    },
+    {
+      "id": "carry",
+      "value": "Bears the user's weight at a sprint",
+      "weight": 3
+    },
+    {
+      "id": "split",
+      "value": "Divides into smaller copies, each proportionally weaker",
+      "weight": 2
+    },
+    {
+      "id": "shield",
+      "value": "Takes a blow meant for the user, wherever the user is standing",
+      "weight": 2,
+      "grades": [
+        "grade-semi-2",
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "speak",
+      "value": "Speaks, in a borrowed voice, and negotiates on the user's behalf",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "technique",
+      "value": "Has a small cursed technique of its own, unrelated to the user's",
+      "weight": 1,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "regrow",
+      "value": "Reassembles itself over minutes unless the pieces are separated",
+      "weight": 1,
+      "grades": [
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "carries-a-second-shikigami-inside-it-u",
+      "value": "Carries a second shikigami inside it until needed",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "sees-residual-cursed-energy-as-plainly",
+      "value": "Sees residual cursed energy as plainly as colour",
+      "weight": 3
+    },
+    {
+      "id": "holds-a-door-a-gate-or-a-gap-against-a",
+      "value": "Holds a door, a gate or a gap against anything its own grade or below",
+      "weight": 3
+    },
+    {
+      "id": "takes-a-blow-meant-for-the-summoner-wh",
+      "value": "Takes a blow meant for the summoner, wherever the summoner is standing",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "changes-size-within-reason-to-fit-the-",
+      "value": "Changes size, within reason, to fit the job",
+      "weight": 3
+    },
+    {
+      "id": "splits-into-three-smaller-versions-tha",
+      "value": "Splits into three smaller versions that share one set of senses",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "knows-where-the-summoner-is-without-be",
+      "value": "Knows where the summoner is without being told, through anything",
+      "weight": 3
+    },
+    {
+      "id": "drags-something-back-with-it-when-dism",
+      "value": "Drags something back with it when dismissed",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "climbs-anything-including-the-undersid",
+      "value": "Climbs anything, including the underside of things",
+      "weight": 3
+    },
+    {
+      "id": "shrugs-off-the-first-technique-used-on",
+      "value": "Shrugs off the first technique used on it each summoning",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "keeps-a-space-quiet-no-sound-leaves-it",
+      "value": "Keeps a space quiet — no sound leaves it",
+      "weight": 3
+    },
+    {
+      "id": "repeats-a-sound-it-heard-exactly-hours",
+      "value": "Repeats a sound it heard, exactly, hours later",
+      "weight": 3
+    },
+    {
+      "id": "is-where-it-was-looking-a-moment-ago",
+      "value": "Is where it was looking a moment ago",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "will-not-be-perceived-by-a-non-sorcere",
+      "value": "Will not be perceived by a non-sorcerer, at all, under any circumstances",
+      "weight": 3
+    },
+    {
+      "id": "hits-harder-the-longer-it-has-waited",
+      "value": "Hits harder the longer it has waited",
+      "weight": 3
+    },
+    {
+      "id": "eats-a-curse-s-remains-and-is-stronger",
+      "value": "Eats a curse’s remains and is stronger for an hour",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "stands-in-for-the-summoner-orders-give",
+      "value": "Stands in for the summoner — orders given to it are obeyed by the others",
+      "grades": [
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "cannot-be-moved-by-anything-while-it-h",
+      "value": "Cannot be moved, by anything, while it has both feet down",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "finds-the-way-out-of-a-building-it-has",
+      "value": "Finds the way out of a building it has never been in",
+      "weight": 3
+    },
+    {
+      "id": "bleeds-something-that-curses-will-not-",
+      "value": "Bleeds something that curses will not cross",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    }
+  ],
+  "shikigami.summoning": [
+    {
+      "id": "hand-sign",
+      "value": "A one-handed sign, fast enough to do mid-swing"
+    },
+    {
+      "id": "two-hands",
+      "value": "Both hands, which means dropping whatever is in them"
+    },
+    {
+      "id": "spoken",
+      "value": "Its name, spoken clearly — a problem underwater or in a crowd"
+    },
+    {
+      "id": "shadow",
+      "value": "Drawn up out of the user's own shadow, which needs light to cast one"
+    },
+    {
+      "id": "ink",
+      "value": "A mark drawn on any surface, which takes about four seconds"
+    },
+    {
+      "id": "blood",
+      "value": "A few drops of the user's blood, which they are usually happy to supply"
+    },
+    {
+      "id": "already-there",
+      "value": "Not summoned at all — it simply arrives, and was presumably nearby"
+    },
+    {
+      "id": "a-hand-sign-and-the-name-neither-of-wh",
+      "value": "A hand sign and the name, neither of which can be skipped",
+      "weight": 4
+    },
+    {
+      "id": "a-gesture-small-enough-to-pass-for-a-n",
+      "value": "A gesture small enough to pass for a nervous habit",
+      "weight": 3
+    },
+    {
+      "id": "blood-not-much-and-the-same-finger-eac",
+      "value": "Blood, not much, and the same finger each time",
+      "weight": 3
+    },
+    {
+      "id": "a-whistle-nobody-else-hears",
+      "value": "A whistle nobody else hears",
+      "weight": 3
+    },
+    {
+      "id": "it-comes-when-the-summoner-is-hurt-inv",
+      "value": "It comes when the summoner is hurt, invited or not",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "a-struck-match-or-any-small-flame",
+      "value": "A struck match, or any small flame",
+      "weight": 3
+    },
+    {
+      "id": "drawn-in-the-air-in-a-stroke-order-tha",
+      "value": "Drawn in the air, in a stroke order that must be right",
+      "weight": 3
+    },
+    {
+      "id": "called-by-its-full-name-which-is-long-",
+      "value": "Called by its full name, which is long and private",
+      "weight": 3
+    },
+    {
+      "id": "released-rather-than-summoned-it-is-al",
+      "value": "Released rather than summoned — it is always present, folded away",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "a-coin-spent-any-coin-but-it-must-be-g",
+      "value": "A coin, spent. Any coin, but it must be given up",
+      "weight": 2
+    },
+    {
+      "id": "three-breaths-and-it-is-there-on-the-t",
+      "value": "Three breaths, and it is there on the third",
+      "weight": 3
+    },
+    {
+      "id": "it-must-be-asked-not-instructed-asked",
+      "value": "It must be asked. Not instructed — asked",
+      "weight": 2
+    }
+  ],
+  "shikigami.cost": [
+    {
+      "id": "free",
+      "value": "Free to hold once summoned; only the summoning costs anything",
+      "grades": [
+        "grade-4",
+        "grade-3",
+        "grade-semi-2"
+      ]
+    },
+    {
+      "id": "trickle",
+      "value": "A steady trickle for as long as it is out"
+    },
+    {
+      "id": "moderate",
+      "value": "Noticeable upkeep — fine for a fight, not for an afternoon"
+    },
+    {
+      "id": "heavy",
+      "value": "Heavy enough that the user cannot do much else while it is out"
+    },
+    {
+      "id": "shared",
+      "value": "Cheap alone, but the cost rises sharply with each other shikigami already out"
+    },
+    {
+      "id": "spike",
+      "value": "Nothing to maintain, but a hard spike every time it acts"
+    },
+    {
+      "id": "small-and-constant-like-a-tap-left-run",
+      "value": "Small and constant, like a tap left running",
+      "weight": 4
+    },
+    {
+      "id": "nothing-while-it-stands-still-a-great-",
+      "value": "Nothing while it stands still, a great deal while it moves",
+      "weight": 3
+    },
+    {
+      "id": "paid-in-advance-dismissing-it-early-re",
+      "value": "Paid in advance; dismissing it early refunds nothing",
+      "weight": 3
+    },
+    {
+      "id": "a-flat-cost-per-summoning-regardless-o",
+      "value": "A flat cost per summoning, regardless of how long it stays",
+      "weight": 4
+    },
+    {
+      "id": "rises-steeply-after-the-first-few-minu",
+      "value": "Rises steeply after the first few minutes",
+      "weight": 3
+    },
+    {
+      "id": "cheap-because-it-takes-the-difference-",
+      "value": "Cheap, because it takes the difference out of the summoner’s sleep",
+      "weight": 3
+    },
+    {
+      "id": "free-and-the-summoner-cannot-use-their",
+      "value": "Free, and the summoner cannot use their technique while it is out",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "fed-by-what-it-does-a-fight-pays-for-i",
+      "value": "Fed by what it does — a fight pays for itself",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "borne-by-the-shikigami-which-comes-bac",
+      "value": "Borne by the shikigami, which comes back thinner each time",
+      "weight": 2
+    },
+    {
+      "id": "nothing-anyone-has-identified-which-wo",
+      "value": "Nothing anyone has identified, which worries the people who have looked",
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    }
+  ],
+  "shikigami.temperament": [
+    {
+      "id": "obedient",
+      "value": "Obedient and literal — does exactly what it was told, including the stupid part"
+    },
+    {
+      "id": "sullen",
+      "value": "Sullen. Obeys, slowly, and makes its opinion known"
+    },
+    {
+      "id": "eager",
+      "value": "Eager to the point of being a hazard"
+    },
+    {
+      "id": "proud",
+      "value": "Will not be given an undignified order and sulks for a day if it is"
+    },
+    {
+      "id": "fond",
+      "value": "Genuinely fond of the user, which is worse when it is hurt"
+    },
+    {
+      "id": "testing",
+      "value": "Still testing whether the binding holds, and always will be"
+    },
+    {
+      "id": "absent",
+      "value": "No apparent inner life at all, which unsettles everyone except the user"
+    },
+    {
+      "id": "professional-does-the-job-offers-nothi",
+      "value": "Professional. Does the job, offers nothing else",
+      "weight": 4
+    },
+    {
+      "id": "fond-of-the-summoner-and-openly-unimpr",
+      "value": "Fond of the summoner and openly unimpressed by everyone else",
+      "weight": 3
+    },
+    {
+      "id": "nervous-and-braver-than-it-looks",
+      "value": "Nervous, and braver than it looks",
+      "weight": 3
+    },
+    {
+      "id": "idle-until-the-moment-it-is-not",
+      "value": "Idle until the moment it is not",
+      "weight": 3
+    },
+    {
+      "id": "takes-instructions-as-suggestions-and-",
+      "value": "Takes instructions as suggestions and is usually right",
+      "weight": 2
+    },
+    {
+      "id": "protective-of-the-youngest-person-pres",
+      "value": "Protective of the youngest person present, whoever that is",
+      "weight": 3
+    },
+    {
+      "id": "will-not-be-looked-at-directly-and-sul",
+      "value": "Will not be looked at directly and sulks if it is",
+      "weight": 2
+    },
+    {
+      "id": "punctual-to-a-fault-leaves-the-moment-",
+      "value": "Punctual to a fault. Leaves the moment its time is up",
+      "weight": 3
+    },
+    {
+      "id": "curious-has-to-be-kept-away-from-thing",
+      "value": "Curious. Has to be kept away from things",
+      "weight": 3
+    },
+    {
+      "id": "hostile-to-every-other-shikigami-inclu",
+      "value": "Hostile to every other shikigami, including its own kind",
+      "weight": 2
+    },
+    {
+      "id": "grieving-something-it-has-been-like-th",
+      "value": "Grieving something. It has been like this since it was bound",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "affectionate-in-a-way-that-is-slightly",
+      "value": "Affectionate in a way that is slightly too much",
+      "weight": 3
+    },
+    {
+      "id": "keeps-count-of-what-it-is-owed",
+      "value": "Keeps count of what it is owed",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "patient-the-way-a-creditor-is-patient",
+      "value": "Patient the way a creditor is patient",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    }
+  ],
+  "shikigami.binding": [
+    {
+      "id": "permanent-loss",
+      "value": "Gone permanently. It cannot be summoned again, by this user or anyone",
+      "weight": 4
+    },
+    {
+      "id": "long-recovery",
+      "value": "Returns, but not for weeks, and weaker when it does",
+      "weight": 3
+    },
+    {
+      "id": "next-day",
+      "value": "Reforms by the next day at no lasting cost",
+      "weight": 3
+    },
+    {
+      "id": "inherited",
+      "value": "Destroyed, but what it was passes into another shikigami the user holds",
+      "weight": 2
+    },
+    {
+      "id": "rebind",
+      "value": "Can be rebound, but it must be beaten again first",
+      "weight": 2
+    },
+    {
+      "id": "retaliation",
+      "value": "Returns on its own terms, hostile, and the user has a second problem",
+      "weight": 1
+    },
+    {
+      "id": "gone-for-a-month-and-comes-back-smalle",
+      "value": "Gone for a month, and comes back smaller",
+      "weight": 4
+    },
+    {
+      "id": "gone-for-good-there-was-only-ever-the-",
+      "value": "Gone for good. There was only ever the one",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "reforms-overnight-and-remembers-how-it",
+      "value": "Reforms overnight and remembers how it happened",
+      "weight": 3
+    },
+    {
+      "id": "reforms-but-something-about-it-is-wron",
+      "value": "Reforms, but something about it is wrong afterwards",
+      "weight": 3
+    },
+    {
+      "id": "can-be-rebound-at-a-cost-the-summoner-",
+      "value": "Can be rebound, at a cost the summoner has not had to pay yet",
+      "weight": 3
+    },
+    {
+      "id": "takes-the-injury-out-of-the-summoner-i",
+      "value": "Takes the injury out of the summoner instead, if they allow it",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "comes-back-immediately-and-is-useless-",
+      "value": "Comes back immediately and is useless for a week",
+      "weight": 3
+    },
+    {
+      "id": "must-be-hunted-down-and-retrieved-it-d",
+      "value": "Must be hunted down and retrieved; it does not return on its own",
+      "weight": 2
+    },
+    {
+      "id": "whatever-killed-it-can-now-summon-it-u",
+      "value": "Whatever killed it can now summon it, until that is dealt with",
+      "grades": [
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "returns-at-the-next-new-moon-no-sooner",
+      "value": "Returns at the next new moon, no sooner, whatever is needed",
+      "weight": 2
+    }
+  ],
+  "shikigami.weakness": [
+    {
+      "id": "range",
+      "value": "Comes apart beyond a fixed distance from the user"
+    },
+    {
+      "id": "water",
+      "value": "Will not cross running water"
+    },
+    {
+      "id": "one-order",
+      "value": "Holds one standing order at a time; a new one cancels the last"
+    },
+    {
+      "id": "daylight",
+      "value": "Weaker in direct daylight and knows it"
+    },
+    {
+      "id": "slow-start",
+      "value": "Useless for the first few seconds after being summoned"
+    },
+    {
+      "id": "name",
+      "value": "Anyone who learns its true name can refuse its attention"
+    },
+    {
+      "id": "single-minded",
+      "value": "Cannot be redirected once it has committed to a target"
+    },
+    {
+      "id": "visible",
+      "value": "Cannot be hidden or veiled — it registers to anyone sensitive from a street away"
+    },
+    {
+      "id": "running-water-which-it-will-not-cross-",
+      "value": "Running water, which it will not cross unaided",
+      "weight": 3
+    },
+    {
+      "id": "enclosed-spaces-it-is-slow-and-clumsy-",
+      "value": "Enclosed spaces — it is slow and clumsy indoors",
+      "weight": 3
+    },
+    {
+      "id": "open-ground-where-there-is-nothing-to-",
+      "value": "Open ground, where there is nothing to put its back to",
+      "weight": 3
+    },
+    {
+      "id": "its-own-name-spoken-by-anyone-who-is-n",
+      "value": "Its own name, spoken by anyone who is not the summoner",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "fire-more-than-anything-of-its-size-sh",
+      "value": "Fire, more than anything of its size should mind",
+      "weight": 3
+    },
+    {
+      "id": "being-outnumbered-it-fights-badly-agai",
+      "value": "Being outnumbered; it fights badly against more than two",
+      "weight": 3
+    },
+    {
+      "id": "salt-in-a-line-which-it-treats-as-a-wa",
+      "value": "Salt, in a line, which it treats as a wall",
+      "weight": 3
+    },
+    {
+      "id": "distance-past-about-thirty-metres-it-b",
+      "value": "Distance. Past about thirty metres it begins to fade",
+      "weight": 3
+    },
+    {
+      "id": "daylight-which-makes-it-slow-rather-th",
+      "value": "Daylight, which makes it slow rather than harms it",
+      "weight": 3
+    },
+    {
+      "id": "reverse-cursed-technique-which-unmakes",
+      "value": "Reverse cursed technique, which unmakes it rather than heals it",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "a-direct-question-it-cannot-answer-it-",
+      "value": "A direct question it cannot answer; it stops to think",
+      "weight": 2
+    },
+    {
+      "id": "the-summoner-s-own-injuries-which-it-f",
+      "value": "The summoner’s own injuries, which it feels as its own",
+      "weight": 3
+    },
+    {
+      "id": "being-seen-by-a-child-which-it-cannot-",
+      "value": "Being seen by a child, which it cannot bring itself to allow",
+      "weight": 2
+    }
+  ]
+}

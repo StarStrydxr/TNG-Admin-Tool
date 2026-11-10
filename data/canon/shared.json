@@ -1,0 +1,50 @@
+{
+  "shared.grade.sorcerer": [
+    { "id": "g4", "value": "grade-4", "weight": 24 },
+    { "id": "g3", "value": "grade-3", "weight": 20 },
+    { "id": "sg2", "value": "grade-semi-2", "weight": 10 },
+    { "id": "g2", "value": "grade-2", "weight": 10 },
+    { "id": "sg1", "value": "grade-semi-1", "weight": 4 },
+    { "id": "g1", "value": "grade-1", "weight": 3 },
+    { "id": "special", "value": "special-grade", "weight": 1 }
+  ],
+
+  "shared.grade.curse": [
+    { "id": "g4", "value": "grade-4", "weight": 28 },
+    { "id": "g3", "value": "grade-3", "weight": 22 },
+    { "id": "sg2", "value": "grade-semi-2", "weight": 10 },
+    { "id": "g2", "value": "grade-2", "weight": 10 },
+    { "id": "sg1", "value": "grade-semi-1", "weight": 4 },
+    { "id": "g1", "value": "grade-1", "weight": 3 },
+    { "id": "special", "value": "special-grade", "weight": 1 },
+    { "id": "disaster", "value": "disaster-grade", "weight": 1 }
+  ],
+
+  "shared.grade.mission": [
+    { "id": "g4", "value": "grade-4", "weight": 26 },
+    { "id": "g3", "value": "grade-3", "weight": 24 },
+    { "id": "sg2", "value": "grade-semi-2", "weight": 10 },
+    { "id": "g2", "value": "grade-2", "weight": 10 },
+    { "id": "sg1", "value": "grade-semi-1", "weight": 4 },
+    { "id": "g1", "value": "grade-1", "weight": 3 },
+    { "id": "special", "value": "special-grade", "weight": 1 }
+  ],
+
+  "shared.grade.shikigami": [
+    { "id": "g4", "value": "grade-4", "weight": 22 },
+    { "id": "g3", "value": "grade-3", "weight": 22 },
+    { "id": "sg2", "value": "grade-semi-2", "weight": 12 },
+    { "id": "g2", "value": "grade-2", "weight": 12 },
+    { "id": "g1", "value": "grade-1", "weight": 4 },
+    { "id": "special", "value": "special-grade", "weight": 1 }
+  ],
+
+  "shared.grade.object": [
+    { "id": "g4", "value": "grade-4", "weight": 24 },
+    { "id": "g3", "value": "grade-3", "weight": 22 },
+    { "id": "sg2", "value": "grade-semi-2", "weight": 12 },
+    { "id": "g2", "value": "grade-2", "weight": 12 },
+    { "id": "g1", "value": "grade-1", "weight": 5 },
+    { "id": "special", "value": "special-grade", "weight": 2 }
+  ]
+}

@@ -1,0 +1,1382 @@
+{
+  "mission.type": [
+    {
+      "id": "exorcism",
+      "value": "Exorcism",
+      "weight": 6
+    },
+    {
+      "id": "extermination",
+      "value": "Extermination",
+      "weight": 5
+    },
+    {
+      "id": "investigation",
+      "value": "Investigation — grade the site, do not engage",
+      "weight": 4
+    },
+    {
+      "id": "retrieval",
+      "value": "Retrieval of a cursed object or tool",
+      "weight": 3
+    },
+    {
+      "id": "containment",
+      "value": "Containment until a senior sorcerer arrives",
+      "weight": 3
+    },
+    {
+      "id": "escort",
+      "value": "Escort a non-sorcerer through a compromised area",
+      "weight": 2
+    },
+    {
+      "id": "surveillance",
+      "value": "Surveillance, no contact",
+      "weight": 2
+    },
+    {
+      "id": "extraction",
+      "value": "Civilian extraction",
+      "weight": 2
+    },
+    {
+      "id": "veil",
+      "value": "Veil maintenance and cover story",
+      "weight": 2
+    },
+    {
+      "id": "counter-user",
+      "value": "Counter-curse-user operation",
+      "weight": 1,
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "special-grade"
+      ]
+    }
+  ],
+  "mission.location": [
+    {
+      "id": "ward-school",
+      "value": "A municipal school in a quiet ward",
+      "tags": [
+        "built",
+        "indoor",
+        "urban",
+        "public"
+      ]
+    },
+    {
+      "id": "mall",
+      "value": "A shopping centre two weeks from reopening",
+      "tags": [
+        "built",
+        "indoor",
+        "urban",
+        "public"
+      ]
+    },
+    {
+      "id": "tunnel",
+      "value": "A service tunnel under a working railway",
+      "tags": [
+        "built",
+        "indoor"
+      ]
+    },
+    {
+      "id": "village",
+      "value": "A village with nine residents, all over seventy",
+      "tags": [
+        "outdoor",
+        "residential"
+      ]
+    },
+    {
+      "id": "hotel",
+      "value": "A business hotel, floors six through nine",
+      "tags": [
+        "built",
+        "indoor",
+        "urban",
+        "residential"
+      ]
+    },
+    {
+      "id": "reservoir",
+      "value": "A reservoir access road",
+      "tags": [
+        "outdoor",
+        "water"
+      ]
+    },
+    {
+      "id": "office",
+      "value": "An office floor leased and never occupied",
+      "tags": [
+        "built",
+        "indoor",
+        "urban"
+      ]
+    },
+    {
+      "id": "temple-grounds",
+      "value": "Temple grounds during a festival",
+      "tags": [
+        "outdoor",
+        "public"
+      ]
+    },
+    {
+      "id": "housing",
+      "value": "A housing block scheduled for demolition",
+      "tags": [
+        "built",
+        "indoor",
+        "urban",
+        "residential",
+        "public"
+      ]
+    },
+    {
+      "id": "car-park",
+      "value": "A multi-storey car park where the lights only work on level three",
+      "tags": [
+        "built",
+        "indoor",
+        "urban"
+      ]
+    },
+    {
+      "id": "pachinko",
+      "value": "A pachinko parlour that has not opened in a year, machines still plugged in",
+      "tags": [
+        "built",
+        "indoor",
+        "urban"
+      ]
+    },
+    {
+      "id": "hospital-wing",
+      "value": "A hospital wing closed for refurbishment, signage still pointing to it",
+      "tags": [
+        "built",
+        "indoor",
+        "urban",
+        "public"
+      ]
+    },
+    {
+      "id": "love-hotel",
+      "value": "A love hotel with one room nobody will clean",
+      "tags": [
+        "built",
+        "indoor",
+        "urban"
+      ]
+    },
+    {
+      "id": "sorting-depot",
+      "value": "A parcel depot that runs all night and cannot stop the line",
+      "tags": [
+        "built",
+        "indoor",
+        "urban"
+      ]
+    },
+    {
+      "id": "reservoir-walkway",
+      "value": "A reservoir maintenance walkway, half of it underwater",
+      "tags": [
+        "outdoor",
+        "water"
+      ]
+    },
+    {
+      "id": "apartment-block",
+      "value": "A nine-floor apartment block where floors four to six are empty",
+      "tags": [
+        "built",
+        "indoor",
+        "urban",
+        "residential",
+        "public"
+      ]
+    },
+    {
+      "id": "cram-school",
+      "value": "A cram school between terms, every desk labelled with a name",
+      "tags": [
+        "built",
+        "indoor",
+        "urban",
+        "public"
+      ]
+    },
+    {
+      "id": "fish-market",
+      "value": "A wholesale fish market, two hours after closing",
+      "tags": [
+        "built",
+        "indoor",
+        "urban",
+        "water"
+      ]
+    },
+    {
+      "id": "shrine-steps",
+      "value": "Two hundred shrine steps, and whatever is at the top of them",
+      "tags": [
+        "outdoor",
+        "public"
+      ]
+    },
+    {
+      "id": "ferry",
+      "value": "An overnight ferry still three hours from port",
+      "tags": [
+        "built",
+        "indoor",
+        "water",
+        "public"
+      ]
+    },
+    {
+      "id": "tv-studio",
+      "value": "A television studio with two soundstages, one sealed since the eighties",
+      "tags": [
+        "built",
+        "indoor",
+        "urban"
+      ]
+    },
+    {
+      "id": "arcade",
+      "value": "A basement arcade where the machines run their attract loops to nobody",
+      "tags": [
+        "built",
+        "indoor",
+        "urban",
+        "public"
+      ]
+    },
+    {
+      "id": "bathhouse",
+      "value": "A neighbourhood bathhouse the owner keeps heating out of habit",
+      "tags": [
+        "built",
+        "indoor",
+        "urban",
+        "water",
+        "public"
+      ]
+    },
+    {
+      "id": "underpass",
+      "value": "A pedestrian underpass with murals painted over three times",
+      "tags": [
+        "built",
+        "urban",
+        "public"
+      ]
+    },
+    {
+      "id": "construction",
+      "value": "A construction site at the point where the frame is up and nothing else",
+      "tags": [
+        "outdoor",
+        "built",
+        "urban"
+      ]
+    },
+    {
+      "id": "retirement-home",
+      "value": "A retirement home where the night staff have started working in pairs",
+      "tags": [
+        "built",
+        "indoor",
+        "urban",
+        "residential",
+        "public"
+      ]
+    },
+    {
+      "id": "river-bank",
+      "value": "A stretch of riverbank the council has stopped mowing",
+      "tags": [
+        "outdoor",
+        "water"
+      ]
+    },
+    {
+      "id": "office-floor",
+      "value": "One floor of an office building, leased and never occupied",
+      "tags": [
+        "built",
+        "indoor",
+        "urban"
+      ]
+    },
+    {
+      "id": "train-yard",
+      "value": "A train yard where the same carriage keeps being shunted to the far siding",
+      "tags": [
+        "outdoor",
+        "built",
+        "urban"
+      ]
+    },
+    {
+      "id": "cemetery-annexe",
+      "value": "A cemetery annexe built over an older one",
+      "tags": [
+        "outdoor",
+        "public"
+      ]
+    },
+    {
+      "id": "karaoke",
+      "value": "A karaoke box where room eleven is always booked and never used",
+      "tags": [
+        "built",
+        "indoor",
+        "urban",
+        "public"
+      ]
+    },
+    {
+      "id": "cold-store",
+      "value": "A cold-storage warehouse running at minus twenty for nothing",
+      "tags": [
+        "built",
+        "indoor",
+        "urban"
+      ]
+    },
+    {
+      "id": "campus",
+      "value": "A university campus during the long vacation",
+      "tags": [
+        "outdoor",
+        "built",
+        "urban",
+        "public"
+      ]
+    },
+    {
+      "id": "subway-platform",
+      "value": "A subway platform closed for works, the trains still passing through",
+      "tags": [
+        "built",
+        "indoor",
+        "urban",
+        "public"
+      ]
+    },
+    {
+      "id": "rooftop-garden",
+      "value": "A rooftop garden on a building whose lifts stop two floors short",
+      "tags": [
+        "outdoor",
+        "built",
+        "urban"
+      ]
+    },
+    {
+      "id": "printworks",
+      "value": "A printworks that still smells of ink and has not run a job in months",
+      "tags": [
+        "built",
+        "indoor",
+        "urban"
+      ]
+    },
+    {
+      "id": "public-pool",
+      "value": "A public pool drained for the season",
+      "tags": [
+        "built",
+        "indoor",
+        "urban",
+        "water",
+        "public"
+      ]
+    },
+    {
+      "id": "tollbooth",
+      "value": "A motorway tollbooth on a road that was rerouted",
+      "tags": [
+        "outdoor",
+        "built"
+      ]
+    },
+    {
+      "id": "stairwell",
+      "value": "A fire stairwell that connects more floors than the building has",
+      "tags": [
+        "built",
+        "indoor"
+      ]
+    }
+  ],
+  "mission.client": [
+    {
+      "id": "association",
+      "value": "The Association, routine posting"
+    },
+    {
+      "id": "window",
+      "value": "Window flagged it during veil maintenance"
+    },
+    {
+      "id": "clan",
+      "value": "A clan, quietly, outside the usual channels"
+    },
+    {
+      "id": "civilian",
+      "value": "A civilian who should not know enough to ask"
+    },
+    {
+      "id": "police",
+      "value": "A police liaison who files it as something else"
+    },
+    {
+      "id": "company",
+      "value": "A property company that wants the site cleared and the paperwork clean"
+    },
+    {
+      "id": "school",
+      "value": "A school principal, via an auxiliary manager"
+    },
+    {
+      "id": "principal",
+      "value": "A school principal who has already told the parents it is a gas leak"
+    },
+    {
+      "id": "widow",
+      "value": "A widow who had been paying someone else to handle this, until they stopped coming"
+    },
+    {
+      "id": "foreman",
+      "value": "A site foreman, out of pocket, who wants it done before the inspection"
+    },
+    {
+      "id": "ward-office",
+      "value": "A ward office that will not put the request in writing"
+    },
+    {
+      "id": "station-master",
+      "value": "A station master with three incident reports he has not filed"
+    },
+    {
+      "id": "priest",
+      "value": "A priest who knows exactly what it is and cannot deal with it himself"
+    },
+    {
+      "id": "company-rep",
+      "value": "A company representative whose brief is clearly to minimise this"
+    },
+    {
+      "id": "student",
+      "value": "A student who found the posting board and should not have"
+    },
+    {
+      "id": "clan-retainer",
+      "value": "A clan retainer: polite, specific, and withholding something"
+    },
+    {
+      "id": "rival-school",
+      "value": "A sorcerer from the other school, passing it along with no explanation"
+    },
+    {
+      "id": "night-nurse",
+      "value": "A night nurse who has stopped telling her colleagues what she sees"
+    },
+    {
+      "id": "landlord",
+      "value": "A landlord who wants the room rentable again by the weekend"
+    },
+    {
+      "id": "shopkeeper",
+      "value": "A shopkeeper who has been feeding it, and will admit that eventually"
+    },
+    {
+      "id": "ex-sorcerer",
+      "value": "Someone who washed out of the school years ago and still recognises the signs"
+    },
+    {
+      "id": "association-clerk",
+      "value": "An Association clerk clearing a backlog nobody has looked at since spring"
+    },
+    {
+      "id": "parent",
+      "value": "A parent who is not asking about the curse, but about their child"
+    },
+    {
+      "id": "union-rep",
+      "value": "A union representative whose night shift is refusing to go in"
+    },
+    {
+      "id": "anonymous",
+      "value": "An anonymous posting with an address, a time, and nothing else"
+    }
+  ],
+  "mission.briefing": [
+    {
+      "id": "single",
+      "value": "One curse, graded, located, straightforward"
+    },
+    {
+      "id": "residual",
+      "value": "Residuals only — probably nothing left to exorcise"
+    },
+    {
+      "id": "two-missing",
+      "value": "Two people missing, likely unrelated"
+    },
+    {
+      "id": "object",
+      "value": "A sealed object to collect and sign for"
+    },
+    {
+      "id": "sightings",
+      "value": "Sightings reported by one unreliable witness"
+    },
+    {
+      "id": "cleared",
+      "value": "Already cleared last month; this is a formality"
+    },
+    {
+      "id": "training",
+      "value": "Suitable for a first solo posting"
+    },
+    {
+      "id": "grade-four",
+      "value": "A grade four, barely worth the paperwork"
+    },
+    {
+      "id": "nuisance",
+      "value": "A nuisance haunting — noises, cold spots, nothing physical"
+    },
+    {
+      "id": "clear-the-site",
+      "value": "Clear the site so the contractors can start Monday"
+    },
+    {
+      "id": "escort-civilian",
+      "value": "Escort a non-sorcerer in and out. That is all."
+    },
+    {
+      "id": "check-the-seal",
+      "value": "Check a seal that is almost certainly fine"
+    },
+    {
+      "id": "one-casualty",
+      "value": "One casualty, already recovered. Find what did it."
+    },
+    {
+      "id": "survey",
+      "value": "Survey and report. Do not engage."
+    },
+    {
+      "id": "recover-remains",
+      "value": "Recover remains, if there are any"
+    },
+    {
+      "id": "confirm-cleared",
+      "value": "Confirm a site another team already cleared"
+    },
+    {
+      "id": "follow-up",
+      "value": "A follow-up on a mission closed three weeks ago"
+    },
+    {
+      "id": "animal-complaints",
+      "value": "Animal complaints — dogs that will not go down a particular street"
+    },
+    {
+      "id": "supervise",
+      "value": "Supervise a first-year through something safe"
+    },
+    {
+      "id": "relocation",
+      "value": "A relocation: move something sealed from one store to another"
+    },
+    {
+      "id": "witness-statement",
+      "value": "Take a statement from someone who saw it. Nothing more."
+    },
+    {
+      "id": "overnight",
+      "value": "Stay the night. See if anything happens."
+    },
+    {
+      "id": "equipment",
+      "value": "Retrieve equipment left behind by the last team"
+    },
+    {
+      "id": "veil-check",
+      "value": "Routine veil maintenance along a boundary"
+    },
+    {
+      "id": "two-reports",
+      "value": "Two reports from the same address, a month apart"
+    },
+    {
+      "id": "quiet-favour",
+      "value": "A quiet favour, off the books, for someone owed one"
+    },
+    {
+      "id": "nothing-urgent",
+      "value": "Nothing urgent. Whenever you are passing."
+    }
+  ],
+  "mission.true-situation": [
+    {
+      "id": "two-curses",
+      "value": "There are two curses, and they are avoiding each other"
+    },
+    {
+      "id": "undergraded",
+      "value": "It is two grades above the posting"
+    },
+    {
+      "id": "user",
+      "value": "A curse user is already on site and has been for days"
+    },
+    {
+      "id": "bait",
+      "value": "The site is bait; the real target is whoever responds"
+    },
+    {
+      "id": "survivors",
+      "value": "There are survivors inside, and the curse knows it"
+    },
+    {
+      "id": "object-open",
+      "value": "The object has already been opened"
+    },
+    {
+      "id": "nothing",
+      "value": "There is genuinely nothing here, and that is the problem — something moved it"
+    },
+    {
+      "id": "local",
+      "value": "A local has been feeding it deliberately"
+    },
+    {
+      "id": "three-grades",
+      "value": "It is three grades above the posting and nobody re-surveyed"
+    },
+    {
+      "id": "already-dead",
+      "value": "The client has been dead since before the request was filed"
+    },
+    {
+      "id": "still-feeding",
+      "value": "It is not dormant; it has fed slowly enough that nobody counted"
+    },
+    {
+      "id": "domain",
+      "value": "It has a domain, and the site is already inside it"
+    },
+    {
+      "id": "nest",
+      "value": "There is not one of them. There is a nest."
+    },
+    {
+      "id": "sorcerer-made",
+      "value": "A sorcerer made this deliberately and is watching what it does"
+    },
+    {
+      "id": "the-client",
+      "value": "The client is the source, and does not know"
+    },
+    {
+      "id": "object-missing",
+      "value": "The sealed object the brief mentions was removed weeks ago"
+    },
+    {
+      "id": "previous-team",
+      "value": "The previous team did not fail; they were paid not to finish"
+    },
+    {
+      "id": "intelligent",
+      "value": "It is intelligent, it can talk, and it would rather negotiate"
+    },
+    {
+      "id": "wrong-site",
+      "value": "The address is wrong by one building"
+    },
+    {
+      "id": "not-a-curse-kill",
+      "value": "The casualty was not killed by a curse at all"
+    },
+    {
+      "id": "binding-vow",
+      "value": "Something on site is held by a binding vow nobody disclosed"
+    },
+    {
+      "id": "child-keeper",
+      "value": "A child has been keeping it, hiding it, and feeding it"
+    },
+    {
+      "id": "two-clients",
+      "value": "Two different parties filed this, for opposite reasons"
+    },
+    {
+      "id": "decoy",
+      "value": "The curse is trivial; the mission exists to get a sorcerer into the building"
+    },
+    {
+      "id": "residue-only",
+      "value": "Whatever did this left days ago and is now somewhere populated"
+    },
+    {
+      "id": "mimicry",
+      "value": "It has imitated a person well enough that the staff still greet it"
+    },
+    {
+      "id": "under-the-site",
+      "value": "The site is fine. What is under the site is not."
+    },
+    {
+      "id": "grudge",
+      "value": "It is waiting for a sorcerer from one particular clan"
+    },
+    {
+      "id": "identical-reports",
+      "value": "The last three teams filed identical reports, word for word"
+    },
+    {
+      "id": "arrangement",
+      "value": "The locals are not victims. They have an arrangement."
+    },
+    {
+      "id": "loose-tool",
+      "value": "It is a cursed tool acting on its own, without a wielder"
+    },
+    {
+      "id": "known",
+      "value": "The Association already knows all of this, and posted it anyway"
+    }
+  ],
+  "mission.objective": [
+    {
+      "id": "exorcise-all",
+      "value": "Exorcise every cursed spirit on site",
+      "weight": 6
+    },
+    {
+      "id": "exorcise-primary",
+      "value": "Exorcise the primary curse; lesser spirits are optional",
+      "weight": 5
+    },
+    {
+      "id": "confirm-grade",
+      "value": "Confirm the site's true grade and report before engaging",
+      "weight": 4
+    },
+    {
+      "id": "locate-source",
+      "value": "Locate what the curses are forming around",
+      "weight": 4
+    },
+    {
+      "id": "no-casualties",
+      "value": "Bring every sorcerer back alive",
+      "weight": 3
+    },
+    {
+      "id": "hold-until",
+      "value": "Hold the site until the relief team arrives",
+      "weight": 3
+    },
+    {
+      "id": "recover-remains",
+      "value": "Recover the remains of the sorcerer who went in first",
+      "weight": 3
+    },
+    {
+      "id": "retrieve-object",
+      "value": "Retrieve the cursed object and hand it over sealed",
+      "weight": 3
+    },
+    {
+      "id": "retrieve-tool",
+      "value": "Retrieve the cursed tool before anyone else reaches it",
+      "weight": 2
+    },
+    {
+      "id": "identify-user",
+      "value": "Identify the curse user behind the incident",
+      "weight": 2
+    },
+    {
+      "id": "capture-alive",
+      "value": "Take the curse user alive for questioning",
+      "weight": 2
+    },
+    {
+      "id": "destroy-nothing",
+      "value": "Leave the site intact — it is still someone's property",
+      "weight": 2
+    },
+    {
+      "id": "photograph",
+      "value": "Document the technique in use and bring the record back",
+      "weight": 2
+    },
+    {
+      "id": "no-domain",
+      "value": "Resolve it without expanding a domain",
+      "weight": 2
+    },
+    {
+      "id": "under-time",
+      "value": "Finish before the window closes",
+      "weight": 3
+    },
+    {
+      "id": "trace-pattern",
+      "value": "Work out why this site and not the three beside it",
+      "weight": 2
+    },
+    {
+      "id": "seal-breach",
+      "value": "Seal whatever the curses are coming through",
+      "weight": 3
+    },
+    {
+      "id": "account-for",
+      "value": "Account for all of the missing, living or otherwise",
+      "weight": 3
+    },
+    {
+      "id": "stop-spread",
+      "value": "Stop it spreading past the perimeter",
+      "weight": 3
+    },
+    {
+      "id": "secure-remnant",
+      "value": "Secure the remnant left behind once the curse is gone",
+      "weight": 2
+    },
+    {
+      "id": "extract-civilians",
+      "value": "Get the civilians out before anything else",
+      "weight": 5,
+      "tags": [
+        "public",
+        "residential",
+        "indoor"
+      ]
+    },
+    {
+      "id": "headcount",
+      "value": "Produce a headcount the Association will accept",
+      "weight": 3,
+      "tags": [
+        "public",
+        "residential"
+      ]
+    },
+    {
+      "id": "keep-quiet",
+      "value": "Keep it off the news and out of the group chats",
+      "weight": 3,
+      "tags": [
+        "public",
+        "urban"
+      ]
+    },
+    {
+      "id": "hold-veil",
+      "value": "Keep the veil up for the whole operation",
+      "weight": 4,
+      "tags": [
+        "public",
+        "urban",
+        "built"
+      ]
+    },
+    {
+      "id": "clear-floor",
+      "value": "Clear the building floor by floor",
+      "weight": 3,
+      "tags": [
+        "indoor",
+        "built"
+      ]
+    },
+    {
+      "id": "evacuate-residents",
+      "value": "Evacuate the residents without telling them why",
+      "weight": 3,
+      "tags": [
+        "residential"
+      ]
+    },
+    {
+      "id": "drain-or-dive",
+      "value": "Reach whatever is under the water",
+      "weight": 2,
+      "tags": [
+        "water"
+      ]
+    },
+    {
+      "id": "recover-body",
+      "value": "Recover what the water has been holding on to",
+      "weight": 2,
+      "tags": [
+        "water"
+      ]
+    },
+    {
+      "id": "search-grid",
+      "value": "Search the ground in a grid and mark what you find",
+      "weight": 3,
+      "tags": [
+        "outdoor"
+      ]
+    },
+    {
+      "id": "track-it",
+      "value": "Track it to wherever it sleeps",
+      "weight": 3,
+      "tags": [
+        "outdoor"
+      ]
+    },
+    {
+      "id": "prevent-domain",
+      "value": "Stop it finishing its domain",
+      "weight": 3,
+      "grades": [
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "buy-time",
+      "value": "Buy twenty minutes for the evacuation, nothing more",
+      "weight": 3,
+      "grades": [
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "escort-out",
+      "value": "Get the Grade 1 who is already inside back out",
+      "weight": 2,
+      "grades": [
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "survive",
+      "value": "Survive. Nothing else on this posting is required",
+      "weight": 2,
+      "grades": [
+        "special-grade"
+      ]
+    }
+  ],
+  "mission.complication": [
+    {
+      "id": "no-veil",
+      "value": "The veil will not hold; civilians keep walking in"
+    },
+    {
+      "id": "clock",
+      "value": "A hard deadline — the site reopens to the public at dawn"
+    },
+    {
+      "id": "no-comms",
+      "value": "No communications inside the structure"
+    },
+    {
+      "id": "witness",
+      "value": "A witness who will not leave and will not shut up"
+    },
+    {
+      "id": "injury",
+      "value": "An injured auxiliary who needs moving before anything else happens"
+    },
+    {
+      "id": "second-team",
+      "value": "A second team was sent and has not reported in"
+    },
+    {
+      "id": "politics",
+      "value": "A clan representative is observing and taking notes"
+    },
+    {
+      "id": "water",
+      "value": "The lower levels are flooded",
+      "tags": [
+        "water"
+      ]
+    },
+    {
+      "id": "anchor",
+      "value": "Destroying the curse means destroying something the client wants intact"
+    },
+    {
+      "id": "rain",
+      "value": "Heavy rain; cursed energy reads badly and the footing is worse",
+      "tags": [
+        "outdoor"
+      ]
+    },
+    {
+      "id": "civilian-child",
+      "value": "A civilian child inside, who will not come to a stranger",
+      "tags": [
+        "public"
+      ]
+    },
+    {
+      "id": "power",
+      "value": "The power cuts on a timer nobody can override",
+      "tags": [
+        "built"
+      ]
+    },
+    {
+      "id": "press",
+      "value": "A local journalist has been camped outside for two days",
+      "tags": [
+        "urban"
+      ]
+    },
+    {
+      "id": "ally-injured",
+      "value": "Your support is injured in the first ten minutes"
+    },
+    {
+      "id": "sealed-exit",
+      "value": "The way you came in does not open from the inside"
+    },
+    {
+      "id": "uninvited-team",
+      "value": "Another team arrives, uninvited, and will not say who sent them"
+    },
+    {
+      "id": "tool-malfunction",
+      "value": "Your cursed tool will not hold energy on this site"
+    },
+    {
+      "id": "fire",
+      "value": "A fire starts — ordinary, unrelated, and spreading",
+      "tags": [
+        "built"
+      ]
+    },
+    {
+      "id": "no-reserves",
+      "value": "You are already low, and the next job is tomorrow"
+    },
+    {
+      "id": "crowd",
+      "value": "A festival crowd, thousands deep, two streets away",
+      "tags": [
+        "urban"
+      ]
+    },
+    {
+      "id": "cordon",
+      "value": "A police cordon; getting in is the first problem",
+      "tags": [
+        "urban"
+      ]
+    },
+    {
+      "id": "hostage",
+      "value": "It has someone, and it knows what that is worth"
+    },
+    {
+      "id": "structural",
+      "value": "The floor will not take a fight",
+      "tags": [
+        "indoor"
+      ]
+    },
+    {
+      "id": "mirrors",
+      "value": "Reflective surfaces everywhere, and it uses them",
+      "tags": [
+        "indoor"
+      ]
+    },
+    {
+      "id": "gas-main",
+      "value": "A gas main runs directly under the engagement",
+      "tags": [
+        "built"
+      ]
+    },
+    {
+      "id": "cameras",
+      "value": "Cameras that are definitely recording somewhere off-site",
+      "tags": [
+        "built"
+      ]
+    },
+    {
+      "id": "familiar-face",
+      "value": "You recognise it. Or it recognises you."
+    },
+    {
+      "id": "medical",
+      "value": "Someone needs a hospital within the hour, curse or no curse"
+    },
+    {
+      "id": "split-site",
+      "value": "The site has two halves and only one of you"
+    },
+    {
+      "id": "noise",
+      "value": "Anything above a whisper draws it"
+    },
+    {
+      "id": "nightfall",
+      "value": "Barely a threat in daylight, and the sun is going"
+    },
+    {
+      "id": "rising-water",
+      "value": "Rising water; the lower level is gone within the hour",
+      "tags": [
+        "water"
+      ]
+    },
+    {
+      "id": "duty-of-care",
+      "value": "A first-year with you who should not see this"
+    },
+    {
+      "id": "elder",
+      "value": "An elderly resident who refuses to leave their flat",
+      "tags": [
+        "residential"
+      ]
+    },
+    {
+      "id": "the-smell",
+      "value": "The smell alone makes concentration difficult"
+    },
+    {
+      "id": "false-floor",
+      "value": "The building's plan is wrong. There is a space not on it.",
+      "tags": [
+        "indoor"
+      ]
+    },
+    {
+      "id": "dog",
+      "value": "A dog that will not stop barking, and will not leave your side"
+    },
+    {
+      "id": "ringing-phone",
+      "value": "Someone's phone keeps ringing, somewhere inside",
+      "tags": [
+        "indoor"
+      ]
+    },
+    {
+      "id": "user-arrives",
+      "value": "A curse user turns up — not for you — and the two problems meet"
+    }
+  ],
+  "mission.veil": [
+    {
+      "id": "standard",
+      "value": "Standard veil, raised by Window on arrival"
+    },
+    {
+      "id": "pre-raised",
+      "value": "Already up — somebody else raised it"
+    },
+    {
+      "id": "none",
+      "value": "None authorised; work around the public"
+    },
+    {
+      "id": "partial",
+      "value": "Partial, covering the building but not the street"
+    },
+    {
+      "id": "unstable",
+      "value": "Raised, but it keeps slipping at one corner"
+    },
+    {
+      "id": "thin",
+      "value": "A veil already up: thin, and someone else's work"
+    },
+    {
+      "id": "overlooked",
+      "value": "Veiled, but overlooked by two tower blocks with the lights on"
+    },
+    {
+      "id": "no-time",
+      "value": "No veil. There was no time, and there will not be."
+    },
+    {
+      "id": "street-side",
+      "value": "Veiled on the street side only; the rear is open"
+    },
+    {
+      "id": "not-yours",
+      "value": "A veil you did not raise and cannot take down"
+    },
+    {
+      "id": "failing",
+      "value": "A veil that keeps failing and has to be re-raised twice"
+    },
+    {
+      "id": "inside-with-you",
+      "value": "The veil is up, and something is already inside it with you"
+    },
+    {
+      "id": "observed",
+      "value": "Association observers present; the veil must hold perfectly"
+    }
+  ],
+  "mission.support": [
+    {
+      "id": "none",
+      "value": "None. Solo posting."
+    },
+    {
+      "id": "auxiliary",
+      "value": "One auxiliary manager, on the phone, not on site"
+    },
+    {
+      "id": "window-pair",
+      "value": "A Window pair holding the veil"
+    },
+    {
+      "id": "partner",
+      "value": "A partner one grade below, on their third posting"
+    },
+    {
+      "id": "senior",
+      "value": "A senior sorcerer forty minutes out"
+    },
+    {
+      "id": "observer",
+      "value": "An observer sent to assess you, not the curse"
+    },
+    {
+      "id": "assistant-manager",
+      "value": "An assistant manager who has done this eleven times and is unbothered"
+    },
+    {
+      "id": "two-first-years",
+      "value": "Two first-years, neither of whom has seen a body"
+    },
+    {
+      "id": "window-nervous",
+      "value": "A window: nervous, useful, and deniable"
+    },
+    {
+      "id": "driver",
+      "value": "A driver who will not come past the gate"
+    },
+    {
+      "id": "medic",
+      "value": "A medic with reverse cursed technique and no combat ability"
+    },
+    {
+      "id": "unreachable",
+      "value": "Nominally supported. Nobody answers the phone."
+    },
+    {
+      "id": "resentful",
+      "value": "A grade two who outranks the posting and resents being here"
+    },
+    {
+      "id": "clan-observer",
+      "value": "A clan observer, present to watch rather than help"
+    },
+    {
+      "id": "remote",
+      "value": "Remote support only, on a line that keeps dropping"
+    },
+    {
+      "id": "local-guide",
+      "value": "A local who knows the building and will go no further than the door"
+    }
+  ],
+  "mission.payout": [
+    {
+      "id": "standard",
+      "value": "Standard rate for the posted grade"
+    },
+    {
+      "id": "standard-low",
+      "value": "Standard rate for the posted grade — which is the insult"
+    },
+    {
+      "id": "hazard",
+      "value": "Standard rate plus hazard supplement"
+    },
+    {
+      "id": "favour",
+      "value": "No money; a favour owed by someone worth having one from"
+    },
+    {
+      "id": "credit",
+      "value": "Counts toward a grade review"
+    },
+    {
+      "id": "disputed",
+      "value": "To be determined after the report, which never goes well"
+    },
+    {
+      "id": "flat-late",
+      "value": "A flat fee, paid late, as usual"
+    },
+    {
+      "id": "hazard-revised",
+      "value": "Standard rate, plus a supplement if the grade is revised upward"
+    },
+    {
+      "id": "training-rate",
+      "value": "Nothing. It was logged as training."
+    },
+    {
+      "id": "good-favour",
+      "value": "No money. A favour from someone whose favours are worth having."
+    },
+    {
+      "id": "split-team",
+      "value": "Split across the team, which the team will argue about"
+    },
+    {
+      "id": "in-kind",
+      "value": "Payment in kind: whatever is recovered, minus anything restricted"
+    },
+    {
+      "id": "retainer",
+      "value": "Counts against a retainer you had forgotten you were on"
+    },
+    {
+      "id": "overtime",
+      "value": "Base rate, with overtime that will be queried"
+    },
+    {
+      "id": "clan-rate",
+      "value": "Clan rate — better, and it comes with an expectation"
+    },
+    {
+      "id": "escrow",
+      "value": "Held in escrow pending a report nobody will read"
+    }
+  ]
+}

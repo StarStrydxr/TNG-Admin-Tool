@@ -1,0 +1,1383 @@
+{
+  "npc.name.family": [
+    {
+      "id": "arakane",
+      "value": "Arakane"
+    },
+    {
+      "id": "fuyuki",
+      "value": "Fuyuki"
+    },
+    {
+      "id": "hazama",
+      "value": "Hazama"
+    },
+    {
+      "id": "kirishima",
+      "value": "Kirishima"
+    },
+    {
+      "id": "minase",
+      "value": "Minase"
+    },
+    {
+      "id": "nagumo",
+      "value": "Nagumo"
+    },
+    {
+      "id": "sawatari",
+      "value": "Sawatari"
+    },
+    {
+      "id": "serizawa",
+      "value": "Serizawa"
+    },
+    {
+      "id": "tachibana",
+      "value": "Tachibana"
+    },
+    {
+      "id": "yabe",
+      "value": "Yabe"
+    },
+    {
+      "id": "asaoka",
+      "value": "Asaoka"
+    },
+    {
+      "id": "chigusa",
+      "value": "Chigusa"
+    },
+    {
+      "id": "doumeki",
+      "value": "Doumeki"
+    },
+    {
+      "id": "enomoto",
+      "value": "Enomoto"
+    },
+    {
+      "id": "furukawa",
+      "value": "Furukawa"
+    },
+    {
+      "id": "godai",
+      "value": "Godai"
+    },
+    {
+      "id": "hiiragi",
+      "value": "Hiiragi"
+    },
+    {
+      "id": "ichinose",
+      "value": "Ichinose"
+    },
+    {
+      "id": "jinnai",
+      "value": "Jinnai"
+    },
+    {
+      "id": "kakehashi",
+      "value": "Kakehashi"
+    },
+    {
+      "id": "kurosawa",
+      "value": "Kurosawa"
+    },
+    {
+      "id": "mabuchi",
+      "value": "Mabuchi"
+    },
+    {
+      "id": "narumi",
+      "value": "Narumi"
+    },
+    {
+      "id": "obinata",
+      "value": "Obinata"
+    },
+    {
+      "id": "ryuuzaki",
+      "value": "Ryuuzaki"
+    },
+    {
+      "id": "saeki",
+      "value": "Saeki"
+    },
+    {
+      "id": "shidou",
+      "value": "Shidou"
+    },
+    {
+      "id": "takanashi",
+      "value": "Takanashi"
+    },
+    {
+      "id": "tsukumo",
+      "value": "Tsukumo"
+    },
+    {
+      "id": "udagawa",
+      "value": "Udagawa"
+    },
+    {
+      "id": "wakatsuki",
+      "value": "Wakatsuki"
+    },
+    {
+      "id": "yasuhara",
+      "value": "Yasuhara"
+    },
+    {
+      "id": "zaizen",
+      "value": "Zaizen"
+    },
+    {
+      "id": "katagiri",
+      "value": "Katagiri"
+    },
+    {
+      "id": "momose",
+      "value": "Momose"
+    }
+  ],
+  "npc.name.given": [
+    {
+      "id": "fumika",
+      "value": "Fumika"
+    },
+    {
+      "id": "haruki",
+      "value": "Haruki"
+    },
+    {
+      "id": "itsuki",
+      "value": "Itsuki"
+    },
+    {
+      "id": "kanade",
+      "value": "Kanade"
+    },
+    {
+      "id": "mio",
+      "value": "Mio"
+    },
+    {
+      "id": "nao",
+      "value": "Nao"
+    },
+    {
+      "id": "rei",
+      "value": "Rei"
+    },
+    {
+      "id": "ryosuke",
+      "value": "Ryōsuke"
+    },
+    {
+      "id": "sumire",
+      "value": "Sumire"
+    },
+    {
+      "id": "tsubaki",
+      "value": "Tsubaki"
+    },
+    {
+      "id": "akane",
+      "value": "Akane"
+    },
+    {
+      "id": "chiharu",
+      "value": "Chiharu"
+    },
+    {
+      "id": "daichi",
+      "value": "Daichi"
+    },
+    {
+      "id": "eiji",
+      "value": "Eiji"
+    },
+    {
+      "id": "hinata",
+      "value": "Hinata"
+    },
+    {
+      "id": "isamu",
+      "value": "Isamu"
+    },
+    {
+      "id": "jun",
+      "value": "Jun"
+    },
+    {
+      "id": "kaoru",
+      "value": "Kaoru"
+    },
+    {
+      "id": "kyouka",
+      "value": "Kyouka"
+    },
+    {
+      "id": "masami",
+      "value": "Masami"
+    },
+    {
+      "id": "michiru",
+      "value": "Michiru"
+    },
+    {
+      "id": "noboru",
+      "value": "Noboru"
+    },
+    {
+      "id": "ren",
+      "value": "Ren"
+    },
+    {
+      "id": "saki",
+      "value": "Saki"
+    },
+    {
+      "id": "shun",
+      "value": "Shun"
+    },
+    {
+      "id": "souta",
+      "value": "Souta"
+    },
+    {
+      "id": "towa",
+      "value": "Towa"
+    },
+    {
+      "id": "umeko",
+      "value": "Umeko"
+    },
+    {
+      "id": "wataru",
+      "value": "Wataru"
+    },
+    {
+      "id": "yuzuki",
+      "value": "Yuzuki"
+    },
+    {
+      "id": "hibiki",
+      "value": "Hibiki"
+    },
+    {
+      "id": "kazune",
+      "value": "Kazune"
+    },
+    {
+      "id": "minoru",
+      "value": "Minoru"
+    },
+    {
+      "id": "natsume",
+      "value": "Natsume"
+    },
+    {
+      "id": "riko",
+      "value": "Riko"
+    }
+  ],
+  "npc.technique": [
+    {
+      "id": "ledger",
+      "value": "Ledger — writes a debt onto a target; the debt comes due as damage at a time of the user's choosing",
+      "weight": 2
+    },
+    {
+      "id": "undertow",
+      "value": "Undertow — drags anything standing on a surface the user has touched a half-step off balance",
+      "weight": 3
+    },
+    {
+      "id": "lamplight",
+      "value": "Lamplight — objects the user names begin to glow and cannot be hidden, shadowed or veiled",
+      "weight": 3
+    },
+    {
+      "id": "second-mouth",
+      "value": "Second Mouth — a wound opens into a mouth that speaks the words the victim has not said yet",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "special-grade"
+      ],
+      "tags": [
+        "body-horror"
+      ]
+    },
+    {
+      "id": "hand-me-down",
+      "value": "Hand-Me-Down — the user borrows a technique they have personally witnessed, badly, for one exchange",
+      "weight": 1,
+      "grades": [
+        "grade-semi-1",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "rust",
+      "value": "Rust — accelerates decay in anything metal or man-made within arm's reach",
+      "weight": 3
+    },
+    {
+      "id": "headcount",
+      "value": "Headcount — the user always knows how many living things are inside a space they have sealed",
+      "weight": 2
+    },
+    {
+      "id": "stillwater",
+      "value": "Stillwater — sound dies inside a radius the user holds open, and so does any technique that needs a spoken name",
+      "weight": 1,
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "tally",
+      "value": "Tally — every injury they take is owed back, in full, to whoever dealt it"
+    },
+    {
+      "id": "hush",
+      "value": "Hush — removes sound from a space, including the sound of what moves in it"
+    },
+    {
+      "id": "splice",
+      "value": "Splice — joins two surfaces permanently, whatever they are made of"
+    },
+    {
+      "id": "borrowed-time",
+      "value": "Borrowed Time — a few seconds taken from later and spent now"
+    },
+    {
+      "id": "low-tide",
+      "value": "Low Tide — drags fluid out of anything, slowly and without contact"
+    },
+    {
+      "id": "the-usher",
+      "value": "The Usher — compels a target to walk somewhere they have already been"
+    },
+    {
+      "id": "foxfire",
+      "value": "Foxfire — a cold flame that burns only cursed energy, not flesh"
+    },
+    {
+      "id": "pins",
+      "value": "Pins — fixes an object in space until the user looks away from it"
+    },
+    {
+      "id": "second-opinion",
+      "value": "Second Opinion — makes a wound present as something less serious than it is"
+    },
+    {
+      "id": "inheritance",
+      "value": "Inheritance — borrows one technique from a blood relative, once per day"
+    },
+    {
+      "id": "paper-weight",
+      "value": "Paper Weight — makes a thing as heavy as the attention paid to it"
+    },
+    {
+      "id": "remainder",
+      "value": "Remainder — whatever is divided leaves a remnant that acts on its own"
+    },
+    {
+      "id": "stitchwork",
+      "value": "Stitchwork — closes what is open, in cloth, in skin, in doorways"
+    },
+    {
+      "id": "overhear",
+      "value": "Overhear — repeats, in the user's voice, something said in that room before"
+    },
+    {
+      "id": "cold-call",
+      "value": "Cold Call — reaches a person's attention at any distance, once, briefly"
+    },
+    {
+      "id": "the-draft",
+      "value": "The Draft — moves air hard enough to be a wall, or a blade"
+    },
+    {
+      "id": "plumb-line",
+      "value": "Plumb Line — finds the lowest point of any space, and what has collected there"
+    },
+    {
+      "id": "dry-rot",
+      "value": "Dry Rot — ages worked material: timber, cloth, rope, paper"
+    },
+    {
+      "id": "switchback",
+      "value": "Switchback — reverses the direction of anything already moving"
+    },
+    {
+      "id": "understudy",
+      "value": "Understudy — copies the last technique used against them, badly, once"
+    },
+    {
+      "id": "quietus",
+      "value": "Quietus — ends a technique already in progress, at a cost"
+    },
+    {
+      "id": "long-shadow",
+      "value": "Long Shadow — their shadow acts a half-second ahead of them"
+    }
+  ],
+  "npc.motivation": [
+    {
+      "id": "promotion",
+      "value": "Wants the next grade badly enough to take stupid postings"
+    },
+    {
+      "id": "debt",
+      "value": "Owes a clan a favour they cannot refuse"
+    },
+    {
+      "id": "sibling",
+      "value": "Looking for a sibling who was written off as a civilian casualty"
+    },
+    {
+      "id": "proof",
+      "value": "Out to prove a technique everyone calls useless is not"
+    },
+    {
+      "id": "quiet",
+      "value": "Wants out, and is counting missions until they can ask"
+    },
+    {
+      "id": "revenge",
+      "value": "Hunting the specific curse that took someone"
+    },
+    {
+      "id": "duty",
+      "value": "Believes in the work with an earnestness colleagues find exhausting"
+    },
+    {
+      "id": "transfer",
+      "value": "Angling for a transfer to the other school, and will not say why"
+    },
+    {
+      "id": "student-debt",
+      "value": "Paying off training costs the clan fronted and now counts"
+    },
+    {
+      "id": "find-the-body",
+      "value": "Looking for a body that was never recovered"
+    },
+    {
+      "id": "keep-the-job",
+      "value": "Needs to not be reassigned before the end of the year"
+    },
+    {
+      "id": "outlive",
+      "value": "Has decided to outlive everyone who said they would not"
+    },
+    {
+      "id": "someone-elses-list",
+      "value": "Working through a list somebody else wrote"
+    },
+    {
+      "id": "the-child",
+      "value": "Keeping one specific civilian alive, at any cost to the mission"
+    },
+    {
+      "id": "curiosity",
+      "value": "Wants to see one, properly, up close, before deciding anything"
+    },
+    {
+      "id": "absolution",
+      "value": "Believes enough exorcisms will settle an older account"
+    },
+    {
+      "id": "boredom",
+      "value": "Bored, and dangerous because of it"
+    },
+    {
+      "id": "inheritance-claim",
+      "value": "Contesting a clan inheritance and needs a record of results"
+    },
+    {
+      "id": "research",
+      "value": "Collecting data nobody has asked for and nobody will like"
+    },
+    {
+      "id": "the-rankings",
+      "value": "Cares about grade and only grade"
+    },
+    {
+      "id": "loyalty",
+      "value": "Following one person, not an institution"
+    },
+    {
+      "id": "fear",
+      "value": "Frightened of something specific and keeps moving to stay ahead of it"
+    },
+    {
+      "id": "make-amends",
+      "value": "Owes a family an explanation they have not managed to give"
+    },
+    {
+      "id": "habit",
+      "value": "Has no reason left and turns up anyway"
+    },
+    {
+      "id": "retirement",
+      "value": "Three jobs from a retirement nobody believes in"
+    }
+  ],
+  "npc.mannerism": [
+    {
+      "id": "counts",
+      "value": "Counts exits out loud on entering a room"
+    },
+    {
+      "id": "snacks",
+      "value": "Eats constantly, offers constantly, is offended by refusal"
+    },
+    {
+      "id": "notebook",
+      "value": "Writes everything down in a notebook nobody is allowed to read"
+    },
+    {
+      "id": "formal",
+      "value": "Uses full honorifics even mid-fight"
+    },
+    {
+      "id": "laughs",
+      "value": "Laughs at the wrong moments and knows it"
+    },
+    {
+      "id": "touch",
+      "value": "Touches walls and doorframes as they pass, reading residuals"
+    },
+    {
+      "id": "silent",
+      "value": "Answers two questions in three"
+    },
+    {
+      "id": "tea",
+      "value": "Makes tea for everyone at the worst possible moment"
+    },
+    {
+      "id": "names",
+      "value": "Names every curse they fight, out loud"
+    },
+    {
+      "id": "apologises",
+      "value": "Apologises before striking, every time"
+    },
+    {
+      "id": "sleeves",
+      "value": "Constantly adjusting their sleeves"
+    },
+    {
+      "id": "humming",
+      "value": "Hums one tune, always the same four bars"
+    },
+    {
+      "id": "photographs",
+      "value": "Photographs sites obsessively, and never looks at the photos"
+    },
+    {
+      "id": "third-person",
+      "value": "Refers to themselves in the third person when nervous"
+    },
+    {
+      "id": "smokes",
+      "value": "Smokes only after, never before"
+    },
+    {
+      "id": "eye-contact",
+      "value": "Will not break eye contact, which reads as rude or unnerving"
+    },
+    {
+      "id": "charm",
+      "value": "Touches a charm at their collar before anything difficult"
+    },
+    {
+      "id": "mispronounces",
+      "value": "Mispronounces everyone's name and will not be corrected"
+    },
+    {
+      "id": "stretches",
+      "value": "Stretches audibly, joint by joint, at the threshold"
+    },
+    {
+      "id": "anecdote",
+      "value": "Has an anecdote for everything, none of them short"
+    },
+    {
+      "id": "whisper",
+      "value": "Drops to a whisper when the subject is serious"
+    },
+    {
+      "id": "counts-exits",
+      "value": "Counts the exits on entering and says the number aloud"
+    },
+    {
+      "id": "shoes",
+      "value": "Removes their shoes indoors regardless of circumstance"
+    },
+    {
+      "id": "gloves",
+      "value": "Never takes their gloves off, including to eat"
+    },
+    {
+      "id": "writes-home",
+      "value": "Writes letters, on paper, and posts them"
+    },
+    {
+      "id": "flinch",
+      "value": "Flinches at sudden kindness, not at violence"
+    },
+    {
+      "id": "early",
+      "value": "Is always twenty minutes early and will mention it"
+    },
+    {
+      "id": "borrowed-slang",
+      "value": "Uses slang a decade out of date"
+    },
+    {
+      "id": "grins",
+      "value": "Grins when frightened, which misleads everyone"
+    }
+  ],
+  "npc.flaw": [
+    {
+      "id": "overcommits",
+      "value": "Overcommits to the first plan and will not be moved off it"
+    },
+    {
+      "id": "lies",
+      "value": "Lies reflexively about small things, truthfully about large ones"
+    },
+    {
+      "id": "grudge",
+      "value": "Keeps a grudge ledger and settles it on missions"
+    },
+    {
+      "id": "scared",
+      "value": "Frightened of curses in a way they hide badly"
+    },
+    {
+      "id": "reckless",
+      "value": "Treats their own cursed energy like it is infinite"
+    },
+    {
+      "id": "condescends",
+      "value": "Cannot stop correcting people, especially superiors"
+    },
+    {
+      "id": "hoards",
+      "value": "Hoards information, including the useful kind"
+    },
+    {
+      "id": "drinks",
+      "value": "Drinks before fieldwork and insists it helps"
+    },
+    {
+      "id": "saviour",
+      "value": "Cannot leave a civilian behind, even when leaving is the order"
+    },
+    {
+      "id": "martyr",
+      "value": "Volunteers for everything, resents all of it"
+    },
+    {
+      "id": "brittle",
+      "value": "Falls apart entirely at the first thing that goes wrong"
+    },
+    {
+      "id": "favourites",
+      "value": "Plays favourites with juniors, openly"
+    },
+    {
+      "id": "gambler",
+      "value": "In debt to people who are not patient"
+    },
+    {
+      "id": "rules",
+      "value": "Follows procedure past the point where it helps"
+    },
+    {
+      "id": "talks",
+      "value": "Cannot stop talking under pressure, which gets people found"
+    },
+    {
+      "id": "competes",
+      "value": "Turns every assignment into a contest with a specific rival"
+    },
+    {
+      "id": "deference",
+      "value": "Defers to seniority even when the senior is plainly wrong"
+    },
+    {
+      "id": "superstition",
+      "value": "Will not act without a ritual nobody else can see the point of"
+    },
+    {
+      "id": "no-rest",
+      "value": "Does not sleep enough and has stopped noticing"
+    },
+    {
+      "id": "softens-reports",
+      "value": "Writes reports kinder than the facts"
+    },
+    {
+      "id": "underestimates",
+      "value": "Consistently reads curses as one grade lower than they are"
+    },
+    {
+      "id": "keeps-score",
+      "value": "Remembers every slight, in order, with dates"
+    }
+  ],
+  "npc.sorcerer.affiliation": [
+    {
+      "id": "tokyo",
+      "value": "Jujutsu High, Tokyo",
+      "weight": 4
+    },
+    {
+      "id": "kyoto",
+      "value": "Jujutsu High, Kyoto",
+      "weight": 3
+    },
+    {
+      "id": "association",
+      "value": "Jujutsu Association staff",
+      "weight": 2
+    },
+    {
+      "id": "clan",
+      "value": "Attached to a minor clan",
+      "weight": 3
+    },
+    {
+      "id": "window",
+      "value": "Window — veil maintenance and assistant management",
+      "weight": 2
+    },
+    {
+      "id": "independent",
+      "value": "Independent, registered but unaffiliated",
+      "weight": 2
+    },
+    {
+      "id": "higher-ups",
+      "value": "Reports directly to the higher-ups, and says so too often",
+      "weight": 1,
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "kyoto-exchange",
+      "value": "Kyoto, on exchange, and not enjoying it"
+    },
+    {
+      "id": "regional",
+      "value": "A regional office nobody in Tokyo can name"
+    },
+    {
+      "id": "retired-list",
+      "value": "Formally retired, informally still working"
+    },
+    {
+      "id": "auxiliary-corps",
+      "value": "Auxiliary corps — not a sorcerer, and better at the job than most"
+    },
+    {
+      "id": "family-shrine",
+      "value": "Attached to a family shrine with its own arrangements"
+    },
+    {
+      "id": "contractor",
+      "value": "Contracted per job, paid per job, loyal to neither school"
+    },
+    {
+      "id": "seconded",
+      "value": "Seconded to the Association from a clan, and reporting to both"
+    },
+    {
+      "id": "overseas",
+      "value": "Trained overseas, which everyone mentions"
+    },
+    {
+      "id": "disciplinary",
+      "value": "On a disciplinary posting that is not officially a punishment"
+    },
+    {
+      "id": "unaffiliated-rural",
+      "value": "Rural and unaffiliated; the nearest other sorcerer is two hours away"
+    }
+  ],
+  "npc.sorcerer.role": [
+    {
+      "id": "student",
+      "value": "First-year student, still being supervised",
+      "grades": [
+        "grade-4",
+        "grade-3"
+      ]
+    },
+    {
+      "id": "senior-student",
+      "value": "Third-year, fielding their own postings",
+      "grades": [
+        "grade-3",
+        "grade-semi-2",
+        "grade-2"
+      ]
+    },
+    {
+      "id": "field",
+      "value": "Full field sorcerer on the standard rotation"
+    },
+    {
+      "id": "instructor",
+      "value": "Instructor, two postings a month and a classroom",
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "auxiliary",
+      "value": "Auxiliary manager — civilian cleanup and cover stories"
+    },
+    {
+      "id": "investigator",
+      "value": "Investigator, sent ahead to grade a site before anyone fights it"
+    },
+    {
+      "id": "specialist",
+      "value": "Called in only for one kind of problem, and bored the rest of the time",
+      "grades": [
+        "grade-semi-1",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "first-year",
+      "value": "First-year, six weeks in"
+    },
+    {
+      "id": "third-year",
+      "value": "Third-year, and already better than two of the instructors"
+    },
+    {
+      "id": "assistant-manager",
+      "value": "Assistant manager — logistics, veils, and the paperwork nobody else does"
+    },
+    {
+      "id": "archivist",
+      "value": "Archivist, who has read more about curses than anyone has fought"
+    },
+    {
+      "id": "recruiter",
+      "value": "Recruiter, which mostly means talking to frightened families"
+    },
+    {
+      "id": "medic",
+      "value": "Medic with reverse cursed technique and no interest in combat"
+    },
+    {
+      "id": "warden",
+      "value": "Warden of a storehouse of sealed objects"
+    },
+    {
+      "id": "liaison",
+      "value": "Liaison with the police, and tired of it"
+    },
+    {
+      "id": "tool-keeper",
+      "value": "Keeper of a clan's cursed tools, which they do not use"
+    },
+    {
+      "id": "surveyor",
+      "value": "Surveyor — grades sites, never fights what is on them"
+    },
+    {
+      "id": "executioner",
+      "value": "Assigned to curse users specifically, and nothing else"
+    },
+    {
+      "id": "teacher-rural",
+      "value": "The only teacher at a school with two students"
+    }
+  ],
+  "npc.sorcerer.reputation": [
+    {
+      "id": "reliable",
+      "value": "Reliable, unglamorous, never writes the report late"
+    },
+    {
+      "id": "overgraded",
+      "value": "Widely believed to be graded one step too high"
+    },
+    {
+      "id": "undergraded",
+      "value": "Widely believed to be graded one step too low, and bitter about it"
+    },
+    {
+      "id": "collateral",
+      "value": "Gets results; gets buildings condemned"
+    },
+    {
+      "id": "unknown",
+      "value": "New enough that nobody has an opinion yet"
+    },
+    {
+      "id": "feared",
+      "value": "Colleagues are polite to them and avoid being assigned with them"
+    },
+    {
+      "id": "cautionary",
+      "value": "A story told to first-years, who assume it is exaggerated"
+    },
+    {
+      "id": "lucky",
+      "value": "Lucky, which everyone says and nobody means kindly"
+    },
+    {
+      "id": "paperwork",
+      "value": "Known for immaculate reports and nothing else"
+    },
+    {
+      "id": "one-job",
+      "value": "Known entirely for one job, years ago"
+    },
+    {
+      "id": "difficult",
+      "value": "Difficult to work with, and requested anyway"
+    },
+    {
+      "id": "promising",
+      "value": "Promising, in the way that has started to sound like a warning"
+    },
+    {
+      "id": "burned-out",
+      "value": "Visibly burned out, and nobody has filed anything about it"
+    },
+    {
+      "id": "protected",
+      "value": "Protected by someone senior, for reasons unclear"
+    },
+    {
+      "id": "rumoured",
+      "value": "Rumoured to have made a binding vow nobody has seen the terms of"
+    },
+    {
+      "id": "disputed",
+      "value": "Two grades on record, depending on who you ask"
+    },
+    {
+      "id": "loud",
+      "value": "Loud, famous within the school, unknown outside it"
+    },
+    {
+      "id": "no-survivors",
+      "value": "Has never lost a teammate, and has worked mostly alone"
+    },
+    {
+      "id": "second-chance",
+      "value": "On a second chance that everyone has agreed not to mention"
+    }
+  ],
+  "npc.sorcerer.gear": [
+    {
+      "id": "nothing",
+      "value": "Nothing — refuses tools on principle",
+      "weight": 3
+    },
+    {
+      "id": "standard",
+      "value": "A standard-issue grade 4 blade, poorly maintained",
+      "weight": 3
+    },
+    {
+      "id": "inherited",
+      "value": "An inherited tool they are not rated to carry",
+      "weight": 2
+    },
+    {
+      "id": "charms",
+      "value": "A pocketful of single-use veil charms"
+    },
+    {
+      "id": "borrowed",
+      "value": "A tool signed out from the armoury three months ago and never returned"
+    },
+    {
+      "id": "named",
+      "value": "A named cursed tool the Association would like back",
+      "weight": 1,
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "broken",
+      "value": "A cursed tool with a crack in it they refuse to replace"
+    },
+    {
+      "id": "two-knives",
+      "value": "Two plain knives, no cursed energy in either"
+    },
+    {
+      "id": "talisman-sheaf",
+      "value": "A sheaf of talismans, mostly expired"
+    },
+    {
+      "id": "phone",
+      "value": "A phone with the Association's number and nothing else saved"
+    },
+    {
+      "id": "coat",
+      "value": "A coat with more pockets than anyone could need, all full"
+    },
+    {
+      "id": "rope",
+      "value": "Rope, in quantity, which has been the right answer more than once"
+    },
+    {
+      "id": "medical",
+      "value": "A proper medical kit, carried because theirs is the team that needs one"
+    },
+    {
+      "id": "salt",
+      "value": "Salt, chalk and a folding knife — old methods, used well"
+    },
+    {
+      "id": "umbrella",
+      "value": "An umbrella that is not a cursed tool, and gets used like one"
+    },
+    {
+      "id": "ledger",
+      "value": "A notebook listing every curse they have exorcised, by date"
+    },
+    {
+      "id": "borrowed-sword",
+      "value": "A sword borrowed from the school store, three jobs ago, unreturned"
+    },
+    {
+      "id": "nothing-useful",
+      "value": "Whatever was in their bag already"
+    }
+  ],
+  "npc.curse-user.allegiance": [
+    {
+      "id": "alone",
+      "value": "Works alone and intends to keep it that way",
+      "weight": 4
+    },
+    {
+      "id": "cell",
+      "value": "One of a cell of three who have never met in person",
+      "weight": 3
+    },
+    {
+      "id": "curse-patron",
+      "value": "Takes instruction from an intelligent curse",
+      "weight": 2
+    },
+    {
+      "id": "cult",
+      "value": "Belongs to a religious group that does not know what it is funding",
+      "weight": 2
+    },
+    {
+      "id": "clan-exile",
+      "value": "Exiled from a clan and still carrying out its old orders",
+      "weight": 2
+    },
+    {
+      "id": "broker",
+      "value": "Freelance — sells services to whoever is paying",
+      "weight": 3
+    },
+    {
+      "id": "sibling-pair",
+      "value": "Works with one other person, and only that person"
+    },
+    {
+      "id": "employer",
+      "value": "Employed, straightforwardly, by someone with money"
+    },
+    {
+      "id": "research-group",
+      "value": "Part of a group that calls itself a research project"
+    },
+    {
+      "id": "disgraced-school",
+      "value": "Taught at the school once, and has students still"
+    },
+    {
+      "id": "the-collector",
+      "value": "Supplies a collector who never appears in person"
+    },
+    {
+      "id": "no-one-left",
+      "value": "Was part of something that has since been wiped out"
+    },
+    {
+      "id": "political",
+      "value": "Attached to a faction that wants the Association restructured"
+    },
+    {
+      "id": "convenience",
+      "value": "Allied with whoever is useful this month"
+    },
+    {
+      "id": "the-curse-itself",
+      "value": "Takes instruction from a curse, and considers this a partnership"
+    },
+    {
+      "id": "family",
+      "value": "Working for family, and would stop if asked properly"
+    }
+  ],
+  "npc.curse-user.motive": [
+    {
+      "id": "contempt",
+      "value": "Thinks sorcerers hoard a power that should be common"
+    },
+    {
+      "id": "grief",
+      "value": "Lost someone to a mission that was graded wrong, and blames the system"
+    },
+    {
+      "id": "appetite",
+      "value": "Enjoys it, and has stopped pretending otherwise"
+    },
+    {
+      "id": "money",
+      "value": "Straightforwardly paid, and would stop if the money did"
+    },
+    {
+      "id": "experiment",
+      "value": "Testing a theory about cursed energy that requires casualties"
+    },
+    {
+      "id": "protection",
+      "value": "Shielding a family member the Association would execute"
+    },
+    {
+      "id": "proof",
+      "value": "Wants to prove something to sorcerers specifically"
+    },
+    {
+      "id": "collection",
+      "value": "Collecting — objects, techniques, or people"
+    },
+    {
+      "id": "sickness",
+      "value": "Doing it to stay alive, and running out of time"
+    },
+    {
+      "id": "ideology",
+      "value": "Believes the veil itself is the crime"
+    },
+    {
+      "id": "boredom-user",
+      "value": "Bored. Genuinely. That is the whole of it."
+    },
+    {
+      "id": "inheritance",
+      "value": "Continuing something a parent started"
+    },
+    {
+      "id": "escape",
+      "value": "Trying to disappear, and leaving a trail of bodies doing it"
+    },
+    {
+      "id": "affection",
+      "value": "Attached to one curse and will burn the city for it"
+    },
+    {
+      "id": "debt-user",
+      "value": "Paying off a debt that is not measured in money"
+    },
+    {
+      "id": "experiment-user",
+      "value": "Testing a theory, with a hypothesis, in writing"
+    },
+    {
+      "id": "revenge-specific",
+      "value": "Revenge, against one named sorcerer, and nobody else"
+    },
+    {
+      "id": "hunger",
+      "value": "Has become dependent on it in a way they no longer describe as choice"
+    }
+  ],
+  "npc.curse-user.method": [
+    {
+      "id": "proxy",
+      "value": "Never present — sends curses they have bound"
+    },
+    {
+      "id": "crowds",
+      "value": "Works in crowds, where a veil would be noticed"
+    },
+    {
+      "id": "slow",
+      "value": "Patient to the point of years; the damage is already done when it is found"
+    },
+    {
+      "id": "loud",
+      "value": "Deliberately loud, to draw a specific sorcerer out"
+    },
+    {
+      "id": "objects",
+      "value": "Plants cursed objects and lets other people open them"
+    },
+    {
+      "id": "inside",
+      "value": "Holds a real job inside jujutsu society and uses the access"
+    },
+    {
+      "id": "arson",
+      "value": "Fire first, so the response is confused before it starts"
+    },
+    {
+      "id": "hostages",
+      "value": "Takes someone, always, before anything else happens"
+    },
+    {
+      "id": "ambush",
+      "value": "Picks the ground days in advance and never fights anywhere else"
+    },
+    {
+      "id": "poison",
+      "value": "Does not fight; poisons, waits, and collects"
+    },
+    {
+      "id": "recruitment",
+      "value": "Turns the site's own residents into the problem"
+    },
+    {
+      "id": "patience",
+      "value": "Will follow a target for weeks before acting"
+    },
+    {
+      "id": "overwhelming",
+      "value": "Opens with everything, and has nothing in reserve"
+    },
+    {
+      "id": "deniability",
+      "value": "Never present; always three steps back from the act"
+    },
+    {
+      "id": "ritual",
+      "value": "Needs preparation on site — chalk, time, and quiet"
+    },
+    {
+      "id": "negotiation",
+      "value": "Talks first, and means it, and is still dangerous"
+    },
+    {
+      "id": "sabotage",
+      "value": "Breaks the veil rather than the sorcerer"
+    },
+    {
+      "id": "theft",
+      "value": "Steals a cursed tool and leaves before anyone engages"
+    }
+  ],
+  "npc.curse-user.cover": [
+    {
+      "id": "teacher",
+      "value": "Cram-school teacher"
+    },
+    {
+      "id": "nurse",
+      "value": "Night-shift nurse"
+    },
+    {
+      "id": "caretaker",
+      "value": "Shrine caretaker"
+    },
+    {
+      "id": "driver",
+      "value": "Long-haul driver"
+    },
+    {
+      "id": "antiques",
+      "value": "Antiques dealer, which is barely a cover at all"
+    },
+    {
+      "id": "none",
+      "value": "None. Stopped bothering."
+    },
+    {
+      "id": "locksmith",
+      "value": "A locksmith, with keys to more places than he should"
+    },
+    {
+      "id": "pharmacist",
+      "value": "A pharmacist, well liked, long established"
+    },
+    {
+      "id": "removals",
+      "value": "Runs a removals firm — vans, crates, late nights, no questions"
+    },
+    {
+      "id": "priest-cover",
+      "value": "A priest, which makes the sightings easy to explain away"
+    },
+    {
+      "id": "vet",
+      "value": "A vet, who notices animals avoiding places"
+    },
+    {
+      "id": "photographer",
+      "value": "A wedding photographer with reason to be anywhere"
+    },
+    {
+      "id": "tutor",
+      "value": "A private tutor, in and out of family homes"
+    },
+    {
+      "id": "council",
+      "value": "Works for the ward office and can close a street legitimately"
+    },
+    {
+      "id": "street-food",
+      "value": "A food stall, in the same spot every evening, watching"
+    },
+    {
+      "id": "security",
+      "value": "Night security at the building in question"
+    },
+    {
+      "id": "student-cover",
+      "value": "Enrolled at the school, and nobody has noticed"
+    },
+    {
+      "id": "retired-cover",
+      "value": "Visibly, convincingly retired"
+    }
+  ]
+}

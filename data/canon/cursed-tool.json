@@ -1,0 +1,1070 @@
+{
+  "cursed-tool.name": [
+    {
+      "id": "late-hour",
+      "value": "Late Hour"
+    },
+    {
+      "id": "second-reading",
+      "value": "Second Reading"
+    },
+    {
+      "id": "quietly",
+      "value": "Quietly"
+    },
+    {
+      "id": "lamp-oil",
+      "value": "Lamp Oil"
+    },
+    {
+      "id": "tally",
+      "value": "Tally"
+    },
+    {
+      "id": "unanswered",
+      "value": "Unanswered"
+    },
+    {
+      "id": "low-tide",
+      "value": "Low Tide"
+    },
+    {
+      "id": "thirty-nine",
+      "value": "Thirty-Nine"
+    },
+    {
+      "id": "borrowed-coat",
+      "value": "Borrowed Coat"
+    },
+    {
+      "id": "closing-time",
+      "value": "Closing Time"
+    },
+    {
+      "id": "hand-me-down",
+      "value": "Hand Me Down"
+    },
+    {
+      "id": "small-hours",
+      "value": "Small Hours"
+    },
+    {
+      "id": "thank-you-for-waiting",
+      "value": "Thank You For Waiting"
+    },
+    {
+      "id": "nine-of-nine",
+      "value": "Nine of Nine"
+    },
+    {
+      "id": "household-name",
+      "value": "Household Name"
+    },
+    {
+      "id": "last-train",
+      "value": "Last Train"
+    },
+    {
+      "id": "borrowed-light",
+      "value": "Borrowed Light"
+    },
+    {
+      "id": "the-long-way-round",
+      "value": "The Long Way Round"
+    },
+    {
+      "id": "no-refunds",
+      "value": "No Refunds"
+    },
+    {
+      "id": "hearsay",
+      "value": "Hearsay"
+    },
+    {
+      "id": "inside-voice",
+      "value": "Inside Voice"
+    },
+    {
+      "id": "due-diligence",
+      "value": "Due Diligence"
+    },
+    {
+      "id": "four-short-steps",
+      "value": "Four Short Steps"
+    },
+    {
+      "id": "still-warm",
+      "value": "Still Warm"
+    },
+    {
+      "id": "paper-thin",
+      "value": "Paper Thin"
+    },
+    {
+      "id": "old-favour",
+      "value": "Old Favour"
+    },
+    {
+      "id": "received-wisdom",
+      "value": "Received Wisdom"
+    },
+    {
+      "id": "kindly-meant",
+      "value": "Kindly Meant"
+    },
+    {
+      "id": "after-you",
+      "value": "After You"
+    },
+    {
+      "id": "settled-out-of-court",
+      "value": "Settled Out of Court"
+    },
+    {
+      "id": "one-more-thing",
+      "value": "One More Thing"
+    },
+    {
+      "id": "common-courtesy",
+      "value": "Common Courtesy"
+    },
+    {
+      "id": "second-opinion",
+      "value": "Second Opinion"
+    },
+    {
+      "id": "reading-glasses",
+      "value": "Reading Glasses"
+    },
+    {
+      "id": "not-on-my-watch",
+      "value": "Not On My Watch"
+    },
+    {
+      "id": "open-secret",
+      "value": "Open Secret"
+    },
+    {
+      "id": "the-usual",
+      "value": "The Usual"
+    },
+    {
+      "id": "change-of-address",
+      "value": "Change of Address"
+    },
+    {
+      "id": "sunk-cost",
+      "value": "Sunk Cost"
+    }
+  ],
+  "cursed-tool.form": [
+    {
+      "id": "blade-short",
+      "value": "Short blade, worn reversed",
+      "weight": 4
+    },
+    {
+      "id": "blade-long",
+      "value": "Long blade, two-handed",
+      "weight": 3
+    },
+    {
+      "id": "polearm",
+      "value": "Polearm, sectioned to carry",
+      "weight": 2
+    },
+    {
+      "id": "chain",
+      "value": "Weighted chain",
+      "weight": 2
+    },
+    {
+      "id": "firearm",
+      "value": "Firearm, single-shot, hand-loaded",
+      "weight": 2
+    },
+    {
+      "id": "ornament",
+      "value": "Ornament — worn, not wielded",
+      "weight": 3
+    },
+    {
+      "id": "tool",
+      "value": "An actual working tool: a hammer, a hook, a pair of shears",
+      "weight": 2
+    },
+    {
+      "id": "paper",
+      "value": "A bound set of paper slips",
+      "weight": 2
+    },
+    {
+      "id": "a-tanto-short-enough-to-carry-unremark",
+      "value": "A tanto short enough to carry unremarked",
+      "weight": 4,
+      "tags": [
+        "blade"
+      ]
+    },
+    {
+      "id": "a-straight-sword-with-no-guard-at-all",
+      "value": "A straight sword with no guard at all",
+      "weight": 3,
+      "tags": [
+        "blade"
+      ]
+    },
+    {
+      "id": "a-pair-of-knives-meant-to-be-used-toge",
+      "value": "A pair of knives meant to be used together",
+      "weight": 3,
+      "tags": [
+        "blade"
+      ]
+    },
+    {
+      "id": "a-naginata-with-a-worn-re-wrapped-shaf",
+      "value": "A naginata with a worn, re-wrapped shaft",
+      "weight": 3,
+      "tags": [
+        "polearm"
+      ]
+    },
+    {
+      "id": "a-staff-that-is-only-a-staff-until-it-",
+      "value": "A staff that is only a staff until it is needed",
+      "weight": 3,
+      "tags": [
+        "polearm"
+      ]
+    },
+    {
+      "id": "a-weighted-chain-with-a-hook-at-one-en",
+      "value": "A weighted chain with a hook at one end",
+      "weight": 3,
+      "tags": [
+        "chain"
+      ]
+    },
+    {
+      "id": "a-length-of-rope-stiff-with-something",
+      "value": "A length of rope, stiff with something",
+      "weight": 2,
+      "tags": [
+        "chain"
+      ]
+    },
+    {
+      "id": "a-revolver-that-takes-no-ammunition-an",
+      "value": "A revolver that takes no ammunition anyone sells",
+      "weight": 2,
+      "tags": [
+        "firearm"
+      ]
+    },
+    {
+      "id": "a-bow-with-no-string-and-no-need-of-on",
+      "value": "A bow with no string and no need of one",
+      "weight": 2,
+      "tags": [
+        "firearm"
+      ]
+    },
+    {
+      "id": "a-hairpin-worn-openly",
+      "value": "A hairpin, worn openly",
+      "weight": 3,
+      "tags": [
+        "ornament"
+      ]
+    },
+    {
+      "id": "a-string-of-prayer-beads-three-of-them",
+      "value": "A string of prayer beads, three of them replaced",
+      "weight": 3,
+      "tags": [
+        "ornament"
+      ]
+    },
+    {
+      "id": "a-folding-fan-with-the-paper-gone-grey",
+      "value": "A folding fan with the paper gone grey",
+      "weight": 3,
+      "tags": [
+        "ornament"
+      ]
+    },
+    {
+      "id": "a-ring-worn-on-the-thumb",
+      "value": "A ring worn on the thumb",
+      "weight": 2,
+      "tags": [
+        "ornament"
+      ]
+    },
+    {
+      "id": "a-hammer-with-a-handle-too-long-for-th",
+      "value": "A hammer with a handle too long for the head",
+      "weight": 2,
+      "tags": [
+        "other"
+      ]
+    },
+    {
+      "id": "a-pair-of-shears",
+      "value": "A pair of shears",
+      "weight": 3,
+      "tags": [
+        "other"
+      ]
+    },
+    {
+      "id": "an-umbrella-closed",
+      "value": "An umbrella, closed",
+      "weight": 3,
+      "tags": [
+        "other"
+      ]
+    },
+    {
+      "id": "a-tanto-broken-off-at-the-tip-and-neve",
+      "value": "A tanto broken off at the tip and never reforged",
+      "weight": 2,
+      "tags": [
+        "blade"
+      ]
+    },
+    {
+      "id": "a-kusarigama-the-sickle-smaller-than-i",
+      "value": "A kusarigama, the sickle smaller than it should be",
+      "weight": 2,
+      "tags": [
+        "chain"
+      ]
+    },
+    {
+      "id": "a-walking-cane-with-a-worn-ferrule",
+      "value": "A walking cane with a worn ferrule",
+      "weight": 3,
+      "tags": [
+        "other"
+      ]
+    }
+  ],
+  "cursed-tool.appearance": [
+    {
+      "id": "new",
+      "value": "Looks brand new, and always has"
+    },
+    {
+      "id": "repaired",
+      "value": "Repaired badly at least twice, by different hands"
+    },
+    {
+      "id": "unmarked",
+      "value": "Completely unmarked, which is itself a mark"
+    },
+    {
+      "id": "inscribed",
+      "value": "Inscribed with a count that goes up on its own"
+    },
+    {
+      "id": "mismatched",
+      "value": "Clearly assembled from two older tools"
+    },
+    {
+      "id": "wrapped",
+      "value": "Wrapped in cloth the owner is told not to remove"
+    },
+    {
+      "id": "warm",
+      "value": "Warm in a cold room"
+    },
+    {
+      "id": "plain-to-the-point-of-being-deliberate",
+      "value": "Plain to the point of being deliberate",
+      "weight": 4
+    },
+    {
+      "id": "immaculate-and-far-older-than-it-looks",
+      "value": "Immaculate, and far older than it looks",
+      "weight": 3
+    },
+    {
+      "id": "repaired-badly-more-than-once-by-diffe",
+      "value": "Repaired badly, more than once, by different hands",
+      "weight": 4
+    },
+    {
+      "id": "wrapped-so-thoroughly-that-its-shape-i",
+      "value": "Wrapped so thoroughly that its shape is a guess",
+      "weight": 3
+    },
+    {
+      "id": "dark-with-a-grain-that-moves-if-watche",
+      "value": "Dark, with a grain that moves if watched too long",
+      "weight": 3
+    },
+    {
+      "id": "marked-with-a-clan-crest-that-was-stru",
+      "value": "Marked with a clan crest that was struck through and left",
+      "weight": 2
+    },
+    {
+      "id": "lacquered-red-under-a-layer-of-black-t",
+      "value": "Lacquered red under a layer of black that is wearing away",
+      "weight": 3
+    },
+    {
+      "id": "stained-in-a-way-that-cleaning-has-mad",
+      "value": "Stained in a way that cleaning has made worse",
+      "weight": 3
+    },
+    {
+      "id": "fitted-with-a-grip-wound-from-somebody",
+      "value": "Fitted with a grip wound from somebody’s hair",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "chipped-along-one-edge-and-perfectly-k",
+      "value": "Chipped along one edge and perfectly keen along the other",
+      "weight": 3
+    },
+    {
+      "id": "too-light-everyone-who-picks-it-up-say",
+      "value": "Too light. Everyone who picks it up says so",
+      "weight": 3
+    },
+    {
+      "id": "warm-always-in-the-hand-and-in-the-cas",
+      "value": "Warm, always, in the hand and in the case",
+      "weight": 3
+    },
+    {
+      "id": "signed-in-an-inscription-nobody-has-be",
+      "value": "Signed, in an inscription nobody has been able to place",
+      "weight": 2
+    },
+    {
+      "id": "unfinished-it-was-never-meant-to-be-us",
+      "value": "Unfinished — it was never meant to be used in this state",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "beautiful-and-plainly-made-by-someone-",
+      "value": "Beautiful, and plainly made by someone who hated the job",
+      "weight": 2
+    },
+    {
+      "id": "scorched-down-one-side-and-otherwise-u",
+      "value": "Scorched down one side and otherwise untouched",
+      "weight": 3
+    },
+    {
+      "id": "mismatched-two-pieces-that-did-not-beg",
+      "value": "Mismatched: two pieces that did not begin together",
+      "weight": 2
+    },
+    {
+      "id": "worn-smooth-where-a-hand-has-gone-by-a",
+      "value": "Worn smooth where a hand has gone, by a hand that was not this owner’s",
+      "weight": 3
+    }
+  ],
+  "cursed-tool.property": [
+    {
+      "id": "cuts-ce",
+      "value": "Cuts cursed energy as readily as flesh",
+      "weight": 4
+    },
+    {
+      "id": "holds-edge",
+      "value": "Never dulls, never chips, cannot be sharpened either",
+      "weight": 3
+    },
+    {
+      "id": "returns",
+      "value": "Returns to the owner's hand if thrown and left for a minute",
+      "weight": 3
+    },
+    {
+      "id": "light",
+      "value": "Weighs nothing to its owner and a great deal to anyone else",
+      "weight": 3
+    },
+    {
+      "id": "marks",
+      "value": "Wounds it makes will not close while the tool is in the same room",
+      "weight": 2
+    },
+    {
+      "id": "stores",
+      "value": "Stores cursed energy poured into it, and gives it back on command",
+      "weight": 2,
+      "grades": [
+        "grade-semi-2",
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "cuts-veil",
+      "value": "Cuts a veil open",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "refuses",
+      "value": "Refuses to strike a person it has struck before",
+      "weight": 2
+    },
+    {
+      "id": "domain-edge",
+      "value": "Keeps its edge inside a domain",
+      "weight": 1,
+      "grades": [
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "passes-through-a-veil-without-disturbi",
+      "value": "Passes through a veil without disturbing it",
+      "weight": 3
+    },
+    {
+      "id": "wounds-it-makes-do-not-close-while-it-",
+      "value": "Wounds it makes do not close while it is in the room",
+      "weight": 3,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "anything-it-cuts-stays-cut-including-c",
+      "value": "Anything it cuts stays cut, including cursed energy constructs",
+      "weight": 3
+    },
+    {
+      "id": "finds-the-gap-in-a-guard-on-its-own-th",
+      "value": "Finds the gap in a guard on its own; the owner only has to commit",
+      "weight": 3
+    },
+    {
+      "id": "stores-a-strike-and-gives-it-back-on-t",
+      "value": "Stores a strike and gives it back on the next swing",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "strikes-a-shikigami-as-though-it-were-",
+      "value": "Strikes a shikigami as though it were flesh",
+      "weight": 3
+    },
+    {
+      "id": "grows-heavier-the-longer-a-fight-goes-",
+      "value": "Grows heavier the longer a fight goes on, and hits accordingly",
+      "weight": 2
+    },
+    {
+      "id": "will-not-be-parried-by-another-cursed-",
+      "value": "Will not be parried by another cursed tool",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "quiet-no-ring-no-rush-of-air-no-warnin",
+      "value": "Quiet — no ring, no rush of air, no warning",
+      "weight": 3
+    },
+    {
+      "id": "draws-residual-cursed-energy-out-of-a-",
+      "value": "Draws residual cursed energy out of a wound it opens",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "keeps-its-edge-in-the-owner-s-hand-and",
+      "value": "Keeps its edge in the owner’s hand and loses it in anyone else’s",
+      "weight": 3
+    },
+    {
+      "id": "can-be-thrown-and-will-arrive-whatever",
+      "value": "Can be thrown and will arrive, whatever is in the way",
+      "grades": [
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "opens-a-cut-that-does-not-bleed-until-",
+      "value": "Opens a cut that does not bleed until the tool is withdrawn",
+      "weight": 2
+    },
+    {
+      "id": "carries-a-reverse-cursed-technique-bet",
+      "value": "Carries a reverse cursed technique better than a hand does",
+      "grades": [
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "marks-what-it-touches-the-mark-lasts-a",
+      "value": "Marks what it touches; the mark lasts a day and can be followed",
+      "weight": 3
+    },
+    {
+      "id": "shortens-or-lengthens-to-suit-the-room",
+      "value": "Shortens or lengthens to suit the room without being told",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "hurts-a-curse-in-proportion-to-how-old",
+      "value": "Hurts a curse in proportion to how old it is, not how strong",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "does-not-count-as-a-weapon-to-anything",
+      "value": "Does not count as a weapon to anything that checks",
+      "weight": 2
+    },
+    {
+      "id": "catches-a-technique-once-per-day-and-h",
+      "value": "Catches a technique once per day and holds it for a few seconds",
+      "grades": [
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "costs-nothing-to-use-nobody-has-worked",
+      "value": "Costs nothing to use. Nobody has worked out why",
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    }
+  ],
+  "cursed-tool.drawback": [
+    {
+      "id": "feeds",
+      "value": "Feeds continuously; the owner is always slightly depleted"
+    },
+    {
+      "id": "loud",
+      "value": "Audible to curses from a long way off"
+    },
+    {
+      "id": "refuses-sheath",
+      "value": "Will not be put away until it has been used"
+    },
+    {
+      "id": "one-owner",
+      "value": "Bound to one owner; useless and resentful in another hand"
+    },
+    {
+      "id": "count",
+      "value": "A fixed number of uses, and nobody knows the number"
+    },
+    {
+      "id": "memory",
+      "value": "The owner loses the hour around each use"
+    },
+    {
+      "id": "injury",
+      "value": "Cuts the user a little, every time, in the same place"
+    },
+    {
+      "id": "escalates",
+      "value": "Works better the worse the owner's injuries are, and encourages them"
+    },
+    {
+      "id": "only-ever-as-good-as-the-owner-s-worst",
+      "value": "Only ever as good as the owner’s worst habit",
+      "weight": 3
+    },
+    {
+      "id": "leaves-the-owner-cold-for-an-hour-afte",
+      "value": "Leaves the owner cold for an hour afterwards",
+      "weight": 3
+    },
+    {
+      "id": "shows-the-owner-the-last-thing-it-kill",
+      "value": "Shows the owner the last thing it killed, every time it is drawn",
+      "weight": 3
+    },
+    {
+      "id": "cannot-be-used-twice-in-one-day-withou",
+      "value": "Cannot be used twice in one day without a price",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "picks-its-own-moment-to-be-heavy",
+      "value": "Picks its own moment to be heavy",
+      "weight": 3
+    },
+    {
+      "id": "dislikes-being-handed-over-and-makes-t",
+      "value": "Dislikes being handed over and makes that clear",
+      "weight": 3
+    },
+    {
+      "id": "gets-a-little-more-of-the-owner-each-y",
+      "value": "Gets a little more of the owner each year, and does not give it back",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "will-not-strike-a-living-human-being-e",
+      "value": "Will not strike a living human being, ever, for any reason",
+      "weight": 2
+    },
+    {
+      "id": "will-not-stop-once-it-has-started",
+      "value": "Will not stop once it has started",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "attracts-the-attention-of-whatever-it-",
+      "value": "Attracts the attention of whatever it was taken from",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "must-be-cleaned-within-the-hour-or-it-",
+      "value": "Must be cleaned within the hour or it begins on the owner",
+      "weight": 3
+    },
+    {
+      "id": "weakens-steadily-away-from-the-place-i",
+      "value": "Weakens steadily away from the place it was made",
+      "weight": 3
+    },
+    {
+      "id": "requires-a-name-spoken-aloud-before-it",
+      "value": "Requires a name spoken aloud before it works, and remembers who said it",
+      "weight": 2
+    },
+    {
+      "id": "ruins-other-cursed-tools-kept-beside-i",
+      "value": "Ruins other cursed tools kept beside it",
+      "weight": 2
+    },
+    {
+      "id": "makes-the-owner-slightly-worse-at-read",
+      "value": "Makes the owner slightly worse at reading a room",
+      "weight": 3
+    },
+    {
+      "id": "rusts-on-contact-with-reverse-cursed-t",
+      "value": "Rusts on contact with reverse cursed technique",
+      "weight": 2
+    },
+    {
+      "id": "the-drawback-has-not-shown-itself-yet-",
+      "value": "The drawback has not shown itself yet. That is the drawback",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "cannot-be-destroyed-and-the-owner-has-",
+      "value": "Cannot be destroyed, and the owner has tried",
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    }
+  ],
+  "cursed-tool.ce-requirement": [
+    {
+      "id": "none",
+      "value": "None — a non-sorcerer could use it",
+      "grades": [
+        "grade-4",
+        "grade-3"
+      ]
+    },
+    {
+      "id": "trickle",
+      "value": "A trickle, continuous"
+    },
+    {
+      "id": "per-strike",
+      "value": "A measurable cost per strike"
+    },
+    {
+      "id": "priming",
+      "value": "Must be primed before a fight and holds the charge for an hour"
+    },
+    {
+      "id": "heavy",
+      "value": "Heavy — a Grade 2 will be winded inside a minute",
+      "grades": [
+        "grade-semi-2",
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "reserves",
+      "value": "Scales with reserves; shallow reserves barely wake it",
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "none-which-is-most-of-why-it-circulate",
+      "value": "None — which is most of why it circulates",
+      "weight": 4
+    },
+    {
+      "id": "a-trickle-constantly-the-owner-notices",
+      "value": "A trickle, constantly; the owner notices by evening",
+      "weight": 4
+    },
+    {
+      "id": "nothing-to-hold-a-great-deal-to-use-we",
+      "value": "Nothing to hold, a great deal to use well",
+      "weight": 4
+    },
+    {
+      "id": "grade-two-output-or-the-swing-simply-d",
+      "value": "Grade two output or the swing simply does not land",
+      "weight": 3,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "fine-control-rather-than-volume-a-stro",
+      "value": "Fine control rather than volume; a strong sorcerer with bad hands gets nothing",
+      "weight": 3
+    },
+    {
+      "id": "deep-reserves-because-it-takes-what-it",
+      "value": "Deep reserves, because it takes what it needs without asking",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "whatever-the-owner-has-once-and-then-i",
+      "value": "Whatever the owner has, once, and then it is quiet for a day",
+      "weight": 2
+    },
+    {
+      "id": "a-vow-not-energy-the-energy-is-the-eas",
+      "value": "A vow, not energy. The energy is the easy part",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "someone-else-s-if-the-owner-can-arrang",
+      "value": "Someone else’s, if the owner can arrange it",
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "it-feeds-itself-from-anything-nearby-a",
+      "value": "It feeds itself, from anything nearby, and is not fussy",
+      "grades": [
+        "grade-1",
+        "special-grade"
+      ]
+    }
+  ],
+  "cursed-tool.provenance": [
+    {
+      "id": "armoury",
+      "value": "Association armoury, properly signed out"
+    },
+    {
+      "id": "armoury-not",
+      "value": "Association armoury, not signed out"
+    },
+    {
+      "id": "clan",
+      "value": "Clan property, loaned with conditions"
+    },
+    {
+      "id": "battlefield",
+      "value": "Taken off a curse user who no longer needed it"
+    },
+    {
+      "id": "smith",
+      "value": "Commissioned from a smith who has since stopped taking work"
+    },
+    {
+      "id": "unknown",
+      "value": "Turned up in a box of unrelated equipment"
+    },
+    {
+      "id": "inherited",
+      "value": "Inherited, with a letter the owner has not opened"
+    },
+    {
+      "id": "issued-by-the-association-and-never-si",
+      "value": "Issued by the Association and never signed back in",
+      "weight": 4
+    },
+    {
+      "id": "taken-from-a-storehouse-during-a-reshu",
+      "value": "Taken from a storehouse during a reshuffle nobody audited",
+      "weight": 3
+    },
+    {
+      "id": "made-by-a-smith-who-made-four-and-then",
+      "value": "Made by a smith who made four and then stopped",
+      "weight": 3
+    },
+    {
+      "id": "won-in-a-sense-from-a-curse-user-who-d",
+      "value": "Won, in a sense, from a curse user who did not survive the exchange",
+      "weight": 3
+    },
+    {
+      "id": "inherited-with-instructions-that-were-",
+      "value": "Inherited, with instructions that were not written down",
+      "weight": 4
+    },
+    {
+      "id": "bought-legally-in-a-shop-that-no-longe",
+      "value": "Bought legally, in a shop that no longer exists",
+      "weight": 3
+    },
+    {
+      "id": "recovered-from-a-site-where-it-was-the",
+      "value": "Recovered from a site where it was the only thing left intact",
+      "weight": 3
+    },
+    {
+      "id": "a-clan-s-until-the-clan-ended-nobody-h",
+      "value": "A clan’s, until the clan ended. Nobody has claimed it since",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "confiscated-from-a-student-twice",
+      "value": "Confiscated from a student, twice",
+      "weight": 3
+    },
+    {
+      "id": "donated-anonymously-in-a-box-with-no-n",
+      "value": "Donated, anonymously, in a box with no note",
+      "weight": 3
+    },
+    {
+      "id": "commissioned-by-someone-who-died-befor",
+      "value": "Commissioned by someone who died before collection",
+      "weight": 3
+    },
+    {
+      "id": "dug-up-during-a-road-widening-and-quie",
+      "value": "Dug up during a road widening and quietly removed from the record",
+      "weight": 2
+    },
+    {
+      "id": "traded-for-something-the-file-does-not",
+      "value": "Traded for something the file does not name",
+      "weight": 2
+    },
+    {
+      "id": "found-in-the-effects-of-a-sorcerer-who",
+      "value": "Found in the effects of a sorcerer who had no business owning it",
+      "weight": 2,
+      "grades": [
+        "grade-2",
+        "grade-1",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "returned-by-post-from-an-address-that-",
+      "value": "Returned by post, from an address that does not exist",
+      "weight": 2
+    }
+  ]
+}

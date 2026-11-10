@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jjk-rp-vault.local/schema/table.schema.json",
+  "title": "JJK RP Vault generator table file",
+  "description": "A set of generator tables. Canon files live in data/canon/; your own files live in %APPDATA%/jjk-rp-vault/tables/ and are merged over canon by entry id — same id overrides, new id adds.",
+  "type": "object",
+  "minProperties": 1,
+  "additionalProperties": {
+    "title": "Table",
+    "description": "The property name is the table id, e.g. \"curse.form\".",
+    "type": "array",
+    "minItems": 1,
+    "items": { "$ref": "#/$defs/entry" }
+  },
+  "$defs": {
+    "entry": {
+      "type": "object",
+      "required": ["id", "value"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Unique within its table. Reusing a canon entry's id overrides that entry."
+        },
+        "value": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The text the generator produces."
+        },
+        "weight": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Relative draw weight. Omit for 1."
+        },
+        "grades": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Grades allowed to draw this entry. Omit to allow all.",
+          "items": { "$ref": "#/$defs/gradeId" }
+        },
+        "tags": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 },
+          "description": "Free-form labels, used for coherence filtering between fields. On a pickable table such as technique.canonical, the first tag names the technique type to pin."
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Subtitle shown when the entry is picked from a list rather than rolled. Never becomes part of the generated value."
+        }
+      }
+    },
+    "gradeId": {
+      "type": "string",
+      "enum": [
+        "grade-4",
+        "grade-3",
+        "grade-semi-2",
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "semi-special-grade",
+        "special-grade",
+        "disaster-grade",
+        "semi-calamity-grade",
+        "calamity-grade",
+        "demi-apocalypse-grade",
+        "semi-apocalypse-grade",
+        "apocalypse-grade"
+      ]
+    }
+  }
+}

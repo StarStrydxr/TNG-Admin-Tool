@@ -1,0 +1,20 @@
+{
+  "cursed-tool.canonical": [
+    {
+      "id": "holy-sinners-blade",
+      "value": "Holy Sinner's Blade",
+      "note": "A katana of white steel and gold accents, the personal property of Akira Masami — prodigy of Through Faith's Command and strongest member of the Masami Clan. Surviving from the Heian era onward, it is given to the Clan Head as an inauguration gift. Each strike applies one sin, stacking to eight; four may be spent to call down a smite across the whole body, landing as an invisible slash at a point the user chooses, three times per combat. Extensions of Through Faith's Command can be imbued through the blade by a wielder who understands them on a truth level. Grade One and above only.",
+      "grades": [
+        "grade-1",
+        "semi-special-grade",
+        "special-grade",
+        "disaster-grade",
+        "calamity-grade",
+        "apocalypse-grade"
+      ],
+      "tags": [
+        "masami"
+      ]
+    }
+  ]
+}

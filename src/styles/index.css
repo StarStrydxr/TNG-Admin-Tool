@@ -1,0 +1,369 @@
+@import 'tailwindcss';
+
+/*
+ * Two accessibility faces, vendored rather than fetched — the app must work offline.
+ * Both are SIL Open Font Licence 1.1; the licences sit beside the files in src/assets/fonts/
+ * and must stay there.
+ */
+@font-face {
+  font-family: 'OpenDyslexic';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/opendyslexic-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'OpenDyslexic';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../assets/fonts/opendyslexic-latin-700-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Atkinson Hyperlegible';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Atkinson Hyperlegible';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../assets/fonts/atkinson-hyperlegible-latin-700-normal.woff2') format('woff2');
+}
+
+/*
+ * Offline-first: system font stacks only. No webfont may be fetched at runtime.
+ */
+@theme {
+  --color-void-950: #08080b;
+  --color-void-900: #0e0e13;
+  --color-void-850: #13131a;
+  --color-void-800: #191921;
+  --color-void-700: #23232e;
+  --color-void-600: #32323f;
+
+  --color-ash-500: #6f6f82;
+  --color-ash-400: #8d8da0;
+  --color-ash-300: #b3b3c4;
+  --color-ash-100: #e9e9f1;
+
+  --color-cursed-600: #5b3fd6;
+  --color-cursed-500: #7c5cff;
+  --color-cursed-400: #9d85ff;
+
+  --color-blood-500: #c2413f;
+
+  --font-sans: ui-sans-serif, system-ui, 'Segoe UI', sans-serif;
+  --font-display: ui-serif, Georgia, 'Times New Roman', serif;
+  --font-mono: ui-monospace, 'Cascadia Mono', 'Consolas', monospace;
+}
+
+@layer base {
+  /*
+   * The shell owns the scrolling, and nothing above it does.
+   *
+   * Without the `overflow: hidden` the page scrolled *as well as* the main pane, so a long
+   * generator put two scrollbars side by side and neither one moved the thing you were looking
+   * at. This is a desktop window, not a document: the frame is fixed to the viewport and the
+   * one scrollable region is `<main>` in `AppShell`. Print undoes this further down, because a
+   * printed sheet does need the page to grow.
+   */
+  html,
+  body,
+  #root {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-void-950);
+    color: var(--color-ash-300);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* A desktop app, not a web page: no text selection or drag on chrome. */
+  body {
+    user-select: none;
+    cursor: default;
+  }
+
+  /*
+   * The optional background picture.
+   *
+   * A fixed pseudo-element behind everything rather than a background on `body`: that keeps it
+   * still while the app scrolls, and lets it be blurred and faded without touching the opacity
+   * of any content above it. `--bg-image-opacity` is capped in `domain/settings.ts`, so this
+   * cannot be turned up far enough to break the contrast each theme is checked for.
+   *
+   * The scale and the negative inset hide the soft edge blur leaves behind.
+   */
+  :root[data-has-background='true'] body::before {
+    content: '';
+    position: fixed;
+    inset: -5vmax;
+    z-index: -1;
+    pointer-events: none;
+    background-image: var(--bg-image);
+    background-size: cover;
+    background-position: center;
+    opacity: var(--bg-image-opacity, 0.18);
+    filter: blur(var(--bg-image-blur, 8px));
+  }
+
+  /* It is decoration. Never let it print. */
+  @media print {
+    :root[data-has-background='true'] body::before {
+      display: none;
+    }
+  }
+
+  input,
+  textarea,
+  [data-selectable] {
+    user-select: text;
+  }
+
+  /*
+   * Native controls — selects, checkboxes, scrollbars — follow the theme instead of staying
+   * dark against a light palette. Set from appearance.ts.
+   */
+  :root[data-theme-light='true'] {
+    color-scheme: light;
+  }
+
+  :root[data-theme-light='false'] {
+    color-scheme: dark;
+  }
+}
+
+@layer utilities {
+  /*
+   * Near-zero rather than `none`: transitions still fire their events, so anything relying on
+   * transitionend keeps working.
+   */
+  :root[data-reduced-motion='true'] *,
+  :root[data-reduced-motion='true'] *::before,
+  :root[data-reduced-motion='true'] *::after {
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+
+  :root[data-strong-focus='true'] :focus-visible {
+    outline: 3px solid var(--color-cursed-400);
+    outline-offset: 2px;
+  }
+}
+
+/*
+ * ─── Print ────────────────────────────────────────────────────────────────────────────────
+ *
+ * Sheets for the table, and PDFs by way of "Microsoft Print to PDF".
+ *
+ * ⚠️ This block is the ONE sanctioned exception to "never hardcode a colour" (CLAUDE.md §9).
+ * A printed sheet has to be ink on paper whatever theme the app is wearing — the dark default
+ * would otherwise come out as a black rectangle, or get dropped by the browser's background
+ * stripping and print as pale grey on white. So print has its own four-token palette, declared
+ * here and nowhere else. No component may hardcode a colour; these tokens are how it prints.
+ *
+ * The chosen typeface is NOT overridden: if OpenDyslexic is on screen it is on paper too.
+ * Only the text *scale* resets, so a 1.5× reading scale doesn't wreck A4 pagination.
+ */
+.print-root {
+  display: none;
+}
+
+@media print {
+  :root {
+    --print-paper: #ffffff;
+    --print-ink: #111111;
+    --print-muted: #555555;
+    --print-rule: #cccccc;
+  }
+
+  @page {
+    size: A4;
+    margin: 14mm 14mm 12mm;
+  }
+
+  /* A sheet needs the page to grow, so the screen's fixed frame is released here. */
+  html,
+  body,
+  #root {
+    height: auto;
+    overflow: visible;
+    background: var(--print-paper);
+    color: var(--print-ink);
+  }
+
+  /* Everything but the sheets: app chrome, the live regions, the lot. */
+  #root > *:not(.print-root) {
+    display: none !important;
+  }
+
+  .print-root {
+    display: block;
+    font-size: 10.5pt;
+    line-height: 1.45;
+  }
+
+  .print-sheet {
+    break-after: page;
+    color: var(--print-ink);
+  }
+
+  .print-sheet:last-child {
+    break-after: auto;
+  }
+
+  /* The cover. Centred, sparse, and clearly the front of something. */
+  .print-cover-head {
+    margin-bottom: 14mm;
+    padding-bottom: 4mm;
+    border-bottom: 1.5pt solid var(--print-ink);
+  }
+
+  .print-cover-title {
+    margin: 0;
+    font-size: 26pt;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+  }
+
+  /* Numbered, for the same reason .print-list keeps its bullets: preflight strips the
+     markers, leaving an indent with nothing to explain it. */
+  .print-contents {
+    margin: 0;
+    padding-left: 7mm;
+    list-style: decimal;
+  }
+
+  .print-contents li {
+    padding-bottom: 1.2mm;
+    break-inside: avoid;
+  }
+
+  .print-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 6mm;
+    border-bottom: 1.5pt solid var(--print-ink);
+    padding-bottom: 2mm;
+    margin-bottom: 4mm;
+  }
+
+  .print-head-text {
+    min-width: 0;
+  }
+
+  /*
+   * Portraits print only if the user ticks "Background graphics" in the dialog — Chromium
+   * strips backgrounds by default but keeps <img>, which is why this is an image element and
+   * not a CSS background.
+   */
+  .print-portrait {
+    width: 28mm;
+    height: 34mm;
+    object-fit: cover;
+    border: 0.5pt solid var(--print-rule);
+  }
+
+  .print-title {
+    font-size: 19pt;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .print-subtitle {
+    margin: 1mm 0 0;
+    font-size: 9.5pt;
+    color: var(--print-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .print-section {
+    margin-bottom: 5mm;
+    /*
+     * Sections split across pages on purpose. Holding one whole pushes a long technique block
+     * to the next sheet and leaves a third of a page blank — worse than a clean mid-section
+     * break, since individual fields are kept intact below.
+     */
+    break-inside: auto;
+  }
+
+  .print-section-title {
+    font-size: 10pt;
+    font-weight: 700;
+    margin: 0 0 1.5mm;
+    /* Never a heading stranded at the foot of a page. */
+    break-after: avoid;
+    padding-bottom: 1mm;
+    border-bottom: 0.5pt solid var(--print-rule);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .print-fields {
+    margin: 0;
+  }
+
+  .print-field {
+    display: grid;
+    /* Wide enough for "Reverse Cursed Technique" on one line. */
+    grid-template-columns: 39mm 1fr;
+    gap: 0 4mm;
+    padding: 1.2mm 0;
+    break-inside: avoid;
+  }
+
+  .print-label {
+    color: var(--print-muted);
+    font-size: 9pt;
+    /* Nudged down so a label sits on the first line of a wrapped value. */
+    padding-top: 0.3mm;
+  }
+
+  .print-value,
+  .print-list {
+    margin: 0;
+  }
+
+  /* An unlabelled field — free prose, such as notes — takes the full measure. */
+  .print-value-full {
+    grid-column: 1 / -1;
+  }
+
+  /*
+   * Bullets restored: Tailwind's preflight strips them, which leaves a multi-value field
+   * indented for no visible reason. The marker is what explains the indent.
+   */
+  .print-list {
+    padding-left: 4.5mm;
+    list-style: disc;
+  }
+
+  .print-list li {
+    padding-bottom: 0.6mm;
+    break-inside: avoid;
+  }
+
+  .print-foot {
+    margin-top: 6mm;
+    padding-top: 1.5mm;
+    border-top: 0.5pt solid var(--print-rule);
+    font-size: 8pt;
+    color: var(--print-muted);
+  }
+}
