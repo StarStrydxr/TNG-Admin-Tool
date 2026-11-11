@@ -1,3 +1,4 @@
+import type { CardKind, CardStyle } from '../domain/card-style';
 import {
   createContext,
   useCallback,
@@ -42,6 +43,8 @@ interface SettingsContextValue {
   readonly setDefaultDifficulty: (id: string) => void;
   readonly setDefaultHosts: (hosts: string) => void;
   readonly setHostRewards: (hostRewards: HostRewards) => void;
+  /** Change one graphic kind's fonts and colours, leaving the other two alone. */
+  readonly setCardStyle: (kind: CardKind, patch: Partial<CardStyle>) => void;
   /** Put the shipped difficulty bands back, leaving everything else alone. */
   readonly resetDifficulties: () => void;
   readonly reset: () => void;
@@ -174,6 +177,13 @@ export function SettingsProvider({ children }: { readonly children: ReactNode })
     setSettings((current) => ({ ...current, hostRewards }));
   }, []);
 
+  const setCardStyle = useCallback((kind: CardKind, patch: Partial<CardStyle>) => {
+    setSettings((current) => ({
+      ...current,
+      cardStyles: { ...current.cardStyles, [kind]: { ...current.cardStyles[kind], ...patch } },
+    }));
+  }, []);
+
   const resetDifficulties = useCallback(() => {
     setSettings((current) => ({ ...current, difficulties: DEFAULT_DIFFICULTY_PRESETS }));
   }, []);
@@ -196,6 +206,7 @@ export function SettingsProvider({ children }: { readonly children: ReactNode })
       setDefaultDifficulty,
       setDefaultHosts,
       setHostRewards,
+      setCardStyle,
       resetDifficulties,
       reset,
     }),
@@ -213,6 +224,7 @@ export function SettingsProvider({ children }: { readonly children: ReactNode })
       setDefaultDifficulty,
       setDefaultHosts,
       setHostRewards,
+      setCardStyle,
       resetDifficulties,
       reset,
     ],

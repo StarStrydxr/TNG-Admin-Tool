@@ -90,6 +90,11 @@
 {{/relationships}}
 {{#cursedRating}}**Cursed Rating:** {{cursedRating}}{{/cursedRating}}
 
+{{#anyBlackFlashes}}## Black Flash
+
+{{/anyBlackFlashes}}{{#blackFlashes}}- {{.}}
+{{/blackFlashes}}
+
 {{#anyMissions}}## Mission log
 
 {{/anyMissions}}{{#missions}}- {{.}}

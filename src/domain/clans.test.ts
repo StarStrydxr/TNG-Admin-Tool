@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
+import { createCharacter, traitSlotUsage } from './character';
+
 import {
   clanNames,
   createClan,
@@ -12,6 +14,7 @@ import {
   masamiSeed,
   modifier,
   mutationsFor,
+  slotTakingMutations,
   findClan,
   vacantSeats,
 } from './clans';
@@ -224,5 +227,55 @@ describe('reading a hand-written clan file', () => {
   it('drops a blank bonus line rather than storing an empty modifier', () => {
     const parsed = reread({ ...blank(), bonuses: ['', '  '] as never });
     expect(parsed.bonuses).toEqual([]);
+  });
+});
+
+describe('mutations that cost a trait slot', () => {
+  const clan = {
+    ...masamiSeed('k1', '2026-11-11T00:00:00.000Z'),
+    mutations: [
+      { id: 'costly', name: 'God’s Chosen', effects: [], tpCost: '8 TP', usesTraitSlot: true, note: '' },
+      { id: 'free', name: 'Gilded Sclera', effects: [], tpCost: '2 TP', usesTraitSlot: false, note: '' },
+    ],
+  };
+
+  it('returns only the ticked ones the character actually carries', () => {
+    expect(slotTakingMutations([clan], 'Masami', ['costly', 'free']).map((m) => m.id)).toEqual([
+      'costly',
+    ]);
+    expect(slotTakingMutations([clan], 'Masami', ['free'])).toEqual([]);
+  });
+
+  it('ignores an id that matches no mutation rather than throwing', () => {
+    expect(slotTakingMutations([clan], 'Masami', ['deleted-one'])).toEqual([]);
+  });
+
+  it('finds nothing for a hand-typed clan with no record', () => {
+    expect(slotTakingMutations([clan], 'Some Other House', ['costly'])).toEqual([]);
+    expect(slotTakingMutations([], 'Masami', ['costly'])).toEqual([]);
+  });
+
+  /** ⚠️ Counted, never written into `traits[]` — see the field's comment in entities.ts. */
+  it('spends a slot without touching the character’s trait list', () => {
+    const base = createCharacter({ id: 'c1', kind: 'pc', now: '2026-11-11T00:00:00.000Z', grade: 'grade-1' });
+    const walker = { ...base, clan: 'Masami', mutations: ['costly'], traitSlots: 3 };
+
+    expect(traitSlotUsage(walker, 0)).toEqual({ used: 0, total: 3, overBy: 0 });
+    expect(traitSlotUsage(walker, 1)).toEqual({ used: 1, total: 3, overBy: 0 });
+    expect(walker.traits).toEqual([]);
+  });
+
+  it('parses a clan saved before the field existed, with the box unticked', () => {
+    const parsed = parseEntity(
+      {
+        kind: 'clan',
+        id: 'k2',
+        name: 'Old Record',
+        mutations: [{ id: 'm1', name: 'Something', effects: [], tpCost: '', note: '' }],
+      },
+      'x',
+    );
+    if (parsed?.kind !== 'clan') throw new Error('did not parse');
+    expect(parsed.mutations[0]!.usesTraitSlot).toBe(false);
   });
 });

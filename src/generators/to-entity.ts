@@ -7,8 +7,10 @@
  * Pure; the id and timestamp are injected.
  */
 
+import type { GradeId } from '../domain/grades';
 import {
   entityBase,
+  type Bounty,
   type Curse,
   type CursedObject,
   type CursedTool,
@@ -89,6 +91,48 @@ export interface MissionExtras {
   readonly hostRewards?: readonly string[];
   readonly difficulty?: string;
   readonly slots?: string;
+}
+
+export interface BountyExtras {
+  readonly targetGrade?: GradeId;
+  /** Overrides the rolled name when the panel's target field has been typed into. */
+  readonly target?: string;
+  readonly conspicuousity?: string;
+  readonly state?: string;
+  readonly pings?: readonly string[];
+  readonly rewards?: readonly string[];
+}
+
+export function bountyFromDraft(
+  draft: Draft,
+  meta: EntityMeta,
+  extras: BountyExtras = {},
+): Bounty {
+  // The rolled name is the fallback. A target typed into the panel wins, which is what makes
+  // "lock the target and re-roll the posting" work without a second code path.
+  const rolled = [draftValue(draft, 'familyName'), draftValue(draft, 'givenName')]
+    .filter(Boolean)
+    .join(' ');
+  const target = extras.target?.trim() || rolled;
+
+  return {
+    ...entityBase('bounty', target ? `Bounty: ${target}` : 'Bounty', meta),
+    kind: 'bounty',
+    generated: originOf(draft),
+    grade: draft.grade,
+    // Defaults to the threat grade, so a posting nobody has adjusted reads consistently.
+    targetGrade: extras.targetGrade ?? draft.grade,
+    target,
+    conspicuousity: extras.conspicuousity ?? '',
+    state: extras.state ?? '',
+    pings: extras.pings ?? [],
+    crime: draftValue(draft, 'crime'),
+    briefing: draftValue(draft, 'briefing'),
+    warning: draftValue(draft, 'warning'),
+    objectives: draftValues(draft, 'objectives'),
+    rewards: extras.rewards ?? [],
+    issuer: draftValue(draft, 'issuer'),
+  };
 }
 
 export function missionFromDraft(
@@ -204,10 +248,13 @@ export function entityFromDraft(
   meta: EntityMeta,
   household: readonly Draft[] = [],
   mission: MissionExtras = {},
+  bounty: BountyExtras = {},
 ): SavedEntity | null {
   switch (draft.kind) {
     case 'mission':
       return missionFromDraft(draft, meta, mission);
+    case 'bounty':
+      return bountyFromDraft(draft, meta, bounty);
     case 'curse':
       return curseFromDraft(draft, meta);
     case 'cursed-object':

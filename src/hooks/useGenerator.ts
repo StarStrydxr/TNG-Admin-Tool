@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { canSaveToVault, draftToCharacter } from '../generators/to-character';
-import { entityFromDraft, type MissionExtras } from '../generators/to-entity';
-import { NO_REWARDS, recommendedGradeLine, rollRewards } from '../generators/rewards';
+import { entityFromDraft, type BountyExtras, type MissionExtras } from '../generators/to-entity';
+import { NO_REWARDS, recommendedGradeLine, rollBountyPurse, rollRewards } from '../generators/rewards';
 import type { RolledRewards } from '../generators/rewards';
 import { bandToCount, findPreset } from '../domain/difficulty';
 import { gradeLabel } from '../domain/grades';
@@ -211,6 +211,17 @@ export function useGenerator(specs: readonly GeneratorSpec[]) {
   );
 
   const isMission = spec.kind === 'mission';
+  const isBounty = spec.kind === 'bounty';
+
+  // The posting fields a bounty carries that no table rolls. Free text throughout — the
+  // server's real options for the first three are not written down anywhere (see
+  // `domain/bounty.ts`), and the purse is rolled from its own economy, not the mission tiers.
+  const [bountyTarget, setBountyTarget] = useState('');
+  const [targetGrade, setTargetGrade] = useState<GradeId>('grade-1');
+  const [conspicuousity, setConspicuousity] = useState('Public');
+  const [bountyState, setBountyState] = useState('Dead');
+  const [pings, setPings] = useState('');
+  const [purse, setPurse] = useState('');
 
   // The chosen difficulty follows the setting until the setting itself changes, so a new
   // session starts where Settings says and an in-session choice is not overwritten by a render.
@@ -381,6 +392,41 @@ export function useGenerator(specs: readonly GeneratorSpec[]) {
    * Sorcerers and curse users become vault characters; everything else becomes a typed saved
    * entity in its own collection.
    */
+  /**
+   * A fresh roll gets a fresh purse; a hand-typed one survives until the next roll.
+   *
+   * Keyed on the seed and the threat grade, which are the only two things the purse derives
+   * from. Same reasoning as switching a mission's difficulty rewriting its reward buckets:
+   * the derived part follows the roll, and anything typed over it is the author's until they
+   * roll again.
+   */
+  // `draft` is null until the first roll, which is also when there is nothing to price.
+  const draftGrade = draft?.grade;
+  const draftSeed = draft?.seed;
+  useEffect(() => {
+    if (!isBounty || !draftGrade || !draftSeed) return;
+    setPurse(rollBountyPurse(draftGrade, draftSeed));
+    // The target's ranking follows the roll too, so a fresh posting reads consistently and
+    // the "despite the target's ranking" line stays quiet until somebody creates the gap on
+    // purpose. Same default the parser applies to a posting that names only one grade.
+    setTargetGrade(draftGrade);
+  }, [isBounty, draftGrade, draftSeed]);
+
+  const bountyExtras: BountyExtras = useMemo(
+    () =>
+      isBounty
+        ? {
+            targetGrade,
+            target: bountyTarget,
+            conspicuousity,
+            state: bountyState,
+            pings: pings.split('\n').map((line) => line.trim()).filter(Boolean),
+            rewards: purse.split('\n').map((line) => line.trim()).filter(Boolean),
+          }
+        : {},
+    [isBounty, targetGrade, bountyTarget, conspicuousity, bountyState, pings, purse],
+  );
+
   const missionExtras: MissionExtras = useMemo(
     () =>
       isMission
@@ -421,7 +467,7 @@ export function useGenerator(specs: readonly GeneratorSpec[]) {
         return;
       }
 
-      const entity = entityFromDraft(draft, meta, children, missionExtras);
+      const entity = entityFromDraft(draft, meta, children, missionExtras, bountyExtras);
       if (!entity) {
         setError(`Nothing to save for a ${draft.kind} draft.`);
         return;
@@ -432,7 +478,7 @@ export function useGenerator(specs: readonly GeneratorSpec[]) {
     } catch (cause) {
       setError(errorText(cause));
     }
-  }, [draft, children, folder, minRole, image, missionExtras, refreshExisting]);
+  }, [draft, children, folder, minRole, image, missionExtras, bountyExtras, refreshExisting]);
 
   /**
    * Saved records this draft closely resembles.
@@ -443,9 +489,9 @@ export function useGenerator(specs: readonly GeneratorSpec[]) {
    */
   const similar: readonly SimilarRecord[] = useMemo(() => {
     if (!draft || existing.length === 0) return [];
-    const candidate = entityFromDraft(draft, { id: 'candidate', now: '' }, children, missionExtras);
+    const candidate = entityFromDraft(draft, { id: 'candidate', now: '' }, children, missionExtras, bountyExtras);
     return candidate ? findSimilar(candidate, existing) : [];
-  }, [draft, children, existing, missionExtras]);
+  }, [draft, children, existing, missionExtras, bountyExtras]);
 
   /**
    * The record as it would be saved, for the export preview.
@@ -457,9 +503,9 @@ export function useGenerator(specs: readonly GeneratorSpec[]) {
   const previewEntity = useMemo(
     () =>
       draft
-        ? entityFromDraft(draft, { id: 'preview', now: '' }, children, missionExtras)
+        ? entityFromDraft(draft, { id: 'preview', now: '' }, children, missionExtras, bountyExtras)
         : null,
-    [draft, children, missionExtras],
+    [draft, children, missionExtras, bountyExtras],
   );
 
   const revealTables = useCallback(async () => {
@@ -509,6 +555,19 @@ export function useGenerator(specs: readonly GeneratorSpec[]) {
     image,
     setImage,
     isMission,
+    isBounty,
+    bountyTarget,
+    setBountyTarget,
+    targetGrade,
+    setTargetGrade,
+    conspicuousity,
+    setConspicuousity,
+    bountyState,
+    setBountyState,
+    pings,
+    setPings,
+    purse,
+    setPurse,
     difficulty,
     difficultyId,
     setDifficultyId: chooseDifficulty,

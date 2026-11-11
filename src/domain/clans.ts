@@ -192,6 +192,8 @@ export function masamiSeed(id: string, now: string): Clan {
       {
         id: 'gods-chosen',
         name: 'God’s Chosen',
+        // Unticked: the seed carries only what the clan document says, and it does not say this.
+        usesTraitSlot: false,
         effects: [
           up('+1 Grade CE Efficiency'),
           other('Schizophrenia — a direct connection to God, played as hallucination'),
@@ -323,6 +325,23 @@ export function mutationsFor(clans: readonly Clan[], clanName: string): readonly
  * must not quietly empty somebody's sheet, and a visible unknown is something Dan can fix.
  * Same reasoning as a dangling cross-link showing its stored name (§9).
  */
+/**
+ * The mutations this character carries that also cost a trait slot.
+ *
+ * Computed, never stored — the same bargain the members roster and backlinks make. Returns the
+ * mutations themselves so a caller can both count them and name them on screen.
+ */
+export function slotTakingMutations(
+  clans: readonly Clan[],
+  clanName: string,
+  ids: readonly string[],
+): readonly Mutation[] {
+  const known = mutationsFor(clans, clanName);
+  return ids
+    .map((id) => known.find((mutation) => mutation.id === id))
+    .filter((mutation): mutation is Mutation => Boolean(mutation?.usesTraitSlot));
+}
+
 export function describeMutations(
   clans: readonly Clan[],
   clanName: string,

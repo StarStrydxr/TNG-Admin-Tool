@@ -86,6 +86,9 @@ Strength: {{strength}}
 Speed: {{speed}}
 Fortitude: {{fortitude}}
 
+{{#anyBlackFlashes}}«𝐁𝐥𝐚𝐜𝐤 𝐅𝐥𝐚𝐬𝐡»
+{{/anyBlackFlashes}}{{#blackFlashes}}- {{.}}
+{{/blackFlashes}}
 {{#anyMissions}}«𝐌𝐢𝐬𝐬𝐢𝐨𝐧 𝐋𝐨𝐠»
 {{/anyMissions}}{{#missions}}- {{.}}
 {{/missions}}

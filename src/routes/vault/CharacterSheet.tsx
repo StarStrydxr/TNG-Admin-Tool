@@ -6,7 +6,9 @@ import { ExportFormatPicker } from '../../components/ExportFormatPicker';
 import { UndoRedo } from '../../components/form/UndoRedo';
 import { useExport } from '../../hooks/useExport';
 import { usePrint } from '../../hooks/usePrint';
+import { BlackFlashSection } from './sections/BlackFlashSection';
 import { BuildSection } from './sections/BuildSection';
+import { CardSection } from './sections/CardSection';
 import { IdentitySection } from './sections/IdentitySection';
 import { LinksSection } from './sections/LinksSection';
 import { MissionLogSection } from './sections/MissionLogSection';
@@ -149,6 +151,8 @@ export function CharacterSheet({
         <StatsSection character={character} onChange={onChange} />
         <BuildSection character={character} onChange={onChange} />
         <TechniqueSection character={character} onChange={onChange} />
+        <BlackFlashSection character={character} onChange={onChange} />
+        <CardSection subject={character} />
         <LinksSection character={character} onChange={onChange} />
         <MissionLogSection character={character} onChange={onChange} />
       </div>

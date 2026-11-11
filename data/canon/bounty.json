@@ -1,0 +1,610 @@
+{
+  "bounty.crime": [
+    {
+      "id": "teacher-killing",
+      "value": "Conspiracy against Jujutsu Society, and the death of a teacher at Jujutsu Academy",
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "semi-special-grade",
+        "special-grade",
+        "special-grade",
+        "disaster-grade",
+        "semi-calamity-grade",
+        "calamity-grade",
+        "demi-apocalypse-grade",
+        "semi-apocalypse-grade",
+        "apocalypse-grade",
+        "semi-special-grade"
+      ]
+    },
+    {
+      "id": "conspiracy",
+      "value": "Conspiracy against Jujutsu Society",
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "semi-special-grade",
+        "special-grade",
+        "special-grade",
+        "disaster-grade",
+        "semi-calamity-grade",
+        "calamity-grade",
+        "demi-apocalypse-grade",
+        "semi-apocalypse-grade",
+        "apocalypse-grade",
+        "semi-special-grade"
+      ]
+    },
+    {
+      "id": "curse-collaboration",
+      "value": "Knowingly working alongside cursed spirits against sorcerers",
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "semi-special-grade",
+        "special-grade",
+        "special-grade",
+        "disaster-grade",
+        "semi-calamity-grade",
+        "calamity-grade",
+        "demi-apocalypse-grade",
+        "semi-apocalypse-grade",
+        "apocalypse-grade",
+        "semi-special-grade"
+      ]
+    },
+    {
+      "id": "mass-civilian",
+      "value": "The deaths of civilians in numbers the veil could not cover"
+    },
+    {
+      "id": "veil-breaking",
+      "value": "Tearing veils down over populated ground, repeatedly and on purpose"
+    },
+    {
+      "id": "binding-theft",
+      "value": "Theft of a sealed cursed object from a clan vault",
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "semi-special-grade",
+        "special-grade",
+        "special-grade",
+        "disaster-grade",
+        "semi-calamity-grade",
+        "calamity-grade",
+        "demi-apocalypse-grade",
+        "semi-apocalypse-grade",
+        "apocalypse-grade",
+        "semi-special-grade"
+      ]
+    },
+    {
+      "id": "clan-slaughter",
+      "value": "The slaughter of a branch family, in their own compound",
+      "grades": [
+        "special-grade",
+        "disaster-grade",
+        "semi-calamity-grade",
+        "calamity-grade",
+        "demi-apocalypse-grade",
+        "semi-apocalypse-grade",
+        "apocalypse-grade",
+        "semi-special-grade"
+      ]
+    },
+    {
+      "id": "student-abduction",
+      "value": "Abducting students from a Jujutsu Academy campus",
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "semi-special-grade",
+        "special-grade",
+        "special-grade",
+        "disaster-grade",
+        "semi-calamity-grade",
+        "calamity-grade",
+        "demi-apocalypse-grade",
+        "semi-apocalypse-grade",
+        "apocalypse-grade",
+        "semi-special-grade"
+      ]
+    },
+    {
+      "id": "tool-trafficking",
+      "value": "Trafficking cursed tools to people with no business holding them"
+    },
+    {
+      "id": "finger-bearing",
+      "value": "Carrying a sealed object of a Special Grade and refusing to surrender it",
+      "grades": [
+        "special-grade",
+        "disaster-grade",
+        "semi-calamity-grade",
+        "calamity-grade",
+        "demi-apocalypse-grade",
+        "semi-apocalypse-grade",
+        "apocalypse-grade",
+        "semi-special-grade"
+      ]
+    },
+    {
+      "id": "executions",
+      "value": "Carrying out executions in the name of a clan that disowned them",
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "semi-special-grade",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "corpse-theft",
+      "value": "Taking sorcerer corpses from the morgue before they could be burned"
+    },
+    {
+      "id": "desertion",
+      "value": "Desertion from an active mission, leaving a squad to be killed",
+      "grades": [
+        "grade-4",
+        "grade-3",
+        "grade-semi-2",
+        "grade-2",
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "semi-special-grade",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "forbidden-research",
+      "value": "Research into the binding of human beings as shikigami",
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "semi-special-grade",
+        "special-grade",
+        "special-grade",
+        "disaster-grade",
+        "semi-calamity-grade",
+        "calamity-grade",
+        "demi-apocalypse-grade",
+        "semi-apocalypse-grade",
+        "apocalypse-grade",
+        "semi-special-grade"
+      ]
+    },
+    {
+      "id": "unregistered-domain",
+      "value": "Opening a Domain Expansion inside a city, without clearance",
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "semi-special-grade",
+        "special-grade",
+        "special-grade",
+        "disaster-grade",
+        "semi-calamity-grade",
+        "calamity-grade",
+        "demi-apocalypse-grade",
+        "semi-apocalypse-grade",
+        "apocalypse-grade",
+        "semi-special-grade"
+      ]
+    },
+    {
+      "id": "sorcerer-hunting",
+      "value": "Hunting registered sorcerers for the technique in them",
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "semi-special-grade",
+        "special-grade",
+        "special-grade",
+        "disaster-grade",
+        "semi-calamity-grade",
+        "calamity-grade",
+        "demi-apocalypse-grade",
+        "semi-apocalypse-grade",
+        "apocalypse-grade",
+        "semi-special-grade"
+      ]
+    },
+    {
+      "id": "impersonation",
+      "value": "Impersonating an Academy official to gain access to a restricted site",
+      "grades": [
+        "grade-4",
+        "grade-3",
+        "grade-semi-2",
+        "grade-2",
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "semi-special-grade",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "extortion",
+      "value": "Extorting a client under threat of letting a curse finish its work",
+      "grades": [
+        "grade-4",
+        "grade-3",
+        "grade-semi-2",
+        "grade-2",
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "semi-special-grade",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "vow-breaking",
+      "value": "Breaking a binding vow witnessed by three clan heads",
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "semi-special-grade",
+        "special-grade",
+        "special-grade",
+        "disaster-grade",
+        "semi-calamity-grade",
+        "calamity-grade",
+        "demi-apocalypse-grade",
+        "semi-apocalypse-grade",
+        "apocalypse-grade",
+        "semi-special-grade"
+      ]
+    },
+    {
+      "id": "archive-burning",
+      "value": "Burning the regional registry, and everything in it",
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "semi-special-grade",
+        "special-grade"
+      ]
+    },
+    {
+      "id": "blackmail",
+      "value": "Blackmailing half a prefecture's sorcerers with what they did on missions"
+    },
+    {
+      "id": "curse-breeding",
+      "value": "Deliberately cultivating curses in a residential district",
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "semi-special-grade",
+        "special-grade",
+        "special-grade",
+        "disaster-grade",
+        "semi-calamity-grade",
+        "calamity-grade",
+        "demi-apocalypse-grade",
+        "semi-apocalypse-grade",
+        "apocalypse-grade",
+        "semi-special-grade"
+      ]
+    },
+    {
+      "id": "sealing-a-colleague",
+      "value": "Sealing another sorcerer inside an object and refusing to say which",
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "semi-special-grade",
+        "special-grade",
+        "special-grade",
+        "disaster-grade",
+        "semi-calamity-grade",
+        "calamity-grade",
+        "demi-apocalypse-grade",
+        "semi-apocalypse-grade",
+        "apocalypse-grade",
+        "semi-special-grade"
+      ]
+    },
+    {
+      "id": "ritual-murder",
+      "value": "Ritual murder, performed to a pattern nobody has placed yet"
+    }
+  ],
+  "bounty.briefing": [
+    {
+      "id": "expected-curses",
+      "value": "They have previously worked with curses, and are expected to utilise them for their own benefit in combat."
+    },
+    {
+      "id": "no-arrest",
+      "value": "They are to be executed immediately; arrest is not an option. The Academy thanks you for your assistance in containing this threat, and will reward you accordingly."
+    },
+    {
+      "id": "handout",
+      "value": "Full information on the technique and its functionality can be examined in a hand-out manual given to anyone who wishes to take this bounty."
+    },
+    {
+      "id": "public-resources",
+      "value": "Additional public resources are posted as warning for those who may accidentally cross their path."
+    },
+    {
+      "id": "last-seen",
+      "value": "Last seen moving west along the old line, on foot, unhurried. Nobody who saw them has been able to say why they did not run."
+    },
+    {
+      "id": "no-negotiation",
+      "value": "Do not attempt negotiation. Three people have tried and the Academy has stopped counting what it cost them."
+    },
+    {
+      "id": "squad-recommended",
+      "value": "A squad is recommended. A squad has been recommended twice before, and twice the recommendation was ignored."
+    },
+    {
+      "id": "remains",
+      "value": "What remains of the previous team is available for examination, with the appropriate clearance."
+    },
+    {
+      "id": "quiet",
+      "value": "Keep this quiet. A public panic in that district would do more damage than the target has managed so far."
+    },
+    {
+      "id": "they-are-waiting",
+      "value": "They have made no attempt to hide, and the Academy does not believe this is confidence. It believes they are waiting for something."
+    },
+    {
+      "id": "bring-proof",
+      "value": "Proof is required. A claim without it will not be paid, whatever the claimant's rank."
+    },
+    {
+      "id": "veil-provided",
+      "value": "A veil will be maintained over the area for the duration. Do not rely on it holding."
+    },
+    {
+      "id": "civilian-cover",
+      "value": "They are living under a civilian identity and have neighbours who like them. Conduct yourself accordingly."
+    },
+    {
+      "id": "former-staff",
+      "value": "They were, until recently, staff. Several people taking this bounty will have been taught by them."
+    },
+    {
+      "id": "do-not-engage-alone",
+      "value": "Grade restrictions on this posting are not advisory. They were written after the last time they were treated as advisory."
+    },
+    {
+      "id": "containment-first",
+      "value": "Containment is preferred to a kill, if containment is genuinely available. The Academy does not expect it to be."
+    }
+  ],
+  "bounty.warning": [
+    {
+      "id": "ranked-above",
+      "value": "Despite the target's ranking, the threat they present is assessed a full grade higher. Please be careful."
+    },
+    {
+      "id": "domain",
+      "value": "They hold a Domain Expansion and have used it on open ground.",
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "semi-special-grade",
+        "special-grade",
+        "special-grade",
+        "disaster-grade",
+        "semi-calamity-grade",
+        "calamity-grade",
+        "demi-apocalypse-grade",
+        "semi-apocalypse-grade",
+        "apocalypse-grade",
+        "semi-special-grade"
+      ]
+    },
+    {
+      "id": "rct",
+      "value": "Reverse Cursed Technique is confirmed. Wounds that would stop anyone else will not stop them.",
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "semi-special-grade",
+        "special-grade",
+        "special-grade",
+        "disaster-grade",
+        "semi-calamity-grade",
+        "calamity-grade",
+        "demi-apocalypse-grade",
+        "semi-apocalypse-grade",
+        "apocalypse-grade",
+        "semi-special-grade"
+      ]
+    },
+    {
+      "id": "shikigami",
+      "value": "They field shikigami, and the ones seen so far are not thought to be all of them."
+    },
+    {
+      "id": "black-flash",
+      "value": "Black Flash has been observed more than once, which rules out luck."
+    },
+    {
+      "id": "tool-user",
+      "value": "They are armed with at least one cursed tool taken from a clan vault."
+    },
+    {
+      "id": "simple-domain",
+      "value": "Simple Domain, and the discipline to use it rather than escalate."
+    },
+    {
+      "id": "reads-technique",
+      "value": "They work out an opponent's technique inside a single exchange. Plan for the second exchange, not the first."
+    },
+    {
+      "id": "no-tell",
+      "value": "Their technique has no visible tell. Nobody who has fought them agrees on what it does."
+    },
+    {
+      "id": "patient",
+      "value": "They do not pursue. They wait, and they are extremely good at waiting."
+    },
+    {
+      "id": "binding-vow",
+      "value": "A binding vow is suspected, which would explain the inconsistencies in the accounts.",
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "semi-special-grade",
+        "special-grade",
+        "special-grade",
+        "disaster-grade",
+        "semi-calamity-grade",
+        "calamity-grade",
+        "demi-apocalypse-grade",
+        "semi-apocalypse-grade",
+        "apocalypse-grade",
+        "semi-special-grade"
+      ]
+    },
+    {
+      "id": "heavenly-restriction",
+      "value": "Heavenly Restriction. No cursed energy at all, and it has not slowed them down.",
+      "grades": [
+        "grade-2",
+        "grade-semi-1",
+        "grade-1",
+        "semi-special-grade",
+        "special-grade",
+        "special-grade",
+        "disaster-grade",
+        "semi-calamity-grade",
+        "calamity-grade",
+        "demi-apocalypse-grade",
+        "semi-apocalypse-grade",
+        "apocalypse-grade",
+        "semi-special-grade"
+      ]
+    },
+    {
+      "id": "maximum",
+      "value": "A Maximum Technique has been used in the field and the ground has not recovered.",
+      "grades": [
+        "special-grade",
+        "disaster-grade",
+        "semi-calamity-grade",
+        "calamity-grade",
+        "demi-apocalypse-grade",
+        "semi-apocalypse-grade",
+        "apocalypse-grade",
+        "semi-special-grade"
+      ]
+    },
+    {
+      "id": "crowds",
+      "value": "They are most dangerous in a crowd, and they know it."
+    }
+  ],
+  "bounty.objective": [
+    {
+      "id": "kill",
+      "value": "Kill them. No exceptions."
+    },
+    {
+      "id": "kill-or-contain",
+      "value": "Kill or contain. Either is acceptable; neither is optional."
+    },
+    {
+      "id": "recover-object",
+      "value": "Recover what they are carrying, intact."
+    },
+    {
+      "id": "confirm-identity",
+      "value": "Confirm the identity before anything else. The Academy has been wrong once already."
+    },
+    {
+      "id": "recover-remains",
+      "value": "Recover the remains for examination."
+    },
+    {
+      "id": "no-witnesses",
+      "value": "Keep it off civilian cameras. The veil team cannot cover what gets uploaded."
+    },
+    {
+      "id": "find-the-second",
+      "value": "Establish who they have been working with, and bring that name back."
+    },
+    {
+      "id": "protect-site",
+      "value": "Do not let them reach the site. Everything else is secondary."
+    },
+    {
+      "id": "capture-alive",
+      "value": "Take them alive. The Academy wants to ask them something."
+    },
+    {
+      "id": "destroy-research",
+      "value": "Destroy the research, wherever they have been keeping it."
+    },
+    {
+      "id": "locate",
+      "value": "Locate them. Engagement is not authorised on this posting."
+    },
+    {
+      "id": "rescue",
+      "value": "Recover anyone they are still holding, first."
+    }
+  ],
+  "bounty.issuer": [
+    {
+      "id": "academy-tokyo",
+      "value": "Jujutsu Academy, Tokyo"
+    },
+    {
+      "id": "academy-kyoto",
+      "value": "Jujutsu Academy, Kyoto"
+    },
+    {
+      "id": "higher-ups",
+      "value": "The Higher-Ups"
+    },
+    {
+      "id": "elders",
+      "value": "The Council of Elders"
+    },
+    {
+      "id": "windward",
+      "value": "The regional administration office"
+    },
+    {
+      "id": "clan-head",
+      "value": "A clan head, through the Academy"
+    },
+    {
+      "id": "anonymous",
+      "value": "Anonymous, verified by the Academy"
+    },
+    {
+      "id": "veil-office",
+      "value": "The Veil Maintenance Office"
+    }
+  ]
+}

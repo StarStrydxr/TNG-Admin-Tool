@@ -64,6 +64,7 @@ fn collection_folder(kind: &str) -> Result<&'static str, String> {
         "shikigami" => Ok("shikigami"),
         "lore" => Ok("lore"),
         "clans" => Ok("clans"),
+        "bounties" => Ok("bounties"),
         other => Err(format!("Unknown vault collection: {other}")),
     }
 }

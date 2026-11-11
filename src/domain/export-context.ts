@@ -17,6 +17,7 @@ import {
 } from './character';
 import { ENTITY_LABELS, entityDisplayName, type Clan, type SavedEntity } from './entities';
 import { assetLine, figureLine, mutationLine, seatLine } from './entities-display';
+import { threatNote } from './bounty';
 import { gradeAbbrev, gradeLabel, formatStatLong, formatStatShort } from './grades';
 import {
   CE_RESERVES_LABELS,
@@ -24,12 +25,39 @@ import {
   describeEffectiveReserves,
   effectiveReserves,
 } from './stats';
-import { missionLogLine } from './character';
+import { blackFlashTotal, missionLogLine } from './character';
+import { blackFlashLogLine } from './black-flash';
 import { entityGrade } from './entities';
 import { describeClanBonus, describeMutations } from './clans';
 import { ROLE_LABELS } from './roles';
 import { isCharacter } from './sheet';
 import type { TemplateContext, TemplateValue } from './template';
+
+/**
+ * The picture, in the three forms a template might want it.
+ *
+ * - `image` — the bare file name, which is all the record stores.
+ * - `imagePath` — a relative path that resolves from where the markdown is written. Exports
+ *   land at `exports/<collection>/<folder>/<name>.md` and pictures at `images/<file>`, so the
+ *   climb is two levels plus one per folder segment. ⚠️ This only resolves for the **default**
+ *   export folder; pointed at `Settings.exportDirectory` somewhere else, the picture is not
+ *   beside it and the link will dangle. That is a property of exporting to an arbitrary
+ *   directory, not something a cleverer path would fix.
+ * - `imageEmbed` — an Obsidian embed, `![[file]]`. Obsidian resolves those by searching the
+ *   vault, so it works wherever the note ends up, which is why the Obsidian-facing template
+ *   prefers it.
+ *
+ * All three are empty when there is no picture, so `{{#imagePath}}` renders nothing.
+ */
+function imageKeys(file: string, folder: string): Record<string, TemplateValue> {
+  if (!file) return { imagePath: '', imageEmbed: '' };
+
+  const depth = 2 + folder.split('/').filter(Boolean).length;
+  return {
+    imagePath: `${'../'.repeat(depth)}images/${file}`,
+    imageEmbed: `![[${file}]]`,
+  };
+}
 
 /** `ceOutput` and friends, matching the stat ids so a template reads like the sheet. */
 function statKeys(character: Character): Record<string, string> {
@@ -66,6 +94,7 @@ function common(
     folder: isChar ? '' : record.folder,
     visibility: isChar ? '' : ROLE_LABELS[record.minRole],
     image: isChar ? record.portrait : record.image,
+    ...imageKeys(isChar ? record.portrait : record.image, isChar ? '' : record.folder),
     notes: record.notes,
     createdAt: record.createdAt.slice(0, 10),
     updatedAt: record.updatedAt.slice(0, 10),
@@ -114,6 +143,16 @@ export function entityExportContext(entity: SavedEntity): TemplateContext {
   // A technique's household is objects, so it needs flattening by hand.
   if (entity.kind === 'technique') {
     context['shikigami'] = entity.shikigami.map((s) => pair(s.name || 'Unnamed', s.form));
+  }
+
+  // ⚠️ `targetGrade` is a GradeId, and `ownFields` exposes it raw — so without this the
+  // posting reads "special-grade" where it should read "Special Grade". Any grade-valued
+  // field needs the same treatment; only `grade` itself is handled by `common()`.
+  if (entity.kind === 'bounty') {
+    context['targetGrade'] = gradeLabel(entity.targetGrade);
+    context['targetGradeAbbrev'] = gradeAbbrev(entity.targetGrade);
+    // The sentence about the gap, written once here rather than assembled in two templates.
+    context['threatNote'] = threatNote(entity.grade, entity.targetGrade);
   }
 
   // A clan's structure is objects all the way down, so `ownFields` reaches none of it. The
@@ -204,7 +243,8 @@ export function characterExportContext(
         ? ''
         : RCT_LABELS[character.reverseCursedTechnique],
     simpleDomain: character.simpleDomain ? 'Yes' : '',
-    blackFlash: character.blackFlashCount > 0 ? String(character.blackFlashCount) : '',
+    blackFlash: blackFlashTotal(character) > 0 ? String(blackFlashTotal(character)) : '',
+    blackFlashes: character.blackFlashes.map(blackFlashLogLine),
     heavenlyRestriction: character.heavenlyRestriction,
 
     cursedTools: character.cursedTools.map((t) => pair(t.name, t.grade)),

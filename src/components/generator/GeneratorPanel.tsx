@@ -17,6 +17,7 @@ import { useGeneratorKeys } from '../../hooks/useGeneratorKeys';
 import { DiscordPreview } from '../DiscordPreview';
 import { DraftFieldRow } from './DraftFieldRow';
 import { LockButton } from './LockButton';
+import { BountyPosting } from './BountyPosting';
 import { MissionPosting } from './MissionPosting';
 
 const BUTTON =
@@ -309,6 +310,24 @@ export function GeneratorPanel({ specs, renderExtra }: GeneratorPanelProps) {
               />
             ))}
           </div>
+
+          {gen.isBounty && gen.draft ? (
+            <BountyPosting
+              grade={gen.draft.grade}
+              target={gen.bountyTarget}
+              onTargetChange={gen.setBountyTarget}
+              targetGrade={gen.targetGrade}
+              onTargetGradeChange={gen.setTargetGrade}
+              conspicuousity={gen.conspicuousity}
+              onConspicuousityChange={gen.setConspicuousity}
+              state={gen.bountyState}
+              onStateChange={gen.setBountyState}
+              pings={gen.pings}
+              onPingsChange={gen.setPings}
+              rewards={gen.purse}
+              onRewardsChange={gen.setPurse}
+            />
+          ) : null}
 
           {gen.isMission ? (
             <MissionPosting

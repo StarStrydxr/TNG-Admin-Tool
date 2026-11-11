@@ -5,6 +5,12 @@
  * the app unreadable or refuse to start. Anything unrecognised falls back to the default.
  */
 
+import {
+  CARD_KINDS,
+  defaultCardStyles,
+  type CardKind,
+  type CardStyle,
+} from './card-style';
 import { isHexColor } from './color';
 import {
   CHEST_TIERS,
@@ -84,6 +90,36 @@ function parseSeed(value: unknown, fallback: ThemeSeed): ThemeSeed {
     accent: asColor(raw['accent'], fallback.accent),
     danger: asColor(raw['danger'], fallback.danger),
   };
+}
+
+/**
+ * One graphic kind's style, merged onto the default.
+ *
+ * Partial by design, like every other parser here: a config.json naming only the mission
+ * palette keeps the shipped defaults for character and clan, and a seed missing two of its six
+ * colours keeps those two. A font slot is free text — it may name a built-in choice or a
+ * family installed on this machine — so it is taken as written and resolved at render time.
+ */
+function parseCardStyle(value: unknown, fallback: CardStyle): CardStyle {
+  const raw = asRecord(value);
+  const fonts = asRecord(raw['fonts']);
+  return {
+    followTheme:
+      typeof raw['followTheme'] === 'boolean' ? raw['followTheme'] : fallback.followTheme,
+    seed: parseSeed(raw['seed'], fallback.seed),
+    fonts: {
+      display: str(fonts['display']) || fallback.fonts.display,
+      body: str(fonts['body']) || fallback.fonts.body,
+    },
+  };
+}
+
+function parseCardStyles(value: unknown): Record<CardKind, CardStyle> {
+  const raw = asRecord(value);
+  const defaults = defaultCardStyles();
+  const out = {} as Record<CardKind, CardStyle>;
+  for (const kind of CARD_KINDS) out[kind] = parseCardStyle(raw[kind], defaults[kind]);
+  return out;
 }
 
 function parseTextScale(value: unknown): TextScale {
@@ -251,5 +287,6 @@ export function parseSettings(value: unknown): Settings {
     hostRewards: parseHostRewards(raw['hostRewards']),
     defaultDifficulty: str(raw['defaultDifficulty']) || defaults.defaultDifficulty,
     defaultHosts: str(raw['defaultHosts']),
+    cardStyles: parseCardStyles(raw['cardStyles']),
   };
 }

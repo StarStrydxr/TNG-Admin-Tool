@@ -1,6 +1,6 @@
 import { modifier } from '../../domain/clans';
 import type { Clan, ClanModifier, Mutation } from '../../domain/entities';
-import { AreaCell, Cell, Row, RowList } from './RowList';
+import { AreaCell, LinesArea, Cell, Row, RowList } from './RowList';
 
 interface EditorProps {
   readonly clan: Clan;
@@ -88,7 +88,14 @@ export function MutationsEditor({ clan, onChange }: EditorProps) {
         onChange({
           mutations: [
             ...clan.mutations,
-            { id: crypto.randomUUID(), name: '', effects: [], tpCost: '', note: '' },
+            {
+              id: crypto.randomUUID(),
+              name: '',
+              effects: [],
+              tpCost: '',
+              usesTraitSlot: false,
+              note: '',
+            },
           ],
         })
       }
@@ -122,22 +129,34 @@ export function MutationsEditor({ clan, onChange }: EditorProps) {
           </div>
 
           <div className="mt-2">
-            <AreaCell
+            <LinesArea
               label="Effects — one per line"
-              value={mutation.effects.map((effect) => effect.text).join('\n')}
+              lines={mutation.effects.map((effect) => effect.text)}
               rows={2}
               placeholder={'+1 Grade CE Efficiency\nA direct connection to God'}
-              onChange={(text) =>
-                patch(mutation.id, {
-                  effects: text
-                    .split('\n')
-                    .map((line) => line.trim())
-                    .filter(Boolean)
-                    .map(modifier),
-                })
-              }
+              onChange={(lines) => patch(mutation.id, { effects: lines.map(modifier) })}
             />
           </div>
+
+          <label className="mt-2 flex items-start gap-2">
+            <input
+              type="checkbox"
+              className="mt-0.5"
+              checked={mutation.usesTraitSlot}
+              onChange={(event) =>
+                patch(mutation.id, { usesTraitSlot: event.target.checked })
+              }
+            />
+            <span>
+              <span className="text-xs text-ash-300">Takes a trait slot</span>
+              <span className="mt-0.5 block text-[11px] leading-relaxed text-ash-500">
+                Counts against the trait slots of every character carrying this mutation. It
+                changes no Class and writes nothing into their trait list — the cost is worked
+                out where it is shown, so a trait you also type in by hand is never counted
+                twice.
+              </span>
+            </span>
+          </label>
 
           <div className="mt-2">
             <AreaCell

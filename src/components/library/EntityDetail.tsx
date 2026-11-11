@@ -13,6 +13,7 @@ import { useExport } from '../../hooks/useExport';
 import { usePrint } from '../../hooks/usePrint';
 import { Insignia } from '../Insignia';
 import { ImagePicker } from '../form/ImagePicker';
+import { CardSection } from '../../routes/vault/sections/CardSection';
 import { DiscordPreview } from '../DiscordPreview';
 import { LinksEditor } from './LinksEditor';
 import type { EntityLink, LinkKind } from '../../domain/links';
@@ -228,6 +229,12 @@ export function EntityDetail({ entity, viewer, onSave, onDelete, onOpen }: Entit
           the folder it sits in wins.
         </p>
       </section>
+
+      {/* Only the two kinds that have a layout. The rest fall back to print and markdown,
+          the same way `templateFor` falls back rather than writing an empty file. */}
+      {entity.kind === 'clan' || entity.kind === 'mission' ? (
+        <CardSection subject={entity} />
+      ) : null}
 
       <LinksEditor
         selfId={entity.id}

@@ -120,6 +120,18 @@ fn export_write(
 }
 
 #[tauri::command]
+fn card_write(
+    app: AppHandle,
+    folder: String,
+    stem: String,
+    ext: String,
+    bytes: Vec<u8>,
+    destination: String,
+) -> Result<String, String> {
+    exports::write_card(&app, &folder, &stem, &ext, bytes, &destination)
+}
+
+#[tauri::command]
 fn exports_reveal(app: AppHandle, destination: String) -> Result<(), String> {
     exports::reveal_exports(&app, &destination)
 }
@@ -187,6 +199,7 @@ pub fn run() {
             template_delete,
             templates_reveal,
             export_write,
+            card_write,
             exports_reveal,
             notes_read,
             backup_create,

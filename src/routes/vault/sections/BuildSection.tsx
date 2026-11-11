@@ -1,3 +1,5 @@
+import { useClans } from '../../../hooks/useClans';
+import { slotTakingMutations } from '../../../domain/clans';
 import { SectionCard } from '../../../components/SectionCard';
 import { ListEditor } from '../../../components/form/ListEditor';
 import { NumberInput, TextInput } from '../../../components/form/fields';
@@ -32,7 +34,12 @@ function SlotBadge({ usage }: { readonly usage: SlotUsage }) {
 }
 
 export function BuildSection({ character, onChange }: SectionProps) {
-  const traits = traitSlotUsage(character);
+  // Mutations that tick "takes a trait slot" spend one. Resolved against the loaded clans and
+  // counted here — nothing is written into `character.traits`, so a trait Dan also types in by
+  // hand is never counted twice (CLAUDE.md §4, the clan-bonus rule).
+  const { clans } = useClans();
+  const fromMutations = slotTakingMutations(clans, character.clan, character.mutations);
+  const traits = traitSlotUsage(character, fromMutations.length);
   const arts = artSlotUsage(character);
   const over = traits.overBy > 0 || arts.overBy > 0;
 
@@ -54,6 +61,17 @@ export function BuildSection({ character, onChange }: SectionProps) {
           onChange={(artSlots) => onChange({ artSlots })}
         />
       </div>
+
+      {fromMutations.length > 0 ? (
+        <p className="mt-3 rounded-md border border-cursed-600/40 bg-cursed-600/5 px-3 py-2 text-xs leading-relaxed text-ash-400">
+          {fromMutations.length === 1 ? 'One mutation takes' : `${fromMutations.length} mutations take`}{' '}
+          a trait slot:{' '}
+          <span className="text-ash-200">
+            {fromMutations.map((mutation) => mutation.name || 'Unnamed mutation').join(', ')}
+          </span>
+          . Counted in the total above; nothing was added to the list below.
+        </p>
+      ) : null}
 
       {over ? (
         <p className="mt-3 rounded-md border border-blood-500/30 bg-blood-500/10 px-3 py-2 text-xs text-ash-300">

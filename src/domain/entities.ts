@@ -32,7 +32,8 @@ export type EntityKind =
   | 'technique'
   | 'shikigami'
   | 'lore'
-  | 'clan';
+  | 'clan'
+  | 'bounty';
 
 export const ENTITY_KINDS: readonly EntityKind[] = [
   'mission',
@@ -43,6 +44,7 @@ export const ENTITY_KINDS: readonly EntityKind[] = [
   'shikigami',
   'lore',
   'clan',
+  'bounty',
 ];
 
 /** Directory under `vault/` for each kind. Mirrored by the Rust whitelist. */
@@ -55,6 +57,7 @@ export const ENTITY_COLLECTIONS: Record<EntityKind, string> = {
   shikigami: 'shikigami',
   lore: 'lore',
   clan: 'clans',
+  bounty: 'bounties',
 };
 
 export const ENTITY_LABELS: Record<EntityKind, string> = {
@@ -66,6 +69,7 @@ export const ENTITY_LABELS: Record<EntityKind, string> = {
   shikigami: 'Shikigami',
   lore: 'Lore',
   clan: 'Clan',
+  bounty: 'Bounty',
 };
 
 /** Present only on records a generator produced. */
@@ -307,6 +311,16 @@ export interface Mutation {
   readonly effects: readonly ClanModifier[];
   /** Trait Point cost, as the clan document states it. Free text; nothing sums it. */
   readonly tpCost: string;
+  /**
+   * Whether carrying this mutation also spends one of the character's trait slots.
+   *
+   * ⚠️ Slot accounting, not a stat. It changes no Class, and nothing is written into the
+   * character's `traits[]` — a trait the app invented would double-count the moment Dan typed
+   * the same one in by hand, which is exactly what §4 warns about for clan bonuses. The cost
+   * is computed where it is shown and stored nowhere. Additive: clans saved before this parse
+   * with `false`.
+   */
+  readonly usesTraitSlot: boolean;
   readonly note: string;
 }
 
@@ -423,6 +437,44 @@ export interface Clan extends EntityBase {
   readonly treasury: ClanTreasury;
 }
 
+/**
+ * A bounty posting, in the server's own format.
+ *
+ * ⚠️ **Two grades, and they are not the same thing.** `grade` is the threat the bounty is
+ * posted at; `targetGrade` is what the target is actually ranked. Dan's own example posts a
+ * Special Grade sorcerer as a Disaster Grade threat and says so in the text — the gap between
+ * the two is the point, not an inconsistency to flatten.
+ *
+ * `conspicuousity`, `state` and `pings` are free text with suggestions, the same bargain
+ * `clan` and `status` make: the server's real options are not written down anywhere I can
+ * read, and a hardcoded enum would quietly make my guesses load-bearing.
+ */
+export interface Bounty extends EntityBase {
+  readonly kind: 'bounty';
+  /** The threat grade the bounty is posted at. */
+  readonly grade: GradeId;
+  /** What the target is ranked, which may be lower than the threat. */
+  readonly targetGrade: GradeId;
+  /** Who it is on. Free text — a bounty is often on somebody with no record. */
+  readonly target: string;
+  /** Public, Private, Classified… */
+  readonly conspicuousity: string;
+  /** Dead, Alive, Dead or Alive… */
+  readonly state: string;
+  /** Roles to ping, written `@{ Curse User }` in the Discord posting. */
+  readonly pings: readonly string[];
+  /** The charge — what they are wanted for. */
+  readonly crime: string;
+  /** The body of the posting. */
+  readonly briefing: string;
+  /** The line warning what makes them dangerous. */
+  readonly warning: string;
+  readonly objectives: readonly string[];
+  readonly rewards: readonly string[];
+  /** Who posted it. */
+  readonly issuer: string;
+}
+
 export type SavedEntity =
   | Mission
   | Curse
@@ -431,7 +483,8 @@ export type SavedEntity =
   | Technique
   | Shikigami
   | Lore
-  | Clan;
+  | Clan
+  | Bounty;
 
 /**
  * The grade a record carries, or null for one that has none.

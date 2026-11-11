@@ -88,6 +88,38 @@ export const MISSION_SPEC: GeneratorSpec = {
   ],
 };
 
+/**
+ * A bounty posting.
+ *
+ * The **target name is rolled like any other field**, which means it locks like any other
+ * field: roll the whole board when you need a stranger to hunt, or lock the target and re-roll
+ * the posting around somebody real. That was the ask — both, as a toggle — and the existing
+ * lock mechanism already is the toggle, so nothing new was needed to get it.
+ *
+ * The grade this rolls is the **threat grade** the bounty is posted at. The target's own
+ * ranking is a separate field the panel sets, because the gap between the two is the point.
+ */
+export const BOUNTY_SPEC: GeneratorSpec = {
+  kind: 'bounty',
+  label: 'Bounty',
+  blurb: 'A posting on somebody the Academy wants dealt with.',
+  gradeTable: 'shared.grade.sorcerer',
+  fields: [
+    { key: 'familyName', label: 'Family name', tableId: 'npc.name.family', gradeScaled: false },
+    { key: 'givenName', label: 'Given name', tableId: 'npc.name.given', gradeScaled: false },
+    { key: 'crime', label: 'Wanted for', tableId: 'bounty.crime' },
+    { key: 'briefing', label: 'Posting', tableId: 'bounty.briefing' },
+    {
+      key: 'warning',
+      label: 'Warning',
+      tableId: 'bounty.warning',
+      hint: 'What makes them dangerous to whoever takes this.',
+    },
+    { key: 'objectives', label: 'Objectives', tableId: 'bounty.objective', count: [1, 2] },
+    { key: 'issuer', label: 'Issued by', tableId: 'bounty.issuer', gradeScaled: false },
+  ],
+};
+
 export const CURSED_OBJECT_SPEC: GeneratorSpec = {
   kind: 'cursed-object',
   label: 'Cursed object',
@@ -233,6 +265,7 @@ export const ALL_SPECS: readonly GeneratorSpec[] = [
   ...NPC_SPECS,
   ...TECHNIQUE_SPECS,
   MISSION_SPEC,
+  BOUNTY_SPEC,
   CURSED_OBJECT_SPEC,
   CURSED_TOOL_SPEC,
 ];

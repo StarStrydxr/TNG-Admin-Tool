@@ -183,6 +183,49 @@ pub fn write_export(
     Ok(path.to_string_lossy().to_string())
 }
 
+/// The file types a card may be written as.
+///
+/// A short whitelist rather than a sanitiser, for the same reason `images.rs` whitelists the
+/// names it will read back: the extension decides what Explorer hands the file to, and an
+/// extension arriving from the frontend is not a thing to trust just because the frontend is
+/// ours today. PDF is absent on purpose — that route is the print dialog, not this one.
+fn card_extension(ext: &str) -> Result<&'static str, String> {
+    match ext {
+        "png" => Ok("png"),
+        "jpg" | "jpeg" => Ok("jpg"),
+        "svg" => Ok("svg"),
+        other => Err(format!("'{other}' is not a card format this writes.")),
+    }
+}
+
+/// Write a rendered card.
+///
+/// Bytes rather than a string, because two of the three formats are binary. Cards land in a
+/// `cards` subfolder of the destination rather than beside the markdown: an export folder is
+/// often an Obsidian vault, and a picture of a record is a different artifact from the note
+/// about it. Beneath that the record's own folder is mirrored, exactly as markdown export does.
+pub fn write_card(
+    app: &AppHandle,
+    folder: &str,
+    stem: &str,
+    ext: &str,
+    bytes: Vec<u8>,
+    destination: &str,
+) -> Result<String, String> {
+    let extension = card_extension(ext)?;
+
+    let mut dir = destination_dir(app, destination)?;
+    dir.push("cards");
+    for segment in crate::vault::validate_folder(folder)? {
+        dir.push(segment);
+    }
+    fs::create_dir_all(&dir).map_err(|e| format!("Could not create {}: {e}", dir.display()))?;
+
+    let path = dir.join(format!("{}.{extension}", safe_stem(stem)));
+    fs::write(&path, &bytes).map_err(|e| format!("Could not write {}: {e}", path.display()))?;
+    Ok(path.to_string_lossy().to_string())
+}
+
 #[derive(Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct FoundNote {

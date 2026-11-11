@@ -8,6 +8,8 @@
  * Pure and deterministic — same seed and preset ⇒ identical lines (CLAUDE.md §5).
  */
 
+import { formatYen, purseFor } from '../domain/bounty';
+import type { GradeId } from '../domain/grades';
 import {
   CHEST_LABELS,
   bandToCount,
@@ -190,4 +192,21 @@ export function exampleRewardLines(
   }
 
   return lines;
+}
+
+/**
+ * The purse on a bounty, rolled deterministically off its own seed.
+ *
+ * ⚠️ **A separate economy from everything above.** The mission tiers cap money at 50,000 Yen
+ * deliberately; a bounty starts near where that ends and runs to millions (Dan, 10 Nov 2026).
+ * Nothing in this function reads a difficulty preset and nothing should start to — they are
+ * two different transactions that happen to both be denominated in Yen.
+ *
+ * Arithmetic on a band rather than a draw from a table, for the reason the mission rewards
+ * already give: what a posting pays is a range, not a list of evocative fragments.
+ */
+export function rollBountyPurse(grade: GradeId, seed: string): string {
+  const band = purseFor(grade);
+  const rng = createRng(deriveSeed(seed, 'bounty.purse'));
+  return formatYen(band.min + rng.next() * (band.max - band.min));
 }

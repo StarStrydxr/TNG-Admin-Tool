@@ -25,6 +25,7 @@
  *    types), which also matches the `vault/characters` + `vault/npcs` split in §3. Cheap to undo.
  */
 
+import type { BlackFlashRecord } from './black-flash';
 import type { GradeId } from './grades';
 import { defaultStatBlock, type StatBlock } from './stats';
 
@@ -118,6 +119,11 @@ export const MISSION_OUTCOME_LABELS: Record<MissionOutcome, string> = {
  * Shared by the printable sheet and both export formats, so a mission reads the same wherever
  * it lands. The tags are upper-cased because that is how the server writes them.
  */
+/** Every Black Flash the sheet knows about: the unlogged count plus the logged entries. */
+export function blackFlashTotal(character: Character): number {
+  return character.blackFlashCount + character.blackFlashes.length;
+}
+
 export function missionLogLine(entry: MissionRecord): string {
   const tags = [MISSION_OUTCOME_LABELS[entry.outcome].toUpperCase()];
   if (entry.mvp) tags.push('MVP');
@@ -243,7 +249,15 @@ export interface Character {
   readonly innateTechnique: InnateTechnique;
   readonly reverseCursedTechnique: RctLevel;
   readonly simpleDomain: boolean;
+  /**
+   * Black Flashes landed before the log existed, or counted rather than written up.
+   *
+   * ⚠️ The total is this **plus** `blackFlashes.length` — see `blackFlashTotal`. Recording one
+   * through the sheet appends an entry and leaves this alone, so the two can never
+   * double-count each other and an old sheet keeps the number it already had.
+   */
   readonly blackFlashCount: number;
+  readonly blackFlashes: readonly BlackFlashRecord[];
   readonly heavenlyRestriction: string;
 
   readonly cursedTools: readonly CharacterCursedTool[];
@@ -343,6 +357,7 @@ export function createCharacter(input: NewCharacterInput): Character {
     reverseCursedTechnique: 'none',
     simpleDomain: false,
     blackFlashCount: 0,
+    blackFlashes: [],
     heavenlyRestriction: '',
 
     cursedTools: [],
@@ -364,8 +379,13 @@ export interface SlotUsage {
   readonly overBy: number;
 }
 
-export function traitSlotUsage(character: Character): SlotUsage {
-  return slotUsage(character.traits.length, character.traitSlots);
+/**
+ * @param fromMutations How many trait slots the character's clan mutations take up. Passed in
+ *   rather than looked up, because resolving a mutation needs the clan records and this module
+ *   cannot read the vault — the same arrangement `describeClanBonus` has.
+ */
+export function traitSlotUsage(character: Character, fromMutations = 0): SlotUsage {
+  return slotUsage(character.traits.length + fromMutations, character.traitSlots);
 }
 
 export function artSlotUsage(character: Character): SlotUsage {

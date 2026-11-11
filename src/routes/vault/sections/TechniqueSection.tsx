@@ -71,9 +71,10 @@ export function TechniqueSection({ character, onChange }: SectionProps) {
           onChange={(reverseCursedTechnique) => onChange({ reverseCursedTechnique })}
         />
         <NumberInput
-          label="Black Flash count"
+          label="Black Flashes before the log"
           value={character.blackFlashCount}
           onChange={(blackFlashCount) => onChange({ blackFlashCount })}
+          hint="Ones never written up. The Black Flash section adds the logged ones on top."
         />
         <TextInput
           label="Heavenly Restriction"

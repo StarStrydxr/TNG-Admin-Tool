@@ -26,6 +26,7 @@ import {
   type GradedStatId,
   type StatBlock,
 } from './stats';
+import type { BlackFlashRecord } from './black-flash';
 import {
   CHARACTER_KINDS,
   MISSION_OUTCOMES,
@@ -199,6 +200,18 @@ function parseOutcome(value: unknown): MissionOutcome {
   return 'unresolved';
 }
 
+function parseBlackFlashes(value: unknown): readonly BlackFlashRecord[] {
+  return asArray(value).map((item, index) => {
+    const raw = asRecord(item);
+    return {
+      id: entryId(raw, 'black-flash', index),
+      date: asString(raw['date']),
+      against: asString(raw['against']),
+      notes: asString(raw['notes']),
+    } satisfies BlackFlashRecord;
+  });
+}
+
 function parseMissionHistory(value: unknown): readonly MissionRecord[] {
   return asArray(value).map((item, index) => {
     const raw = asRecord(item);
@@ -340,6 +353,7 @@ export function parseCharacter(value: unknown, fallback: NewCharacterInput): Cha
     reverseCursedTechnique: parseRct(raw['reverseCursedTechnique']),
     simpleDomain: asBool(raw['simpleDomain'], false),
     blackFlashCount: asInt(raw['blackFlashCount'], 0),
+    blackFlashes: parseBlackFlashes(raw['blackFlashes']),
     heavenlyRestriction: asString(raw['heavenlyRestriction']),
 
     cursedTools: parseCursedTools(raw['cursedTools']),

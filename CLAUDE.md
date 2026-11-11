@@ -24,6 +24,7 @@ Five modules:
 | **NPC Generator** | Generate a Sorcerer, Curse User, or Curse |
 | **Technique Generator** | Cursed techniques by type; shikigami techniques bring their own shikigami |
 | **Mission Generator** | Generate a graded mission with location, target, complications and payout |
+| **Bounties** | Generate a bounty posting in the server's format — two grades, pings, objectives and a purse |
 | **Situation** | A mission, the curse actually in it and the tool left behind — one seed, saved linked |
 | **Cursed Object Generator** | Generate a sealed or active cursed object |
 | **Cursed Tool Generator** | Generate a graded cursed tool with properties and drawbacks |
@@ -74,8 +75,17 @@ This vault targets the **Discord RP's Grade/Class system** only. See §4.
 | Persistence | **JSON files on disk** via Rust commands. Not IndexedDB, not localStorage. |
 | AI | **Claude Code CLI subprocess**, spawned from Rust (§7) |
 
-Target platform: **Windows 11 on ARM64**. Single build target — there is no Linux or macOS build
-to maintain. Do not add cross-platform conditionals unless asked.
+Target platform: **Windows**, on **ARM64 and x64**. No Linux and no macOS build to maintain —
+do not add conditionals for those unless asked.
+
+⚠️ **x64 was added 10 Nov 2026** so the server's other staff could test on ordinary machines;
+until then ARM64 was the single target. The two differ only in the Rust target triple. Nothing
+in the app is architecture-aware and nothing should become so: if a change needs a `cfg` on the
+architecture, that is a sign something is wrong, not a thing to add.
+
+Dan's own machine is ARM64. Building x64 there is a cross-compile and needs both the Rust
+target and the **x64 MSVC toolchain component** in Visual Studio Build Tools — the ARM64
+component alone will not link it.
 
 ### Prerequisites on the dev machine
 
@@ -90,9 +100,13 @@ to maintain. Do not add cross-platform conditionals unless asked.
 ```bash
 npm install              # once
 npm run tauri dev        # dev — frontend hot-reloads; Rust changes trigger a recompile
-npm run tauri build      # produce the installer
+npm run tauri build      # installer for this machine's own architecture
+npm run build:x64        # installer for Intel/AMD  (cross-compile from the ARM64 machine)
+npm run build:arm64      # installer for Windows on ARM
 npm run test             # vitest — domain + generators only
 npm run typecheck        # tsc --noEmit
+npm run version:set 0.4.0  # set the version in all three files that carry one
+npm run release 0.4.0      # version, commit, tag, push — GitHub builds both and drafts a Release
 ```
 
 There is no lint script yet — ESLint would be a new dependency, so ask before adding one.
@@ -159,7 +173,7 @@ TNG-Claude/
 ├── vault/
 │   ├── characters/*.json
 │   ├── npcs/*.json
-│   └── missions|curses|cursed-objects|cursed-tools|techniques|shikigami|lore|clans/  # real subfolders
+│   └── missions|bounties|curses|cursed-objects|cursed-tools|techniques|shikigami|lore|clans/
 ├── tables/                  # USER tables — overlay canon, never overwrite it
 ├── templates/               # USER export templates — override the bundled ones by file name
 ├── images/                  # portraits and reference pictures; records store only the name
@@ -283,6 +297,32 @@ Endless while still reporting the grades that ran past it.
   Dan treats that narratively as a half-step and **does not want it in the enum** (10 Nov
   2026). Keep the six bands; put the `+` in a record's own free text where it appears.
 
+**Black Flash** (Dan, 10 Nov 2026) — `domain/black-flash.ts`:
+
+- **+2 Grades to Strength** for the attack, dropping to **+1 Grade** once the character is
+  **Semi-Special Grade or above**. ⚠️ Measured on the **character's own grade**, not on
+  Strength's: a Grade 2 sorcerer with freakish Special Grade Strength still gets the full +2.
+- **+1 Class to every graded stat for 5 turns**, Strength included — it takes the grade jump
+  *and* the class step. CE Reserves is excluded, being a band rather than a `Grade[Class]`.
+- RCT fatigue resets. Narrative; nothing models it.
+- The turn count is **stated, not tracked**. A timer would need the app to know a fight is
+  happening, which it does not and should not.
+
+- ⚠️ **Derived for display, never written back**, exactly like effective reserves above, and
+  confirmed the same way. The arithmetic goes through `applyModifier` — the house rules' own
+  carry rule — rather than a second implementation that could drift from it: a class is one
+  tier, a grade is five, `G4[C1] +2 classes` is `G3[C4]`, and the top clamps at `AG[C1]`.
+- ⚠️ **There is no damage figure anywhere in it**, and there must not be. Dan asked for a
+  "Black Flash damage calculator"; what he described was a stat buff, a counter and a
+  narrative note, and that is what was built. Damage stays the referee's call (§4, above).
+- A **Civilian stat comes back unchanged** and is marked as not having moved, because §12.1 is
+  still open on whether Civilian Grade has classes at all. Nothing is invented to fill it.
+- The log is `Character.blackFlashes[]`, additive, alongside the older `blackFlashCount`.
+  ⚠️ **The total is the count plus the entries** (`blackFlashTotal`): recording one through the
+  sheet appends an entry and leaves the count alone, so the two can never double-count and an
+  old sheet keeps the number it already had. The count's field is labelled "Black Flashes
+  before the log" for that reason.
+
 ### ⚠️ The app does NOT calculate stats
 
 **Generators roll a Grade and nothing else.** Every stat then sits at **Class 3 of that Grade**,
@@ -402,6 +442,15 @@ Cursed Rating, Trait Points, Yen, chests. A mission can have one and not the oth
 Every mission should carry a `trueSituation` that diverges from the `briefing` — misgraded
 missions are the engine of JJK plots and the generator should lean into it.
 
+**Bounty**
+`grade` (the threat it is posted at) · `targetGrade` (what the target is actually ranked) ·
+`target` · `conspicuousity` · `state` · `pings[]` · `crime` · `briefing` · `warning` ·
+`objectives[]` · `rewards[]` · `issuer`
+
+⚠️ **The two grades are different questions and both stay.** Dan's own example posts a Special
+Grade sorcerer as a Disaster Grade threat and says so in the posting's text — the gap is the
+point, not an inconsistency to reconcile. See **Bounties** in §9.
+
 **Cursed Object**
 `grade` · `state` (sealed / active / dormant) · `appearance` · `origin` · `sealType` ·
 `effectWhenUnsealed` · `containmentRequirements` · `knownIncidents[]`
@@ -470,8 +519,8 @@ would not need redesigning.
 
 ### Saved generator output
 
-Missions, curses, cursed objects, cursed tools, techniques, shikigami, lore and clans are
-stored as **typed entities**
+Missions, bounties, curses, cursed objects, cursed tools, techniques, shikigami, lore and
+clans are stored as **typed entities**
 (`domain/entities.ts`), one collection each under `vault/`. Characters remain separate and keep
 their own schema.
 
@@ -935,6 +984,178 @@ it. Content is Dan's: the Masami Clan document, 9 Nov 2026.
   `import.meta.glob` (§5). A named tool or technique *can* — as a pick list, like
   `technique.canonical` and `cursed-tool.canonical`.
 
+**Bounties**
+
+A bounty is an entity (`vault/bounties/`) with a generator behind it, shaped to the server's
+own posting — the format in Dan's screenshot, 10 Nov 2026.
+
+- ⚠️ **Two grades, and they are not the same thing.** `grade` is the threat the bounty is
+  posted at; `targetGrade` is what the target is actually ranked. Dan's own example posts a
+  Special Grade sorcerer as a Disaster Grade threat and says so in the text. `threatNote()`
+  writes that sentence, once, for both templates and the panel — the gap is the point.
+- ⚠️ **`targetGrade` belongs in `NEVER_MERGED`**, like `grade`. It renders as "Special Grade"
+  and stores `special-grade`, so an Obsidian round trip corrupts it otherwise. `obsidian.test.ts`
+  walks every kind and caught this the moment the field existed; **any** grade-valued field
+  added later needs the same line.
+- ⚠️ `ownFields` exposes `targetGrade` **raw** to templates, because only `grade` goes through
+  `gradeLabel()` in `common()`. `entityExportContext` overwrites it with the label — without
+  that the posting reads "special-grade".
+- **The target rolls like any other field, so it locks like any other field.** That is the
+  "both, as a toggle" Dan asked for and it needed no new mechanism: roll the board for a
+  stranger, or lock the two name fields and re-roll the posting around somebody real. Typing
+  into the panel's Target box overrides the rolled name.
+- **A fresh roll resets the purse and the target's ranking** to match what rolled, so a new
+  posting reads consistently and the gap line stays quiet until somebody creates a gap on
+  purpose. Anything typed over them holds until the next roll — the same bargain switching a
+  mission's difficulty makes.
+- ⚠️ **Bounties do not use the mission economy.** `domain/difficulty.ts` caps mission money at
+  50,000 Yen on purpose; a bounty starts near where that ends and runs to millions (Dan, 10 Nov
+  2026). `BOUNTY_PURSE` lives in `domain/bounty.ts` and `rollBountyPurse` in
+  `generators/rewards.ts`, and **nothing reads across** — `bounty.test.ts` fails if the two
+  ranges ever overlap. The amounts are **proposed, not approved**, scaled off the one real
+  figure (¥1,000,000 for a Disaster Grade threat).
+- **`conspicuousity`, `state` and `pings` are free text with suggestions**, the same bargain
+  `clan` and `status` make. One known example of each and no written list anywhere; an invented
+  enum would quietly become canon. Pings render `@{ Curse User }` in the Discord posting.
+- **Bounty is the fourth kind with a Discord template**, because the server genuinely has that
+  format. `exports.test.ts` holds the list.
+
+**Pictures in an export**
+
+`EntityBase.image` holds a file name, so every kind already has a picture; what was missing was
+getting it *out*. `exportContext` now derives three keys from it:
+
+- `image` — the bare file name.
+- `imagePath` — relative, resolving from `exports/<collection>/<folder>/` back to `images/`.
+  ⚠️ Correct for the **default** export folder only: pointed at `Settings.exportDirectory`
+  somewhere else, the picture is not beside it and the link dangles. That is a property of
+  exporting to an arbitrary directory, not something a cleverer path fixes.
+- `imageEmbed` — `![[file]]`, which Obsidian resolves by searching the vault, so it survives
+  the note being moved. The Obsidian-facing templates prefer it.
+
+Discord cannot embed a local file from message text, so `bounty.discord.md` **names** the
+picture in a spoiler line for Dan to attach rather than pretending to link it.
+
+**Cards and backdrops**
+
+A graphic of a record, made to be posted in a channel. Three kinds: **character** (card,
+backdrop), **clan** (card, backdrop) and **mission** (card, backdrop, **briefing** — a tall
+poster carrying the whole posting, offered to missions only by `presetsForKind`). The shared
+furniture is `domain/card-blocks.ts`, the per-kind layouts are `card-character.ts`,
+`card-clan.ts` and `card-mission.ts`, and `card-render.ts` is the one door into all three —
+a fourth kind is a case in one switch rather than a change in the hook and the panel as well.
+
+- **Built as SVG, and that bought three things for no dependency** (§10). PNG and JPEG come
+  from `canvas.toBlob`, the same canvas `services/images.ts` already uses to downscale a
+  portrait. PDF comes from the print dialog the app already drives — "Microsoft Print to PDF"
+  is in every Windows print dialog, so a PDF writer would be a dependency bought for nothing
+  (§9). And the SVG itself is a vector master that opens in Inkscape, Illustrator or Notepad,
+  which is what makes a card editable *after* it leaves the app. A rasterizer such as
+  html2canvas would have given the first two and neither of the last.
+- ⚠️ **Every colour comes from `ThemeTokens`.** There are no hex literals in the card modules
+  and there must not be — a generated graphic can smuggle one in exactly as a component can,
+  and it would survive a theme change and look wrong the same way. `card.test.ts` scans the
+  output and fails on any `fill`, `stroke` or `stop-color` that is not one of the fourteen
+  token values. The `@media print` block stays the only place allowed to name a colour, and a
+  card is screen output anyway.
+- **Text measurement is injected, not taken.** `domain/` may not touch a canvas, so
+  `characterCardSvg` receives a `Measurer`. `services/cards.ts` supplies the real one from a
+  2D context's `measureText`, which is exact for the installed face;
+  `approximateMeasurer` is the deterministic stand-in for tests and for a plain `npm run dev`
+  tab. That is what keeps the layout pure *and* testable.
+- **SVG has no text flow**, so `wrapText` breaks a paragraph into `<tspan>` lines itself, hard-
+  splitting a word too long for any line and ellipsising at a line budget. ⚠️ It wraps in full
+  and *then* clamps: stopping early has to decide mid-loop whether the line in hand is the
+  last, which is where the first attempt dropped a line instead of keeping the budget.
+- ⚠️ **An SVG loaded into an `Image` renders in an isolated context.** It cannot see the host
+  document's stylesheets, so the `@font-face` rules in `styles/index.css` never reach it —
+  only fonts *installed on the machine* do. The two vendored faces are webfonts installed
+  nowhere, so when one is the chosen face it has to travel inside the document or the
+  rasterized card silently falls back to a system sans. `embeddedFontCss` inlines it from the
+  bundle via a lazy `?inline` glob, so the 310KB OpenDyslexic pair is not in the startup path
+  for anyone using the default sans. Nothing is fetched (§1).
+- **The picture is embedded, never linked**, and that is load-bearing twice over: an external
+  `href` would taint the canvas and `toBlob` would throw, and a linked file would not travel
+  with a shared SVG. Verified end to end in a real browser — 2000×2800, untainted.
+- ⚠️ **A `defs` entry has to travel with the markup that references it.** `panelClip` built its
+  `<clipPath>` and the document left it out, so `url(#card-panel)` resolved to nothing, the
+  browser silently dropped the clip, and the bled picture squared off the panel's rounded
+  corners. Silently is the problem: there is no error. `card.test.ts` now walks every `url(#…)`
+  and `clip-path` and fails on an id the document does not declare.
+- **The crop anchors to the top by default.** The band rarely matches the picture's aspect and
+  `slice` crops rather than letterboxes, so something is always lost; centring loses it from
+  the top and bottom equally, which decapitates an ordinary portrait. Hence a focus control.
+- **The preview is the document, not a picture of one.** The panel drops the same SVG string
+  into the page as markup, so what is on screen is byte-for-byte what the SVG export writes and
+  what the PNG is drawn from — the bargain `DiscordPreview` already makes for markdown.
+- ⚠️ **Nothing on a card calculates a stat.** It prints `character.stats` as typed. The one
+  derived value is effective reserves, shown in the accent beside the stored band and never
+  written back — the same line §4 draws for the sheet.
+- ⚠️ **An export has to say so on screen.** The first version confirmed a write with
+  `announce()` alone — the ARIA live region, which is invisible to anyone looking at the
+  screen — so a successful export and a dead button were indistinguishable, and the first
+  question back was where the files had gone. `useExport` already kept a `lastPath` and a
+  reveal button for exactly this; the card panel now does too. Anything that writes a file
+  shows the path it wrote.
+**Card fonts and colours**
+
+Each kind carries its own style (Dan, 11 Nov 2026) in `Settings.cardStyles`, so a clan banner
+can read differently from a character card without dragging the other along. `domain/card-style.ts`.
+
+- **A palette is six colours, not fourteen.** It is a `ThemeSeed` run through the same
+  `buildThemeTokens` the app uses, which buys three things at once: the fourteen tokens stay
+  internally consistent, `checkThemeContrast` gives the card editor the theme editor's own live
+  WCAG readout, and **the layouts needed no change at all** — they already took `ThemeTokens`
+  and never knew where those came from.
+- ⚠️ **This does not loosen §9's colour rule, and the tests still enforce it.** That rule is
+  about colour *literals in the source*, which survive a theme change and look wrong. A palette
+  the user picked at runtime is data arriving through the door the theme already used. The card
+  modules still cannot name a colour, and `card.test.ts` and `card-kinds.test.ts` still fail on
+  one.
+- **`followTheme` defaults to true on every kind**, so the day this landed nothing looked
+  different. `highContrast` is threaded through whichever seed wins — a custom card palette
+  cannot quietly opt out of an accessibility setting, the same way the background-opacity cap
+  cannot.
+- **Two font slots.** `display` letters names, headings and the grade chip; `body` letters
+  values and prose. Emitted as one `.d` class against the document's two declared stacks, not
+  as a `font-family` per element.
+- ⚠️ **`FONT_STACKS` had to move to `domain/fonts.ts`.** Card styles live in settings, so
+  `settings.ts → card-style.ts → settings.ts` was a cycle. Same split as `Clan`; `settings.ts`
+  re-exports, so every existing import still resolves.
+- ⚠️ **A font slot may name a family installed on this machine, and that string lands inside
+  the `<style>` block of a generated SVG.** `safeFamily` whitelists it to letters, digits,
+  spaces and hyphens — a quote or a brace would close the declaration and let the rest be read
+  as CSS. A whitelist, not a sanitiser, for the same reason `images.rs` whitelists file names.
+  Nothing is ever fetched (§1): a local family resolves or falls back to the sans stack.
+- A locally-installed font bakes into a PNG or JPEG but **not** into a shared `.svg`, which
+  renders with whatever the opener has. The editor says so when a slot holds one.
+
+**Per-kind blocks, and what a graphic must never show**
+
+- **One block id set, three meanings.** `stats` is a character's stat block, a clan's technique
+  and bonuses, and a mission's objectives — the same slot in the layout carrying that kind's
+  primary list. `CARD_BLOCKS` says which blocks a kind has (only missions have the third list,
+  `extra`) and `CARD_BLOCK_LABELS` names them per kind. Generic ids with per-kind labels, rather
+  than fifteen ids of which each uses five, because the layouts genuinely share the slots.
+- ⚠️ **A mission graphic never shows `trueSituation`, `veil` or `support`.** The Discord export
+  wraps those in `||spoilers||` (§9) — but **a picture has no spoiler tags**, so on a graphic
+  the only safe thing is to leave them out entirely. `card-kinds.test.ts` asserts it for every
+  mission shape, and any GM-only field added later needs the same line.
+- ⚠️ **A clan card carries no grade**, §4 again, and the device behind an absent picture is the
+  clan's initial rather than an abbreviation. A test walks every grade abbreviation and fails if
+  one appears.
+- ⚠️ **The footer is pinned to the bottom while blocks stack down from the header**, so enough
+  content puts the hosts line straight through the last complication — it did. `fits()` drops a
+  block *whole* rather than drawing it over the footer: half a complication under a host handle
+  is worse than no complications. A test crams twelve of everything in and asserts nothing is
+  drawn past the page.
+
+- Cards are written by `exports::write_card` into a **`cards` subfolder** of the export
+  destination, with the record's folder mirrored beneath it: an export folder is often an
+  Obsidian vault, and a picture of a record is a different artifact from the note about it.
+  The extension is **whitelisted, not sanitised**, for the same reason `images.rs` whitelists
+  the names it reads back. PDF is deliberately absent from that list — that route is print.
+
 **Importing a submitted sheet**
 
 `domain/oc-import.ts` reads a sheet in the server's own OC format back into a character — the
@@ -956,6 +1177,70 @@ is read as C3, not as a failure. The result is a **patch**, merged over a fresh 
 then run through `parseCharacter` — the vault's own reader, so an imported record is validated
 exactly like one off disk — and it lands as an unsaved draft. Nothing reaches the disk until
 Dan looks at it, which is the point of the review panel beside the paste box.
+
+**A crash must not cost the whole screen**
+
+`components/ErrorBoundary.tsx` wraps the routed module (keyed on the module id, so moving away
+clears it) and the card panel separately. React unmounts the **entire** tree when a render
+throws and nothing catches it, so one bad section took the sidebar, the record and everything
+with it: the window went empty, the background image was all that was left, and there was no
+message, no stack and nothing to act on. That happened to a character sheet.
+
+Same bargain `tables.rs` makes for a malformed user table (§5): degrade to "this one was
+skipped", never to a blank app. The error text is shown rather than swallowed, because the
+first question is always *what* broke. It is the one place a class component is allowed —
+`componentDidCatch` has no hook equivalent.
+
+⚠️ **A prop rename spans two files, and half of it is worse than none.** `CardSection`'s prop
+went from `character` to `subject`. The component was updated and shipped; `CharacterSheet.tsx`,
+which passes it, was edited in the same breath but **left out of the write-back**. On the target
+machine the new child then read a prop the old parent no longer sent, and the hook got
+`undefined`.
+
+Both of 11 Nov 2026's reported faults were that one omission, and nothing else:
+
+- **A character sheet that went blank**, showing only the background image. No boundary existed
+  yet, so the `TypeError` unmounted the whole tree.
+- **`Cannot read properties of undefined (reading 'kind')`** in the card panel, once the
+  boundary was there to catch it.
+
+Two lessons, both about diagnosis rather than code:
+
+- ⚠️ **Verify the write-back, do not assume it.** It reproduced nowhere locally for the obvious
+  reason: the local tree was internally consistent and the target's was not. Listing the
+  changed files and comparing sizes against the machine takes seconds and would have found it
+  immediately. A fault that cannot be reproduced from the same code is evidence the code is
+  *not* the same.
+- ⚠️ **Do not offer a cause that has not been tested.** "A stale Vite module graph" was proposed
+  here, written into this file, and was wrong. It was plausible, it fitted the symptom, and it
+  sent the user to restart a dev server twice for nothing. Reproducing the *mechanism* (an
+  undefined prop gives exactly that message) is not the same as establishing the *cause*.
+
+`useCard` now throws a sentence naming what is wrong instead of a `TypeError` thirty frames
+deep, which is what a guard at an entry point is for.
+
+**Mutations and trait slots**
+
+A `Mutation` carries `usesTraitSlot` (Dan, 11 Nov 2026) — some of them cost a trait slot as
+well as Trait Points.
+
+- ⚠️ **It is slot accounting, not a stat, and nothing is stored on the character.**
+  `slotTakingMutations(clans, clanName, ids)` resolves the ticked ones and `traitSlotUsage`
+  takes the count as an argument; no `Trait` is written into `character.traits`. A trait the
+  app invented would double-count the moment Dan typed the same one in by hand — exactly what
+  §4 warns about for clan bonuses. Computed where shown, like the members roster and backlinks.
+- `domain/problems.ts` gets the clans out of the `records` list it was already handed, so it
+  stays pure.
+- Additive: a clan saved before the field parses with the box unticked.
+
+⚠️ **A textarea backed by a parsed list must hold its own raw text.** The obvious version —
+value derived from the list, re-parsed on every keystroke, blank lines filtered — makes a
+newline impossible: pressing Enter gives `"…\n"`, the blank line is dropped, the value
+re-renders without it, and the keystroke is undone as fast as it is typed. A second line is
+unreachable. **This shipped**, on the clan mutation editor, and Dan hit it. `LinesArea` in
+`routes/clans/RowList.tsx` keeps the raw text locally and only sends the parsed list upward,
+taking the model back only when it says something the text does not. Use it for every
+list-in-a-textarea; `AreaCell` is for plain prose.
 
 **The problems panel**
 
@@ -1105,6 +1390,44 @@ Drive- or OneDrive-synced folder work with no network code (§1).
   style preference, and it is enforced in `settings-parse.ts` as well as in the slider — so
   hand-editing `config.json` cannot wash out the text. It never prints.
 
+**Shipping it — two architectures, one tag**
+
+Staff test on ordinary x64 laptops; Dan develops on ARM64. Both installers are built by
+GitHub Actions and attached to the same Release, so there is one place to download from and
+no chance of the two drifting apart.
+
+- ⚠️ **CI is a build pipeline, not a feature of the app.** §1 is untouched: the app still
+  makes no network calls, carries no telemetry and syncs nothing. A workflow that compiles the
+  app is not the app phoning home, and the distinction is worth keeping clear if anyone asks.
+- **`npm run release 0.4.0`** does the whole thing — sets the version in all three files that
+  carry one, commits, tags `v0.4.0`, pushes. The tag push is what starts the build. It refuses
+  to run on a dirty tree, off `main`, or onto a tag that already exists, because each of those
+  produces a release that does not match anything anybody can check out.
+- **The version lives in three files** — `package.json`, `src-tauri/Cargo.toml`,
+  `src-tauri/tauri.conf.json` — and nothing keeps them in step. `scripts/set-version.mjs`
+  writes all three or none, and the Cargo edit is anchored to `[package]` so a dependency pin
+  is never hit. `Cargo.lock` catches up on the next build.
+- **`.github/workflows/release.yml`** runs a two-entry matrix: `windows-latest` for
+  `x86_64-pc-windows-msvc`, and `windows-11-vs2026-arm` for `aarch64-pc-windows-msvc`. That
+  ARM label went generally available in August 2026; the older preview label was
+  `windows-11-arm`. `fail-fast: false`, so a broken ARM build still leaves staff something x64
+  to test.
+- ⚠️ **`npm install`, never `npm ci`, in CI.** Rollup and Tailwind ship their native binaries
+  as per-platform optional dependencies, and a lockfile generated on one architecture can omit
+  the others — the same npm behaviour `.gitignore` already warns about. `npm ci` would install
+  that lockfile faithfully and then fail with no binary for the machine it is on.
+- **NSIS only, both architectures.** MSI is WiX, and WiX does not do ARM64, so `targets: "all"`
+  would fail half the matrix. One installer format also means one set of instructions for
+  staff. `--bundles nsis,msi` on the x64 job is the change if a managed deployment ever needs
+  the MSI.
+- **The Release is drafted, not published.** Both jobs attach to it; publishing is a human
+  looking at the page and seeing two installers before anyone downloads one.
+- ⚠️ **The installers are unsigned**, so Windows SmartScreen warns on first run — *More info →
+  Run anyway*. The release notes say so. A signing certificate is the only real fix and costs
+  real money; until then, tell staff before they download rather than after.
+- **`.github/workflows/ci.yml`** is deliberately not a build: typecheck and tests on Ubuntu,
+  on every push, in well under a minute. Compiling Rust twice belongs on a tag.
+
 **Accessibility**
 - Two faces are **vendored** in `src/assets/fonts/` — OpenDyslexic and Atkinson Hyperlegible,
   both SIL OFL 1.1. The licence files sit beside them and must stay there and ship with any
@@ -1182,6 +1505,10 @@ Requested after the original plan, and slotted ahead of 3–5:
 | **2.8** | Obsidian vaults (export and import, any local folder — the Drive answer, see §1), the three faction themes, per-kind insignia, and a custom background image. ✅ |
 | **2.7** | Second quality-of-life pass. ✅ Tag coherence made real, technique tables for all eleven types, the Situation roller, duplicate warnings, keyboard rolling, restore-from-backup, the in-app template editor, and booklet covers. `Curse` became a saveable entity along the way. |
 | **3.0** | The server's own formats. ✅ The character record became the OC template (§4), missions gained the posting format with rolled objectives and rewards, markdown export gained a second Discord-format template set chosen per export, and the harvester learned to read all three — NFKC folding plus the decorated headings, without which it could not read a single real posting. Difficulty then landed properly: Easy / Medium / Hard with Dan's own CR, TP, Yen and chest amounts, three reward buckets, Grade Ups, and the 3×/2× host payout (§9). Then the posting controls — a recommended-grade picker, slot steppers, a faction the posting is open to, placeholder rewards from the tier — plus an export preview, and the double scrollbar fixed. |
+| **3.8** | Clan and mission graphics, and card styling. ✅ Clan cards and backdrops, mission cards and a tall **briefing**, all through one `card-render.ts`. Each kind gained its own fonts and colours in Settings — a six-colour palette through the existing theme engine, so the live WCAG readout came free and the no-hardcoded-colour rule is untouched — plus display and body font slots that accept any font installed on the machine. Per-kind block sets, GM-only mission lines kept off every graphic, and a floor that stops content colliding with the footer. |
+| **3.7** | Graphics. ✅ Character cards and backdrops, built as SVG so PNG and JPEG come from the canvas already in the repo, PDF from the print dialog, and the SVG itself is an editable vector master — no dependency added. Discord's own proportions, a live preview that is the document rather than a picture of it, and in-app controls for shape, picture focus, title and which blocks show. Clan and mission cards reuse `card-blocks.ts`. |
+| **3.6** | Bounties. ✅ A new entity and generator in the server's own posting format: two grades (the threat it is posted at, and what the target is actually ranked), free-text Conspicuousity / State / Pings, rolled objectives and a **separate economy** running to millions rather than the mission cap. The target rolls like any other field, so locking it is the "roll around somebody real" toggle. 74 proposed canon entries, both export formats, and pictures now come out in an export at all — `imagePath` for markdown, `imageEmbed` for Obsidian, and a named attachment line for Discord. |
+| **3.5** | Black Flash. ✅ A derived reading of the stat block while one lands — +2 Grades to Strength (+1 from Semi-Special Grade up, on the character's grade), +1 Class to everything for five turns, reserves excluded — shown beside the real stats and never written back. Plus a dated Black Flash log on the sheet, in the printed sheet and both export formats. **No damage figure**, deliberately. |
 | **3.4** | Effective reserves and the Ten Shadows rework. ✅ A derived reserves band — one stage per grade CE Efficiency sits above CE Output (§4) — shown on the sheet, the printed sheet and both export formats, and never written back. Shikigami gained a stat block of their own and a free-text addendum, and Dan's Ten Shadows rework went into the vault: ten shikigami, each with its full stat block, the "+" reserves and the Dura Neg lines kept verbatim. |
 | **3.3** | The Clan editor. ✅ Clans became an editable entity (§9) with a board and a full editor: hierarchy seats by tier, bonus and mutation editing, a clan vault of money and holdings, the clan's own history and its prevalent members, a computed member roster, and **rolling an NPC straight into an empty seat** from the existing sorcerer tables. The Masami seed carries the whole clan document rather than just its numbers. `ClansProvider` loads the clans once for the window, so the character sheet, the printed sheet and both exports resolve a bonus against the same records. |
 | **3.2** | The Masami Clan. ✅ A clan registry with bonuses and mutations (§9), a clan-bonus tick box and multi-select mutations on the sheet, and the **Holy Sinner's Blade** as a pickable canonical cursed tool — written into the vault and linked to Walker, with his stats left exactly as he had entered them. |
@@ -1209,6 +1536,11 @@ they are wrong.
 objects 49 → 168, cursed tools 54 → 184, shikigami 72 → 212. Canon now holds **1,794 entries**.
 As always these are **proposed, not approved** — read them and cut what does not sound like the
 server.
+
+**Batch 8** (10 Nov 2026) is the bounty tables — `bounty.crime` (24), `bounty.briefing` (16),
+`bounty.warning` (14), `bounty.objective` (12) and `bounty.issuer` (8): **74 entries**, canon
+now **1,869**. Grade-filtered where a charge only makes sense at a grade — a clan slaughter is
+not a Grade 4 crime. **Proposed, not approved.**
 
 **Batch 7** (9 Nov 2026) added `cursed-tool.canonical` — named tools from the setting, picked
 rather than rolled, the same mechanism as the 41 canonical techniques. It holds one entry so

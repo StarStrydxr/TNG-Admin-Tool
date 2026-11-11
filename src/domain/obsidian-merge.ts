@@ -31,8 +31,13 @@ export interface MergeResult {
  * record stores `grade-2`. Merging that back would put a display string into a typed field and
  * corrupt every imported record. Identity and grade come from frontmatter or stay put; the
  * body is prose only.
+ *
+ * ⚠️ **Every grade-valued field belongs here, not just `grade`.** A bounty's `targetGrade`
+ * renders the same way and broke the round trip the moment it existed — `obsidian.test.ts`
+ * walks all the kinds and caught it. Add a grade-valued field and add it to this set in the
+ * same change.
  */
-const NEVER_MERGED = new Set(['grade', 'links']);
+const NEVER_MERGED = new Set(['grade', 'targetGrade', 'links']);
 
 /**
  * Whether a section can be merged into this property at all.

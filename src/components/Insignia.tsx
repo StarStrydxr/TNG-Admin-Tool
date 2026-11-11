@@ -135,6 +135,17 @@ function Glyph({ id }: { readonly id: GlyphId }) {
         </>
       );
 
+    // A posted notice with a face on it, nailed at the corners.
+    case 'bounty':
+      return (
+        <>
+          <rect x="3" y="2.5" width="10" height="11" rx="0.6" />
+          <circle cx="8" cy="6.4" r="1.6" />
+          <path d="M5.6 10.6a2.6 2.6 0 0 1 4.8 0" />
+          <path d="M4.6 4.1h.01M11.4 4.1h.01M4.6 11.9h.01M11.4 11.9h.01" />
+        </>
+      );
+
     // A mon with a lineage inside it: one head, and the line branching below.
     case 'clan':
       return (

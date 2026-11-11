@@ -16,6 +16,8 @@
  */
 
 import { artSlotUsage, characterDisplayName, traitSlotUsage, type Character } from './character';
+import { slotTakingMutations } from './clans';
+import type { Clan } from './entities';
 import { entityDisplayName, type SavedEntity } from './entities';
 import { buildLinkIndex, type LinkIndex } from './links';
 import { isCharacter } from './sheet';
@@ -94,6 +96,9 @@ function danglingLinks(
 export function findProblems({ records, imageNames }: ProblemInput): readonly Problem[] {
   const index = buildLinkIndex(records);
   const problems: Problem[] = [];
+  // The clans travel in the same list, so a mutation's trait-slot cost is reachable here
+  // without this module reading anything — it stays pure.
+  const clans = records.filter((record): record is Clan => record.kind === 'clan');
 
   // Names are compared case-insensitively and only among records of the same kind — a curse
   // and a mission sharing a name is ordinary, two curses sharing one is a filing mistake.
@@ -150,7 +155,12 @@ export function findProblems({ records, imageNames }: ProblemInput): readonly Pr
     }
 
     if (isCharacter(record)) {
-      const traits = traitSlotUsage(record);
+      // The clan records are in the same list, so the mutation cost is reachable without the
+      // module reading anything — it stays pure.
+      const traits = traitSlotUsage(
+        record,
+        slotTakingMutations(clans, record.clan, record.mutations).length,
+      );
       const arts = artSlotUsage(record);
       if (traits.overBy > 0) {
         problems.push({

@@ -1,5 +1,6 @@
 import type { ComponentType } from 'react';
 
+import { BountyGeneratorPage } from './bounty-generator/BountyGeneratorPage';
 import { ClansPage } from './clans/ClansPage';
 import { CursedObjectGeneratorPage } from './cursed-object-generator/CursedObjectGeneratorPage';
 import { CursedToolGeneratorPage } from './cursed-tool-generator/CursedToolGeneratorPage';
@@ -17,6 +18,7 @@ export type ModuleId =
   | 'library'
   | 'lore'
   | 'clans'
+  | 'bounty-generator'
   | 'npc-generator'
   | 'technique-generator'
   | 'mission-generator'
@@ -76,6 +78,12 @@ export const MODULES: readonly ModuleDefinition[] = [
     label: 'Mission Generator',
     blurb: 'Graded missions, and what the briefing gets wrong.',
     Page: MissionGeneratorPage,
+  },
+  {
+    id: 'bounty-generator',
+    label: 'Bounties',
+    blurb: 'A posting on somebody the Academy wants dealt with.',
+    Page: BountyGeneratorPage,
   },
   {
     id: 'situation',

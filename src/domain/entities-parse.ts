@@ -15,6 +15,7 @@ import {
   ENTITY_SCHEMA_VERSION,
   SEAT_STATUSES,
   normaliseFolder,
+  type Bounty,
   type Clan,
   type ClanAsset,
   type ClanFigure,
@@ -187,6 +188,7 @@ function parseMutations(value: unknown): readonly Mutation[] {
       name: str(raw['name']),
       effects: parseModifiers(raw['effects']),
       tpCost: str(raw['tpCost']),
+      usesTraitSlot: raw['usesTraitSlot'] === true,
       note: str(raw['note']),
     } satisfies Mutation;
   });
@@ -363,6 +365,27 @@ export function parseEntity(value: unknown, fallbackId: string): SavedEntity | n
         status: str(raw['status']),
         location: str(raw['location']),
       } satisfies Lore;
+
+    case 'bounty':
+      return {
+        ...parseBase(raw, 'bounty', fallbackId),
+        kind: 'bounty',
+        grade: grade(raw['grade']),
+        // Defaults to the threat grade: a posting that names only one grade means both.
+        targetGrade: raw['targetGrade'] === undefined
+          ? grade(raw['grade'])
+          : grade(raw['targetGrade']),
+        target: str(raw['target']),
+        conspicuousity: str(raw['conspicuousity']),
+        state: str(raw['state']),
+        pings: strList(raw['pings']),
+        crime: str(raw['crime']),
+        briefing: str(raw['briefing']),
+        warning: str(raw['warning']),
+        objectives: strList(raw['objectives']),
+        rewards: strList(raw['rewards']),
+        issuer: str(raw['issuer']),
+      } satisfies Bounty;
 
     case 'clan':
       return {

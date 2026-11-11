@@ -23,7 +23,8 @@ import {
   describeEffectiveReserves,
   effectiveReserves,
 } from './stats';
-import { missionLogLine } from './character';
+import { blackFlashTotal, missionLogLine } from './character';
+import { blackFlashLogLine } from './black-flash';
 import { describeClanBonus, describeMutations } from './clans';
 import { ROLE_LABELS } from './roles';
 
@@ -195,7 +196,7 @@ export function characterSheet(
             : RCT_LABELS[character.reverseCursedTechnique],
         ),
         field('Simple Domain', character.simpleDomain ? 'Yes' : ''),
-        field('Black Flash', character.blackFlashCount > 0 ? String(character.blackFlashCount) : ''),
+        field('Black Flash', blackFlashTotal(character) > 0 ? String(blackFlashTotal(character)) : ''),
         field('Heavenly Restriction', character.heavenlyRestriction),
       ]),
       section('Tools, ties and history', [
@@ -207,6 +208,9 @@ export function characterSheet(
           'Relationships',
           character.relationships.map((r) => [r.name, r.relation].filter(Boolean).join(' — ')),
         ),
+      ]),
+      section('Black Flash log', [
+        listField('Landed', character.blackFlashes.map(blackFlashLogLine)),
       ]),
       section('Mission log', [
         field('Cursed Rating', character.cursedRating),

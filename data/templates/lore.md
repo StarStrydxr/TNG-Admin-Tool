@@ -9,6 +9,11 @@
 
 {{#body}}{{body}}{{/body}}
 
+{{#anyLinks}}## Connected
+
+{{/anyLinks}}{{#links}}- {{.}}
+{{/links}}
+
 {{#notes}}## Notes
 
 {{notes}}

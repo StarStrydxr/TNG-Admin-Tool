@@ -32,6 +32,7 @@ export type DraftKind =
   | 'curse-user'
   | 'curse'
   | 'mission'
+  | 'bounty'
   | 'cursed-object'
   | 'cursed-tool'
   | 'technique'

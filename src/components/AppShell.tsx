@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 
+import { ErrorBoundary } from './ErrorBoundary';
 import {
   FOOTER_MODULES,
   MAIN_MODULES,
@@ -82,7 +83,13 @@ export function AppShell({ activeId, active, onSelect, children }: AppShellProps
           <h1 className="font-display text-2xl text-ash-100">{active.label}</h1>
           <p className="mt-1 text-sm text-ash-500">{active.blurb}</p>
         </header>
-        <div className="px-8 py-7">{children}</div>
+        {/* Keyed on the module, so moving to another one clears a crash rather than
+            stranding you on the error (CLAUDE.md §9). */}
+        <div className="px-8 py-7">
+          <ErrorBoundary key={active.id} what={active.label}>
+            {children}
+          </ErrorBoundary>
+        </div>
       </main>
     </div>
   );

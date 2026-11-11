@@ -171,6 +171,22 @@ function fieldsFor(entity: SavedEntity): readonly EntityField[] {
         one('body', 'Detail', entity.body),
       ];
 
+    case 'bounty':
+      return [
+        one('grade', 'Threat grade', gradeLabel(entity.grade)),
+        one('target', 'Target', entity.target),
+        one('targetGrade', 'Target ranked', gradeLabel(entity.targetGrade)),
+        one('conspicuousity', 'Conspicuousity', entity.conspicuousity),
+        one('state', 'State', entity.state),
+        many('pings', 'Pings', entity.pings),
+        one('crime', 'Wanted for', entity.crime),
+        one('briefing', 'Posting', entity.briefing),
+        one('warning', 'Warning', entity.warning),
+        many('objectives', 'Objectives', entity.objectives),
+        many('rewards', 'Rewards', entity.rewards),
+        one('issuer', 'Issued by', entity.issuer),
+      ];
+
     // Ungraded, like lore — a clan is not Grade 2. The structured parts (seats, mutations,
     // assets) flatten to lines here because this shape is what prints and what Obsidian
     // writes; the editor reads the record itself.
@@ -275,5 +291,7 @@ export function entitySummary(entity: SavedEntity): string {
       return [entity.role, entity.form].filter(Boolean).join(' · ');
     case 'clan':
       return [entity.innateTechnique, entity.summary].filter(Boolean).join(' · ');
+    case 'bounty':
+      return [entity.target, entity.crime].filter(Boolean).join(' · ');
   }
 }

@@ -8,6 +8,12 @@
  * Pure.
  */
 
+import type { FontChoice } from './fonts';
+import {
+  defaultCardStyles,
+  type CardKind,
+  type CardStyle,
+} from './card-style';
 import {
   DEFAULT_DIFFICULTY_ID,
   DEFAULT_DIFFICULTY_PRESETS,
@@ -24,31 +30,21 @@ export const SETTINGS_SCHEMA_VERSION = 1;
  * System stacks, plus two accessibility faces vendored into the bundle. Nothing is ever
  * fetched at runtime — offline-first (CLAUDE.md §1).
  */
-export type FontChoice = 'sans' | 'serif' | 'mono' | 'dyslexic' | 'hyperlegible';
 
-export const FONT_CHOICES: readonly FontChoice[] = [
-  'sans',
-  'serif',
-  'mono',
-  'hyperlegible',
-  'dyslexic',
-];
 
-export const FONT_LABELS: Record<FontChoice, string> = {
-  sans: 'Sans — the default UI face',
-  serif: 'Serif — softer for long reading',
-  mono: 'Monospace — fixed width throughout',
-  hyperlegible: 'Atkinson Hyperlegible — designed for low vision',
-  dyslexic: 'OpenDyslexic — weighted letterforms, designed for dyslexia',
-};
+export type { CardKind, CardStyle } from './card-style';
 
-export const FONT_STACKS: Record<FontChoice, string> = {
-  sans: "ui-sans-serif, system-ui, 'Segoe UI', sans-serif",
-  serif: "ui-serif, Georgia, 'Times New Roman', serif",
-  mono: "ui-monospace, 'Cascadia Mono', 'Consolas', monospace",
-  hyperlegible: "'Atkinson Hyperlegible', ui-sans-serif, system-ui, sans-serif",
-  dyslexic: "'OpenDyslexic', ui-sans-serif, system-ui, sans-serif",
-};
+// Re-exported so every existing import of these still resolves — see `fonts.ts` for why
+// they had to move out.
+export {
+  FONT_CHOICES,
+  FONT_LABELS,
+  FONT_STACKS,
+  isFontChoice,
+  resolveFontStack,
+  safeFamily,
+  type FontChoice,
+} from './fonts';
 
 export const TEXT_SCALES = [0.9, 1, 1.1, 1.25, 1.5] as const;
 export type TextScale = (typeof TEXT_SCALES)[number];
@@ -140,6 +136,14 @@ export interface Settings {
    * and newlines when a mission is rolled.
    */
   readonly defaultHosts: string;
+  /**
+   * Fonts and colours for the generated graphics, one style per kind.
+   *
+   * Additive: a config.json written before this parses with the defaults, and every style
+   * starts on `followTheme`, so nothing looked different the day it landed. See
+   * `domain/card-style.ts`.
+   */
+  readonly cardStyles: Record<CardKind, CardStyle>;
 }
 
 export const DEFAULT_APPEARANCE: Appearance = {
@@ -163,6 +167,7 @@ export function defaultSettings(): Settings {
     hostRewards: DEFAULT_HOST_REWARDS,
     defaultDifficulty: DEFAULT_DIFFICULTY_ID,
     defaultHosts: '',
+    cardStyles: defaultCardStyles(),
   };
 }
 

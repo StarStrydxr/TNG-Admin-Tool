@@ -8,6 +8,7 @@ import { MyMaterialSection } from './MyMaterialSection';
 import { VaultSyncSection } from './VaultSyncSection';
 import { TemplatesSection } from './TemplatesSection';
 import { RolesSection } from './RolesSection';
+import { CardStyleSection } from './CardStyleSection';
 import { ThemeSection } from './ThemeSection';
 
 export function SettingsPage() {
@@ -30,6 +31,7 @@ export function SettingsPage() {
 
       <RolesSection />
       <ThemeSection />
+      <CardStyleSection />
       <BackgroundSection />
       <AccessibilitySection />
       <DifficultySection />

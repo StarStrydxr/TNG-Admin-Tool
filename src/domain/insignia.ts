@@ -37,7 +37,8 @@ export type GlyphId =
   | 'technique'
   | 'shikigami'
   | 'lore'
-  | 'clan';
+  | 'clan'
+  | 'bounty';
 
 const INSIGNIA: Record<InsigniaKind, Insignia> = {
   // Characters and the drafts that become them share their glyphs: a saved sorcerer and a
@@ -55,6 +56,7 @@ const INSIGNIA: Record<InsigniaKind, Insignia> = {
   shikigami: { glyph: 'shikigami', label: 'Shikigami' },
   lore: { glyph: 'lore', label: 'Lore' },
   clan: { glyph: 'clan', label: 'Clan' },
+  bounty: { glyph: 'bounty', label: 'Bounty' },
 };
 
 export function insigniaFor(kind: InsigniaKind): Insignia {

@@ -129,6 +129,24 @@ const RECORDS: readonly (SavedEntity | ReturnType<typeof createCharacter>)[] = [
     summary: 'The night the veil came down over the station and did not come back up cleanly.',
     body: 'Accounts disagree about who raised it. The Association has never published one.',
   }),
+  entity({
+    kind: 'bounty',
+    id: 'b1',
+    name: 'Bounty: Walker Masami',
+    grade: 'disaster-grade',
+    targetGrade: 'special-grade',
+    target: 'Walker Masami',
+    conspicuousity: 'Public',
+    state: 'Dead',
+    pings: ['Curse User', 'Student', 'Teacher'],
+    crime: 'conspiracy against Jujutsu Society',
+    briefing: 'They have previously worked with curses.',
+    warning: 'Despite the target\u2019s ranking, treat this as a grade higher.',
+    objectives: ['Kill him, no exceptions.'],
+    rewards: ['\u00a51,000,000'],
+    issuer: 'Jujutsu Academy, Tokyo',
+    image: 'walker.png',
+  }),
   // A clan is the other ungraded kind, and the only one whose fields are objects rather than
   // strings — so this also pins that the flattened lines reach the template at all.
   entity({
@@ -254,7 +272,7 @@ describe('the shipped templates', () => {
  * rather than write an empty file — that fallback is the behaviour being pinned here.
  */
 describe('the Discord templates', () => {
-  const DISCORD_KINDS = new Set(['mission', 'technique', 'character']);
+  const DISCORD_KINDS = new Set(['mission', 'technique', 'character', 'bounty']);
 
   it('ships one for each format the server has', async () => {
     const { templates } = await loadTemplates();
