@@ -144,6 +144,19 @@ export interface Settings {
    * `domain/card-style.ts`.
    */
   readonly cardStyles: Record<CardKind, CardStyle>;
+  /**
+   * Which seeded trait ids have already been offered to the vault.
+   *
+   * ⚠️ **Bookkeeping, not a preference**, and it exists because the obvious guard was wrong.
+   * The first version copied `masamiSeed` and wrote the seed only into an **empty** collection.
+   * That is right for a clan — one record, written once — and wrong for a list Dan feeds in
+   * batches: the day six more traits were added to the code, the folder already held four, so
+   * the seed skipped and none of the six ever appeared. He ran it and they were not there.
+   *
+   * Recording the ids instead means a later batch lands, **and** a trait he deletes on purpose
+   * stays deleted — which a plain "write any id that is missing" would silently resurrect.
+   */
+  readonly seededTraits: readonly string[];
 }
 
 export const DEFAULT_APPEARANCE: Appearance = {
@@ -168,6 +181,7 @@ export function defaultSettings(): Settings {
     defaultDifficulty: DEFAULT_DIFFICULTY_ID,
     defaultHosts: '',
     cardStyles: defaultCardStyles(),
+    seededTraits: [],
   };
 }
 

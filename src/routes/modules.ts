@@ -11,6 +11,7 @@ import { LorePage } from './lore/LorePage';
 import { SettingsPage } from './settings/SettingsPage';
 import { SituationPage } from './situation/SituationPage';
 import { TechniqueGeneratorPage } from './technique-generator/TechniqueGeneratorPage';
+import { DefectsPage, TraitsPage } from './traits/TraitVaultPage';
 import { VaultPage } from './vault/VaultPage';
 
 export type ModuleId =
@@ -18,6 +19,8 @@ export type ModuleId =
   | 'library'
   | 'lore'
   | 'clans'
+  | 'traits'
+  | 'defects'
   | 'bounty-generator'
   | 'npc-generator'
   | 'technique-generator'
@@ -60,6 +63,18 @@ export const MODULES: readonly ModuleDefinition[] = [
     label: 'Clans',
     blurb: 'Hierarchy, bonuses, mutations and the clan vault.',
     Page: ClansPage,
+  },
+  {
+    id: 'traits',
+    label: 'Traits',
+    blurb: 'Perks, what they cost and what they move. Recorded, never applied.',
+    Page: TraitsPage,
+  },
+  {
+    id: 'defects',
+    label: 'Defects',
+    blurb: 'Drawbacks, and what taking one gives back.',
+    Page: DefectsPage,
   },
   {
     id: 'npc-generator',

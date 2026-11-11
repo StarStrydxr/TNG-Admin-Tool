@@ -36,8 +36,26 @@ export interface MergeResult {
  * renders the same way and broke the round trip the moment it existed — `obsidian.test.ts`
  * walks all the kinds and caught it. Add a grade-valued field and add it to this set in the
  * same change.
+ *
+ * `slot` is here for the same reason one step removed: it is a *sentence* derived from a
+ * boolean ("Takes a trait slot"), and a template cannot phrase a boolean. `mergeKind` would
+ * skip it today because no property of that name exists — but that is an accident of the key,
+ * not a guarantee, and naming it here is what keeps it true if one ever does.
  */
-const NEVER_MERGED = new Set(['grade', 'targetGrade', 'links']);
+const NEVER_MERGED = new Set([
+  'grade',
+  'targetGrade',
+  'links',
+  // Sentences derived from a non-string field, which is the same trap `grade` is. `slot` and
+  // `permission` come from a boolean and a rarity; `rarity` reads "Exotic" and stores `exotic`;
+  // `acquisition` and `cost` are the same shape. `mergeKind` skips most of them today only
+  // because no property of that name holds a string — an accident of the key, not a guarantee.
+  'slot',
+  'rarity',
+  'cost',
+  'acquisition',
+  'permission',
+]);
 
 /**
  * Whether a section can be merged into this property at all.

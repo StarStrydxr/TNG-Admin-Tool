@@ -1,4 +1,4 @@
-import { useId, type ReactNode } from 'react';
+import { useEffect, useId, useState, type ReactNode } from 'react';
 
 const INPUT_CLASS =
   'w-full rounded-md border border-void-700 bg-void-850 px-2.5 py-1.5 text-sm text-ash-100 ' +
@@ -88,6 +88,75 @@ export function TextArea({ label, value, onChange, rows, placeholder, hint }: Te
         onChange={(event) => onChange(event.target.value)}
       />
     </Field>
+  );
+}
+
+/** One entry per non-empty line. Trailing and blank lines are for typing, not for storing. */
+export function parseLines(text: string): readonly string[] {
+  return text
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean);
+}
+
+/**
+ * The raw text behind a textarea whose model is a parsed list.
+ *
+ * ⚠️ **This is load-bearing and the obvious version is broken.** Derive the value from the
+ * list, re-parse on every keystroke and drop blank lines, and a newline becomes impossible:
+ * Enter gives `"…\n"`, the blank line is filtered out, the value re-renders without it, and the
+ * keystroke is undone as fast as it is typed. A second line is unreachable. That shipped once,
+ * on the clan mutation editor, and Dan hit it.
+ *
+ * So the text is held here and only the parsed list goes upward. The model is taken back only
+ * when it says something this text does not already say — switching record, or an undo — so
+ * whitespace mid-typing survives a re-render.
+ *
+ * Exported as a hook rather than a component because the two callers sit in differently styled
+ * contexts (`LinesField` here, `LinesArea` in the clan row list) and the mechanism, not the
+ * markup, is the part that must not be reimplemented.
+ */
+export function useLineBuffer(
+  lines: readonly string[],
+  onChange: (lines: readonly string[]) => void,
+): { readonly text: string; readonly setText: (next: string) => void } {
+  const canonical = lines.join('\n');
+  const [text, setLocal] = useState(canonical);
+
+  useEffect(() => {
+    setLocal((current) => (parseLines(current).join('\n') === canonical ? current : canonical));
+  }, [canonical]);
+
+  return {
+    text,
+    setText: (next: string) => {
+      setLocal(next);
+      onChange(parseLines(next));
+    },
+  };
+}
+
+interface LinesFieldProps {
+  readonly label: string;
+  readonly lines: readonly string[];
+  readonly onChange: (lines: readonly string[]) => void;
+  readonly rows?: number;
+  readonly placeholder?: string;
+  readonly hint?: string;
+}
+
+/** A list edited as text, one entry per line. See `useLineBuffer` for why it holds its own. */
+export function LinesField({ label, lines, onChange, rows, placeholder, hint }: LinesFieldProps) {
+  const buffer = useLineBuffer(lines, onChange);
+  return (
+    <TextArea
+      label={label}
+      value={buffer.text}
+      onChange={buffer.setText}
+      {...(rows === undefined ? {} : { rows })}
+      {...(placeholder === undefined ? {} : { placeholder })}
+      {...(hint === undefined ? {} : { hint })}
+    />
   );
 }
 

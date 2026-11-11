@@ -146,6 +146,29 @@ function Glyph({ id }: { readonly id: GlyphId }) {
         </>
       );
 
+    // ⚠️ A cut gem, and not a rounded rectangle with a peak inside it: the first attempt at
+    // this pair drew exactly the picture-frame-and-mountain every app uses for a missing
+    // image, so a trait card looked like a broken portrait. A glyph is only doing its job if
+    // it reads as the thing it names at 14px.
+    case 'trait':
+      return (
+        <>
+          <path d="M8 2.4 13.2 6.4 8 13.6 2.8 6.4Z" />
+          <path d="M2.8 6.4h10.4" />
+          <path d="M8 2.4 5.4 6.4 8 13.6l2.6-7.2L8 2.4" />
+        </>
+      );
+
+    // The same stone, split. Paired with the trait on purpose, and told apart by the fracture
+    // rather than by colour — a colour pair is useless in a monochrome print (§9).
+    case 'defect':
+      return (
+        <>
+          <path d="M8 2.4 13.2 6.4 8 13.6 2.8 6.4Z" />
+          <path d="M9.4 2.7 6.6 6.6l2.8 1.7-2 5.1" />
+        </>
+      );
+
     // A mon with a lineage inside it: one head, and the line branching below.
     case 'clan':
       return (

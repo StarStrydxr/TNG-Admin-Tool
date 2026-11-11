@@ -33,7 +33,9 @@ export type EntityKind =
   | 'shikigami'
   | 'lore'
   | 'clan'
-  | 'bounty';
+  | 'bounty'
+  | 'trait'
+  | 'defect';
 
 export const ENTITY_KINDS: readonly EntityKind[] = [
   'mission',
@@ -45,6 +47,8 @@ export const ENTITY_KINDS: readonly EntityKind[] = [
   'lore',
   'clan',
   'bounty',
+  'trait',
+  'defect',
 ];
 
 /** Directory under `vault/` for each kind. Mirrored by the Rust whitelist. */
@@ -58,6 +62,8 @@ export const ENTITY_COLLECTIONS: Record<EntityKind, string> = {
   lore: 'lore',
   clan: 'clans',
   bounty: 'bounties',
+  trait: 'traits',
+  defect: 'defects',
 };
 
 export const ENTITY_LABELS: Record<EntityKind, string> = {
@@ -70,6 +76,8 @@ export const ENTITY_LABELS: Record<EntityKind, string> = {
   lore: 'Lore',
   clan: 'Clan',
   bounty: 'Bounty',
+  trait: 'Trait',
+  defect: 'Defect',
 };
 
 /** Present only on records a generator produced. */
@@ -300,6 +308,30 @@ export interface Lore extends EntityBase {
  * unconditional that the app does not calculate stats, so a `+2 Classes Speed` here is a note
  * about why a stat is what it is, not an instruction to change one.
  */
+/**
+ * The six rarity rungs, cheapest first (Dan's screenshots, 11 Nov 2026).
+ *
+ * The costs and the permissions they need are in `RARITY` in `domain/traits.ts` — the table is
+ * published server canon, fixed in code like the grade ladder rather than editable like the
+ * mission difficulty tiers, because the server sets the price and the app only quotes it.
+ */
+export type TraitRarity =
+  | 'basic'
+  | 'uncommon'
+  | 'rare'
+  | 'exotic'
+  | 'legendary'
+  | 'extraordinary';
+
+/**
+ * How a trait may be taken.
+ *
+ * `inherent` — start with it only. `developed` — must be developed in play alongside earning a
+ * Feat. `either` — the default, and what the rules describe for a trait listed as neither:
+ * "they can still be started with but may also be developed later on."
+ */
+export type TraitAcquisition = 'either' | 'inherent' | 'developed';
+
 export interface ClanModifier {
   readonly text: string;
   readonly direction: 'up' | 'down' | 'other';
@@ -475,6 +507,88 @@ export interface Bounty extends EntityBase {
   readonly issuer: string;
 }
 
+/**
+ * One line of a trait's «Bonuses and Drawbacks» block.
+ *
+ * Dan's screenshots, 11 Nov 2026. The server writes each as a **named** entry with a green or
+ * red diamond, sometimes with a grey sub-line under it, and sometimes grouped under a condition
+ * ("➡ Whenever Alone (Team of One):").
+ *
+ * ⚠️ **`kind` is stated, never derived from the sign.** This is why a `ClanModifier` could not
+ * be reused: `modifier()` reads the direction off a leading + or −, and half of these carry
+ * neither. "Supervision: every member of your team can receive one re-roll" is a green bonus
+ * with no plus in it, and "Quirky: you must have one quirk of some kind" is a red drawback with
+ * no minus. Guessing from the text would colour both wrong.
+ */
+export interface TraitEntry {
+  readonly id: string;
+  /** "Genius", "Severable Bond". May be empty — a one-line trait needs no name. */
+  readonly name: string;
+  readonly text: string;
+  readonly kind: 'bonus' | 'drawback';
+  /** The grey line under an entry — "Todo's schitzophrenia is a good example." */
+  readonly note: string;
+  /** Entries sharing one render under a single heading. '' is the main block. */
+  readonly condition: string;
+}
+
+/** Shared by the two vaults. What a catalogue entry carries whatever kind it is. */
+interface TraitLike extends EntityBase {
+  /** The ➤『DESCRIPTION』prose, above the bonuses. */
+  readonly description: string;
+  /** The «Bonuses and Drawbacks» block, in the order the server writes them. */
+  readonly entries: readonly TraitEntry[];
+  /** Whether taking it spends a trait slot. */
+  readonly usesTraitSlot: boolean;
+  /** Clan, background, position — where it comes from. Free text with suggestions. */
+  readonly source: string;
+  /**
+   * The ➤『REQUIREMENTS』block — what a character needs before they may take it.
+   *
+   * ⚠️ A **list**, because the server writes it as bullets and one of them may be conditional:
+   * Biological Blueprint has "Must either be non-human or possess unique physiology" and
+   * "If Developed: Must have a heavily scrutinized reason". A single line would run the two
+   * together.
+   */
+  readonly requirements: readonly string[];
+}
+
+/**
+ * A trait in the vault: the library version, not the copy on a sheet.
+ *
+ * ⚠️ **Not the same type as `Trait` in `character.ts`.** That one is what sits on a character —
+ * a snapshot of name, effect and notes. This is the catalogue entry it was taken from, and it
+ * carries what a catalogue needs and a sheet does not. Copying one onto a sheet flattens it
+ * (`traitFromRecord` in `domain/attach.ts`).
+ *
+ * ⚠️ **No `tpCost` field.** The cost is fixed by rarity in Dan's own rules (Basic 5 →
+ * Extraordinary 12), so storing it as well would let a record disagree with the published
+ * table. Read it with `traitCost()`.
+ */
+export interface TraitRecord extends TraitLike {
+  readonly kind: 'trait';
+  /** One of the six rungs. Decides the TP cost and any permission needed. */
+  readonly rarity: TraitRarity;
+  /** Whether it must be started with, must be developed in play, or either. */
+  readonly acquisition: TraitAcquisition;
+}
+
+/**
+ * A drawback.
+ *
+ * ⚠️ **Deliberately not given a rarity.** Dan's screenshots cover the *trait* system only, and
+ * he confirmed (11 Nov 2026) that defects are a separate system whose rules have not been
+ * supplied. Giving a defect a rarity and a TP cost so the two types line up would invent half
+ * a system — §10, and the same refusal the harvester makes about guessing a label. So it keeps
+ * a free-text cost until the rules arrive, and the two types share only what is genuinely
+ * common.
+ */
+export interface DefectRecord extends TraitLike {
+  readonly kind: 'defect';
+  /** Free text, because nothing says what a defect costs or returns yet. */
+  readonly tpCost: string;
+}
+
 export type SavedEntity =
   | Mission
   | Curse
@@ -484,7 +598,9 @@ export type SavedEntity =
   | Shikigami
   | Lore
   | Clan
-  | Bounty;
+  | Bounty
+  | TraitRecord
+  | DefectRecord;
 
 /**
  * The grade a record carries, or null for one that has none.
@@ -494,7 +610,18 @@ export type SavedEntity =
  * — goes through here.
  */
 export function entityGrade(entity: SavedEntity): GradeId | null {
-  return entity.kind === 'lore' || entity.kind === 'clan' ? null : entity.grade;
+  // Four ungraded kinds now. Written out rather than looked up in a list, because a list does
+  // not narrow the union and `entity.grade` then fails to typecheck — which is the compiler
+  // doing its job: it is exactly the mistake this function exists to prevent.
+  switch (entity.kind) {
+    case 'lore':
+    case 'clan':
+    case 'trait':
+    case 'defect':
+      return null;
+    default:
+      return entity.grade;
+  }
 }
 
 export interface EntityMeta {

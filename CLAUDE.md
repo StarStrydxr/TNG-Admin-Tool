@@ -21,6 +21,8 @@ Five modules:
 | **Library** | Browse saved generator output by kind and folder; refile, re-rank, delete, in bulk |
 | **Lore** | Places, clans, organisations, incidents — the parts of the world no generator can roll |
 | **Clans** | Edit a clan: hierarchy, bonuses, mutations, the clan vault, and rolling an NPC into an empty seat |
+| **Traits** | Write a perk once — effect, cost, source, slot — and put it on any sheet |
+| **Defects** | The same for drawbacks, and what taking one gives back |
 | **NPC Generator** | Generate a Sorcerer, Curse User, or Curse |
 | **Technique Generator** | Cursed techniques by type; shikigami techniques bring their own shikigami |
 | **Mission Generator** | Generate a graded mission with location, target, complications and payout |
@@ -173,7 +175,8 @@ TNG-Claude/
 ├── vault/
 │   ├── characters/*.json
 │   ├── npcs/*.json
-│   └── missions|bounties|curses|cursed-objects|cursed-tools|techniques|shikigami|lore|clans/
+│   └── missions|bounties|curses|cursed-objects|cursed-tools|techniques|shikigami|
+│       lore|clans|traits|defects/
 ├── tables/                  # USER tables — overlay canon, never overwrite it
 ├── templates/               # USER export templates — override the bundled ones by file name
 ├── images/                  # portraits and reference pictures; records store only the name
@@ -357,9 +360,38 @@ include clan, background/personality, and position.
 Model `traits[]`, `arts[]`, `traitSlots`, `artSlots` and `awakenings[]` on the character now, and
 enforce the slot limits in the UI as a soft warning rather than a hard block.
 
+**The trait system** was supplied 11 Nov 2026 and is no longer a guess. Traits are perks bought
+with **Trait Points**: a character starts with **12** and earns more from attending events,
+completing missions, giveaways and other methods. Each trait sits at one of six **rarities**,
+and the rarity fixes the price:
+
+| Rarity | TP | |
+| --- | ---: | --- |
+| Basic | 5 | |
+| Uncommon | 6 | |
+| Rare | 7 | |
+| Exotic | 8 | |
+| Legendary | 10 | Requires **Admin** permission; a roleplay sample when claiming |
+| Extraordinary | 12 | Requires **Owner** permission; a roleplay sample when claiming |
+
+Two tags sit beside the rarity rather than among them. **Inherent** — you have to start with
+this trait. **Developed** — you have to develop it in play alongside earning a Feat. A trait
+listed as neither "can still be started with but may also be developed later on", which is the
+`either` default. Developing one later needs a free trait slot, the points, and a roleplay
+intense enough to justify it.
+
+⚠️ **Nothing totals the Trait Points**, confirmed by Dan when this landed. The balance is
+tracked on the Discord server, so the app quotes a cost and never sums one — the same refusal
+`cursedRating` makes in this section, and for the same reason: a total here that disagreed with
+the one on Discord would be worse than no total at all.
+
+⚠️ **Defects are a separate system and its rules have not been supplied.** The screenshots cover
+traits only. A defect therefore has **no rarity and no fixed cost** — giving it one so the two
+types line up would invent half a system (§10). See **Traits and defects** in §9.
+
 ⚠️ **TBD, Dan will supply later:** the slot formula across grades and awakenings, what an
-awakening is structurally, and what distinguishes an art from an innate technique.
-**Binding vows are deferred to much later** — leave the field, build nothing on it.
+awakening is structurally, what distinguishes an art from an innate technique, and the defect
+rules. **Binding vows are deferred to much later** — leave the field, build nothing on it.
 
 ### Core entities (canon vocabulary — safe)
 
@@ -519,8 +551,8 @@ would not need redesigning.
 
 ### Saved generator output
 
-Missions, bounties, curses, cursed objects, cursed tools, techniques, shikigami, lore and
-clans are stored as **typed entities**
+Missions, bounties, curses, cursed objects, cursed tools, techniques, shikigami, lore,
+clans, traits and defects are stored as **typed entities**
 (`domain/entities.ts`), one collection each under `vault/`. Characters remain separate and keep
 their own schema.
 
@@ -1237,10 +1269,146 @@ well as Trait Points.
 value derived from the list, re-parsed on every keystroke, blank lines filtered — makes a
 newline impossible: pressing Enter gives `"…\n"`, the blank line is dropped, the value
 re-renders without it, and the keystroke is undone as fast as it is typed. A second line is
-unreachable. **This shipped**, on the clan mutation editor, and Dan hit it. `LinesArea` in
-`routes/clans/RowList.tsx` keeps the raw text locally and only sends the parsed list upward,
-taking the model back only when it says something the text does not. Use it for every
-list-in-a-textarea; `AreaCell` is for plain prose.
+unreachable. **This shipped**, on the clan mutation editor, and Dan hit it. The mechanism lives
+in **`useLineBuffer`** (`components/form/fields.tsx`): it holds the raw text locally and sends
+only the parsed list upward, taking the model back only when the model says something the text
+does not. Use it for every list-in-a-textarea. Two wrappers sit over it — `LinesField` for the
+form-field surfaces and `LinesArea` in `routes/clans/RowList.tsx` for the clan rows — because
+the two live in differently styled contexts; the *mechanism*, not the markup, is the part that
+must never be reimplemented. `AreaCell` is for plain prose.
+
+**Traits and defects**
+
+Two vaults of their own (Dan, 11 Nov 2026), so a trait can be written once and put on any
+sheet. `TraitRecord` and `DefectRecord` are entities, which is what buys them folders,
+cross-links, search, visibility, print and both export formats with no special-casing — the
+same bargain `Lore`, `Curse` and `Clan` made. The rules themselves are in §4.
+
+- ⚠️ **They record. They do not apply.** §4 is unconditional, so picking one onto a sheet
+  copies its lines in as text and changes no Class. This is the third surface to draw that
+  line, after the clan bonus and slot-taking mutations, and for the same reason: a modifier
+  Dan has already typed into a stat must never be counted a second time.
+- ⚠️ **A copy, not a link** — his call, and the stronger reason is historical rather than
+  technical: a trait on a sheet records what that character *took*. Editing "Eccentric Genius"
+  in the vault next year must not rewrite the sheet of someone who took the old wording, and
+  deleting it must not empty their build. `traitFromRecord` in `domain/attach.ts` does the
+  conversion, beside `techniqueToInnate`, which made the same choice.
+
+**A trait is not a list of effect lines.** It is a description plus a «Bonuses and Drawbacks»
+block, and each entry in that block is a `TraitEntry`: a **name** ("Genius", "Severable Bond"),
+the text, a bonus/drawback marker, an optional grey **note** under it, and an optional
+**condition** grouping it under its own heading.
+
+- ⚠️ **The bonus/drawback marker is stored, never read off the text.** This is the whole reason
+  a `ClanModifier` could not be reused: `modifier()` decides direction from a leading + or −,
+  and half the server's own entries carry neither. *Supervision — "every member of your team can
+  receive one re-roll"* is a green bonus with no plus in it; *Quirky — "you must have one quirk
+  of some kind"* is a red drawback with no minus. Inferring would colour both wrong. The editor
+  toggles it with a button and `traits.test.ts` pins it.
+- A **condition** is a string on each entry, not a nested list — "Whenever Alone (Team of One)",
+  which Corrective Authority genuinely has. Flat means an entry moves between blocks by typing
+  and nothing has to be restructured to add one; `entryGroups()` does the grouping, main block
+  first.
+- A third block, `➤『REQUIREMENTS』`, is **`requirements: string[]`** — a list, not a line.
+  Biological Blueprint has two bullets and one of them is conditional on how the trait was
+  acquired ("If Developed: Must have a heavily scrutinized reason"), which a single field would
+  run together. The parser reads an older `prerequisite` string into a one-item list, so a file
+  written before this reads fine.
+- Bonuses and drawbacks export as **two lists**, not one. On paper and in Obsidian there is no
+  colour to carry the distinction, so merging them would lose the shape of the block entirely.
+
+**What the rarity decides.**
+
+- The six rungs and their prices are **fixed in `domain/traits.ts`**, not editable in Settings
+  (Dan, 11 Nov 2026) — the same standing as the grade ladder, and unlike the mission difficulty
+  tiers, which a GM tunes. The server sets the price; the app only quotes it. The editor offers
+  them as a dropdown.
+- ⚠️ **`TraitRecord` has no `tpCost` field at all.** The cost is read back through
+  `traitCost()`, so a saved record can never disagree with the published table. A `DefectRecord`
+  *does* have one, free text, because the defect rules do not exist yet.
+- Legendary and Extraordinary need Admin and Owner permission plus a roleplay sample;
+  `rarityPermissionNote()` writes that sentence once, for the panel and both templates.
+- ⚠️ **Every derived field belongs in `NEVER_MERGED`** (`obsidian-merge.ts`): `rarity` reads
+  "Exotic" and stores `exotic`, exactly the trap `grade` is, and `cost`, `slot`, `acquisition`
+  and `permission` are all sentences built from a non-string field. `mergeKind` skips most of
+  them today only because no property of that name holds a string — an accident of the key, not
+  a guarantee.
+
+**The rest of the shape.**
+
+- **Two kinds, not one with a polarity flag.** Separate folders on disk and separate boards on
+  screen. They share `TraitLike` for what is genuinely common, and one parameterised hook and
+  one parameterised board serve both — a second copy of either would be a field added to one
+  surface and forgotten on the other, with nothing to catch it. That is the `CardSection` prop
+  bug waiting to happen again. The *editor* is split into `TraitEditor.tsx` purely for length.
+- ⚠️ **They are the third and fourth ungraded kinds**, after lore and clans. `entityGrade()` is
+  a written-out `switch` rather than a lookup in a list, because `UNGRADED.includes(kind)` does
+  not narrow the union and `entity.grade` then fails to typecheck — the compiler doing exactly
+  the job that function exists to do. Do not "tidy" it into an array.
+- ⚠️ **`usesTraitSlot` defaults the other way for a defect**, in both the constructor and the
+  parser: a trait spends a slot, a defect hands points back. `traits.test.ts` pins that the two
+  agree, because a hand-written file that omits the field must mean the same thing either way.
+- ⚠️ **The copied notes are one line, not three.** A character's `Trait.notes` is shown in a
+  single-line input, so newlines in it are invisible — the first version put
+  "Cost: 6 TPSource: Background" on screen while looking perfectly correct in the data. The
+  test pins the separator, not just the content.
+- **The picker reads its collection when opened**, rather than through a provider.
+  `ClansProvider` exists because three surfaces resolve a bonus against the same clans; this is
+  one surface and one click, so a `TraitsProvider` would be machinery bought for nothing.
+- **No generator**, as asked. A rolled perk is not a thing anybody wants, and §4 forbids the app
+  deciding mechanics anyway. `createTrait` is the constructor, beside `createLore`.
+- **No card layout.** `EntityDetail` offers the card panel to clans and missions only, and
+  `CardSubject` is typed to the three kinds that have one — so there is nothing to gate.
+- The glyphs are a cut gem and the same stone split. ⚠️ The first attempt drew a rounded
+  rectangle with a peak inside it, which is the missing-image icon every app uses, so a trait
+  card looked like a broken portrait. A glyph only works if it reads as its own thing at 14px.
+- ⚠️ **No `w-full` in the entry editor's shared field class.** Two width utilities of equal
+  specificity are decided by the order Tailwind *emits* them, not the order they sit in the
+  attribute, so `${FIELD} w-40` left the name box full width and squeezed the effect box to
+  nothing. Widths are set per input there.
+
+**Dan's ten traits are seeded** (`domain/trait-seed.ts`): Eccentric Genius, Perfect Vessel,
+Jujutsu Prodigy, Infamous and Medic (Extraordinary), Shikigami Master (Legendary), Corrective
+Authority (Rare), Hard Worker (Uncommon), and Biological Blueprint and Waste Not (Basic),
+written into the traits collection as he supplies them. Ids are derived from the name, so
+seeding twice can only ever write the same files.
+
+- ⚠️ **Seeded per id, NOT "only when the collection is empty" — and that distinction is a bug
+  that shipped.** The first version copied `masamiSeed`'s guard, which is right for a clan (one
+  record, written once) and wrong for a list that grows in batches. The day six more traits were
+  added to the code the folder already held four, so the whole seed skipped and none of the six
+  ever appeared. Dan ran it and they were not there.
+- The decision is **`missingSeeds()` in `trait-seed.ts`** — pure, and tested for exactly that
+  case. It lived inside the hook as `found.length === 0`, where nothing could catch it, because
+  hooks are not unit-tested (§9). Logic that decides whether to write to disk belongs in
+  `domain/` for that reason alone.
+- Three conditions, each load-bearing: **not already on disk** (never overwrite a record he has
+  edited), **not already recorded in `Settings.seededTraits`** (one he deleted on purpose stays
+  deleted — which is what a plain "write whatever is missing" would silently resurrect, every
+  time he opened the board), and **nothing in the collection failed to parse** (the one guard
+  worth keeping from the clan version: writing into a folder whose bad file is being skipped
+  would look exactly like losing it).
+- `Settings.seededTraits` records every seed id, the ones already on disk included. Absent from
+  an older `config.json`, it parses as none recorded, and the on-disk check is what stops the
+  four already there being overwritten on the upgrade.
+- ⚠️ **The board says what it wrote**, in a dismissible line — not only through `announce()`.
+  Same lesson as the card export: a write nobody can see is indistinguishable from a dead
+  button, and this one went unnoticed for exactly that reason the first time.
+
+- ⚠️ **Transcribed, not corrected.** "untill", "schitzophrenia", "supress", "by staf" and the
+  rest are reproduced as the server writes them, and tests pin several of them. The vault should say what the server
+  says; silently fixing the spelling would make the two disagree in a way nobody would notice.
+- They are **records in his vault, not entries in `data/canon/`**, for the same reason the
+  Masami clan is: every file in `data/canon/` is parsed as a roll table, and nothing rolls a
+  trait. Once written they are ordinary records — edit, rename or delete them.
+- ⚠️ **A broken Discord reference is not content.** Medic's *Specialist* line is followed on
+  screen by "see # unknown" — Discord failing to resolve a channel link, not something Dan
+  wrote. It was left out rather than transcribed as if it were text. Several traits also point
+  at other traits in prose ("You have the Soul Perception trait", "See: Mutated Body"); those
+  stay as written, because the targets are not in the vault and a cross-link to nothing would
+  dangle.
+- A test asserts the **drawback markers for all ten**, by name. A mis-transcribed marker is
+  otherwise a green line nobody notices.
 
 **The problems panel**
 
@@ -1505,6 +1673,7 @@ Requested after the original plan, and slotted ahead of 3–5:
 | **2.8** | Obsidian vaults (export and import, any local folder — the Drive answer, see §1), the three faction themes, per-kind insignia, and a custom background image. ✅ |
 | **2.7** | Second quality-of-life pass. ✅ Tag coherence made real, technique tables for all eleven types, the Situation roller, duplicate warnings, keyboard rolling, restore-from-backup, the in-app template editor, and booklet covers. `Curse` became a saveable entity along the way. |
 | **3.0** | The server's own formats. ✅ The character record became the OC template (§4), missions gained the posting format with rolled objectives and rewards, markdown export gained a second Discord-format template set chosen per export, and the harvester learned to read all three — NFKC folding plus the decorated headings, without which it could not read a single real posting. Difficulty then landed properly: Easy / Medium / Hard with Dan's own CR, TP, Yen and chest amounts, three reward buckets, Grade Ups, and the 3×/2× host payout (§9). Then the posting controls — a recommended-grade picker, slot steppers, a faction the posting is open to, placeholder rewards from the tier — plus an export preview, and the double scrollbar fixed. |
+| **3.9** | The trait and defect vaults. ✅ Two entity kinds of their own, two boards, and a picker on the character sheet that **copies** a record onto a build rather than linking it — so editing the vault later cannot rewrite somebody's sheet, and nothing applies a Class (§4, a third time). Then Dan supplied the real rules, so the schema was reshaped before anything was saved to those folders: six rarities with fixed TP costs, Inherent/Developed, and a trait's «Bonuses and Drawbacks» as **named entries** with a stored bonus/drawback marker — which is what a `ClanModifier` could not carry, since half the server's own entries have no sign to read. Conditional blocks, both export formats, and his four traits seeded in verbatim. |
 | **3.8** | Clan and mission graphics, and card styling. ✅ Clan cards and backdrops, mission cards and a tall **briefing**, all through one `card-render.ts`. Each kind gained its own fonts and colours in Settings — a six-colour palette through the existing theme engine, so the live WCAG readout came free and the no-hardcoded-colour rule is untouched — plus display and body font slots that accept any font installed on the machine. Per-kind block sets, GM-only mission lines kept off every graphic, and a floor that stops content colliding with the footer. |
 | **3.7** | Graphics. ✅ Character cards and backdrops, built as SVG so PNG and JPEG come from the canvas already in the repo, PDF from the print dialog, and the SVG itself is an editable vector master — no dependency added. Discord's own proportions, a live preview that is the document rather than a picture of it, and in-app controls for shape, picture focus, title and which blocks show. Clan and mission cards reuse `card-blocks.ts`. |
 | **3.6** | Bounties. ✅ A new entity and generator in the server's own posting format: two grades (the threat it is posted at, and what the target is actually ranked), free-text Conspicuousity / State / Pings, rolled objectives and a **separate economy** running to millions rather than the mission cap. The target rolls like any other field, so locking it is the "roll around somebody real" toggle. 74 proposed canon entries, both export formats, and pictures now come out in an export at all — `imagePath` for markdown, `imageEmbed` for Obsidian, and a named attachment line for Discord. |

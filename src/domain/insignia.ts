@@ -38,7 +38,9 @@ export type GlyphId =
   | 'shikigami'
   | 'lore'
   | 'clan'
-  | 'bounty';
+  | 'bounty'
+  | 'trait'
+  | 'defect';
 
 const INSIGNIA: Record<InsigniaKind, Insignia> = {
   // Characters and the drafts that become them share their glyphs: a saved sorcerer and a
@@ -57,6 +59,10 @@ const INSIGNIA: Record<InsigniaKind, Insignia> = {
   lore: { glyph: 'lore', label: 'Lore' },
   clan: { glyph: 'clan', label: 'Clan' },
   bounty: { glyph: 'bounty', label: 'Bounty' },
+  // Shape, not colour: the chevron points the other way and the slot is chipped. A colour
+  // pair would be eight hardcoded hex values and useless to a colour-blind reader (§9).
+  trait: { glyph: 'trait', label: 'Trait' },
+  defect: { glyph: 'defect', label: 'Defect' },
 };
 
 export function insigniaFor(kind: InsigniaKind): Insignia {

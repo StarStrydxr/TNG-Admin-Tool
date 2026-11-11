@@ -47,6 +47,8 @@ interface SettingsContextValue {
   readonly setCardStyle: (kind: CardKind, patch: Partial<CardStyle>) => void;
   /** Put the shipped difficulty bands back, leaving everything else alone. */
   readonly resetDifficulties: () => void;
+  /** Record that these seeded trait ids have been offered, so they are never offered twice. */
+  readonly rememberSeededTraits: (ids: readonly string[]) => void;
   readonly reset: () => void;
 }
 
@@ -184,6 +186,15 @@ export function SettingsProvider({ children }: { readonly children: ReactNode })
     }));
   }, []);
 
+  const rememberSeededTraits = useCallback((ids: readonly string[]) => {
+    setSettings((current) => {
+      const merged = [...new Set([...current.seededTraits, ...ids])];
+      // Same list means no write, so opening the Traits board does not dirty config.json
+      // every time and trigger a save.
+      return merged.length === current.seededTraits.length ? current : { ...current, seededTraits: merged };
+    });
+  }, []);
+
   const resetDifficulties = useCallback(() => {
     setSettings((current) => ({ ...current, difficulties: DEFAULT_DIFFICULTY_PRESETS }));
   }, []);
@@ -208,6 +219,7 @@ export function SettingsProvider({ children }: { readonly children: ReactNode })
       setHostRewards,
       setCardStyle,
       resetDifficulties,
+      rememberSeededTraits,
       reset,
     }),
     [
@@ -226,6 +238,7 @@ export function SettingsProvider({ children }: { readonly children: ReactNode })
       setHostRewards,
       setCardStyle,
       resetDifficulties,
+      rememberSeededTraits,
       reset,
     ],
   );

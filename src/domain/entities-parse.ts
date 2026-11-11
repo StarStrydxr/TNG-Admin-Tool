@@ -11,6 +11,7 @@ import { isLinkKind, type EntityLink } from './links';
 import { DEFAULT_MIN_ROLE, isRole, type Role } from './roles';
 import { parseStatBlock } from './character-parse';
 import { modifier } from './clans';
+import { isAcquisition, isRarity, traitEntry } from './traits';
 import {
   ENTITY_SCHEMA_VERSION,
   SEAT_STATUSES,
@@ -33,6 +34,9 @@ import {
   type Mission,
   type SavedEntity,
   type Lore,
+  type DefectRecord,
+  type TraitEntry,
+  type TraitRecord,
   type Shikigami,
   type ShikigamiCore,
   type Technique,
@@ -197,6 +201,50 @@ function parseMutations(value: unknown): readonly Mutation[] {
 function seatStatus(value: unknown): SeatStatus {
   const raw = str(value);
   return (SEAT_STATUSES as readonly string[]).includes(raw) ? (raw as SeatStatus) : 'vacant';
+}
+
+/** The requirements list, reading the single `prerequisite` string an older file would hold. */
+function requirementList(raw: Record<string, unknown>): readonly string[] {
+  const listed = strList(raw['requirements']).filter((line) => line.trim());
+  if (listed.length > 0) return listed;
+  const single = str(raw['prerequisite']).trim();
+  return single ? [single] : [];
+}
+
+/**
+ * A trait's bonuses and drawbacks, forgivingly.
+ *
+ * A bare string is accepted as well as an object, like `parseModifiers` — a hand-written trait
+ * file is far more likely to be a list of lines than a list of records. ⚠️ A bare string is read
+ * as a **bonus**, because the sign cannot decide it: half the server's own bonuses carry no plus
+ * and half its drawbacks carry no minus. Defaulting beats guessing wrong half the time.
+ */
+function parseTraitEntries(value: unknown): readonly TraitEntry[] {
+  if (!Array.isArray(value)) return [];
+
+  const out: TraitEntry[] = [];
+  for (const item of value) {
+    if (typeof item === 'string') {
+      if (item.trim()) out.push(traitEntry({ text: item }));
+      continue;
+    }
+    const raw = asRecord(item);
+    // `text` is where the old shape kept its line, so a file written before this landed reads.
+    const text = str(raw['text']);
+    const name = str(raw['name']);
+    if (!text.trim() && !name.trim()) continue;
+    out.push(
+      traitEntry({
+        ...(typeof raw['id'] === 'string' && raw['id'] ? { id: raw['id'] } : {}),
+        name,
+        text,
+        kind: raw['kind'] === 'drawback' ? 'drawback' : 'bonus',
+        note: str(raw['note']),
+        condition: str(raw['condition']),
+      }),
+    );
+  }
+  return out;
 }
 
 function parseSeats(value: unknown): readonly ClanSeat[] {
@@ -386,6 +434,36 @@ export function parseEntity(value: unknown, fallbackId: string): SavedEntity | n
         rewards: strList(raw['rewards']),
         issuer: str(raw['issuer']),
       } satisfies Bounty;
+
+    case 'trait':
+      return {
+        ...parseBase(raw, 'trait', fallbackId),
+        kind: 'trait',
+        description: str(raw['description']),
+        entries: parseTraitEntries(raw['entries'] ?? raw['effects']),
+        usesTraitSlot: raw['usesTraitSlot'] !== false,
+        // Falls back to the cheapest rung rather than refusing the record: a hand-written file
+        // that omits the rarity is far more likely incomplete than wrong.
+        rarity: isRarity(raw['rarity']) ? raw['rarity'] : 'basic',
+        acquisition: isAcquisition(raw['acquisition']) ? raw['acquisition'] : 'either',
+        source: str(raw['source']),
+        requirements: requirementList(raw),
+      } satisfies TraitRecord;
+
+    case 'defect':
+      return {
+        ...parseBase(raw, 'defect', fallbackId),
+        kind: 'defect',
+        description: str(raw['description']),
+        entries: parseTraitEntries(raw['entries'] ?? raw['effects']),
+        // ⚠️ Defaults the other way from a trait, and from `Mutation.usesTraitSlot`. A defect
+        // gives points back rather than spending a slot, so absence means false here and true
+        // there — both are what a hand-written file most likely meant.
+        usesTraitSlot: raw['usesTraitSlot'] === true,
+        tpCost: str(raw['tpCost']),
+        source: str(raw['source']),
+        requirements: requirementList(raw),
+      } satisfies DefectRecord;
 
     case 'clan':
       return {

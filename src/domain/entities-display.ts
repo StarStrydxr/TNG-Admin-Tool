@@ -6,6 +6,15 @@
  */
 
 import { formatStatLong, gradeLabel } from './grades';
+import {
+  ACQUISITION_LABELS,
+  entryGroups,
+  entryLine,
+  rarityLabel,
+  rarityPermissionNote,
+  traitCost,
+  type TraitEntity,
+} from './traits';
 import { SEAT_STATUS_LABELS } from './entities';
 import {
   CE_RESERVES_LABELS,
@@ -22,6 +31,7 @@ import type {
   EmbeddedShikigami,
   Mutation,
   SavedEntity,
+  TraitEntry,
 } from './entities';
 
 export interface EntityField {
@@ -171,6 +181,31 @@ function fieldsFor(entity: SavedEntity): readonly EntityField[] {
         one('body', 'Detail', entity.body),
       ];
 
+    // Ungraded, like lore and clans: a trait is not Grade 2.
+    case 'trait':
+      return [
+        one('rarity', 'Rarity', rarityLabel(entity.rarity)),
+        one('cost', 'Cost', traitCost(entity)),
+        one('acquisition', 'How it is taken', ACQUISITION_LABELS[entity.acquisition]),
+        one('permission', 'Permission', rarityPermissionNote(entity.rarity)),
+        one('description', 'Description', entity.description),
+        ...entryFields(entity.entries),
+        one('slot', 'Slot', entity.usesTraitSlot ? 'Takes a trait slot' : ''),
+        one('source', 'Source', entity.source),
+        many('requirements', 'Requirements', entity.requirements),
+      ];
+
+    // No rarity: the defect rules have not been supplied, so the cost stays free text (§10).
+    case 'defect':
+      return [
+        one('tpCost', 'Cost', entity.tpCost),
+        one('description', 'Description', entity.description),
+        ...entryFields(entity.entries),
+        one('slot', 'Slot', entity.usesTraitSlot ? 'Takes a trait slot' : ''),
+        one('source', 'Source', entity.source),
+        many('requirements', 'Requirements', entity.requirements),
+      ];
+
     case 'bounty':
       return [
         one('grade', 'Threat grade', gradeLabel(entity.grade)),
@@ -242,6 +277,33 @@ export function shikigamiLine(s: EmbeddedShikigami): string {
   return tail.length > 0 ? `${head} — ${tail.join(' — ')}` : head;
 }
 
+/**
+ * A trait's bonuses and drawbacks as readable fields.
+ *
+ * Split into two lists rather than one, because the green/red distinction is the whole shape of
+ * the server's own block and a merged list would lose it on paper and in Obsidian, where there
+ * is no colour to carry it. A conditional group gets a field of its own, named after the
+ * condition, so "Whenever Alone (Team of One)" reads as its own heading the way it does on
+ * Discord.
+ */
+function entryFields(entries: readonly TraitEntry[]): readonly EntityField[] {
+  const groups = entryGroups({ entries } as TraitEntity);
+
+  return groups.flatMap(({ condition, entries: group }) => {
+    const label = (what: string) => (condition ? `${condition} — ${what}` : what);
+    const key = (what: string) => (condition ? `${what}:${condition}` : what);
+    const lines = (kind: 'bonus' | 'drawback') =>
+      group
+        .filter((item) => item.kind === kind)
+        .map((item) => [entryLine(item), item.note].filter(Boolean).join(' — '));
+
+    return [
+      many(key('bonuses'), label('Bonuses'), lines('bonus')),
+      many(key('drawbacks'), label('Drawbacks'), lines('drawback')),
+    ];
+  });
+}
+
 export function mutationLine(mutation: Mutation): string {
   const effects = mutation.effects.map((effect) => effect.text).join(', ');
   return [mutation.name, effects, mutation.tpCost].filter(Boolean).join(' — ');
@@ -293,5 +355,8 @@ export function entitySummary(entity: SavedEntity): string {
       return [entity.innateTechnique, entity.summary].filter(Boolean).join(' · ');
     case 'bounty':
       return [entity.target, entity.crime].filter(Boolean).join(' · ');
+    case 'trait':
+    case 'defect':
+      return [entity.description, traitCost(entity)].filter(Boolean).join(' · ');
   }
 }

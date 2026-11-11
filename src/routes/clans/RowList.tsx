@@ -1,4 +1,6 @@
-import { useEffect, useState, type ReactNode } from 'react';
+import { type ReactNode } from 'react';
+
+import { parseLines, useLineBuffer } from '../../components/form/fields';
 
 interface RowListProps {
   readonly title: string;
@@ -175,31 +177,18 @@ interface LinesAreaProps {
  * say — switching record, or an undo — so in-progress whitespace survives a re-render.
  */
 export function LinesArea({ label, lines, onChange, rows = 2, placeholder }: LinesAreaProps) {
-  const canonical = lines.join('\n');
-  const [text, setText] = useState(canonical);
-
-  useEffect(() => {
-    setText((current) => (parseLines(current).join('\n') === canonical ? current : canonical));
-  }, [canonical]);
-
+  const buffer = useLineBuffer(lines, onChange);
   return (
     <AreaCell
       label={label}
       rows={rows}
       placeholder={placeholder ?? ''}
-      value={text}
-      onChange={(next) => {
-        setText(next);
-        onChange(parseLines(next));
-      }}
+      value={buffer.text}
+      onChange={buffer.setText}
     />
   );
 }
 
-/** One entry per non-empty line. Trailing and blank lines are for typing, not for storing. */
-export function parseLines(text: string): readonly string[] {
-  return text
-    .split('\n')
-    .map((line) => line.trim())
-    .filter(Boolean);
-}
+// Re-exported so the imports that already reach for it here still resolve — the same split
+// `settings.ts` makes for `FONT_STACKS`.
+export { parseLines };

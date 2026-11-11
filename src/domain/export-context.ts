@@ -29,6 +29,16 @@ import { blackFlashTotal, missionLogLine } from './character';
 import { blackFlashLogLine } from './black-flash';
 import { entityGrade } from './entities';
 import { describeClanBonus, describeMutations } from './clans';
+import {
+  ACQUISITION_LABELS,
+  ACQUISITION_NOTES,
+  bonuses,
+  drawbacks,
+  entryLine,
+  rarityLabel,
+  rarityPermissionNote,
+  traitCost,
+} from './traits';
 import { ROLE_LABELS } from './roles';
 import { isCharacter } from './sheet';
 import type { TemplateContext, TemplateValue } from './template';
@@ -153,6 +163,25 @@ export function entityExportContext(entity: SavedEntity): TemplateContext {
     context['targetGradeAbbrev'] = gradeAbbrev(entity.targetGrade);
     // The sentence about the gap, written once here rather than assembled in two templates.
     context['threatNote'] = threatNote(entity.grade, entity.targetGrade);
+  }
+
+  // `entries` is a list of objects, so `ownFields` skips it — same reason as a clan's bonus.
+  // Bonuses and drawbacks go out as separate lists because that is how the server writes them
+  // and a template has no way to filter one list into two. `slot` and the permission note are
+  // sentences rather than a bare boolean and a rarity id, because a template cannot phrase one.
+  if (entity.kind === 'trait' || entity.kind === 'defect') {
+    context['bonuses'] = bonuses(entity).map(entryLine);
+    context['drawbacks'] = drawbacks(entity).map(entryLine);
+    context['entries'] = entity.entries.map(entryLine);
+    context['cost'] = traitCost(entity);
+    context['slot'] = entity.usesTraitSlot ? 'Takes a trait slot' : '';
+  }
+
+  if (entity.kind === 'trait') {
+    context['rarity'] = rarityLabel(entity.rarity);
+    context['acquisition'] = ACQUISITION_LABELS[entity.acquisition];
+    context['acquisitionNote'] = ACQUISITION_NOTES[entity.acquisition];
+    context['permission'] = rarityPermissionNote(entity.rarity);
   }
 
   // A clan's structure is objects all the way down, so `ownFields` reaches none of it. The

@@ -288,5 +288,10 @@ export function parseSettings(value: unknown): Settings {
     defaultDifficulty: str(raw['defaultDifficulty']) || defaults.defaultDifficulty,
     defaultHosts: str(raw['defaultHosts']),
     cardStyles: parseCardStyles(raw['cardStyles']),
+    // Absent in a config written before this: parses as none recorded, and the seed then
+    // checks the disk before writing, so the four already there are not overwritten.
+    seededTraits: Array.isArray(raw['seededTraits'])
+      ? raw['seededTraits'].filter((id): id is string => typeof id === 'string')
+      : [],
   };
 }

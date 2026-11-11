@@ -3,6 +3,7 @@ import { slotTakingMutations } from '../../../domain/clans';
 import { SectionCard } from '../../../components/SectionCard';
 import { ListEditor } from '../../../components/form/ListEditor';
 import { NumberInput, TextInput } from '../../../components/form/fields';
+import { TraitPicker } from './TraitPicker';
 import {
   artSlotUsage,
   traitSlotUsage,
@@ -81,9 +82,10 @@ export function BuildSection({ character, onChange }: SectionProps) {
       ) : null}
 
       <div className="mt-5 flex flex-col gap-6">
-        <ListEditor<Trait>
-          label="Traits"
-          badge={<SlotBadge usage={traits} />}
+        <div className="flex flex-col gap-2">
+          <ListEditor<Trait>
+            label="Traits"
+            badge={<SlotBadge usage={traits} />}
           items={character.traits}
           onChange={(next) => onChange({ traits: next })}
           createItem={(index) => ({
@@ -94,53 +96,82 @@ export function BuildSection({ character, onChange }: SectionProps) {
           })}
           addLabel="Add trait"
           emptyLabel="No traits yet."
-          renderItem={(trait, update) => (
-            <div className="grid grid-cols-2 gap-3">
-              <TextInput
-                label="Name"
-                value={trait.name}
-                onChange={(name) => update({ name })}
-                placeholder="Eccentric Genius"
-              />
-              <TextInput
-                label="Effect"
-                value={trait.effect}
-                onChange={(effect) => update({ effect })}
-                placeholder="+2 Classes Speed, −2 Classes Strength"
-              />
-            </div>
-          )}
-        />
+            renderItem={(trait, update) => (
+              <div className="grid grid-cols-2 gap-3">
+                <TextInput
+                  label="Name"
+                  value={trait.name}
+                  onChange={(name) => update({ name })}
+                  placeholder="Eccentric Genius"
+                />
+                <TextInput
+                  label="Effect"
+                  value={trait.effect}
+                  onChange={(effect) => update({ effect })}
+                  placeholder="+2 Classes Speed, −2 Classes Strength"
+                />
+                <div className="col-span-2">
+                  <TextInput
+                    label="Notes"
+                    value={trait.notes}
+                    onChange={(notes) => update({ notes })}
+                    placeholder="Cost, source, what it requires"
+                  />
+                </div>
+              </div>
+            )}
+          />
+          <TraitPicker
+            kind="trait"
+            carried={character.traits}
+            onPick={(line) => onChange({ traits: [...character.traits, line] })}
+          />
+        </div>
 
-        <ListEditor<Trait>
-          label="Defects"
-          items={character.defects}
-          onChange={(next) => onChange({ defects: next })}
-          createItem={(index) => ({
-            id: `defect-${Date.now()}-${index}`,
-            name: '',
-            effect: '',
-            notes: '',
-          })}
-          addLabel="Add defect"
-          emptyLabel="No defects yet."
-          renderItem={(defect, update) => (
-            <div className="grid grid-cols-2 gap-3">
-              <TextInput
-                label="Name"
-                value={defect.name}
-                onChange={(name) => update({ name })}
-                placeholder="Glass Jaw"
-              />
-              <TextInput
-                label="Effect"
-                value={defect.effect}
-                onChange={(effect) => update({ effect })}
-                placeholder="−2 Classes Fortitude"
-              />
-            </div>
-          )}
-        />
+        <div className="flex flex-col gap-2">
+          <ListEditor<Trait>
+            label="Defects"
+            items={character.defects}
+            onChange={(next) => onChange({ defects: next })}
+            createItem={(index) => ({
+              id: `defect-${Date.now()}-${index}`,
+              name: '',
+              effect: '',
+              notes: '',
+            })}
+            addLabel="Add defect"
+            emptyLabel="No defects yet."
+            renderItem={(defect, update) => (
+              <div className="grid grid-cols-2 gap-3">
+                <TextInput
+                  label="Name"
+                  value={defect.name}
+                  onChange={(name) => update({ name })}
+                  placeholder="Glass Jaw"
+                />
+                <TextInput
+                  label="Effect"
+                  value={defect.effect}
+                  onChange={(effect) => update({ effect })}
+                  placeholder="−2 Classes Fortitude"
+                />
+                <div className="col-span-2">
+                  <TextInput
+                    label="Notes"
+                    value={defect.notes}
+                    onChange={(notes) => update({ notes })}
+                    placeholder="Cost, source, what it requires"
+                  />
+                </div>
+              </div>
+            )}
+          />
+          <TraitPicker
+            kind="defect"
+            carried={character.defects}
+            onPick={(line) => onChange({ defects: [...character.defects, line] })}
+          />
+        </div>
 
         <ListEditor<Art>
           label="Arts"
