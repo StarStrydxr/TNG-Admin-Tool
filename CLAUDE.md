@@ -6,7 +6,9 @@ Guidance for Claude Code when working in this repository. Read this fully before
 
 ## 1. What this project is
 
-A **local-first desktop application** for running Dan's Jujutsu Kaisen Discord roleplay. Named
+A **local-first desktop application** for the staff of TNG, a Jujutsu Kaisen Discord roleplay —
+a shared client since v0.4.0, each copy with its own vault. Dan built it and supplies its
+house rules, which is why his name is on the decisions below. Named
 *The Next Generation — GM and Admin Tool* from v0.3.0; the repo folder is still `TNG-Claude`
 and **the data folder is still `%APPDATA%\jjk-rp-vault`**. That name is pinned in
 `vault.rs::APP_FOLDER` on purpose: renaming it is a migration, not a string change, and would
@@ -126,6 +128,8 @@ TNG-Claude/
 ├── src/                          # React frontend
 │   ├── routes/                   # one folder per module (Vault, NpcGenerator, …)
 │   ├── components/               # shared presentational components
+│   │   ├── brand/                #   the seal, brush marks, icon set and welcome overlay (§9)
+│   │   └── shell/                #   the two interfaces: JujutsuShell and ClassicShell (§9)
 │   ├── domain/                   # ⬅ PURE. Types + rules. No React, no Tauri, no I/O.
 │   ├── generators/               # ⬅ PURE. (tables, seed) => draft. No React, no Tauri, no I/O.
 │   ├── services/                 # ⬅ THE ONLY PLACE THAT CALLS TAURI
@@ -1558,6 +1562,220 @@ Drive- or OneDrive-synced folder work with no network code (§1).
   style preference, and it is enforced in `settings-parse.ts` as well as in the slider — so
   hand-editing `config.json` cannot wash out the text. It never prints.
 
+**Two interfaces**
+
+The app is drawn one of two ways, chosen in Settings → Interface (Dan, 12 Nov 2026: "overhaul
+the look of the actual UI and UX … including the icons and overall layout. Retain the classic
+style as a preset for those who may prefer it"). `Settings.shell` holds `style` and
+`railCollapsed`; the rules are in `domain/shell.ts`.
+
+- **Jujutsu** is the overhaul and the default. **Classic** is the interface as it shipped in
+  v0.3.3. Nothing about the pages, the records, the theme or any other setting differs between
+  them — only how the same furniture is drawn. Additive: an older `config.json` has no `shell`
+  key and gets Jujutsu, with Classic one click away.
+- ⚠️ **Classic is kept, not maintained into something else.** The point of a preset is that
+  choosing it gives back what was there, and for staff on a released build "what was there" is
+  v0.3.3 — so `shell/ClassicShell.tsx` is the old `AppShell` verbatim, tagline, flat list,
+  hairline and all. It was checked rather than assumed: six screens compared against
+  screenshots taken before any theming came out pixel-identical, bar one pixel in 1.4 million
+  that was off by 1/255. **Re-run that comparison after touching anything below.**
+- **Where the difference lives — three places, and it should stay three:**
+  1. *Structure* — `components/AppShell.tsx` picks `shell/JujutsuShell.tsx` or
+     `shell/ClassicShell.tsx`. Both take the same `ShellProps` and both draw the pages from
+     `routes/modules.ts`, so a page cannot tell which it is in and a page added there turns up
+     in both.
+  2. *Shared pieces that are drawn differently* — `SectionCard`, `GradeSeal` and `Insignia`
+     read `useInterfaceStyle()`, and the Library's kind tabs gain their mark. That is the whole
+     list. ⚠️ Every branch on the style is a second thing to keep working, so do not add one
+     where CSS on the root attribute would do.
+  3. *Shape* — `applyAppearance` puts `data-interface` on the root and `styles/index.css` keys
+     on it: squarer `--radius-*` (which every `rounded-*` utility reads) and thin scrollbars
+     for Jujutsu, and the system serif back on `--font-display` for Classic.
+- ⚠️ **Changing the interface remounts the page.** The shell's component type changes, so
+  everything inside it is unmounted and mounted again — including the radio button that was
+  just pressed. Left alone, focus fell back to the document and the page jumped to its top:
+  press an arrow key to try Classic and you could not press it again to come back.
+  `InterfaceSection` keeps a module-level `returnFocus` note (a component cannot remember
+  across its own remount), refocuses the chosen radio and announces the change.
+
+**The Jujutsu shell**
+
+- **The sidebar is a board of plaques.** Each page is a tag with its stamped icon and its two
+  kanji; the open one is turned paper-side out (`bg-ash-100 text-void-950`). Records and
+  Generators are its two halves (`MODULE_GROUPS`). ⚠️ `ModuleDefinition` is a **union** — a
+  group, or the footer — rather than two optional fields: the board is drawn group by group,
+  so a module with neither would simply not be drawn, with no error. The compiler refuses one.
+- **It folds down to its icons** — a 4rem rail, which is the thing the Classic sidebar could
+  never do, having none. Saved as `railCollapsed`. Folded, a plaque is only its icon, so it
+  carries `aria-label` and `title`; the fold button carries `aria-expanded`. It is also the
+  answer to a large text scale: at 1.5× the board is 360px of a window, and folding gives
+  most of that back.
+- **Unfolded, it is exactly as wide as the Classic sidebar** (`w-60`), so every page has the
+  room it had and nothing that fitted there is squeezed here. A wider board was tried first
+  and cost the character sheet's heading four more letters of the name.
+- **The whole board fits the default window** (1280×860) with nothing scrolled off — which
+  is why the fold button sits beside Settings rather than in a row of its own, and why a
+  plaque is 36px tall and not 40. The first version put the last page 35px below the fold.
+  Checked at the height the real window's content has, not at a convenient round number.
+- **Every page opens on a title card**: its kanji on a paper nameplate, top to bottom, its
+  name and blurb beside it, and the rank stamp in the corner.
+- **The rank stamp** says "Viewing as Owner" and opens Settings. ⚠️ "Viewing as", never
+  "signed in" (§4a) — and it is always on screen for the reason the filter exists: it is the
+  thing to check before sharing a window. Its *frame* is vermilion and its *words* are ash:
+  `blood-500` on the page is about 4:1, which fails for type that small.
+- **Vermilion marks three things and nothing else**: the seal (whose registry this is), the
+  edge of the open plaque (where you are) and the rank stamp (who you are viewing as).
+- **Screentone** behind the title card is `.jj-halftone`: dots in a token colour, faded out
+  with a mask. A mask reads only alpha, so the fade is written with a token too and no colour
+  is named (§9). It never prints.
+
+**The Jujutsu icon set**
+
+`components/brand/icons.ts` — seventeen marks on a 24-unit grid, cut solid the way a crest or a
+seal is, where Classic's insignia are line art. `Insignia` is still the one door: it draws the
+same thirteen glyph ids from whichever set the interface calls for, so no caller knows there
+are two. Four more (`vault`, `library`, `situation`, `settings`) are pages rather than records.
+
+- ⚠️ **Original, and from the setting's vocabulary rather than its artwork** — a torii, a
+  sealed jar, a paper doll, a magatama, a hanging scroll, an abacus. Nothing is a logo, a
+  character or a traced panel. Three things were steered round on purpose because they are
+  recognisably the series' own designs: a spiral crest on a button, a blindfolded figure, and
+  markings on a face. Keep steering round them.
+- ⚠️ **Holes inside a part, joins between parts.** Each part is filled `evenodd`, which is
+  what cuts the eyes out of the curse; but two shapes that *touch* in one `evenodd` path cut
+  each other where they overlap. So a figure's head and body are two parts, and simply add up.
+- **Each was checked at 13px**, the smallest it is drawn. Two first attempts failed exactly
+  there: a scroll with one roller read as a bin with a lid, and a name plaque read as a remote
+  control. Same lesson as the trait gem (above): a mark that only reads at 48px is not doing
+  its job.
+- No colour: every part is `currentColor` (§9).
+
+**The kanji**
+
+Each page has two (`MODULE_MARKS` in `domain/shell.ts`) — 名簿, 書庫, 伝承, 氏族, 特性, 欠陥,
+人物, 術式, 任務, 懸賞, 事案, 呪物, 呪具, 設定. Real words, and where the series has its own
+term for the thing (術式, 任務, 呪物, 呪具) that is the one used. Each carries a `reading` shown
+as a tooltip: they are decoration (`aria-hidden`, `lang="ja"`), but not a riddle.
+
+- **`markFor(id)` is the check that every page has one**: it indexes `MODULE_MARKS` by
+  `ModuleId`, so a page added without a mark stops compiling.
+- **They are text in a subset font, not artwork.** `zen-antique-kanji-400-normal.woff2` holds
+  thirty characters in 11 KB (the whole face is 2 MB), under the same family name as the Latin
+  files, so `font-display` reaches them with no extra class.
+- ⚠️ **`KANJI_SUBSET` is the one list, and a character outside it does not fail** — it falls
+  back, silently, to whatever Japanese face Windows has, in a different style beside the ones
+  that match. Three things read that constant so they cannot drift: `shell.test.ts` holds every
+  page's kanji to it; `kanjiUnicodeRange()` builds the font's `unicode-range` from it; and
+  `scripts/brand/cut_kanji_font.py` cuts the file from it. Adding a character is: add it to the
+  constant, run the script, commit both.
+- ⚠️ **The face is declared from JavaScript** (`appearance.ts::registerKanjiFace`, the
+  `FontFace` API), not as an `@font-face` in the stylesheet — on purpose. Written in CSS, the
+  `unicode-range` would be a hand-kept second copy of the list, and the test that would hold
+  the two together cannot be written: vitest stubs every CSS import to an empty string,
+  `?raw` included, and there is no `@types/node` to read the file with (adding it would be a
+  dependency, §10). Deriving the range removes the copy instead of guarding it.
+- **`scripts/brand/` holds the two generators** — `make_art.py` for `art.ts` and
+  `cut_kanji_font.py` for the font. They are tools for whoever changes the artwork, **not part
+  of the build**: nothing in `npm` runs them and the app needs no Python. Both are
+  deterministic, and `make_art.py` reproduces the checked-in `art.ts` byte for byte.
+
+**The house style**
+
+The Jujutsu interface is dressed as the paperwork of an institution: a seal, ink, a brush,
+case files. These details arrived a day before the shell did (Dan, 11 Nov 2026 — offered a
+restyle of the whole layout, he first chose *details on the current one*), and they are now
+part of Jujutsu only. Classic has none of them.
+
+- ⚠️ **Original artwork only.** The mark is **次世代** — "next generation", the server's own
+  name — as a seal. There is no series logo, no character art and nothing traced from the
+  manga or the anime anywhere in the app, and there must not be: this is a fan tool that gets
+  handed to other people, and somebody else's artwork is not ours to ship. Themed by
+  vocabulary — seals, veils, talismans, brushwork — not by borrowing.
+- **`components/brand/art.ts` is path data, generated then pasted** by
+  `scripts/brand/make_art.py`. The seal's three characters are outlines taken from Zen Antique
+  (OFL), so they are shapes, not text — which is what lets them be knocked out of the seal.
+  Everything else in the file — the seal's wandering edge, the dry-brush rule, the veil's hem,
+  the tear — is procedural from fixed seeds. Do not hand-edit the numbers; regenerate them.
+- ⚠️ **No colour in any of it.** Every shape is `currentColor`, coloured by a token class on
+  the element that holds it, so the marks repaint with the theme like everything else. The
+  seal is one path with `fill-rule="evenodd"` — the characters are *holes*, not a second shape
+  painted over in the background colour, which would be the wrong colour the moment the seal
+  sat on anything but the page.
+- ⚠️ **On a light theme the tokens invert, as they must.** The nameplate and the talisman's
+  "paper" are `ash-100`, which is dark there, so they read as lacquered tablets rather than
+  paper slips. That is the theme working, not a bug to fix with a literal.
+- **Zen Antique is the display face, on headings only** — `--font-display`. Classic keeps the
+  system serif stack it shipped with. ⚠️ It is **not** one of the reading faces: body text
+  still follows `--font-sans`, which is the user's own choice in Settings, OpenDyslexic
+  included. A display face that replaced the body face would take that choice away.
+- **`SectionCard` is a file with a tab.** The title stands above the card's top edge and
+  overlaps the border by the border's own width, so the line runs up and around the tab. The
+  top margin that makes room for it belongs to the card, not to its twenty-odd call sites. In
+  Classic it is the plain panel, heading inside.
+- **`GradeSeal`** (`components/GradeSeal.tsx`) is a grade as a registration stamp — a frame
+  inside a frame around the same abbreviation, in the same accent, with the long name as its
+  tooltip. Kept square to the line on purpose: rotating eleven-point type makes it soft, and a
+  grade has to be legible first. In Classic it is the bare code it always was. ⚠️ Its
+  `className` is applied in Jujutsu only, because Classic's code never had one. The ladder
+  reference table prints the bare code in both.
+- The page header is ruled off with a brush stroke that stops short of the edges: a stroke
+  has two ends, and showing them is what makes it one.
+
+**The welcome**
+
+A start-up sequence in three swappable styles plus off (Dan, 11 Nov 2026 — asked to choose
+between three, he asked to be able to swap): **the veil lifts**, **the seal breaks**, and a
+**quiet title card**. `Settings.welcome` holds the style and an optional name; the default is
+the veil. It says two lines — "Welcome back, Dan." and "Viewing as Owner."
+
+- **The decisions are in `domain/welcome.ts`** — styles, labels, timings, the two lines, which
+  keys end it — and are tested. `components/brand/Welcome.tsx` draws the frame it is told to;
+  `hooks/useWelcome.tsx` owns the clock; the motion is the `welcome-*` rules in
+  `styles/index.css`.
+- ⚠️ **"Viewing as", never "signed in as".** The rank is a view filter, not a login (§4a). The
+  line earns its place for the same reason the filter exists: it says which rank's records
+  are about to be on screen, before they are — the thing to know before sharing a window.
+  `welcome.test.ts` fails on "signed" or "logged" in that line.
+- "Back" only when there is a name. With none set it is most likely a first run, and
+  "Welcome back." to a stranger reads as a mistake.
+- ⚠️ **Timers move the sequence on, not `animationend`.** The reduced-motion rule collapses
+  every animation to 0.001ms, so a sequence that waited for one to finish would be over
+  before it was seen. With timers the title holds for the same time either way and the
+  leaving is a cut. Every keyframe fills `both`, and reduced motion also zeroes the
+  **delays** — the global rule does not, and pieces popping in one after another is motion.
+- ⚠️ **The window starts covered** and stays covered until the saved settings are in. Which
+  welcome plays is itself a setting, so without the cover the app flashes on screen for a
+  frame, in the default theme, before the welcome that was supposed to open it.
+- **Under three seconds, whichever one it is**, and a test holds it there. It plays on every
+  launch of a tool opened several times a day. Any key or a click ends it early, and once it
+  is leaving it is `pointer-events: none` — the app underneath takes the click.
+- ⚠️ **The key that dismisses it must not also do something else.** The listener is on
+  `window` in the capture phase and stops the event there, so Space does not also re-roll a
+  generator or press the focused button. Without that, "Play it now" loops: Space ends the
+  welcome and then clicks the button that starts it. `welcomeKey()` gives one of three
+  verdicts: bare modifiers and real shortcuts (Alt+F4, Ctrl+R) **pass**; an ordinary key
+  **skips**; and a key being *held* is **swallowed** — Enter on a button fires again on every
+  auto-repeat, so holding it on "Play it now" would otherwise restart the welcome for as long
+  as the key was down. The 250 ms guard is for the pointer: the second click of a
+  double-click lands on the welcome that the first one opened.
+- **`aria-hidden`, and announced once.** There is exactly one live region (below); the provider
+  sends the two lines through `announce()`. Reading them out of the overlay as well would be
+  the same sentence twice.
+- **Inside `#root`**, so `#root > *:not(.print-root)` hides it in print with the rest of the
+  chrome. `WelcomeProvider` sits inside `AnnouncerProvider` and around everything else, so the
+  app mounts and loads *behind* the welcome — it never holds the app back.
+- ⚠️ **The name box holds its own raw text**, for the reason a list textarea does: the stored
+  name is trimmed, and a box that showed the trimmed value back would swallow the space after
+  "Dan" as fast as it was typed.
+- The talisman is drawn three times — whole, and as two halves clipped by `TEAR_LEFT` and
+  `TEAR_RIGHT`. The whole one sits on top until the tear, because two clipped halves meet
+  along an antialiased edge that shows as a hairline.
+- **It belongs to neither interface.** Which welcome plays and which interface is drawn are
+  two settings, and every combination is fine — Classic's just letters its title in the
+  system serif.
+- **This is the only unprompted animation in the app, and it should stay the only one.**
+  Themes never change on their own (above) and nothing else moves unless something was pressed.
+
 **Shipping it — two architectures, one tag**
 
 Staff test on ordinary x64 laptops; Dan develops on ARM64. Both installers are built by
@@ -1597,9 +1815,24 @@ no chance of the two drifting apart.
   on every push, in well under a minute. Compiling Rust twice belongs on a tag.
 
 **Accessibility**
-- Two faces are **vendored** in `src/assets/fonts/` — OpenDyslexic and Atkinson Hyperlegible,
-  both SIL OFL 1.1. The licence files sit beside them and must stay there and ship with any
-  build. Never swap these for a CDN link; that would break the offline rule.
+- Three faces are **vendored** in `src/assets/fonts/` — OpenDyslexic and Atkinson
+  Hyperlegible, which are reading faces the user chooses between, and **Zen Antique**, the
+  Jujutsu interface's display face: two Latin files and a thirty-character kanji subset (see
+  **The house style** and **The kanji**, above). All SIL OFL 1.1. The licence
+  files sit beside them and must stay there and ship with any build. Never swap these for a
+  CDN link; that would break the offline rule.
+- ⚠️ **Vite must never inline a font** — `build.assetsInlineLimit: 0` in `vite.config.ts`.
+  By default Vite turns any asset under 4 KB into a `data:` URL. The window's CSP
+  (`tauri.conf.json`) is `default-src 'self'`, which a `data:` font does not match, so the
+  browser **blocks** it and the text falls back to the next face — silently, and only in a
+  *built* app: `tauri dev` inlines nothing, so it works there. That happened to the display
+  face's 2.8 KB Latin Extended file, which is the one that draws the macron in a name like
+  "Yūji". Loosening the CSP to allow `data:` fonts would fix it the wrong way round.
+- ⚠️ **Check a build under the real CSP.** That fault passed every headless check, because a
+  plain static server sends no policy at all. Serving `dist/` with the `csp` string from
+  `tauri.conf.json` as a `Content-Security-Policy` header shows it at once, as a console error
+  and a `FontFace` whose status is `error`. A fault that only exists in the shipped build has
+  to be looked for in something that behaves like the shipped build.
 - Any action whose result appears somewhere other than the focused element must announce
   itself: `useAnnouncer().announce('…')`. Rolling, saving and deleting are otherwise silent to
   a screen reader. The ARIA live region is always active; the spoken voice is opt-in.
@@ -1673,6 +1906,9 @@ Requested after the original plan, and slotted ahead of 3–5:
 | **2.8** | Obsidian vaults (export and import, any local folder — the Drive answer, see §1), the three faction themes, per-kind insignia, and a custom background image. ✅ |
 | **2.7** | Second quality-of-life pass. ✅ Tag coherence made real, technique tables for all eleven types, the Situation roller, duplicate warnings, keyboard rolling, restore-from-backup, the in-app template editor, and booklet covers. `Curse` became a saveable entity along the way. |
 | **3.0** | The server's own formats. ✅ The character record became the OC template (§4), missions gained the posting format with rolled objectives and rewards, markdown export gained a second Discord-format template set chosen per export, and the harvester learned to read all three — NFKC folding plus the decorated headings, without which it could not read a single real posting. Difficulty then landed properly: Easy / Medium / Hard with Dan's own CR, TP, Yen and chest amounts, three reward buckets, Grade Ups, and the 3×/2× host payout (§9). Then the posting controls — a recommended-grade picker, slot steppers, a faction the posting is open to, placeholder rewards from the tier — plus an export preview, and the double scrollbar fixed. |
+| **4.0** | **v0.4.0 — Novax.** ✅ The Jujutsu interface and the house style released. The release name sits beside the version in the sidebar footer (`src/release.ts`; the number still comes from the three version files). The client is shared between TNG staff now, so the welcome greets "TNG Staff" when no name is set on the machine. |
+| **3.11** | The Jujutsu interface, with Classic kept. ✅ A second shell chosen in Settings: a board of plaques with a stamped icon and two kanji for every page, a sidebar that folds to its icons, title cards with a paper nameplate, an always-visible rank stamp, squarer geometry — and a seventeen-mark original icon set that replaces the line-art insignia everywhere they appear. **Classic** is the v0.3.3 interface verbatim, checked pixel-identical against screenshots taken before any theming. The kanji are a thirty-character, 11 KB subset of the display face, cut by a script in the repo from the same constant the tests and the `unicode-range` are built from. No dependency added. |
+| **3.10** | The welcome and the house style. ✅ A start-up welcome in three swappable styles — the veil lifts, the seal breaks, a quiet title card — plus off, with an optional name, a replay button, skip on any key or click, and reduced motion respected by holding still and cutting. And the interface re-dressed as an institution's paperwork without moving anything: the server's own name 次世代 as a vermilion seal, brushed-ink rules, file-tab section cards, grades as registration stamps, a sidebar in two named halves, and Zen Antique vendored as the display face. All original artwork, all `currentColor` and tokens, no dependency added. |
 | **3.9** | The trait and defect vaults. ✅ Two entity kinds of their own, two boards, and a picker on the character sheet that **copies** a record onto a build rather than linking it — so editing the vault later cannot rewrite somebody's sheet, and nothing applies a Class (§4, a third time). Then Dan supplied the real rules, so the schema was reshaped before anything was saved to those folders: six rarities with fixed TP costs, Inherent/Developed, and a trait's «Bonuses and Drawbacks» as **named entries** with a stored bonus/drawback marker — which is what a `ClanModifier` could not carry, since half the server's own entries have no sign to read. Conditional blocks, both export formats, and his four traits seeded in verbatim. |
 | **3.8** | Clan and mission graphics, and card styling. ✅ Clan cards and backdrops, mission cards and a tall **briefing**, all through one `card-render.ts`. Each kind gained its own fonts and colours in Settings — a six-colour palette through the existing theme engine, so the live WCAG readout came free and the no-hardcoded-colour rule is untouched — plus display and body font slots that accept any font installed on the machine. Per-kind block sets, GM-only mission lines kept off every graphic, and a floor that stops content colliding with the footer. |
 | **3.7** | Graphics. ✅ Character cards and backdrops, built as SVG so PNG and JPEG come from the canvas already in the repo, PDF from the print dialog, and the SVG itself is an editable vector master — no dependency added. Discord's own proportions, a live preview that is the document rather than a picture of it, and in-app controls for shape, picture focus, title and which blocks show. Clan and mission cards reuse `card-blocks.ts`. |

@@ -3,6 +3,7 @@ import { AccessibilitySection } from './AccessibilitySection';
 import { BackgroundSection } from './BackgroundSection';
 import { DataSection } from './DataSection';
 import { DifficultySection } from './DifficultySection';
+import { InterfaceSection } from './InterfaceSection';
 import { ProblemsSection } from './ProblemsSection';
 import { MyMaterialSection } from './MyMaterialSection';
 import { VaultSyncSection } from './VaultSyncSection';
@@ -10,6 +11,7 @@ import { TemplatesSection } from './TemplatesSection';
 import { RolesSection } from './RolesSection';
 import { CardStyleSection } from './CardStyleSection';
 import { ThemeSection } from './ThemeSection';
+import { WelcomeSection } from './WelcomeSection';
 
 export function SettingsPage() {
   const { error, dismissError } = useSettings();
@@ -30,9 +32,11 @@ export function SettingsPage() {
       ) : null}
 
       <RolesSection />
+      <InterfaceSection />
       <ThemeSection />
       <CardStyleSection />
       <BackgroundSection />
+      <WelcomeSection />
       <AccessibilitySection />
       <DifficultySection />
       <TemplatesSection />

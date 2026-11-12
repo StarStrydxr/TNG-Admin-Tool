@@ -1,8 +1,12 @@
 # The Next Generation — GM and Admin Tool
 
-A local-first desktop app for running a Jujutsu Kaisen Discord roleplay. It keeps the
-characters, the clans, the traits and the lore, and it generates the rest of the world:
-NPCs, curses, techniques, shikigami, missions, bounties, cursed objects and cursed tools.
+A local-first desktop app for the staff of **The Next Generation**, a Jujutsu Kaisen Discord
+roleplay. It keeps the characters, the clans, the traits and the lore, and it generates the
+rest of the world: NPCs, curses, techniques, shikigami, missions, bounties, cursed objects and
+cursed tools.
+
+It is a shared client: every staff member runs their own copy, with their own vault on their
+own machine, and picks the rank they are viewing as in Settings.
 
 Everything runs on this machine. **No cloud, no accounts, no telemetry, no network** — the only
 outbound process is the local `claude` CLI, and only when you ask for it. Exports and the
@@ -19,8 +23,9 @@ system this is built on.
 
 ## Installing it (staff — no build needed)
 
-Grab the installer from the [Releases page](https://github.com/StarStrydxr/TNG-Admin-Tool/releases)
-and pick the one that matches your machine:
+Installers are attached to a tagged release on the
+[Releases page](https://github.com/StarStrydxr/TNG-Admin-Tool/releases). Open the newest one,
+look under **Assets**, and pick the file that matches your machine:
 
 | Your PC | File |
 | --- | --- |
@@ -28,6 +33,11 @@ and pick the one that matches your machine:
 | Windows on ARM (a Snapdragon machine) | the **arm64** `-setup.exe` |
 
 Not sure? Settings → System → About → *System type*.
+
+> **If Assets shows only "Source code (zip)" and "(tar.gz)"**, that release has no installer on
+> it yet — those two are added by GitHub automatically and are not builds. Either the build is
+> still running (it takes 10–20 minutes per architecture) or it has not run. Ask the maintainer
+> rather than downloading the source zip; it is not something you can run.
 
 **Windows will warn you on first run.** "Windows protected your PC" — click *More info* →
 *Run anyway*, once. That is SmartScreen reacting to an unsigned binary, not to anything the app
@@ -57,7 +67,7 @@ Fourteen modules, down the sidebar:
 | **Bounties** | A posting on somebody the Academy wants dealt with, in the server's format, with its own economy. |
 | **Situation** | A mission, the curse actually in it and the tool left behind — one seed, saved pre-linked. |
 | **Cursed Objects** / **Cursed Tools** | Sealed, dormant and active objects; graded tools with properties and costs. |
-| **Settings** | Themes, readability, accessibility, export folder, backups, card styling, and an in-app editor for the export templates. |
+| **Settings** | The interface (Jujutsu or Classic), themes, readability, accessibility, the start-up welcome, export folder, backups, card styling, and an in-app editor for the export templates. |
 
 And what they all share:
 
@@ -132,7 +142,7 @@ The first run compiles the Rust side and takes several minutes. Later runs are q
 frontend hot-reloads without recompiling Rust — though a change to the Rust side does trigger a
 recompile, so a brand-new vault collection will not appear until that finishes.
 
-If the sidebar footer reads **`shell v0.3.0`** (whatever the current version is), the frontend,
+If the sidebar footer reads **`v0.4.0 Novax`** (whatever the current version is), the frontend,
 the transport seam and the Rust command handler are all wired up correctly. If it reads
 *Browser preview — no shell*, you started `npm run dev` instead of `npm run tauri dev`.
 
@@ -163,6 +173,37 @@ It refuses to run on a dirty tree, off `main`, or onto a tag that already exists
 produces a release that does not match anything anybody can check out.
 
 `npm run version:set 0.4.0` does the version bump alone, without the commit, tag and push.
+
+⚠️ **The tag is the start of the build, not the end of it.** Pushing the tag only queues the
+work: two Windows runners compile Rust from scratch, which takes **10–20 minutes each** on a
+cold cache. Watch the **Actions** tab, not the Releases tab — a release that exists a minute
+after tagging has nothing on it yet because nothing has been built.
+
+Do not hand-create a release for a tag you have just pushed. The workflow makes its own, named
+`The Next Generation v0.4.0`, as a **draft** — drafts are visible to you at the top of the
+Releases page and to nobody else. Publish that one once both installers are attached.
+
+**If no installers ever appear**, the answer is in the Actions tab, not in the repo:
+
+| What you see there | What it means |
+| --- | --- |
+| No run for the tag at all | Actions is disabled for the repo, or the workflow was not on `main` when the tag was pushed |
+| A job stuck on *Queued* | No runner matched its label — the ARM one is `windows-11-vs2026-arm`; the older preview label was `windows-11-arm` |
+| A job that ran and went red | Open it and read the failing step. `fail-fast: false` means the other architecture still finishes, so one red job should still leave one installer |
+
+### Building one by hand instead
+
+If you just need a file to send someone today:
+
+```
+npm run build:x64        # Intel / AMD
+npm run build:arm64      # Windows on ARM
+```
+
+Each writes an NSIS `-setup.exe` under
+`src-tauri\target\<target-triple>\release\bundle\nsis\`. ⚠️ Building the architecture you
+are *not* on is a cross-compile and needs that architecture's MSVC toolchain component
+installed — see prerequisite 3.
 
 ---
 
@@ -224,7 +265,7 @@ src-tauri/         The Rust shell.
 data/canon/        Shipped tables. Read-only at runtime.
 data/templates/    Shipped markdown export templates. Overridable per user.
 docs/house-rules/  The server's rules, transcribed. (Screenshots are gitignored.)
-scripts/           Version bump and release.
+scripts/           Version bump and release. scripts/brand/ regenerates the artwork (not part of the build).
 .github/workflows/ CI on every push; both installers on a version tag.
 ```
 
@@ -235,7 +276,7 @@ your own table additions, images, exports, backups and logs.
 
 ## Where the project is up to
 
-**v0.3.0, and working.**
+**v0.4.0 — Novax.** A shared client for TNG staff.
 
 - **Phases 0–2** — the shell, the domain model, vault CRUD, the character sheet, and the
   generator engine: seeded, deterministic, per-field locking, re-rolls from derived sub-seeds.
@@ -257,9 +298,19 @@ your own table additions, images, exports, backups and logs.
 - **Comfort** — word-triple seeds (`ash-gantry-nine`), undo/redo, keyboard rolling, duplicate
   warnings, backups with restore, themes including three faction palettes, per-kind insignia,
   a background image, and two vendored accessible typefaces.
+- **Two interfaces.** *Jujutsu* is the default: a board of plaques with a stamped icon and two
+  kanji for every page, a sidebar that folds down to its icons, title cards, an always-visible
+  "Viewing as" rank stamp, file-tab sections and an original icon set. *Classic* is the
+  interface exactly as it shipped in v0.3.3, one click away in Settings. Same pages, same
+  records, same themes either way.
+- **Original artwork throughout** — the server's name 次世代 as a seal, brushed-ink rules,
+  seventeen icons drawn from the setting's vocabulary rather than its artwork. No series logo
+  or character art, and everything is drawn in the theme's own colours.
+- **A start-up welcome** in three styles (the veil lifts, the seal breaks, a quiet title card)
+  or none: under three seconds, skippable with any key, still under reduced motion.
 - **Canon** — 1,869 entries across 143 tables, guarded by a test that rolls every generator at
   every grade and fails on a blank field, a missing table or too little variety.
-- **628 unit tests** across 32 files, plus typecheck and tests on every push.
+- **651 unit tests** across 34 files, plus typecheck and tests on every push.
 
 **Next — Phase 3**
 

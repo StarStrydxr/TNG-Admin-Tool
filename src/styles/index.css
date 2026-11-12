@@ -38,7 +38,51 @@
 }
 
 /*
- * Offline-first: system font stacks only. No webfont may be fetched at runtime.
+ * The display face: Zen Antique, for headings and the wordmark only.
+ *
+ * Modelled on Meiji-era metal type, which is the register this app is after — the paperwork of
+ * an old institution rather than a dashboard — and sturdier at heading sizes on a dark ground
+ * than the hairline minchos it was compared against. SIL OFL 1.1; the licence is beside it.
+ *
+ * One file serves every weight (`100 900`), so a heading that asks for bold gets this face
+ * as drawn rather than a smeared synthetic bold. The two ranges are the foundry's own subsets:
+ * anything outside them — a character's name in kanji, say — falls through to the next family
+ * in the stack one glyph at a time, which is what a `unicode-range` is for.
+ *
+ * ⚠️ Body text is untouched. `--font-sans` stays whatever the reader chose in Settings, so
+ * OpenDyslexic and Atkinson Hyperlegible keep doing their job everywhere it matters.
+ */
+@font-face {
+  font-family: 'Zen Antique';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../assets/fonts/zen-antique-latin-400-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304,
+    U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Zen Antique';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../assets/fonts/zen-antique-latin-ext-400-normal.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308,
+    U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113,
+    U+2C60-2C7F, U+A720-A7FF;
+}
+
+/*
+ * Offline-first: every face is a system stack or a file in src/assets/fonts. No webfont may be
+ * fetched at runtime.
+ */
+/*
+ * The Jujutsu interface's kanji are a third file of the same family, but its `@font-face` is
+ * NOT written here: `appearance.ts::registerKanjiFace` declares it, with a `unicode-range`
+ * built from `domain/shell.ts::KANJI_SUBSET`. One list, so the characters a page may use and
+ * the characters routed to the file cannot drift apart — written out here by hand as well,
+ * they would, and a kanji outside the range does not fail, it silently falls back.
  */
 @theme {
   --color-void-950: #08080b;
@@ -60,7 +104,7 @@
   --color-blood-500: #c2413f;
 
   --font-sans: ui-sans-serif, system-ui, 'Segoe UI', sans-serif;
-  --font-display: ui-serif, Georgia, 'Times New Roman', serif;
+  --font-display: 'Zen Antique', ui-serif, Georgia, 'Times New Roman', serif;
   --font-mono: ui-monospace, 'Cascadia Mono', 'Consolas', monospace;
 }
 
@@ -162,6 +206,217 @@
     outline: 3px solid var(--color-cursed-400);
     outline-offset: 2px;
   }
+}
+
+/*
+ * ─── The Jujutsu interface ────────────────────────────────────────────────────────────────
+ *
+ * Which shell is drawn is decided in React (`components/AppShell.tsx`). This is only what
+ * differs in *shape*, which can be said once here instead of in two hundred class lists:
+ * `applyAppearance` puts `data-interface` on the root and these rules key on it. With the
+ * attribute at `classic`, none of this applies and the interface is exactly what it was.
+ *
+ * Still no colour named (§9): the screentone is drawn in tokens, and its fade is a mask, which
+ * reads only the alpha of whatever colour it is given.
+ */
+
+/*
+ * Classic keeps the heading face it shipped with. Zen Antique is the Jujutsu interface's; a
+ * preset that came back with different lettering would not be the thing that was asked for.
+ */
+:root[data-interface='classic'] {
+  --font-display: ui-serif, Georgia, 'Times New Roman', serif;
+}
+
+/* Paper, wood and stamps have corners. Every `rounded-*` utility reads these. */
+:root[data-interface='jujutsu'] {
+  --radius-xs: 0.0625rem;
+  --radius-sm: 0.0625rem;
+  --radius-md: 0.125rem;
+  --radius-lg: 0.1875rem;
+  --radius-xl: 0.25rem;
+}
+
+:root[data-interface='jujutsu'] * {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-void-600) transparent;
+}
+
+/* Screentone: a field of dots that thins out to nothing. */
+.jj-halftone {
+  background-image: radial-gradient(
+    circle at center,
+    var(--color-void-600) 0.0625rem,
+    transparent 0.085rem
+  );
+  background-size: 0.5rem 0.5rem;
+  mask-image: linear-gradient(to left, var(--color-void-950), transparent);
+}
+
+@media print {
+  .jj-halftone {
+    display: none;
+  }
+}
+
+/*
+ * ─── Welcome ──────────────────────────────────────────────────────────────────────────────
+ *
+ * The motion for the start-up welcome (`components/brand/Welcome.tsx`). This is the only
+ * unprompted animation in the app, and it plays once, at launch.
+ *
+ * ⚠️ Nothing here decides when the sequence moves on. `hooks/useWelcome.tsx` does that with
+ * timers, because reduced motion collapses every duration below to nothing — and a sequence
+ * that waited for `animationend` would then be over before it was seen. Every rule fills
+ * `both`, so with motion off each piece is simply at its resting place from the first frame,
+ * and the leaving is a cut.
+ *
+ * No colour is named: the shapes take theirs from token classes on the elements.
+ */
+@keyframes welcome-stamp {
+  0% {
+    opacity: 0;
+    transform: scale(1.22);
+  }
+  55% {
+    opacity: 1;
+    transform: scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes welcome-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* A brush stroke is drawn, not faded: uncovered from the left, the way the hand moved. */
+@keyframes welcome-stroke {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes welcome-out {
+  to {
+    opacity: 0;
+  }
+}
+
+/* The extra distance is the hem, which hangs below the curtain and has to clear the top too. */
+@keyframes welcome-lift {
+  to {
+    transform: translateY(calc(-100% - 4.5rem));
+  }
+}
+
+@keyframes welcome-tear-left {
+  to {
+    opacity: 0;
+    transform: translate(-75%, 7%) rotate(-11deg);
+  }
+}
+
+@keyframes welcome-tear-right {
+  to {
+    opacity: 0;
+    transform: translate(75%, 7%) rotate(11deg);
+  }
+}
+
+@keyframes welcome-scrim {
+  to {
+    opacity: 0.8;
+  }
+}
+
+.welcome-stamp {
+  animation: welcome-stamp 420ms cubic-bezier(0.2, 0.9, 0.3, 1) 80ms both;
+}
+
+.welcome-in {
+  animation: welcome-in 460ms ease-out both;
+}
+
+.welcome-stroke {
+  animation: welcome-stroke 620ms cubic-bezier(0.6, 0, 0.2, 1) both;
+}
+
+/* The order the pieces arrive in. Everything is in place by about 1.2 seconds. */
+.welcome-2 {
+  animation-delay: 260ms;
+}
+
+.welcome-3 {
+  animation-delay: 400ms;
+}
+
+.welcome-4 {
+  animation-delay: 580ms;
+}
+
+.welcome-5 {
+  animation-delay: 700ms;
+}
+
+.welcome-scrim {
+  animation: welcome-scrim 420ms ease-out both;
+}
+
+.welcome-hem-line {
+  filter: drop-shadow(0 0 0.3rem var(--color-cursed-500))
+    drop-shadow(0 0 0.9rem var(--color-cursed-600));
+}
+
+/* Leaving. `--welcome-leave` is set on the overlay from `WELCOME_TIMING`. */
+.welcome-overlay[data-leaving='true'] .welcome-content {
+  animation: welcome-out calc(var(--welcome-leave) * 0.4) ease-in both;
+}
+
+.welcome-overlay[data-leaving='true'] .welcome-veil {
+  animation: welcome-lift var(--welcome-leave) cubic-bezier(0.7, 0, 0.25, 1) both;
+}
+
+.welcome-overlay[data-leaving='true'] .welcome-whole {
+  visibility: hidden;
+}
+
+.welcome-overlay[data-leaving='true'] .welcome-tear-left {
+  animation: welcome-tear-left calc(var(--welcome-leave) * 0.8) cubic-bezier(0.5, 0, 0.8, 0.4) both;
+}
+
+.welcome-overlay[data-leaving='true'] .welcome-tear-right {
+  animation: welcome-tear-right calc(var(--welcome-leave) * 0.8) cubic-bezier(0.5, 0, 0.8, 0.4)
+    both;
+}
+
+/* The dark behind the talisman holds for a beat, so the tear is seen against it. */
+.welcome-overlay[data-leaving='true'] .welcome-backdrop {
+  animation: welcome-out calc(var(--welcome-leave) * 0.7) ease-in
+    calc(var(--welcome-leave) * 0.3) both;
+}
+
+.welcome-overlay[data-leaving='true'][data-style='card'] {
+  animation: welcome-out var(--welcome-leave) ease-in both;
+}
+
+/*
+ * Reduced motion already collapses every duration (see the utilities layer). The delays have
+ * to go as well, or the pieces would still pop in one after another — which is motion.
+ */
+:root[data-reduced-motion='true'] .welcome-overlay,
+:root[data-reduced-motion='true'] .welcome-overlay * {
+  animation-delay: 0ms !important;
 }
 
 /*

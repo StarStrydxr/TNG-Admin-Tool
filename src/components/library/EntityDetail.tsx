@@ -8,7 +8,6 @@ import {
 } from '../../domain/entities';
 import { describeEntity } from '../../domain/entities-display';
 import { ROLE_LABELS, assignableRoles, capabilitiesFor, type Role } from '../../domain/roles';
-import { gradeAbbrev } from '../../domain/grades';
 import { useExport } from '../../hooks/useExport';
 import { usePrint } from '../../hooks/usePrint';
 import { Insignia } from '../Insignia';
@@ -17,6 +16,7 @@ import { CardSection } from '../../routes/vault/sections/CardSection';
 import { DiscordPreview } from '../DiscordPreview';
 import { LinksEditor } from './LinksEditor';
 import type { EntityLink, LinkKind } from '../../domain/links';
+import { GradeSeal } from '../GradeSeal';
 
 const BUTTON =
   'rounded-md border px-3 py-1.5 text-sm transition-colors disabled:cursor-not-allowed disabled:opacity-40';
@@ -70,9 +70,7 @@ export function EntityDetail({ entity, viewer, onSave, onDelete, onOpen }: Entit
             {entityDisplayName(entity)}
           </h2>
           {grade ? (
-            <code className="shrink-0 font-mono text-xs text-cursed-400">
-              {gradeAbbrev(grade)}
-            </code>
+            <GradeSeal grade={grade} className="self-center" />
           ) : null}
           <button
             type="button"

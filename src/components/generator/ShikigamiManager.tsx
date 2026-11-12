@@ -10,9 +10,10 @@ import {
   type Draft,
 } from '../../generators/draft';
 import { deriveSeed } from '../../generators/rng';
-import { gradeAbbrev, gradeLabel } from '../../domain/grades';
+import { gradeLabel } from '../../domain/grades';
 import type { TableSet } from '../../domain/tables';
 import { DraftFieldRow } from './DraftFieldRow';
+import { GradeSeal } from '../GradeSeal';
 
 const BUTTON =
   'rounded-md border border-void-700 px-2.5 py-1 text-xs text-ash-400 transition-colors hover:border-void-600 hover:text-ash-100';
@@ -114,9 +115,7 @@ export function ShikigamiManager({
                   <span className="text-sm text-ash-100">
                     {draft.fields.find((f) => f.key === 'name')?.values[0] ?? 'Unnamed'}
                   </span>
-                  <code className="font-mono text-[11px] text-cursed-400">
-                    {gradeAbbrev(draft.grade)}
-                  </code>
+                  <GradeSeal grade={draft.grade} size="sm" className="self-center" />
                   <span className="text-xs text-ash-500">{gradeLabel(draft.grade)}</span>
                 </span>
                 <span className="flex shrink-0 gap-2">

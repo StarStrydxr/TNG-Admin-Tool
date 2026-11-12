@@ -7,6 +7,7 @@ import { driftSummary } from '../../generators/situation';
 import type { Draft } from '../../generators/draft';
 import { Insignia } from '../../components/Insignia';
 import { useSituation } from '../../hooks/useSituation';
+import { GradeSeal } from '../../components/GradeSeal';
 
 /**
  * Roll a mission, the curse actually in it, and the tool recovered from the site — together,
@@ -188,7 +189,7 @@ function Part({
       <header className="mb-3 flex items-baseline gap-2 border-b border-void-800 pb-2">
         <Insignia kind={draft.kind} size={15} className="shrink-0 self-center text-ash-400" />
         <h3 className="font-display text-sm text-ash-200">{title}</h3>
-        <code className="font-mono text-xs text-cursed-400">{gradeAbbrev(draft.grade)}</code>
+        <GradeSeal grade={draft.grade} className="self-center" />
         <button
           type="button"
           onClick={onReroll}

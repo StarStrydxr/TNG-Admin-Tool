@@ -8,6 +8,8 @@
  * Pure.
  */
 
+import { DEFAULT_SHELL, type ShellSettings } from './shell';
+import { DEFAULT_WELCOME, type WelcomeSettings } from './welcome';
 import type { FontChoice } from './fonts';
 import {
   defaultCardStyles,
@@ -157,6 +159,10 @@ export interface Settings {
    * stays deleted — which a plain "write any id that is missing" would silently resurrect.
    */
   readonly seededTraits: readonly string[];
+  /** Which welcome plays at start-up, and what to call whoever opens the app. */
+  readonly welcome: WelcomeSettings;
+  /** Which interface is drawn — Jujutsu or Classic — and whether its sidebar is folded. */
+  readonly shell: ShellSettings;
 }
 
 export const DEFAULT_APPEARANCE: Appearance = {
@@ -182,6 +188,8 @@ export function defaultSettings(): Settings {
     defaultHosts: '',
     cardStyles: defaultCardStyles(),
     seededTraits: [],
+    welcome: DEFAULT_WELCOME,
+    shell: DEFAULT_SHELL,
   };
 }
 

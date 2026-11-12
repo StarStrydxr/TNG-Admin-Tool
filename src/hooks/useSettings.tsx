@@ -24,6 +24,8 @@ import {
   type HostRewards,
 } from '../domain/difficulty';
 import type { Role } from '../domain/roles';
+import type { InterfaceStyle, ShellSettings } from '../domain/shell';
+import type { WelcomeSettings } from '../domain/welcome';
 import { presetById, type ThemeSeed } from '../domain/theme';
 import { loadSettings, saveSettings } from '../services/settings';
 
@@ -49,6 +51,10 @@ interface SettingsContextValue {
   readonly resetDifficulties: () => void;
   /** Record that these seeded trait ids have been offered, so they are never offered twice. */
   readonly rememberSeededTraits: (ids: readonly string[]) => void;
+  /** Which welcome plays at start-up, and the name it uses. */
+  readonly setWelcome: (patch: Partial<WelcomeSettings>) => void;
+  /** Which interface is drawn, and whether its sidebar is folded. */
+  readonly setShell: (patch: Partial<ShellSettings>) => void;
   readonly reset: () => void;
 }
 
@@ -186,6 +192,14 @@ export function SettingsProvider({ children }: { readonly children: ReactNode })
     }));
   }, []);
 
+  const setWelcome = useCallback((patch: Partial<WelcomeSettings>) => {
+    setSettings((current) => ({ ...current, welcome: { ...current.welcome, ...patch } }));
+  }, []);
+
+  const setShell = useCallback((patch: Partial<ShellSettings>) => {
+    setSettings((current) => ({ ...current, shell: { ...current.shell, ...patch } }));
+  }, []);
+
   const rememberSeededTraits = useCallback((ids: readonly string[]) => {
     setSettings((current) => {
       const merged = [...new Set([...current.seededTraits, ...ids])];
@@ -220,6 +234,8 @@ export function SettingsProvider({ children }: { readonly children: ReactNode })
       setCardStyle,
       resetDifficulties,
       rememberSeededTraits,
+      setWelcome,
+      setShell,
       reset,
     }),
     [
@@ -239,6 +255,8 @@ export function SettingsProvider({ children }: { readonly children: ReactNode })
       setCardStyle,
       resetDifficulties,
       rememberSeededTraits,
+      setWelcome,
+      setShell,
       reset,
     ],
   );
@@ -250,4 +268,9 @@ export function useSettings(): SettingsContextValue {
   const context = useContext(SettingsContext);
   if (!context) throw new Error('useSettings must be used inside a SettingsProvider');
   return context;
+}
+
+/** Which interface is being drawn. For the few components that are drawn differently in each. */
+export function useInterfaceStyle(): InterfaceStyle {
+  return useSettings().settings.shell.style;
 }

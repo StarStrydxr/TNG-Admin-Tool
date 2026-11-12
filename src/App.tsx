@@ -5,6 +5,7 @@ import { AnnouncerProvider } from './hooks/useAnnouncer';
 import { ClansProvider } from './hooks/useClans';
 import { PrintProvider } from './hooks/usePrint';
 import { SettingsProvider } from './hooks/useSettings';
+import { WelcomeProvider } from './hooks/useWelcome';
 import { MODULES, type ModuleId } from './routes/modules';
 
 /**
@@ -30,12 +31,16 @@ export function App() {
   return (
     <SettingsProvider>
       <AnnouncerProvider>
-        {/* Above PrintProvider: a printed character sheet resolves its clan bonus lines. */}
-        <ClansProvider>
-          <PrintProvider>
-            <Shell />
-          </PrintProvider>
-        </ClansProvider>
+        {/* Inside the announcer, which speaks its two lines; around everything else, so the
+            app mounts and loads underneath it and Settings can ask for it to play again. */}
+        <WelcomeProvider>
+          {/* Above PrintProvider: a printed character sheet resolves its clan bonus lines. */}
+          <ClansProvider>
+            <PrintProvider>
+              <Shell />
+            </PrintProvider>
+          </ClansProvider>
+        </WelcomeProvider>
       </AnnouncerProvider>
     </SettingsProvider>
   );

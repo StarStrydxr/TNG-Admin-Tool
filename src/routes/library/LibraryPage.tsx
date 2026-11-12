@@ -5,15 +5,19 @@ import { useLibrary } from '../../hooks/useLibrary';
 import { ENTITY_LABELS, entityDisplayName, entityGrade } from '../../domain/entities';
 import { entitySummary } from '../../domain/entities-display';
 import { Insignia } from '../../components/Insignia';
-import { gradeAbbrev, gradeLabel, type GradeId } from '../../domain/grades';
+import { gradeLabel, type GradeId } from '../../domain/grades';
 import { ROLES, ROLE_LABELS, type Role } from '../../domain/roles';
 import { useExport } from '../../hooks/useExport';
+import { useInterfaceStyle } from '../../hooks/useSettings';
 import { usePrint } from '../../hooks/usePrint';
+import { GradeSeal } from '../../components/GradeSeal';
 
 export function LibraryPage() {
   const lib = useLibrary();
   const { printRecords } = usePrint();
   const exporter = useExport();
+  // The Jujutsu interface puts each kind's mark on its tab. Classic's tabs stay as they were.
+  const stamped = useInterfaceStyle() === 'jujutsu';
 
   return (
     <div className="flex flex-col gap-5">
@@ -28,6 +32,7 @@ export function LibraryPage() {
               kind === lib.kind ? 'bg-void-700 text-ash-100' : 'text-ash-500 hover:text-ash-300',
             ].join(' ')}
           >
+            {stamped ? <Insignia kind={kind} size={16} className="mx-auto mb-1 block" /> : null}
             {ENTITY_LABELS[kind]}
           </button>
         ))}
@@ -249,9 +254,7 @@ export function LibraryPage() {
                           <span className="truncate text-sm">{entityDisplayName(entity)}</span>
                         </span>
                         {entityGrade(entity) ? (
-                          <code className="shrink-0 font-mono text-[11px] text-cursed-400">
-                            {gradeAbbrev(entityGrade(entity) as GradeId)}
-                          </code>
+                          <GradeSeal grade={entityGrade(entity) as GradeId} size="sm" />
                         ) : null}
                       </span>
                       <span className="mt-0.5 block truncate text-xs text-ash-500">

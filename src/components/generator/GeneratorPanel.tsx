@@ -7,7 +7,7 @@ import { ROLE_LABELS, assignableRoles, type Role } from '../../domain/roles';
 import { canSaveToVault } from '../../generators/to-character';
 import type { Draft, GeneratorSpec } from '../../generators/draft';
 import type { TableSet } from '../../domain/tables';
-import { LISTED_GRADE_IDS, gradeAbbrev, gradeLabel, type GradeId } from '../../domain/grades';
+import { LISTED_GRADE_IDS, gradeLabel, type GradeId } from '../../domain/grades';
 import { formatSimilarity } from '../../domain/similarity';
 import { entityDisplayName } from '../../domain/entities';
 import { ImagePicker } from '../form/ImagePicker';
@@ -19,6 +19,7 @@ import { DraftFieldRow } from './DraftFieldRow';
 import { LockButton } from './LockButton';
 import { BountyPosting } from './BountyPosting';
 import { MissionPosting } from './MissionPosting';
+import { GradeSeal } from '../GradeSeal';
 
 const BUTTON =
   'rounded-md border px-3 py-1.5 text-sm transition-colors disabled:cursor-not-allowed disabled:opacity-40';
@@ -276,9 +277,7 @@ export function GeneratorPanel({ specs, renderExtra }: GeneratorPanelProps) {
               <h2 className="font-display text-lg text-ash-100">
                 {gradeLabel(gen.draft.grade)}
               </h2>
-              <code className="font-mono text-xs text-cursed-400">
-                {gradeAbbrev(gen.draft.grade)}
-              </code>
+              <GradeSeal grade={gen.draft.grade} className="self-center" />
             </div>
             <code className="font-mono text-[11px] text-ash-500">seed {gen.draft.seed}</code>
           </header>

@@ -5,12 +5,13 @@ import {
   type Character,
   type CharacterKind,
 } from '../../domain/character';
-import { LISTED_GRADE_IDS, gradeAbbrev, gradeLabel, type GradeId } from '../../domain/grades';
+import { LISTED_GRADE_IDS, gradeLabel, type GradeId } from '../../domain/grades';
 import {
   distinctValues,
   isVaultFilterActive,
   type VaultFilter,
 } from '../../domain/character-search';
+import { GradeSeal } from '../../components/GradeSeal';
 
 interface CharacterListProps {
   readonly characters: readonly Character[];
@@ -190,9 +191,7 @@ export function CharacterList({
                   >
                     <span className="flex items-baseline justify-between gap-2">
                       <span className="truncate text-sm">{characterDisplayName(character)}</span>
-                      <code className="shrink-0 font-mono text-[11px] text-cursed-400">
-                        {gradeAbbrev(character.grade)}
-                      </code>
+                      <GradeSeal grade={character.grade} size="sm" />
                     </span>
                     {character.affiliation ? (
                       <span className="mt-0.5 block truncate text-xs text-ash-500">

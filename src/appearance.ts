@@ -7,7 +7,9 @@
  * This is the one module allowed to touch `document` directly.
  */
 
+import kanjiFaceUrl from './assets/fonts/zen-antique-kanji-400-normal.woff2';
 import { isLight } from './domain/color';
+import { KANJI_SUBSET, kanjiUnicodeRange } from './domain/shell';
 import { buildThemeTokens } from './domain/theme';
 import { FONT_STACKS, type Settings } from './domain/settings';
 
@@ -38,6 +40,10 @@ export function applyAppearance(settings: Settings): void {
   root.dataset['reducedMotion'] = String(appearance.reducedMotion || prefersReducedMotion());
   root.dataset['strongFocus'] = String(appearance.strongFocus);
 
+  // Which interface is drawn. Components that differ in structure read the setting; this is
+  // for what differs only in shape — corner radii, scrollbars — and can be said once in CSS.
+  root.dataset['interface'] = settings.shell.style;
+
   // Drives `color-scheme`, so native selects, checkboxes and scrollbars follow a light theme
   // instead of staying dark against it.
   root.dataset['themeLight'] = String(isLight(theme.seed.background));
@@ -64,4 +70,34 @@ export function applyBackgroundImage(dataUrl: string | null): void {
     root.style.removeProperty('--bg-image');
     delete root.dataset['hasBackground'];
   }
+}
+
+let kanjiFaceRegistered = false;
+
+/**
+ * Declare the kanji subset of the display face.
+ *
+ * Done here rather than as an `@font-face` in the stylesheet so that its `unicode-range` is
+ * *built from* `KANJI_SUBSET` — the same list the pages are checked against — instead of being
+ * a second copy of it. Same family name as the Latin files, so `font-display` reaches the
+ * kanji with no extra class: the browser picks this file for exactly these code points.
+ *
+ * `block`, not `swap`: a frame of the system's gothic face before this one lands would be the
+ * wrong letterform, and the file is local, so the wait is nothing. It is loaded straight away
+ * for the same reason. A file that fails to load is not an error — the characters fall back
+ * to a system face, which is what they would have been without it.
+ */
+export function registerKanjiFace(): void {
+  if (kanjiFaceRegistered) return;
+  if (typeof document === 'undefined' || typeof FontFace === 'undefined') return;
+  kanjiFaceRegistered = true;
+
+  const face = new FontFace('Zen Antique', `url("${kanjiFaceUrl}") format("woff2")`, {
+    style: 'normal',
+    weight: '100 900',
+    display: 'block',
+    unicodeRange: kanjiUnicodeRange(KANJI_SUBSET),
+  });
+  document.fonts.add(face);
+  face.load().catch(() => undefined);
 }

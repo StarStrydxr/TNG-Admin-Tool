@@ -1,4 +1,6 @@
 import { insigniaFor, type GlyphId, type InsigniaKind } from '../domain/insignia';
+import { useInterfaceStyle } from '../hooks/useSettings';
+import { JujutsuIcon } from './brand/JujutsuIcon';
 
 interface InsigniaProps {
   readonly kind: InsigniaKind;
@@ -17,9 +19,21 @@ interface InsigniaProps {
  * Decorative by default: these sit beside a name that already says what the record is, and a
  * screen reader announcing "Mission" immediately before the word "Mission" is noise. Pass
  * `titled` where the glyph stands alone.
+ *
+ * **Two sets, one door.** The line art below is the Classic interface's; the Jujutsu interface
+ * draws the same thirteen glyphs from its own stamped set (`brand/icons.ts`). Which one is a
+ * setting, read here — so no caller has to know there are two, and a kind added later gets
+ * both or the compiler says which is missing.
  */
 export function Insignia({ kind, size = 16, titled = false, className }: InsigniaProps) {
   const { glyph, label } = insigniaFor(kind);
+  const style = useInterfaceStyle();
+
+  if (style === 'jujutsu') {
+    return (
+      <JujutsuIcon id={glyph} size={size} className={className} label={titled ? label : undefined} />
+    );
+  }
 
   return (
     <svg

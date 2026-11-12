@@ -5,6 +5,8 @@
  * the app unreadable or refuse to start. Anything unrecognised falls back to the default.
  */
 
+import { parseShell } from './shell';
+import { parseWelcome } from './welcome';
 import {
   CARD_KINDS,
   defaultCardStyles,
@@ -293,5 +295,7 @@ export function parseSettings(value: unknown): Settings {
     seededTraits: Array.isArray(raw['seededTraits'])
       ? raw['seededTraits'].filter((id): id is string => typeof id === 'string')
       : [],
+    welcome: parseWelcome(raw['welcome']),
+    shell: parseShell(raw['shell']),
   };
 }
